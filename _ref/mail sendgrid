@@ -1,0 +1,53 @@
+const functions = require('firebase-functions');
+const nodemailer = require('nodemailer');
+
+const admin = require('firebase-admin');
+admin.initializeApp();
+
+// const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
+// const SENDGRID_API_KEY = firebaseConfig.sendgrid.api;
+const SENDGRID_API_KEY = functions.config().sendgrid.key;
+console.log('SENDGRIDAPIKEY', SENDGRID_API_KEY)
+
+
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(SENDGRID_API_KEY);
+
+exports.firestoreEmail = functions.firestore.document('users/{uid}').onCreate(event => {
+        console.log('EVENT', event)
+        const userId = event._fieldsProto.uid.stringValue
+        console.log('USERID', userId)
+
+        const db = admin.firestore()
+
+        return db.collection('users').doc(userId)
+        .get()
+        .then(doc => {
+                   console.log('DOC', doc)
+
+                    const user = doc.data()
+                    console.log('USER', user)
+
+                    const msg = {
+                        to: 'renan.sigolo@gmail.com',
+                        from: 'renan.sigolo@gmail.com',
+                        subject:  'New User Added',
+                        // text: `Hey ${toName}. You have a new follower!!! `,
+                        // html: `<strong>Hey ${toName}. You have a new follower!!!</strong>`,
+
+                        // custom templates
+                        templateId: '6d0a8686-b9bf-4b75-832e-0934a73a2219',
+                        substitutionWrappers: ['{{', '}}'],
+                        substitutions: {
+                          name: user.displayName,
+                          email: user.email,
+                          campus: user.campus
+                        }
+                    };
+                    console.log('MSG', msg)
+
+                    return sgMail.send(msg)
+                })
+                .then(() => console.log('email sent!') )
+                .catch(err => console.log(err) )
+});

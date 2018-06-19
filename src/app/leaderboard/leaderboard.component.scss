@@ -1,0 +1,143 @@
+.profile-header {
+	background-image: linear-gradient(-139deg, #007bff 10%, #662d91 100%);
+	border: 1px solid #979797;
+	-webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+	color: white;
+
+	i {
+		padding: 13px;
+	}
+
+	.alert {
+		margin-bottom: 0;
+	}
+}
+
+.highlight-btn {
+	background-color: #662d91;
+	color: white;
+	-webkit-box-shadow: 0;
+	box-shadow: 0;
+}
+
+.btn-group {
+	border: 1px solid #662d91;
+	border-radius: 1.25rem;
+	width: 70%;
+}
+
+.btn {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	// border-radius: 1.25rem !important;
+	border: 0;
+	width: 51%;
+}
+
+.highlight-btn-left {
+	@extend .highlight-btn;
+
+	-webkit-animation-name: rightLeft;
+	-webkit-animation-duration: 650ms;
+	animation-name: rightLeft;
+	animation-duration: 650ms;
+
+	@-webkit-keyframes rightLeft {
+		0% {
+			left: 50%;
+			top: 0;
+		}
+
+		100% {
+			left: 0;
+			top: 0;
+		}
+	}
+
+	@keyframes rightLeft {
+		0% {
+			left: 50%;
+			top: 0;
+		}
+
+		100% {
+			left: 0;
+			top: 0;
+		}
+	}
+}
+
+.highlight-btn-right {
+	@extend .highlight-btn;
+
+	-webkit-animation-name: leftRight;
+	-webkit-animation-duration: 650ms;
+	animation-name: leftRight;
+	animation-duration: 650ms;
+
+	@-webkit-keyframes leftRight {
+		0% {
+			right: 50%;
+			top: 0;
+		}
+
+		100% {
+			left: 0;
+			top: 0;
+		}
+	}
+
+	@keyframes leftRight {
+		0% {
+			right: 50%;
+			top: 0;
+		}
+
+		100% {
+			right: 0;
+			top: 0;
+		}
+	}
+}
+
+.img-profile {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+}
+
+.img-profile-list {
+	@extend .img-profile;
+
+	height: 60px;
+	width: 60px;
+}
+
+.highlight-user {
+	background-color: rgba(0, 123, 255, 0.2);
+}
+
+.campus {
+	font-size: 0.9rem;
+	color: #868e96;
+}
+//Modal
+
+.aboutLead {
+	h4 {
+		color: #662d91;
+	}
+
+	li {
+		color: #662d91;
+	}
+
+	li span {
+		color: #676767;
+	}
+}
+
+small {
+	color: #868e96;
+}

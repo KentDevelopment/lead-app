@@ -1,0 +1,39 @@
+section {
+	h5 {
+		color: #662d91;
+	}
+
+	.profile-header {
+		background-image: radial-gradient(at 50% 70%, #f1592a 12%, #662d91 100%);
+		border: 1px solid #979797;
+		-webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+		color: white;
+
+		.img-profile {
+			height: 120px;
+			width: 120px;
+			border-radius: 50%;
+		}
+
+		.edit-img {
+			opacity: 0.9;
+			position: absolute;
+			top: 68%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+		}
+
+		i {
+			padding: 13px;
+		}
+	}
+}
+
+.modalIncognito {
+	.material-icons {
+		font-size: 6rem;
+	}
+}

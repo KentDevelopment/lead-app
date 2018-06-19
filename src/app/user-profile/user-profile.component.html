@@ -1,0 +1,81 @@
+<!-- User Profile -->
+<section *ngIf="auth.user$ | async as user">
+
+  <!-- User Status -->
+  <div class="sticky-top profile-header pb-3">
+
+    <div class="fixed-top">
+      <i class="material-icons float-left" routerLink="/leaderboard">keyboard_arrow_left</i>
+      <i class="material-icons float-right" (click)="auth.signOut()">power_settings_new</i>
+    </div>
+
+    <h3 class="text-center pt-4 text-truncate text-uppercase">Hello <br> {{ user.displayName }}</h3>
+
+    <div class="d-flex justify-content-around">
+      <div class="d-flex align-items-center" routerLink="/profile">
+        <img id="upload" class="img-profile" src="{{ user.photoURL }}" alt="User Profile Image">
+        <div class="edit-img" *ngIf="!user.incognitoMode">
+          <img class="img-profile" src="assets/profile/edit.png" alt="Edit" (click)="file.click()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-2" *ngIf="user.incognitoMode">
+    Only you can see your profile picture!
+  </div>
+
+  <div class="card-body">
+    <div class="form-group fileContainer" hidden>
+      <input id="file" type="file" (change)="uploadFile($event)" accept="image/*" #file>
+    </div>
+    <div class="form-group" class="alert alert-light border-primary text-center" role="alert" *ngIf="uploadPercent">
+      <div class="progress">
+        <div class="progress-bar w-{{ uploadPercent | async }}" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <div>Progress: {{ uploadPercent | async }}%</div>
+    </div>
+
+    <form [formGroup]="userForm" novalidate>
+
+      <div class="form-group mt-3">
+        <input type="text" class="form-control" aria-describedby="displayName" placeholder="{{user.displayName}}" formControlName="displayName">
+      </div>
+      <div class="form-group mt-3">
+        <input type="email" class="form-control" aria-describedby="email" placeholder="{{user.email}}" formControlName="email">
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="text-center container" *ngIf="user.incognitoMode">
+    <button type="submit" class="btn btn-block btn-primary" (click)="openModal(leaveIncognito)">Leave Incognito!</button>
+  </div>
+
+  <h5 class="text-center mt-5" [routerLink]="['admin']" *ngIf="user.role === 'admin' ">Go to Admin Panel</h5>
+
+  <small class="text-right fixed-bottom pr-3 pb-3">{{version}}</small>
+</section>
+
+<!-- Leave Incognito Modal -->
+<ng-template #leaveIncognito>
+  <div class="modalIncognito">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Leave Incognito!</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body text-center">
+      <i class="material-icons">sentiment_very_satisfied</i>
+      <p>By leaving incognito mode, your profile photo, name and number of LEAD points will be publicly available to other users of this application.</p>
+      <p>Do you wish to continue?</p>
+      <div class="d-flex justify-content-around">
+        <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Not now</button>
+        <button type="button" class="btn btn-primary" (click)="confirmIncognito()">Yes, let's do this!</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
