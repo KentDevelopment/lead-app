@@ -103,6 +103,8 @@ import {
 	]
 })
 export class AppComponent implements OnInit {
+	isShowingCredits = false
+
 	constructor(updates: SwUpdate) {
 		interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate())
 	}
@@ -111,5 +113,13 @@ export class AppComponent implements OnInit {
 	// change the animation state
 	getRouteAnimation(outlet) {
 		return outlet.activatedRouteData.animation
+	}
+
+	showCredits() {
+		if (!this.isShowingCredits) {
+			this.isShowingCredits = true
+		} else {
+			this.isShowingCredits = false
+		}
 	}
 }

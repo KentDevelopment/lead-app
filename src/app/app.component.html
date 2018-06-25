@@ -1,3 +1,13 @@
 <div [@routerAnimation]="getRouteAnimation(route)">
   <router-outlet #route="outlet"></router-outlet>
 </div>
+
+<footer class="fixed-bottom text-center p-2" (click)="showCredits()">
+      <span>Created by Renan Sigolo</span>
+      <i class="material-icons float-right pr-2" *ngIf="!isShowingCredits">keyboard_arrow_up</i>
+
+  <div *ngIf="isShowingCredits">
+    <i class="material-icons float-right">keyboard_arrow_down</i>
+    <p class="pt-1">Creator: Mr Renan Ferreira is a student of Kent’s Diploma of Website Development course who offered to create this website as a volunteer project. Kent Institute Australia sincerely thanks Renan and acknowledges the amazing contribution he has made to the LEAD program by volunteering his time and skills to make this service available to his fellow students.</p>
+  </div>
+</footer>

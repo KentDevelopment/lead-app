@@ -55,7 +55,7 @@ export class AuthService {
 			.then(credential => {
 				if (credential.additionalUserInfo.isNewUser === true) {
 					this.setUserDoc(credential.user) // create initial user document
-				} else if (credential.additionalUserInfo.isNewUser !== true) {
+				} else if (!credential.additionalUserInfo.isNewUser) {
 					this.user$.subscribe(ref => {
 						if (!ref.campus) {
 							return
