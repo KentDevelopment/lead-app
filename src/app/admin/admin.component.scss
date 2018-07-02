@@ -1,9 +1,8 @@
 .profile-header {
 	background-image: linear-gradient(-139deg, #007bff 10%, #662d91 100%);
 	border: 1px solid #979797;
-	-webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-	color: white;
+	color: #fff;
 
 	i {
 		padding: 13px;
@@ -11,8 +10,8 @@
 }
 
 .img-profile-list {
-	width: 35px;
 	border-radius: 50%;
+	width: 35px;
 }
 
 .card {
@@ -21,9 +20,8 @@
 
 .highlight-btn {
 	background-color: #662d91;
-	color: white;
-	-webkit-box-shadow: 0;
 	box-shadow: 0;
+	color: #fff;
 }
 
 .btn-group {
@@ -32,30 +30,42 @@
 	}
 }
 
-.bulk-boxes {
-	.input-group-text {
-		background-color: white;
-		border-right: 0;
-	}
+.input-group-text {
+	background-color: #fff;
+	border-right: 0;
+}
 
-	.form-control {
-		border-left: 0;
+.form-control {
+	border-left: 0;
 
-		p {
-			margin-bottom: 0;
-		}
+	p {
+		margin-bottom: 0;
 	}
 }
 
-.pointsBox {
+.points-box {
 	width: 4.2rem;
 }
 
 .campus {
-	font-size: 0.9rem;
 	color: #868e96;
+	font-size: 0.9rem;
 }
 
 .custom-select {
 	color: #6b747d;
+}
+
+.modal-reset-points {
+	.d-flex {
+		justify-content: space-evenly;
+	}
+
+	button {
+		width: 30%;
+	}
+
+	.material-icons {
+		font-size: 4rem;
+	}
 }

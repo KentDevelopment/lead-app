@@ -5,7 +5,7 @@
 
 export const environment = {
 	production: false,
-	version: 'v.1.0.0 beta',
+	version: 'v.1.0.0',
 	firebase: {
 		apiKey: 'AIzaSyDh6FBRemygTT5Qy-yZD6A0B07gDgjrlG0',
 		authDomain: 'lead-app-514e3.firebaseapp.com',
