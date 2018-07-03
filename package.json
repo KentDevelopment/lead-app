@@ -10,7 +10,7 @@
 		"deploy-functions": "firebase deploy --only functions",
 		"deploy": "firebase deploy",
 		"e2e": "ng e2e",
-		"lint-fix": "yarn lint-js-fix && lint-scss-fix && yarn prettier",
+		"lint-fix": "yarn lint-js-fix && yarn lint-scss-fix && yarn prettier",
 		"lint-js-fix": "ng lint kent --fix && ng lint kent-e2e --fix",
 		"lint-scss-fix": "stylelint \"src/**/*.scss\" --fix",
 		"lint-scss": "stylelint \"src/**/*.scss\"",
