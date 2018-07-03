@@ -18,7 +18,7 @@
 </div>
 
 <!-- Big Div that align everything to the center-->
-<div class="text-center mt-4 d-flex flex-column align-items-center">
+<div class="text-center mt-4 mb-5 d-flex flex-column align-items-center">
 
 	<!-- Add Points -->
 	<div class="card border-primary mb-2" *ngIf="isActive === 'points'">
@@ -94,6 +94,7 @@
 					<div class="p-2">
 						<input type="number" class="form-control" step="10" aria-describedby="points" placeholder="Points to add" formControlName="points">
 					</div>
+
 					<div class="p-2">
 						<button type="submit" class="btn btn-primary">Add Points</button>
 					</div>
@@ -116,7 +117,6 @@
 				<b>{{log.adminName}}</b>
 				<p class="text-right pt-2">{{log.date | date: 'medium'}}</p>
 			</div>
-
 		</div>
 	</div>
 

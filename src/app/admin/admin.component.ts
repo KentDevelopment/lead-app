@@ -70,9 +70,11 @@ export class AdminComponent implements OnInit {
 		const userRef: AngularFirestoreDocument<any> = this.afs.doc(
 			`users/${user.uid}`
 		)
+
 		const data: User = {
 			points: Number(event.target.value)
 		}
+
 		userRef
 			.update(data)
 			.then(() => {
@@ -80,10 +82,10 @@ export class AdminComponent implements OnInit {
 					`User updated successfully`,
 					`${user.displayName} has ${data.points} pts`
 				)
-				this.fss.addLog(`${user.displayName} has ${data.points} pts`)
+				// this.fss.addLog(`${user.displayName} has ${data.points} pts`)
 			})
 			.catch(err => {
-				this.showSuccess(`Ops, it looks like something has gone wrong`, err)
+				this.showError(`Ops, it looks like something has gone wrong`, err)
 			})
 	}
 
@@ -109,7 +111,7 @@ export class AdminComponent implements OnInit {
 			const item = userRef.valueChanges().pipe(take(1))
 
 			item.subscribe(ref => {
-				const totalPoints: Number = Number(ref.points) + Number(user.points)
+				const totalPoints: number = Number(ref.points) + Number(user.points)
 
 				const data: User = {
 					uid: userUid,
@@ -127,7 +129,7 @@ export class AdminComponent implements OnInit {
 						return
 					})
 					.catch(err => {
-						this.showSuccess(`Ops, it looks like something has gone wrong`, err)
+						this.showError(`Ops, it looks like something has gone wrong`, err)
 					})
 			})
 		}
@@ -156,7 +158,7 @@ export class AdminComponent implements OnInit {
 				)
 			})
 			.catch(err => {
-				this.showSuccess(`Ops, it looks like something has gone wrong`, err)
+				this.showError(`Ops, it looks like something has gone wrong`, err)
 			})
 	}
 
@@ -186,10 +188,7 @@ export class AdminComponent implements OnInit {
 							return
 						})
 						.catch(err => {
-							this.showSuccess(
-								`Ops, it looks like something has gone wrong`,
-								err
-							)
+							this.showError(`Ops, it looks like something has gone wrong`, err)
 						})
 				}
 			})
@@ -217,5 +216,8 @@ export class AdminComponent implements OnInit {
 	}
 	showWarning(title, message?) {
 		this.toastr.warning(message, title)
+	}
+	showError(title, message?) {
+		this.toastr.error(message, title)
 	}
 }
