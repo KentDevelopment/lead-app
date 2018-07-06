@@ -1,18 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-$font-family-base: 'Roboto', sans-serif;
-$theme-colors: (
-	'primary': #662d91,
-	'secondary': #868e96,
-	'danger': #dc3545,
-	'warning': #ffc107,
-	'success': #217c49,
-	'dark': #000000,
-	'kent-primary': #f04f23,
-	'kent-secondary': #0072bb
-);
-$body-color: #676767;
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import 'assets/my-style';
 // Import Bootstrap
 // @import url("https://fonts.googleapis.com/icon?family=Material+Icons"); // Import Google Icons
 // @import "~ngx-toastr/toastr"; // Import Ngx Toast

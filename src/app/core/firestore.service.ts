@@ -155,7 +155,7 @@ export class FirestoreService {
 					return
 				})
 				.catch(err => {
-					console.error(`Ops, it looks like something has gone wrong`, err)
+					console.error(`Ops, it looks like something has gone wrong...`, err)
 				})
 		})
 	}

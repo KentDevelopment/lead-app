@@ -30,7 +30,7 @@
 
 	<!-- TODO:  Separate into a component -->
 	<!-- Users List -->
-	<section *ngIf="isActive === 'points'">
+	<section *ngIf="isActive === 'points'" class="leaderboard-list">
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item list-group-item-action" *ngFor="let user of fss.users$; let i = index;" [ngClass]="{'highlight-user':user.uid === authUser.uid}">
 				<div class="d-flex">
@@ -62,7 +62,7 @@
 </section>
 
 <ng-template #aboutLead>
-	<div class="aboutLead">
+	<div class="about-lead">
 		<div class="modal-header">
 			<h4 class="modal-title pull-left">More about LEAD</h4>
 			<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

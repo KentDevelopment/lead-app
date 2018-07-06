@@ -15,6 +15,7 @@ import {AuthService} from './../core/auth.service'
 import {BsModalService} from 'ngx-bootstrap/modal'
 import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service'
 
+import {ToastrService} from 'ngx-toastr'
 import {Ng2ImgToolsService} from 'ng2-img-tools'
 
 import {User} from '../core/interfaces/user'
@@ -39,6 +40,7 @@ export class UserProfileComponent implements OnInit {
 
 	constructor(
 		public auth: AuthService,
+		private toastr: ToastrService,
 		private fb: FormBuilder,
 		private storage: AngularFireStorage,
 		private afs: AngularFirestore,
@@ -87,7 +89,7 @@ export class UserProfileComponent implements OnInit {
 					.subscribe()
 			},
 			error => {
-				console.log('ERROR', error)
+				console.error('ERROR', error)
 			}
 		)
 	}
@@ -102,7 +104,10 @@ export class UserProfileComponent implements OnInit {
 			photoURL: downloadURL
 		}
 
-		return userRef.set(data, {merge: true})
+		return userRef.update(data).catch(err => {
+			// this.showError(err)
+			console.error('Update error', err)
+		})
 	}
 
 	openModal(templateRef: TemplateRef<any>) {
@@ -112,5 +117,16 @@ export class UserProfileComponent implements OnInit {
 	confirmIncognito() {
 		this.auth.leaveIncognito(this.user)
 		this.modalRef.hide()
+	}
+
+	// Alerts
+	// showSuccess(title, message?) {
+	// 	this.toastr.success(message, title)
+	// }
+	// showWarning(title, message?) {
+	// 	this.toastr.warning(message, title)
+	// }
+	showError(title, message?) {
+		this.toastr.error(message, title)
 	}
 }

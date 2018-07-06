@@ -70,9 +70,11 @@ export class AdminComponent implements OnInit {
 		const userRef: AngularFirestoreDocument<any> = this.afs.doc(
 			`users/${user.uid}`
 		)
+
 		const data: User = {
 			points: Number(event.target.value)
 		}
+
 		userRef
 			.update(data)
 			.then(() => {
@@ -80,10 +82,10 @@ export class AdminComponent implements OnInit {
 					`User updated successfully`,
 					`${user.displayName} has ${data.points} pts`
 				)
-				this.fss.addLog(`${user.displayName} has ${data.points} pts`)
+				// this.fss.addLog(`${user.displayName} has ${data.points} pts`)
 			})
 			.catch(err => {
-				this.showSuccess(`Ops, it looks like something has gone wrong`, err)
+				this.showError(`Ops, it looks like something has gone wrong`, err)
 			})
 	}
 
@@ -109,7 +111,7 @@ export class AdminComponent implements OnInit {
 			const item = userRef.valueChanges().pipe(take(1))
 
 			item.subscribe(ref => {
-				const totalPoints: Number = Number(ref.points) + Number(user.points)
+				const totalPoints: number = Number(ref.points) + Number(user.points)
 
 				const data: User = {
 					uid: userUid,
@@ -127,7 +129,7 @@ export class AdminComponent implements OnInit {
 						return
 					})
 					.catch(err => {
-						this.showSuccess(`Ops, it looks like something has gone wrong`, err)
+						this.showError(`Ops, it looks like something has gone wrong`, err)
 					})
 			})
 		}
@@ -156,16 +158,21 @@ export class AdminComponent implements OnInit {
 				)
 			})
 			.catch(err => {
-				this.showSuccess(`Ops, it looks like something has gone wrong`, err)
+				this.showError(`Ops, it looks like something has gone wrong`, err)
 			})
 	}
 
 	deletePoints() {
-		const dateToReset = '30 Dec 2018 00:00:00 GMT+1000'
+		const dateToReset = '01 Jan 2019 00:00:00 GMT+1000'
 		const dateToResetParsed = Date.parse(dateToReset)
 		const myTimeParsed = Date.parse(this.myTime)
 
 		if (myTimeParsed <= dateToResetParsed) {
+			this.showWarning(
+				`Ops, it looks like that's not the time yet`,
+				`Please come back after ${dateToReset}`
+			)
+		} else {
 			this.fss.localUsers$.pipe(take(1)).subscribe(users => {
 				for (const user of users) {
 					// let randomNumber = Math.random() * 1000
@@ -186,25 +193,16 @@ export class AdminComponent implements OnInit {
 							return
 						})
 						.catch(err => {
-							this.showSuccess(
-								`Ops, it looks like something has gone wrong`,
-								err
-							)
+							this.showError(`Ops, it looks like something has gone wrong`, err)
 						})
 				}
 			})
-
-			this.modalRef.hide()
 			this.fss.addLog(
 				`All points have been successfully deleted at ${this.myTime}`
 			)
 			this.showSuccess(`All points have been successfully deleted`)
-		} else {
-			this.showWarning(
-				`Ops, it looks like that's not the time yet`,
-				`Please come back after ${dateToReset}`
-			)
 		}
+		this.modalRef.hide()
 	}
 
 	openModal(templateRef: TemplateRef<any>) {
@@ -217,5 +215,8 @@ export class AdminComponent implements OnInit {
 	}
 	showWarning(title, message?) {
 		this.toastr.warning(message, title)
+	}
+	showError(title, message?) {
+		this.toastr.error(message, title)
 	}
 }

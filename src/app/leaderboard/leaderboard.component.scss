@@ -1,9 +1,8 @@
 .profile-header {
 	background-image: linear-gradient(-139deg, #007bff 10%, #662d91 100%);
 	border: 1px solid #979797;
-	-webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-	color: white;
+	color: #fff;
 
 	i {
 		padding: 13px;
@@ -14,11 +13,10 @@
 	}
 }
 
-.highlight-btn {
-	background-color: #662d91;
-	color: white;
-	-webkit-box-shadow: 0;
+%highlight-btn {
+	// background-color: map-get($theme-colors, primary);
 	box-shadow: 0;
+	color: #fff;
 }
 
 .btn-group {
@@ -28,88 +26,60 @@
 }
 
 .btn {
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-	// border-radius: 1.25rem !important;
 	border: 0;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
 	width: 51%;
 }
 
-.highlight-btn-left {
-	@extend .highlight-btn;
-
-	-webkit-animation-name: rightLeft;
-	-webkit-animation-duration: 650ms;
-	animation-name: rightLeft;
-	animation-duration: 650ms;
-
-	@-webkit-keyframes rightLeft {
-		0% {
-			left: 50%;
-			top: 0;
-		}
-
-		100% {
-			left: 0;
-			top: 0;
-		}
-	}
-
-	@keyframes rightLeft {
-		0% {
-			left: 50%;
-			top: 0;
-		}
-
-		100% {
-			left: 0;
-			top: 0;
-		}
-	}
+.leaderboard-list {
+	margin-bottom: 7vh;
 }
 
-.highlight-btn-right {
-	@extend .highlight-btn;
-
-	-webkit-animation-name: leftRight;
-	-webkit-animation-duration: 650ms;
-	animation-name: leftRight;
-	animation-duration: 650ms;
-
-	@-webkit-keyframes leftRight {
-		0% {
-			right: 50%;
-			top: 0;
-		}
-
-		100% {
-			left: 0;
-			top: 0;
-		}
-	}
-
-	@keyframes leftRight {
-		0% {
-			right: 50%;
-			top: 0;
-		}
-
-		100% {
-			right: 0;
-			top: 0;
-		}
-	}
-}
+// .highlight-btn-left {
+// 	@extend %highlight-btn;
+// 	animation-duration: 650ms;
+// 	animation-name: rightLeft;
+//
+// 	@keyframes rightLeft {
+// 		0% {
+// 			left: 50%;
+// 			top: 0;
+// 		}
+//
+// 		100% {
+// 			left: 0;
+// 			top: 0;
+// 		}
+// 	}
+// }
+//
+// .highlight-btn-right {
+// 	@extend %highlight-btn;
+// 	animation-duration: 650ms;
+// 	animation-name: leftRight;
+//
+// 	@keyframes leftRight {
+// 		0% {
+// 			right: 50%;
+// 			top: 0;
+// 		}
+//
+// 		100% {
+// 			right: 0;
+// 			top: 0;
+// 		}
+// 	}
+// }
 
 .img-profile {
+	border-radius: 50%;
 	height: 100px;
 	width: 100px;
-	border-radius: 50%;
 }
 
 .img-profile-list {
-	@extend .img-profile;
-
+	border-radius: 50%;
 	height: 60px;
 	width: 60px;
 }
@@ -119,12 +89,12 @@
 }
 
 .campus {
-	font-size: 0.9rem;
 	color: #868e96;
+	font-size: 0.9rem;
 }
 //Modal
 
-.aboutLead {
+.about-lead {
 	h4 {
 		color: #662d91;
 	}

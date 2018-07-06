@@ -3,8 +3,8 @@ export interface User {
 	email?: string
 	photoURL?: string
 	role?: string
-	points?: Number
-	position?: Number
+	points?: number
+	position?: number
 	uid?: string
 	campus?: string
 	incognitoMode?: boolean
