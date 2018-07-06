@@ -1,4 +1,4 @@
-# Kent LEAD Points &middot; [![Build Status](https://travis-ci.org/renansigolo/kent.svg?branch=master)](https://travis-ci.org/renansigolo/kent)
+# Kent LEAD Points &middot; [![Build Status](https://travis-ci.org/KentDevelopment/lead-app.svg?branch=master)](https://travis-ci.org/KentDevelopment/lead-app)
 
 The LEAD Points app has been develop to foment the student engagement with Kent's events, workshops and social activities.
 
