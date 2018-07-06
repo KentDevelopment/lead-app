@@ -163,11 +163,16 @@ export class AdminComponent implements OnInit {
 	}
 
 	deletePoints() {
-		const dateToReset = '30 Dec 2018 00:00:00 GMT+1000'
+		const dateToReset = '01 Jan 2019 00:00:00 GMT+1000'
 		const dateToResetParsed = Date.parse(dateToReset)
 		const myTimeParsed = Date.parse(this.myTime)
 
 		if (myTimeParsed <= dateToResetParsed) {
+			this.showWarning(
+				`Ops, it looks like that's not the time yet`,
+				`Please come back after ${dateToReset}`
+			)
+		} else {
 			this.fss.localUsers$.pipe(take(1)).subscribe(users => {
 				for (const user of users) {
 					// let randomNumber = Math.random() * 1000
@@ -192,18 +197,12 @@ export class AdminComponent implements OnInit {
 						})
 				}
 			})
-
-			this.modalRef.hide()
 			this.fss.addLog(
 				`All points have been successfully deleted at ${this.myTime}`
 			)
 			this.showSuccess(`All points have been successfully deleted`)
-		} else {
-			this.showWarning(
-				`Ops, it looks like that's not the time yet`,
-				`Please come back after ${dateToReset}`
-			)
 		}
+		this.modalRef.hide()
 	}
 
 	openModal(templateRef: TemplateRef<any>) {
