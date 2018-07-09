@@ -82,7 +82,7 @@ export class UserProfileComponent implements OnInit {
 						finalize(() => {
 							this.downloadURL = storageRef.getDownloadURL()
 							this.downloadURL.subscribe(ref => {
-								this.update(this.user, ref)
+								this.update(this.user, ref).catch(err => console.error(err))
 							})
 						})
 					)
@@ -115,7 +115,7 @@ export class UserProfileComponent implements OnInit {
 	}
 
 	confirmIncognito() {
-		this.auth.leaveIncognito(this.user)
+		this.auth.leaveIncognito(this.user).catch(err => console.error(err))
 		this.modalRef.hide()
 	}
 
