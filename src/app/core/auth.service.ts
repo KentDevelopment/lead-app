@@ -46,7 +46,7 @@ export class AuthService {
 		provider.setCustomParameters({
 			hd: domain
 		})
-		return this.oAuthLogin(provider)
+		return this.oAuthLogin(provider).catch(err => console.error(err))
 	}
 
 	private oAuthLogin(provider) {
@@ -54,7 +54,7 @@ export class AuthService {
 			.signInWithPopup(provider)
 			.then(credential => {
 				if (credential.additionalUserInfo.isNewUser === true) {
-					this.setUserDoc(credential.user) // create initial user document
+					this.setUserDoc(credential.user).catch(err => console.error(err)) // create initial user document
 				} else if (!credential.additionalUserInfo.isNewUser) {
 					this.user$.subscribe(ref => {
 						if (!ref.campus) {
@@ -62,10 +62,13 @@ export class AuthService {
 						}
 					})
 				} else {
-					this.router.navigate(['/leaderboard'])
+					this.router
+						.navigate(['/leaderboard'])
+						.catch(err => console.error(err))
 				}
 			})
 			.catch(err => {
+				console.error(err)
 				this.showError('Something went wrong...', err.message)
 			})
 	}
@@ -87,7 +90,7 @@ export class AuthService {
 			termsAndConditions: true
 		}
 
-		return userRef.set(data, {merge: false})
+		return userRef.set(data, {merge: false}).catch(err => console.error(err))
 	}
 
 	// Update properties on the user document
@@ -96,10 +99,11 @@ export class AuthService {
 			.doc(`users/${user.uid}`)
 			.update(data)
 			.then(() => {
-				this.router.navigate(['/leaderboard'])
+				this.router.navigate(['/leaderboard']).catch(err => console.error(err))
 			})
 			.catch(err => {
 				// Error occurred. Inspect error.code.
+				console.error(err)
 				this.showError('Something went wrong...', err.message)
 			})
 	}
@@ -117,15 +121,18 @@ export class AuthService {
 			.set(data, {merge: true})
 			.then(() => {
 				this.showInfo('Incognito mode has been disabled')
-				this.router.navigate(['/leaderboard'])
+				this.router.navigate(['/leaderboard']).catch(err => console.error(err))
 			})
-			.catch(err => console.error('ERR', err))
+			.catch(err => console.error(err))
 	}
 
 	signOut() {
-		this.afAuth.auth.signOut().then(() => {
-			this.router.navigate(['/login'])
-		})
+		this.afAuth.auth
+			.signOut()
+			.then(() => {
+				this.router.navigate(['/login']).catch(err => console.error(err))
+			})
+			.catch(err => console.error(err))
 	}
 
 	// Alerts

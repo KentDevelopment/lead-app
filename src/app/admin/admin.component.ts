@@ -86,6 +86,7 @@ export class AdminComponent implements OnInit {
 			})
 			.catch(err => {
 				this.showError(`Ops, it looks like something has gone wrong`, err)
+				console.error(err)
 			})
 	}
 
