@@ -54,7 +54,7 @@
     <button type="submit" class="btn btn-block btn-primary" (click)="openModal(leaveIncognito)">Leave Incognito!</button>
   </div>
 
-  <h5 class="text-center mt-5" [routerLink]="['admin']" *ngIf="user.role === 'admin'">Go to Admin Panel</h5>
+  <h5 class="text-center mb-5" [routerLink]="['admin']" *ngIf="user.role === 'admin'">Go to Admin Panel</h5>
 
   <small class="text-right fixed-bottom pr-2">{{version}}</small>
 </section>
