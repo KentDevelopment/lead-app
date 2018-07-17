@@ -20,7 +20,8 @@
 		"prettier": "prettier --config ./.prettierrc.json --write \"{src,functions}/**/*.{ts,js,json,scss}\"",
 		"serve": "ng serve -o",
 		"test": "yarn lint-fix && yarn build-prod",
-		"update": "yarn upgrade-interactive --latest"
+		"update": "yarn upgrade-interactive --latest",
+		"e2e": "cypress open"
 	},
 	"private": true,
 	"dependencies": {
@@ -57,7 +58,9 @@
 		"@angular/compiler-cli": "^6.0.7",
 		"@angular/language-service": "^6.0.7",
 		"@types/node": "^10.5.2",
+		"chance": "^1.0.16",
 		"codelyzer": "~4.4.2",
+		"cypress": "^3.0.2",
 		"husky": "0.15.0-rc.13",
 		"jasmine-core": "~3.1.0",
 		"jasmine-spec-reporter": "~4.2.1",
