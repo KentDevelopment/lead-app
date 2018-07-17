@@ -9,6 +9,7 @@
 		"clean": "rm -r dist node_modules yarn.lock package-lock.json",
 		"deploy-functions": "firebase deploy --only functions",
 		"deploy": "firebase deploy",
+		"e2e": "cypress open",
 		"lint-fix": "yarn lint-js-fix && yarn lint-scss-fix && yarn prettier",
 		"lint-js-fix": "ng lint kent --format stylish --fix",
 		"lint-js": "ng lint kent --format stylish",
@@ -18,10 +19,10 @@
 		"precommit": "yarn prettier && git add .",
 		"prepush": "yarn test",
 		"prettier": "prettier --config ./.prettierrc.json --write \"{src,functions}/**/*.{ts,js,json,scss}\"",
+		"run-e2e": "cypress run",
 		"serve": "ng serve -o",
 		"test": "yarn lint-fix && yarn build-prod",
-		"update": "yarn upgrade-interactive --latest",
-		"e2e": "cypress open"
+		"update": "yarn upgrade-interactive --latest"
 	},
 	"private": true,
 	"dependencies": {
