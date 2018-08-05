@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 		private toastr: ToastrService
 	) {
 		this.loginForm = this.fb.group({
+			// username: ['', [Validators.required]],
 			domain: ['', [Validators.required]]
 		})
 
@@ -30,6 +31,14 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {}
+
+	get username() {
+		return this.loginForm.get('username')
+	}
+
+	get domain() {
+		return this.loginForm.get('domain')
+	}
 
 	get campus() {
 		return this.campusForm.get('campus')
