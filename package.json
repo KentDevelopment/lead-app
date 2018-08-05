@@ -18,7 +18,7 @@
 		"lint": "yarn lint-js && yarn lint-scss",
 		"precommit": "yarn prettier && git add .",
 		"prepush": "yarn test",
-		"prettier": "prettier --config ./.prettierrc.json --write \"{src,functions}/**/*.{ts,js,json,scss,yml}\"",
+		"prettier": "prettier --config ./.prettierrc.json --write \"**/*.{ts,js,json,scss,yml}\"",
 		"run-e2e": "cypress run",
 		"serve": "ng serve -o",
 		"test": "yarn lint-fix && yarn build-prod",
