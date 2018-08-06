@@ -53,8 +53,23 @@ export class AuthService {
 		return this.afAuth.auth
 			.signInWithPopup(provider)
 			.then(credential => {
+				// console.log('CREDENTIAL', credential)
+				const userDomain = credential.user.email.slice(
+					credential.user.email.indexOf('@')
+				)
+				// console.log('DOMAIN', userDomain)
+
 				if (credential.additionalUserInfo.isNewUser === true) {
-					this.setUserDoc(credential.user).catch(err => console.error(err)) // create initial user document
+					if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
+						this.setUserDoc(credential.user).catch(err => console.error(err)) // create initial user document
+					} else {
+						// console.log('ELSE')
+						this.router.navigate(['/login'])
+						this.showError(
+							`It looks like ${userDomain} is not valid`,
+							`Please try to login again`
+						)
+					}
 				} else if (!credential.additionalUserInfo.isNewUser) {
 					this.user$.subscribe(ref => {
 						if (!ref.campus) {
@@ -71,6 +86,14 @@ export class AuthService {
 				console.error(err)
 				this.showError('Something went wrong...', err.message)
 			})
+
+		// this.afAuth.auth.getRedirectResult().then(res => {
+		// 	console.log('RES', res)
+		// })
+		// .catch(err => {
+		// 			console.error(err)
+		// 			this.showError('Something went wrong...', err.message)
+		// 		})
 	}
 
 	// Sets user data to firestore after succesful login
