@@ -31,13 +31,14 @@
 				<li class="list-group-item list-group-item-action" *ngFor="let user of fss.orderedUsers$ | async">
 					<div class="d-flex justify-content-between">
 
-						<div class="p-2 d-flex align-items-center">
+						<!-- <div class="p-2 d-flex align-items-center">
 							<img class="img-fluid img-profile-list" src="{{ user.photoURL }}" alt="User Profile Image">
-						</div>
+						</div> -->
 
 						<div class="d-flex flex-column align-self-center">
-							<div class="pr-2 d-flex align-items-center align-self-center text-center">{{user.displayName}}</div>
-							<div class="pr-2 d-flex align-items-center align-self-center text-center campus">{{user.campus}}</div>
+							<div class="pr-2 d-flex align-items-center">{{user.displayName}}</div>
+							<div class="pr-2 d-flex align-items-center campus">{{user.email}}</div>
+							<div class="pr-2 d-flex align-items-center campus">{{user.campus}}</div>
 						</div>
 
 						<div class="form-group mt-3 points-box">
@@ -79,9 +80,10 @@
 						<input type="checkbox"> {{user.displayName}}
 					</div>
 
-					<div class="d-flex justify-content-between form-control">
+					<div class="d-flex justify-content-between form-control fix-line">
 						<div class="flex-column text-left">
 							<p>{{ user.displayName }}</p>
+							<p class="campus">{{ user.email }}</p>
 							<p class="campus">{{ user.campus }}</p>
 						</div>
 						<p class="pr-2 align-self-center">{{ user.points }}</p>

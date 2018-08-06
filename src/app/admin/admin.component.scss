@@ -15,7 +15,7 @@
 }
 
 .card {
-	width: 19rem;
+	min-width: 19rem;
 }
 
 .highlight-btn {
@@ -50,6 +50,10 @@
 .campus {
 	color: #868e96;
 	font-size: 0.9rem;
+}
+
+.fix-line {
+	height: 100%;
 }
 
 .custom-select {
