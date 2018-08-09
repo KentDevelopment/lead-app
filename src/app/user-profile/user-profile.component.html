@@ -51,7 +51,7 @@
   </div>
 
   <div class="text-center container" *ngIf="user.incognitoMode">
-    <button type="submit" class="btn btn-block btn-primary" (click)="openModal(leaveIncognito)">Leave Incognito!</button>
+    <button type="submit" class="btn btn-block btn-primary" (click)="openDialog(leaveIncognito)">Leave Incognito!</button>
   </div>
 
   <h5 class="text-center mb-5" [routerLink]="['admin']" *ngIf="user.role === 'admin'">Go to Admin Panel</h5>
@@ -64,7 +64,7 @@
   <div class="modal-incognito">
     <div class="modal-header">
       <h4 class="modal-title pull-left">Leave Incognito!</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="dialogRef.close()">
       <span aria-hidden="true">&times;</span>
     </button>
     </div>
@@ -73,7 +73,7 @@
       <p>By leaving incognito mode, your profile photo, name and number of LEAD points will be publicly available to other users of this application.</p>
       <p>Do you wish to continue?</p>
       <div class="d-flex justify-content-around">
-        <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Not now</button>
+        <button type="button" class="btn btn-secondary" (click)="dialogRef.close()">Not now</button>
         <button type="button" class="btn btn-primary" (click)="confirmIncognito()">Yes, let's do this!</button>
       </div>
     </div>

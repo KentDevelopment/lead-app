@@ -4,8 +4,7 @@ import {FormGroup, FormBuilder} from '@angular/forms'
 import {AuthService} from './../core/auth.service'
 import {FirestoreService} from './../core/firestore.service'
 
-import {BsModalService} from 'ngx-bootstrap/modal'
-import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service'
+import {MatDialog} from '@angular/material'
 
 @Component({
 	selector: 'app-leaderboard',
@@ -13,7 +12,6 @@ import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service'
 	styleUrls: ['./leaderboard.component.scss']
 })
 export class LeaderboardComponent implements OnInit {
-	modalRef: BsModalRef
 	userForm: FormGroup
 
 	isActive = 'points'
@@ -25,11 +23,13 @@ export class LeaderboardComponent implements OnInit {
 
 	myDate: Date = new Date()
 
+	dialogRef: any
+
 	constructor(
 		public auth: AuthService,
 		private fb: FormBuilder,
 		public fss: FirestoreService,
-		private modalService: BsModalService
+		public dialog: MatDialog
 	) {
 		this.userForm = this.fb.group({
 			displayName: [''],
@@ -44,7 +44,12 @@ export class LeaderboardComponent implements OnInit {
 		this.isActive = ref
 	}
 
-	openModal(aboutLead: TemplateRef<any>) {
-		this.modalRef = this.modalService.show(aboutLead)
+	// Dialog Box
+	openDialog(aboutLead: TemplateRef<any>): void {
+		this.dialogRef = this.dialog.open(aboutLead)
+	}
+
+	closeDialog() {
+		this.dialogRef.close()
 	}
 }

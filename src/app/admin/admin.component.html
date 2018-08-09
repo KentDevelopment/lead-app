@@ -53,7 +53,7 @@
 	</div>
 
 	<div class="mt-5 mb-5" *ngIf="isActive === 'points'">
-		<button type="button" class="btn btn-block btn-outline-primary" (click)="openModal(resetPoints)">Reset All Points</button>
+		<button type="button" class="btn btn-block btn-outline-primary" (click)="openDialog(resetPoints)">Reset All Points</button>
 	</div>
 
 	<!-- Bulk Edit -->
@@ -129,7 +129,7 @@
 	<div class="modal-reset-points">
 		<div class="modal-header">
 			<h4 class="modal-title pull-left">Reset LEAD Points</h4>
-			<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+			<button type="button" class="close pull-right" aria-label="Close" (click)="dialogRef.close()">
       <span aria-hidden="true">&times;</span>
     </button>
 		</div>
@@ -138,7 +138,7 @@
 			<p>This will permanently delete ALL points of every single user.</p>
 			<p>Do you want to continue?</p>
 			<div class="d-flex">
-				<button type="button" class="btn btn-secondary" (click)="modalRef.hide()">No</button>
+				<button type="button" class="btn btn-secondary" (click)="dialogRef.close()">No</button>
 				<button type="button" class="btn btn-outline-danger" (click)="deletePoints()">Yes</button>
 			</div>
 		</div>

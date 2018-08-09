@@ -28,9 +28,11 @@ import {UserProfileComponent} from './user-profile/user-profile.component'
 import {AdminComponent} from './admin/admin.component'
 
 import {Ng2ImgToolsModule} from 'ng2-img-tools'
-import {ModalModule} from 'ngx-bootstrap/modal'
-import {BsDatepickerModule} from 'ngx-bootstrap/datepicker'
-import {TimepickerModule} from 'ngx-bootstrap/timepicker'
+// import {ModalModule} from 'ngx-bootstrap/modal'
+// import {BsDatepickerModule} from 'ngx-bootstrap/datepicker'
+// import {TimepickerModule} from 'ngx-bootstrap/timepicker'
+
+import {MatDialogModule} from '@angular/material/dialog'
 
 @NgModule({
 	declarations: [
@@ -57,9 +59,10 @@ import {TimepickerModule} from 'ngx-bootstrap/timepicker'
 		FormsModule,
 		ReactiveFormsModule,
 		Ng2ImgToolsModule,
-		ModalModule.forRoot(),
-		BsDatepickerModule.forRoot(),
-		TimepickerModule.forRoot()
+		// ModalModule.forRoot(),
+		// BsDatepickerModule.forRoot(),
+		// TimepickerModule.forRoot(),
+		MatDialogModule
 	],
 	providers: [
 		AuthService,

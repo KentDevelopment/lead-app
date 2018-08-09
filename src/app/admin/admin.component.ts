@@ -20,8 +20,7 @@ import {User} from '../core/interfaces/user'
 import {Course} from '../core/interfaces/course'
 import {take} from 'rxjs/operators'
 
-import {BsModalService} from 'ngx-bootstrap/modal'
-import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service'
+import {MatDialog} from '@angular/material'
 
 @Component({
 	selector: 'app-admin',
@@ -32,16 +31,16 @@ export class AdminComponent implements OnInit {
 	isActive = 'points'
 	addPointsForm: FormGroup
 	coursesForm: FormGroup
-	modalRef: BsModalRef
 
 	myTime: any = new Date()
+	dialogRef: any
 
 	constructor(
 		private fss: FirestoreService,
 		private fb: FormBuilder,
 		private afs: AngularFirestore,
 		private toastr: ToastrService,
-		private modalService: BsModalService
+		public dialog: MatDialog
 	) {
 		this.addPointsForm = this.fb.group({
 			uid: this.fb.array([]),
@@ -203,11 +202,16 @@ export class AdminComponent implements OnInit {
 			)
 			this.showSuccess(`All points have been successfully deleted`)
 		}
-		this.modalRef.hide()
+		this.dialogRef.close()
 	}
 
-	openModal(templateRef: TemplateRef<any>) {
-		this.modalRef = this.modalService.show(templateRef)
+	// Dialog Box
+	openDialog(resetPoints: TemplateRef<any>): void {
+		this.dialogRef = this.dialog.open(resetPoints)
+	}
+
+	closeDialog() {
+		this.dialogRef.close()
 	}
 
 	// Alerts

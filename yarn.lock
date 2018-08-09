@@ -5001,10 +5001,6 @@ ng2-pica@^1.2.11:
     exif-js "^2.3.0"
     pica ">=4.0.1"
 
-ngx-bootstrap@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-3.0.1.tgz#e98d2fc6340f32a9d358cd08e8fda7dcb23bdab3"
-
 ngx-toastr@^8.10.0:
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-8.10.0.tgz#3b5b5c0e766e8f17540e9d6d08d086cb3acaa35a"

@@ -12,15 +12,14 @@ import {Observable} from 'rxjs'
 
 import {AuthService} from './../core/auth.service'
 
-import {BsModalService} from 'ngx-bootstrap/modal'
-import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service'
-
 import {ToastrService} from 'ngx-toastr'
 import {Ng2ImgToolsService} from 'ng2-img-tools'
 
 import {User} from '../core/interfaces/user'
 
 import {environment} from '../../environments/environment'
+
+import {MatDialog} from '@angular/material'
 
 @Component({
 	selector: 'app-user-profile',
@@ -29,7 +28,7 @@ import {environment} from '../../environments/environment'
 })
 export class UserProfileComponent implements OnInit {
 	item: Observable<User>
-	modalRef: BsModalRef
+
 	version: string = environment.version
 
 	uploadPercent: Observable<number>
@@ -37,6 +36,7 @@ export class UserProfileComponent implements OnInit {
 
 	userForm: FormGroup
 	user: any
+	dialogRef: any
 
 	constructor(
 		public auth: AuthService,
@@ -45,7 +45,7 @@ export class UserProfileComponent implements OnInit {
 		private storage: AngularFireStorage,
 		private afs: AngularFirestore,
 		private ng2ImgToolsService: Ng2ImgToolsService,
-		private modalService: BsModalService
+		public dialog: MatDialog
 	) {
 		this.auth.user$.subscribe(data => {
 			this.user = data
@@ -105,18 +105,26 @@ export class UserProfileComponent implements OnInit {
 		}
 
 		return userRef.update(data).catch(err => {
-			// this.showError(err)
 			console.error('Update error', err)
 		})
 	}
 
-	openModal(templateRef: TemplateRef<any>) {
-		this.modalRef = this.modalService.show(templateRef)
+	confirmIncognito() {
+		this.auth
+			.leaveIncognito(this.user)
+			.then(() => {
+				this.dialogRef.close()
+			})
+			.catch(err => console.error(err))
 	}
 
-	confirmIncognito() {
-		this.auth.leaveIncognito(this.user).catch(err => console.error(err))
-		this.modalRef.hide()
+	// Dialog Box
+	openDialog(leaveIncognito: TemplateRef<any>): void {
+		this.dialogRef = this.dialog.open(leaveIncognito)
+	}
+
+	closeDialog() {
+		this.dialogRef.close()
 	}
 
 	// Alerts
