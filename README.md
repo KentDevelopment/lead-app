@@ -28,10 +28,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Built With
 
-* [Angular 6](https://angular.io/) - The framework used
-* [Bootstrap 4](https://getbootstrap.com/) - Framework for building responsive sites
+* [Angular](https://angular.io/) - The framework used
+* [Angular Material](https://material.angular.io/) - Material Design components for Angular
+* [Bootstrap](https://getbootstrap.com/) - Framework for building responsive sites
 * [Firebase](https://firebase.google.com/) - Used as host, storage and fireStore as a DB
-* [NGX-Bootstrap](https://valor-software.com/ngx-bootstrap/#/) - Bootstrap components, powered by Angular
+
 
 ## Plugins
 

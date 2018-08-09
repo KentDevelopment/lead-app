@@ -14,13 +14,11 @@ import {
 	AngularFirestoreDocument
 } from 'angularfire2/firestore'
 
-import {ToastrService} from 'ngx-toastr'
-
 import {User} from '../core/interfaces/user'
 import {Course} from '../core/interfaces/course'
 import {take} from 'rxjs/operators'
-
 import {MatDialog} from '@angular/material'
+import {MatSnackBar} from '@angular/material'
 
 @Component({
 	selector: 'app-admin',
@@ -28,19 +26,18 @@ import {MatDialog} from '@angular/material'
 	styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-	isActive = 'points'
 	addPointsForm: FormGroup
 	coursesForm: FormGroup
-
-	myTime: any = new Date()
 	dialogRef: any
+	isActive = 'points'
+	myTime: any = new Date()
 
 	constructor(
 		private fss: FirestoreService,
 		private fb: FormBuilder,
 		private afs: AngularFirestore,
-		private toastr: ToastrService,
-		public dialog: MatDialog
+		public dialog: MatDialog,
+		public snackBar: MatSnackBar
 	) {
 		this.addPointsForm = this.fb.group({
 			uid: this.fb.array([]),
@@ -77,10 +74,7 @@ export class AdminComponent implements OnInit {
 		userRef
 			.update(data)
 			.then(() => {
-				this.showSuccess(
-					`User updated successfully`,
-					`${user.displayName} has ${data.points} pts`
-				)
+				this.showSuccess(`User ${user.displayName} has ${data.points} pts`)
 				// this.fss.addLog(`${user.displayName} has ${data.points} pts`)
 			})
 			.catch(err => {
@@ -122,8 +116,8 @@ export class AdminComponent implements OnInit {
 					.update(data)
 					.then(() => {
 						this.showSuccess(
-							`User updated successfully`,
-							`${ref.displayName} has ${data.points} pts`
+							// `User ${ref.displayName} has ${data.points} pts`
+							`Points successfully added`
 						)
 						this.fss.addLog(`${ref.displayName} has ${data.points} pts`)
 						return
@@ -152,10 +146,7 @@ export class AdminComponent implements OnInit {
 		courseRef
 			.add(data)
 			.then(() => {
-				this.showSuccess(
-					`Course added successfully`,
-					`${data.title} on ${data.date}`
-				)
+				this.showSuccess(`Course ${data.title} added on ${data.date}`)
 			})
 			.catch(err => {
 				this.showError(`Ops, it looks like something has gone wrong`, err)
@@ -168,10 +159,7 @@ export class AdminComponent implements OnInit {
 		const myTimeParsed = Date.parse(this.myTime)
 
 		if (myTimeParsed <= dateToResetParsed) {
-			this.showWarning(
-				`Ops, it looks like that's not the time yet`,
-				`Please come back after ${dateToReset}`
-			)
+			this.showWarning(`Please come back after ${dateToReset}`, 'Dismiss')
 		} else {
 			this.fss.localUsers$.pipe(take(1)).subscribe(users => {
 				for (const user of users) {
@@ -215,13 +203,30 @@ export class AdminComponent implements OnInit {
 	}
 
 	// Alerts
-	showSuccess(title, message?) {
-		this.toastr.success(message, title)
+	showSuccess(message, action?: string) {
+		console.log('TEST')
+		this.snackBar.open(message, action, {
+			horizontalPosition: 'right',
+			verticalPosition: 'top',
+			duration: 3000
+		})
 	}
-	showWarning(title, message?) {
-		this.toastr.warning(message, title)
+	showWarning(message, action?: string) {
+		this.snackBar.open(`${message}`, action, {
+			horizontalPosition: 'right',
+			verticalPosition: 'top'
+		})
 	}
-	showError(title, message?) {
-		this.toastr.error(message, title)
+	showError(title, message?, action?: string) {
+		this.snackBar.open(
+			`${title}
+			${message}`,
+			action,
+			{
+				horizontalPosition: 'right',
+				verticalPosition: 'top',
+				duration: 4000
+			}
+		)
 	}
 }

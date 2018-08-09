@@ -9,17 +9,12 @@ import {
 
 import {AngularFireStorage} from 'angularfire2/storage'
 import {Observable} from 'rxjs'
-
 import {AuthService} from './../core/auth.service'
-
-import {ToastrService} from 'ngx-toastr'
 import {Ng2ImgToolsService} from 'ng2-img-tools'
-
 import {User} from '../core/interfaces/user'
-
 import {environment} from '../../environments/environment'
-
 import {MatDialog} from '@angular/material'
+import {MatSnackBar} from '@angular/material'
 
 @Component({
 	selector: 'app-user-profile',
@@ -40,12 +35,12 @@ export class UserProfileComponent implements OnInit {
 
 	constructor(
 		public auth: AuthService,
-		private toastr: ToastrService,
 		private fb: FormBuilder,
 		private storage: AngularFireStorage,
 		private afs: AngularFirestore,
 		private ng2ImgToolsService: Ng2ImgToolsService,
-		public dialog: MatDialog
+		public dialog: MatDialog,
+		public snackBar: MatSnackBar
 	) {
 		this.auth.user$.subscribe(data => {
 			this.user = data
@@ -127,14 +122,16 @@ export class UserProfileComponent implements OnInit {
 		this.dialogRef.close()
 	}
 
-	// Alerts
-	// showSuccess(title, message?) {
-	// 	this.toastr.success(message, title)
-	// }
-	// showWarning(title, message?) {
-	// 	this.toastr.warning(message, title)
-	// }
-	showError(title, message?) {
-		this.toastr.error(message, title)
+	showError(title, message?, action?: string) {
+		this.snackBar.open(
+			`${title}
+			${message}`,
+			action,
+			{
+				horizontalPosition: 'right',
+				verticalPosition: 'top',
+				duration: 4000
+			}
+		)
 	}
 }

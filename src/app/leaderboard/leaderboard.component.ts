@@ -1,9 +1,7 @@
-import {Component, OnInit, TemplateRef} from '@angular/core'
-import {FormGroup, FormBuilder} from '@angular/forms'
-
 import {AuthService} from './../core/auth.service'
+import {Component, OnInit, TemplateRef} from '@angular/core'
 import {FirestoreService} from './../core/firestore.service'
-
+import {FormGroup, FormBuilder} from '@angular/forms'
 import {MatDialog} from '@angular/material'
 
 @Component({
@@ -12,18 +10,14 @@ import {MatDialog} from '@angular/material'
 	styleUrls: ['./leaderboard.component.scss']
 })
 export class LeaderboardComponent implements OnInit {
-	userForm: FormGroup
-
-	isActive = 'points'
-
-	users: any
 	authUser: any
+	dialogRef: any
+	isActive = 'points'
+	myDate: Date = new Date()
 	oneUser: any
 	secrets: any = []
-
-	myDate: Date = new Date()
-
-	dialogRef: any
+	userForm: FormGroup
+	users: any
 
 	constructor(
 		public auth: AuthService,

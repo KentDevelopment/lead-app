@@ -13,8 +13,7 @@ import {
 	AngularFirestoreDocument
 } from 'angularfire2/firestore'
 
-import {ToastrService} from 'ngx-toastr'
-
+import {MatSnackBar} from '@angular/material'
 import {User} from './interfaces/user'
 
 @Injectable()
@@ -25,7 +24,7 @@ export class AuthService {
 		private afAuth: AngularFireAuth,
 		private afs: AngularFirestore,
 		private router: Router,
-		private toastr: ToastrService
+		public snackBar: MatSnackBar
 	) {
 		// Get auth data, then get firestore user document || null
 		this.user$ = this.afAuth.authState.pipe(
@@ -159,11 +158,22 @@ export class AuthService {
 	}
 
 	// Alerts
-	showError(title, message?) {
-		this.toastr.error(message, title)
+	showInfo(message, action?: string) {
+		this.snackBar.open(`${message}`, action, {
+			horizontalPosition: 'right',
+			verticalPosition: 'top'
+		})
 	}
-
-	showInfo(title, message?) {
-		this.toastr.info(message, title)
+	showError(title, message?, action?: string) {
+		this.snackBar.open(
+			`${title}
+			${message}`,
+			action,
+			{
+				horizontalPosition: 'right',
+				verticalPosition: 'top',
+				duration: 4000
+			}
+		)
 	}
 }

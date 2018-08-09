@@ -14,8 +14,6 @@ import {AngularFirestoreModule} from 'angularfire2/firestore'
 import {AngularFireStorageModule} from 'angularfire2/storage'
 import {AngularFireAuthModule} from 'angularfire2/auth'
 
-import {ToastrModule} from 'ngx-toastr'
-
 import {environment} from '../environments/environment'
 
 import {CoreModule} from './core/core.module'
@@ -28,11 +26,9 @@ import {UserProfileComponent} from './user-profile/user-profile.component'
 import {AdminComponent} from './admin/admin.component'
 
 import {Ng2ImgToolsModule} from 'ng2-img-tools'
-// import {ModalModule} from 'ngx-bootstrap/modal'
-// import {BsDatepickerModule} from 'ngx-bootstrap/datepicker'
-// import {TimepickerModule} from 'ngx-bootstrap/timepicker'
 
 import {MatDialogModule} from '@angular/material/dialog'
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 
 @NgModule({
 	declarations: [
@@ -55,14 +51,11 @@ import {MatDialogModule} from '@angular/material/dialog'
 			enabled: environment.production
 		}),
 		AngularFirestoreModule.enablePersistence(),
-		ToastrModule.forRoot(),
 		FormsModule,
 		ReactiveFormsModule,
 		Ng2ImgToolsModule,
-		// ModalModule.forRoot(),
-		// BsDatepickerModule.forRoot(),
-		// TimepickerModule.forRoot(),
-		MatDialogModule
+		MatDialogModule,
+		MatSnackBarModule
 	],
 	providers: [
 		AuthService,

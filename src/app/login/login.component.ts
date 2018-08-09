@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core'
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 
 import {AuthService} from '../core/auth.service'
-
-import {ToastrService} from 'ngx-toastr'
+import {MatSnackBar} from '@angular/material'
 
 @Component({
 	selector: 'app-login',
@@ -17,10 +16,9 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		public auth: AuthService,
-		private toastr: ToastrService
+		public snackBar: MatSnackBar
 	) {
 		this.loginForm = this.fb.group({
-			// username: ['', [Validators.required]],
 			domain: ['', [Validators.required]]
 		})
 
@@ -31,10 +29,6 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {}
-
-	get username() {
-		return this.loginForm.get('username')
-	}
 
 	get domain() {
 		return this.loginForm.get('domain')
@@ -47,7 +41,7 @@ export class LoginComponent implements OnInit {
 	// Login Function
 	login(domain) {
 		return this.auth.googleLogin(domain).then(() => {
-			this.toastr.info(
+			this.showInfo(
 				'It may take up to 3 business days for your points to be applied'
 			)
 		})
@@ -56,5 +50,13 @@ export class LoginComponent implements OnInit {
 	// Campus Function
 	setCampus(user) {
 		return this.auth.updateUser(user, {campus: this.campus.value})
+	}
+
+	// Alerts
+	showInfo(message, action?: string) {
+		this.snackBar.open(`${message}`, action, {
+			horizontalPosition: 'right',
+			verticalPosition: 'top'
+		})
 	}
 }
