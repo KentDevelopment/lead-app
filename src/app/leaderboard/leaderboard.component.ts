@@ -1,7 +1,8 @@
-import {AuthService} from './../core/auth.service'
 import {Component, OnInit, TemplateRef} from '@angular/core'
-import {FirestoreService} from './../core/firestore.service'
 import {FormGroup, FormBuilder} from '@angular/forms'
+import {AuthService} from './../core/auth.service'
+import {FirestoreService} from './../core/firestore.service'
+
 import {MatDialog} from '@angular/material'
 
 @Component({
@@ -41,9 +42,5 @@ export class LeaderboardComponent implements OnInit {
 	// Dialog Box
 	openDialog(aboutLead: TemplateRef<any>): void {
 		this.dialogRef = this.dialog.open(aboutLead)
-	}
-
-	closeDialog() {
-		this.dialogRef.close()
 	}
 }

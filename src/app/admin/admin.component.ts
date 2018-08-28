@@ -17,8 +17,7 @@ import {
 import {User} from '../core/interfaces/user'
 import {Course} from '../core/interfaces/course'
 import {take} from 'rxjs/operators'
-import {MatDialog} from '@angular/material'
-import {MatSnackBar} from '@angular/material'
+import {MatDialog, MatSnackBar} from '@angular/material'
 
 @Component({
 	selector: 'app-admin',
@@ -198,25 +197,22 @@ export class AdminComponent implements OnInit {
 		this.dialogRef = this.dialog.open(resetPoints)
 	}
 
-	closeDialog() {
-		this.dialogRef.close()
-	}
-
 	// Alerts
 	showSuccess(message, action?: string) {
-		console.log('TEST')
 		this.snackBar.open(message, action, {
 			horizontalPosition: 'right',
 			verticalPosition: 'top',
 			duration: 3000
 		})
 	}
+
 	showWarning(message, action?: string) {
 		this.snackBar.open(`${message}`, action, {
 			horizontalPosition: 'right',
 			verticalPosition: 'top'
 		})
 	}
+
 	showError(title, message?, action?: string) {
 		this.snackBar.open(
 			`${title}
