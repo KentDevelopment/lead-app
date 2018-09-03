@@ -37,7 +37,7 @@
 }
 
 .campus {
-	color: #868e96;
+	color: var(--light-gray);
 	font-size: 0.9rem;
 }
 
@@ -45,15 +45,7 @@
 	height: 100%;
 }
 
-.custom-select {
-	color: #6b747d;
-}
-
 .modal-reset-points {
-	.d-flex {
-		justify-content: space-evenly;
-	}
-
 	button {
 		width: 30%;
 	}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { MatSnackBar } from '@angular/material'
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 import { AuthService } from '../core/auth.service'
 
 @Component({
@@ -11,7 +11,11 @@ import { AuthService } from '../core/auth.service'
 export class LoginComponent implements OnInit {
 	loginForm: FormGroup
 	campusForm: FormGroup
-
+	snackBarOptions: MatSnackBarConfig = {
+		horizontalPosition: 'right',
+		verticalPosition: 'top',
+		duration: 4000
+	}
 	constructor(
 		private fb: FormBuilder,
 		public auth: AuthService,
@@ -53,9 +57,6 @@ export class LoginComponent implements OnInit {
 
 	// Alerts
 	showInfo(message, action?: string) {
-		this.snackBar.open(`${message}`, action, {
-			horizontalPosition: 'right',
-			verticalPosition: 'top'
-		})
+		this.snackBar.open(`${message}`, action, this.snackBarOptions)
 	}
 }

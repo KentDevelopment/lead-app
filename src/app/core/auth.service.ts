@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { MatSnackBar } from '@angular/material'
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 import { Router } from '@angular/router'
 import { firebase } from '@firebase/app'
 import '@firebase/auth'
@@ -15,6 +15,11 @@ import { User } from './interfaces/user'
 @Injectable()
 export class AuthService {
 	user$: Observable<User>
+	snackBarOptions: MatSnackBarConfig = {
+		horizontalPosition: 'right',
+		verticalPosition: 'top',
+		duration: 4000
+	}
 
 	constructor(
 		private afAuth: AngularFireAuth,
@@ -154,22 +159,16 @@ export class AuthService {
 	}
 
 	// Alerts
+
 	showInfo(message, action?: string) {
-		this.snackBar.open(`${message}`, action, {
-			horizontalPosition: 'right',
-			verticalPosition: 'top'
-		})
+		this.snackBar.open(`${message}`, action, this.snackBarOptions)
 	}
 	showError(title, message?, action?: string) {
 		this.snackBar.open(
 			`${title}
 			${message}`,
 			action,
-			{
-				horizontalPosition: 'right',
-				verticalPosition: 'top',
-				duration: 4000
-			}
+			this.snackBarOptions
 		)
 	}
 }
