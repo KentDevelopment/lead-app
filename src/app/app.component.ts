@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core'
-import { SwUpdate } from '@angular/service-worker'
-import { interval } from 'rxjs'
 import {
 	trigger,
 	style,
@@ -9,6 +7,8 @@ import {
 	query,
 	group
 } from '@angular/animations'
+// import { SwUpdate } from '@angular/service-worker'
+// import { interval } from 'rxjs'
 
 @Component({
 	selector: 'app-root',
@@ -105,8 +105,9 @@ import {
 export class AppComponent implements OnInit {
 	isShowingCredits = false
 
-	constructor(updates: SwUpdate) {
-		interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate())
+	constructor() // updates: SwUpdate
+	{
+		// interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate())
 	}
 
 	ngOnInit() {}

@@ -1,23 +1,21 @@
 import { Component, OnInit, TemplateRef } from '@angular/core'
 import {
-	FormControl,
-	FormGroup,
 	FormArray,
 	FormBuilder,
+	FormControl,
+	FormGroup,
 	Validators
 } from '@angular/forms'
-
-import { FirestoreService } from './../core/firestore.service'
+import { MatDialog, MatSnackBar } from '@angular/material'
 import {
 	AngularFirestore,
 	AngularFirestoreCollection,
 	AngularFirestoreDocument
 } from 'angularfire2/firestore'
-
-import { User } from '../core/interfaces/user'
-import { Course } from '../core/interfaces/course'
 import { take } from 'rxjs/operators'
-import { MatDialog, MatSnackBar } from '@angular/material'
+import { Course } from '../core/interfaces/course'
+import { User } from '../core/interfaces/user'
+import { FirestoreService } from './../core/firestore.service'
 
 @Component({
 	selector: 'app-admin',

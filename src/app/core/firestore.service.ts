@@ -1,17 +1,14 @@
-import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-
+import { Injectable } from '@angular/core'
 import {
 	AngularFirestore,
 	AngularFirestoreCollection
 } from 'angularfire2/firestore'
 import { Observable } from 'rxjs'
-
 import { AuthService } from './../core/auth.service'
-
-import { User } from './interfaces/user'
 import { Course } from './interfaces/course'
 import { Log } from './interfaces/log'
+import { User } from './interfaces/user'
 
 @Injectable()
 export class FirestoreService {

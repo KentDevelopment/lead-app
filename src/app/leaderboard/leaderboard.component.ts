@@ -1,9 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core'
-import { FormGroup, FormBuilder } from '@angular/forms'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { MatDialog } from '@angular/material'
 import { AuthService } from './../core/auth.service'
 import { FirestoreService } from './../core/firestore.service'
-
-import { MatDialog } from '@angular/material'
 
 @Component({
 	selector: 'app-leaderboard',
