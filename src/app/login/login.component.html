@@ -7,13 +7,21 @@
 			<img class="img-fluid" src="assets/login/banner-home.png" alt="Banner">
 		</div>
 
-		<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value.domain)">
+		<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value.domain, loginForm.value.campus)">
 
 			<div class="input-group mb-3">
 				<select class="custom-select" name="domain" formControlName="domain">
 					<option [selected]="true" value="">Choose your email...</option>
 					<option value="student.kent.edu.au">@student.kent.edu.au</option>
 					<option value="kent.edu.au">@kent.edu.au</option>
+				</select>
+			</div>
+
+			<div class="input-group mb-3">
+				<select class="custom-select" name="campus" formControlName="campus">
+					<option [selected]="true" value="">Choose your campus...</option>
+					<option value="Sydney">Sydney</option>
+					<option value="Melbourne">Melbourne</option>
 				</select>
 			</div>
 
@@ -29,7 +37,7 @@
 	</section>
 
 	<!-- Choose your Campus -->
-	<section *ngIf="user.uid && !user.campus">
+	<!-- <section *ngIf="user.uid && !user.campus">
 		<form [formGroup]="campusForm" (ngSubmit)="setCampus(user)">
 
 			<div class="text-center mb-3">
@@ -50,7 +58,7 @@
 			</div>
 
 		</form>
-	</section>
+	</section> -->
 
 	<!-- Render Leaderboard -->
 	<div *ngIf="user.campus">

@@ -15,10 +15,17 @@ import { User } from './interfaces/user'
 @Injectable()
 export class AuthService {
 	user$: Observable<User>
+	credential: any
+
 	snackBarOptions: MatSnackBarConfig = {
 		horizontalPosition: 'right',
 		verticalPosition: 'top',
-		duration: 4000
+		duration: 5000
+	}
+
+	snackBarErrorOptions: MatSnackBarConfig = {
+		horizontalPosition: 'right',
+		verticalPosition: 'top'
 	}
 
 	constructor(
@@ -30,7 +37,6 @@ export class AuthService {
 		// Get auth data, then get firestore user document || null
 		this.user$ = this.afAuth.authState.pipe(
 			switchMap(user => {
-				// console.log('USER', user)
 				if (user) {
 					return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
 				} else {
@@ -41,63 +47,62 @@ export class AuthService {
 	}
 
 	// Google Auth
-	googleLogin(domain) {
+	googleLogin(domain, campus) {
 		const provider = new firebase.auth.GoogleAuthProvider()
 		provider.setCustomParameters({
 			hd: domain
 		})
-		return this.oAuthLogin(provider).catch(err => console.error(err))
+		return this.oAuthLogin(provider, campus).catch(err => console.error(err))
 	}
 
-	private oAuthLogin(provider) {
+	private oAuthLogin(provider, campus) {
 		return this.afAuth.auth
 			.signInWithPopup(provider)
 			.then(credential => {
-				// console.log('CREDENTIAL', credential)
 				const userDomain = credential.user.email.slice(
 					credential.user.email.indexOf('@')
 				)
-				// console.log('DOMAIN', userDomain)
-
 				if (credential.additionalUserInfo.isNewUser === true) {
 					if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
-						this.setUserDoc(credential.user).catch(err => console.error(err)) // create initial user document
+						this.setUserDoc(credential.user, campus)
+							.then(() => {
+								return this.showInfo(
+									'It may take up to 3 business days for your points to be applied'
+								)
+							})
+							.catch(err => {
+								this.router.navigate(['/login'])
+								console.error(err)
+							})
 					} else {
-						// console.log('ELSE')
 						this.router.navigate(['/login'])
 						this.showError(
-							`It looks like ${userDomain} is not valid`,
+							`It looks like ${credential.user.email} is not valid`,
 							`Please try to login again`
 						)
 					}
-				} else if (!credential.additionalUserInfo.isNewUser) {
-					this.user$.subscribe(ref => {
-						if (!ref.campus) {
-							return
-						}
-					})
 				} else {
 					this.router
 						.navigate(['/leaderboard'])
-						.catch(err => console.error(err))
+						.then(() => {
+							return this.showInfo(
+								'It may take up to 3 business days for your points to be applied'
+							)
+						})
+						.catch(err => {
+							this.router.navigate(['/login'])
+							console.error(err)
+						})
 				}
 			})
 			.catch(err => {
 				console.error(err)
 				this.showError('Something went wrong...', err.message)
 			})
-
-		// this.afAuth.auth.getRedirectResult().then(res => {
-		// 	console.log('RES', res)
-		// })
-		// .catch(err => {
-		// 			console.error(err)
-		// 			this.showError('Something went wrong...', err.message)
-		// 		})
 	}
 
 	// Sets user data to firestore after succesful login
-	private setUserDoc(user) {
+	private setUserDoc(user, campus) {
 		const userRef: AngularFirestoreDocument<User> = this.afs.doc(
 			`users/${user.uid}`
 		)
@@ -110,7 +115,8 @@ export class AuthService {
 			role: 'user',
 			points: 0,
 			incognitoMode: true,
-			termsAndConditions: true
+			termsAndConditions: true,
+			campus: campus
 		}
 
 		return userRef.set(data, { merge: false }).catch(err => console.error(err))
@@ -159,16 +165,15 @@ export class AuthService {
 	}
 
 	// Alerts
-
 	showInfo(message, action?: string) {
 		this.snackBar.open(`${message}`, action, this.snackBarOptions)
 	}
-	showError(title, message?, action?: string) {
+	showError(title, message?) {
 		this.snackBar.open(
 			`${title}
 			${message}`,
-			action,
-			this.snackBarOptions
+			'Dismiss',
+			this.snackBarErrorOptions
 		)
 	}
 }

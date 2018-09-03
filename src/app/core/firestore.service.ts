@@ -115,7 +115,6 @@ export class FirestoreService {
 
 	generateNumber() {
 		const randomNumber = Math.floor(Math.random() * 100)
-		// console.log('RANDOMNUMBER', randomNumber)
 		if (randomNumber < this.validPicture.length) {
 			this.position = randomNumber
 		} else {

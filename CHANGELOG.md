@@ -38,7 +38,7 @@
   * Admin Logs
 
 ## Docs
-  * Many guides added! - [First Guide](https://github.com/renansigolo/kent/blob/master/README.md)
+  * Many guides added! - [First Guide](README.md)
 
 ## Breaking Changes:
   * Initial Release

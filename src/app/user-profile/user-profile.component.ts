@@ -19,23 +19,20 @@ import { AuthService } from './../core/auth.service'
 	styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+	dialogRef: any
+	downloadURL: Observable<string>
 	item: Observable<User>
-
+	uploadPercent: Observable<number>
+	user: any
+	userForm: FormGroup
 	version: string = environment.version
 
-	uploadPercent: Observable<number>
-	downloadURL: Observable<string>
-
-	userForm: FormGroup
-	user: any
-	dialogRef: any
-
 	constructor(
-		public auth: AuthService,
-		private fb: FormBuilder,
-		private storage: AngularFireStorage,
 		private afs: AngularFirestore,
+		private fb: FormBuilder,
 		private ng2ImgToolsService: Ng2ImgToolsService,
+		private storage: AngularFireStorage,
+		public auth: AuthService,
 		public dialog: MatDialog,
 		public snackBar: MatSnackBar
 	) {

@@ -61,10 +61,10 @@
 
 <!-- Leave Incognito Modal -->
 <ng-template #leaveIncognito>
-	<div class="modal-incognito">
+	<mat-dialog-content class="modal-incognito">
 		<div class="modal-header">
-			<h4 class="modal-title pull-left">Leave Incognito!</h4>
-			<button type="button" class="close pull-right" aria-label="Close" (click)="dialogRef.close()">
+			<h4 class="modal-title">Leave Incognito!</h4>
+			<button type="button" class="close" aria-label="Close" (click)="dialogRef.close()">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
@@ -77,5 +77,5 @@
 				<button type="button" class="btn btn-primary" (click)="confirmIncognito()">Yes, let's do this!</button>
 			</div>
 		</div>
-	</div>
+	</mat-dialog-content>
 </ng-template>

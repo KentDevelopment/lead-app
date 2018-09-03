@@ -14,8 +14,6 @@ export class LeaderboardComponent implements OnInit {
 	dialogRef: any
 	isActive = 'points'
 	myDate: Date = new Date()
-	oneUser: any
-	secrets: any = []
 	userForm: FormGroup
 	users: any
 
