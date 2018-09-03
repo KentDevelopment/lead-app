@@ -1,10 +1,7 @@
-@import '../node_modules/bootstrap/scss/functions';
+// My Custom Styles
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-// Roboto Font
-// @import url('https://fonts.googleapis.com/css?family=Roboto');
-$font-family-base: 'Roboto', sans-serif;
-
-// $body-color: #676767;
 $theme-colors: (
 	'primary': #662d91,
 	'secondary': #868e96,
@@ -15,5 +12,3 @@ $theme-colors: (
 	'kent-primary': #f04f23,
 	'kent-secondary': #0072bb
 );
-
-@import '../node_modules/bootstrap/scss/bootstrap';

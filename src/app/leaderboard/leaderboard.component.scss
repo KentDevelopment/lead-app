@@ -1,14 +1,4 @@
-.profile-header {
-	background-image: linear-gradient(-139deg, #007bff 10%, #662d91 100%);
-	border: 1px solid #979797;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-	color: #fff;
-	z-index: 999;
-
-	i {
-		padding: 13px;
-	}
-
+.primary-header {
 	.alert {
 		margin-bottom: 0;
 	}
@@ -16,11 +6,11 @@
 
 %highlight-btn {
 	box-shadow: 0;
-	color: #fff;
+	color: var(--light);
 }
 
 .btn-group {
-	border: 1px solid #662d91;
+	border: 1px solid var(--primary);
 	border-radius: 1.25rem;
 	width: 70%;
 }
@@ -89,25 +79,30 @@
 }
 
 .campus {
-	color: #868e96;
+	color: var(--light-gray);
 	font-size: 0.9rem;
 }
 
-//Modal
-.about-lead {
-	h4 {
-		color: #662d91;
-	}
+// Modal
+mat-dialog-content {
+	min-height: 80vh;
 
-	li {
-		color: #662d91;
+	h4,
+	li,
+	a {
+		color: var(--primary);
 	}
 
 	li span {
-		color: #676767;
+		color: var(--dark-gray);
+	}
+
+	.modal-header {
+		padding: 0;
+		margin-bottom: 1em;
 	}
 }
 
 small {
-	color: #868e96;
+	color: var(--secondary);
 }

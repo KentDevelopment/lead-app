@@ -1,14 +1,18 @@
 section {
 	h5 {
-		color: #662d91;
+		color: var(--primary);
 	}
 }
 
-.profile-header {
-	background-image: radial-gradient(at 50% 70%, #f1592a 12%, #662d91 100%);
+.primary-header {
+	background-image: radial-gradient(
+		at 50% 70%,
+		#f1592a 12%,
+		var(--primary) 100%
+	);
 	border: 1px solid #979797;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-	color: #fff;
+	color: var(--light);
 	z-index: 999;
 
 	.img-profile {

@@ -1,6 +1,6 @@
 <!-- User Status -->
 <div *ngIf="auth.user$ | async as authUser" [ngClass]="{'incognitoMode': authUser.incognitoMode}">
-	<div class="sticky-top profile-header pb-3">
+	<div class="sticky-top primary-header pb-3">
 
 		<div class="fixed-top">
 			<i class="material-icons float-left" routerLink="/profile">settings</i>
@@ -62,14 +62,13 @@
 </div>
 
 <ng-template #aboutLead>
-	<div class="about-lead">
+	<mat-dialog-content class="about-lead">
 		<div class="modal-header">
-			<h4 class="modal-title pull-left">More about LEAD</h4>
-			<button type="button" class="close pull-right" aria-label="Close" (click)="dialogRef.close()">
+			<h4 mat-dialog-title>More about LEAD</h4>
+			<button type="button" class="close" aria-label="Close" (click)="dialogRef.close()">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		<div class="modal-body">
 			<p>Employers are looking for candidates who have done something <i><u>extra</u></i>. LEAD provides you with an opportunity to gain recognition for developing a range of skills outside your course.</p>
 			<p>LEAD gives aspiring leaders an opportunity to build leadership capacity, interpersonal communication and gain skills for future employment.</p>
 			<ul>
@@ -78,12 +77,10 @@
 				<li><span>Gain the most points this year and receive the LEAD Ambassador of the Year Award. Recipient receives a trophy and is nominated by Kent to win the NSW or VIC International Student of the Year Award competition</span></li>
 			</ul>
 
-			<h4>Register for Events:</h4>
+			<h4 mat-dialog-title>Register for Events:</h4>
 			<p>Go to <a href="http://kent.edu.au/events" target="_blank" rel="noopener">Kent.edu.au/Events</a> and look for events that attract LEAD points!</p>
 
-			<h4>Contact us:</h4>
+			<h4 mat-dialog-title>Contact us:</h4>
 			<p>Email: <a href="mailto:lead@kent.edu.au?Subject=LEAD%20App%20Contact" target="_top">Lead@kent.edu.au</a></p>
-
-		</div>
-	</div>
+</mat-dialog-content>
 </ng-template>

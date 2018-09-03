@@ -20,10 +20,10 @@ export class LeaderboardComponent implements OnInit {
 	users: any
 
 	constructor(
-		public auth: AuthService,
 		private fb: FormBuilder,
-		public fss: FirestoreService,
-		public dialog: MatDialog
+		public auth: AuthService,
+		public dialog: MatDialog,
+		public fss: FirestoreService
 	) {
 		this.userForm = this.fb.group({
 			displayName: [''],
@@ -40,6 +40,9 @@ export class LeaderboardComponent implements OnInit {
 
 	// Dialog Box
 	openDialog(aboutLead: TemplateRef<any>): void {
-		this.dialogRef = this.dialog.open(aboutLead)
+		this.dialogRef = this.dialog.open(aboutLead, {
+			maxWidth: '96vw',
+			maxHeight: '96vh'
+		})
 	}
 }
