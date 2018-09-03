@@ -10,55 +10,55 @@
 		<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value.domain)">
 
 			<!-- <div class="input-group mb-3">
-					<input type="username" class="form-control" aria-describedby="username" placeholder="Enter your username or your Kent's ID (eg. K170535)" formControlName="username">
-			</div> -->
+			<input type="username" class="form-control" aria-describedby="username" placeholder="Enter your username or your Kent's ID (eg. K170535)" formControlName="username">
+		</div> -->
 
-			<div class="input-group mb-3">
-				<select class="custom-select" name="domain" formControlName="domain">
-		      <option [selected]="true" value="">Choose your email...</option>
-		      <option value="student.kent.edu.au">@student.kent.edu.au</option>
-		      <option value="kent.edu.au">@kent.edu.au</option>
-    		</select>
+		<div class="input-group mb-3">
+			<select class="custom-select" name="domain" formControlName="domain">
+				<option [selected]="true" value="">Choose your email...</option>
+				<option value="student.kent.edu.au">@student.kent.edu.au</option>
+				<option value="kent.edu.au">@kent.edu.au</option>
+			</select>
+		</div>
+
+		<div class="text-center">
+			<button type="submit" class="btn btn-block btn-outline-primary" name="button" [disabled]="!loginForm.valid">Sign in with Google</button>
+			<br>
+			<div class="container">
+				<small>By login with Google it means that you've read and agreed with our <br> <a href="http://kent.edu.au/kent3/wp-content/uploads/2017/08/POLICY-Website-Terms-of-Use.pdf" target="_blank" rel="noopener">Terms and Conditions</a> </small>
 			</div>
+		</div>
+	</form>
 
-			<div class="text-center">
-				<button type="submit" class="btn btn-block btn-outline-primary" name="button" [disabled]="!loginForm.valid">Sign in with Google</button>
-				<br>
-				<div class="container">
-					<small>By login with Google it means that you've read and agreed with our <br> <a href="http://kent.edu.au/kent3/wp-content/uploads/2017/08/POLICY-Website-Terms-of-Use.pdf" target="_blank" rel="noopener">Terms and Conditions</a> </small>
-				</div>
-			</div>
-		</form>
+</section>
 
-	</section>
+<!-- Choose your Campus -->
+<section *ngIf="user.uid && !user.campus">
+	<form [formGroup]="campusForm" (ngSubmit)="setCampus(user)">
 
-	<!-- Choose your Campus -->
-	<section *ngIf="user.uid && !user.campus">
-		<form [formGroup]="campusForm" (ngSubmit)="setCampus(user)">
+		<div class="text-center mb-3">
+			<h3>Select your Campus</h3>
+			<small>You won't be able to change this later</small>
+		</div>
 
-			<div class="text-center mb-3">
-				<h3>Select your Campus</h3>
-				<small>You won't be able to change this later</small>
-			</div>
+		<div class="input-group mb-3">
+			<select class="custom-select" name="campus" formControlName="campus">
+				<option [selected]="true" value="">Choose your campus...</option>
+				<option value="Sydney">Sydney</option>
+				<option value="Melbourne">Melbourne</option>
+			</select>
+		</div>
 
-			<div class="input-group mb-3">
-				<select class="custom-select" name="campus" formControlName="campus">
-        <option [selected]="true" value="">Choose your campus...</option>
-        <option value="Sydney">Sydney</option>
-        <option value="Melbourne">Melbourne</option>
-      </select>
-			</div>
+		<div class="text-center">
+			<button type="submit" class="btn btn-block btn-primary" [disabled]="!campusForm.valid">Let's do it!</button>
+		</div>
 
-			<div class="text-center">
-				<button type="submit" class="btn btn-block btn-primary" [disabled]="!campusForm.valid">Let's do it!</button>
-			</div>
+	</form>
+</section>
 
-		</form>
-	</section>
-
-	<!-- Render Leaderboard -->
-	<div *ngIf="user.campus">
-		<app-leaderboard></app-leaderboard>
-	</div>
+<!-- Render Leaderboard -->
+<div *ngIf="user.campus">
+	<app-leaderboard></app-leaderboard>
+</div>
 
 </ng-container>
