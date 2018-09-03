@@ -105,8 +105,7 @@ import {
 export class AppComponent implements OnInit {
 	isShowingCredits = false
 
-	constructor() // updates: SwUpdate
-	{
+	constructor() {
 		// interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate())
 	}
 

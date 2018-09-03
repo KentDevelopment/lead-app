@@ -1,4 +1,8 @@
 .primary-header {
+	i {
+		padding: 13px;
+	}
+
 	.alert {
 		margin-bottom: 0;
 	}
@@ -62,8 +66,8 @@ mat-dialog-content {
 	}
 
 	.modal-header {
-		padding: 0;
 		margin-bottom: 1em;
+		padding: 0;
 	}
 }
 
