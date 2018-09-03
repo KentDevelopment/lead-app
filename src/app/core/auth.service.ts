@@ -1,20 +1,20 @@
-import {of as observableOf, Observable} from 'rxjs'
-import {switchMap} from 'rxjs/operators'
+import { of as observableOf, Observable } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 
-import {Injectable} from '@angular/core'
-import {Router} from '@angular/router'
+import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 
-import {firebase} from '@firebase/app'
+import { firebase } from '@firebase/app'
 import '@firebase/auth'
 
-import {AngularFireAuth} from 'angularfire2/auth'
+import { AngularFireAuth } from 'angularfire2/auth'
 import {
 	AngularFirestore,
 	AngularFirestoreDocument
 } from 'angularfire2/firestore'
 
-import {MatSnackBar} from '@angular/material'
-import {User} from './interfaces/user'
+import { MatSnackBar } from '@angular/material'
+import { User } from './interfaces/user'
 
 @Injectable()
 export class AuthService {
@@ -112,7 +112,7 @@ export class AuthService {
 			termsAndConditions: true
 		}
 
-		return userRef.set(data, {merge: false}).catch(err => console.error(err))
+		return userRef.set(data, { merge: false }).catch(err => console.error(err))
 	}
 
 	// Update properties on the user document
@@ -140,7 +140,7 @@ export class AuthService {
 			incognitoMode: false
 		}
 		return userRef
-			.set(data, {merge: true})
+			.set(data, { merge: true })
 			.then(() => {
 				this.showInfo('Incognito mode has been disabled')
 				this.router.navigate(['/leaderboard']).catch(err => console.error(err))

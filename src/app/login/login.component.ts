@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core'
-import {FormGroup, FormBuilder, Validators} from '@angular/forms'
+import { Component, OnInit } from '@angular/core'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
-import {AuthService} from '../core/auth.service'
-import {MatSnackBar} from '@angular/material'
+import { AuthService } from '../core/auth.service'
+import { MatSnackBar } from '@angular/material'
 
 @Component({
 	selector: 'app-login',
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
 	// Campus Function
 	setCampus(user) {
-		return this.auth.updateUser(user, {campus: this.campus.value})
+		return this.auth.updateUser(user, { campus: this.campus.value })
 	}
 
 	// Alerts

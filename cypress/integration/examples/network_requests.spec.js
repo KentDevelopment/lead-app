@@ -98,7 +98,7 @@ context('Network Requests', () => {
 			method: 'PUT',
 			url: 'comments/*',
 			status: 404,
-			response: {error: message},
+			response: { error: message },
 			delay: 500
 		}).as('putComment')
 

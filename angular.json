@@ -77,8 +77,8 @@
 			}
 		}
 	},
-	"defaultProject": "kent",
 	"cli": {
 		"packageManager": "yarn"
-	}
+	},
+	"defaultProject": "kent"
 }
