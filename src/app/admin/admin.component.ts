@@ -71,8 +71,8 @@ export class AdminComponent implements OnInit {
 		userRef
 			.update(data)
 			.then(() => {
+				this.fss.addLog(`${user.displayName} has ${data.points} pts`)
 				this.showSuccess(`User ${user.displayName} has ${data.points} pts`)
-				// this.fss.addLog(`${user.displayName} has ${data.points} pts`)
 			})
 			.catch(err => {
 				this.showError(`Ops, it looks like something has gone wrong`, err)
@@ -112,12 +112,13 @@ export class AdminComponent implements OnInit {
 				userRef
 					.update(data)
 					.then(() => {
+						this.fss.addLog(`${ref.displayName} has ${data.points} pts`)
+					})
+					.then(() => {
 						this.showSuccess(
 							// `User ${ref.displayName} has ${data.points} pts`
 							`Points successfully added`
 						)
-						this.fss.addLog(`${ref.displayName} has ${data.points} pts`)
-						return
 					})
 					.catch(err => {
 						this.showError(`Ops, it looks like something has gone wrong`, err)
