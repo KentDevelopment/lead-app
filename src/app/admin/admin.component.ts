@@ -82,7 +82,7 @@ export class AdminComponent implements OnInit {
 					`User updated successfully`,
 					`${user.displayName} has ${data.points} pts`
 				)
-				// this.fss.addLog(`${user.displayName} has ${data.points} pts`)
+				this.fss.addLog(`${user.displayName} has ${data.points} pts`)
 			})
 			.catch(err => {
 				this.showError(`Ops, it looks like something has gone wrong`, err)
