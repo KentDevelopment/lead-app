@@ -23,14 +23,13 @@ export class LoginComponent implements OnInit {
 		public snackBar: MatSnackBar
 	) {
 		this.loginForm = this.fb.group({
-			domain: ['', [Validators.required]],
-			campus: ['', [Validators.required]]
+			domain: ['', [Validators.required]]
 		})
 
 		// Campus Form
-		// this.campusForm = this.fb.group({
-		// 	campus: ['', [Validators.required]]
-		// })
+		this.campusForm = this.fb.group({
+			campus: ['', [Validators.required]]
+		})
 	}
 
 	ngOnInit() {}
@@ -40,12 +39,8 @@ export class LoginComponent implements OnInit {
 	}
 
 	get campus() {
-		return this.loginForm.get('campus')
+		return this.campusForm.get('campus')
 	}
-
-	// get campus() {
-	// 	return this.campusForm.get('campus')
-	// }
 
 	// Login Function
 	login(domain, campus) {
@@ -55,9 +50,9 @@ export class LoginComponent implements OnInit {
 	}
 
 	// Campus Function
-	// setCampus(user) {
-	// 	return this.auth.updateUser(user, { campus: this.campus.value })
-	// }
+	setCampus(user) {
+		return this.auth.updateUser(user, { campus: this.campus.value })
+	}
 
 	// Alerts
 	showInfo(message, action?: string) {
