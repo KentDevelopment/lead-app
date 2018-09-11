@@ -47,15 +47,15 @@ export class AuthService {
 	}
 
 	// Google Auth
-	googleLogin(domain, campus) {
+	googleLogin(domain) {
 		const provider = new firebase.auth.GoogleAuthProvider()
 		provider.setCustomParameters({
 			hd: domain
 		})
-		return this.oAuthLogin(provider, campus).catch(err => console.error(err))
+		return this.oAuthLogin(provider).catch(err => console.error(err))
 	}
 
-	private oAuthLogin(provider, campus) {
+	private oAuthLogin(provider) {
 		return this.afAuth.auth
 			.signInWithPopup(provider)
 			.then(credential => {
@@ -64,7 +64,7 @@ export class AuthService {
 				)
 				if (credential.additionalUserInfo.isNewUser === true) {
 					if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
-						this.setUserDoc(credential.user, campus)
+						this.setUserDoc(credential.user)
 							.then(() => {
 								return this.showInfo(
 									'It may take up to 3 business days for your points to be applied'
@@ -102,7 +102,7 @@ export class AuthService {
 	}
 
 	// Sets user data to firestore after succesful login
-	private setUserDoc(user, campus) {
+	private setUserDoc(user) {
 		const userRef: AngularFirestoreDocument<User> = this.afs.doc(
 			`users/${user.uid}`
 		)
@@ -116,7 +116,7 @@ export class AuthService {
 			points: 0,
 			incognitoMode: true,
 			termsAndConditions: true,
-			campus: campus
+			campus: ''
 		}
 
 		return userRef.set(data, { merge: false }).catch(err => console.error(err))

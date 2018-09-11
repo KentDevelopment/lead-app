@@ -7,7 +7,7 @@
 			<img class="img-fluid" src="assets/login/banner-home.png" alt="Banner">
 		</div>
 
-		<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value.domain, loginForm.value.campus)">
+		<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value.domain)">
 
 			<div class="input-group mb-3">
 				<select class="custom-select" name="domain" formControlName="domain">

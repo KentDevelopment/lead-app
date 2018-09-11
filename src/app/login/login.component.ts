@@ -43,10 +43,8 @@ export class LoginComponent implements OnInit {
 	}
 
 	// Login Function
-	login(domain, campus) {
-		return this.auth
-			.googleLogin(domain, campus)
-			.catch(err => console.error(err))
+	login(domain) {
+		return this.auth.googleLogin(domain).catch(err => console.error(err))
 	}
 
 	// Campus Function
