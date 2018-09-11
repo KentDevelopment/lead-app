@@ -5,7 +5,6 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { ServiceWorkerModule } from '@angular/service-worker'
 import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
@@ -44,10 +43,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component'
 		MatDialogModule,
 		MatSnackBarModule,
 		Ng2ImgToolsModule,
-		ReactiveFormsModule,
-		ServiceWorkerModule.register('/ngsw-worker.js', {
-			enabled: environment.production
-		})
+		ReactiveFormsModule
+		// ServiceWorkerModule.register('/ngsw-worker.js', {
+		// 	enabled: environment.production
+		// })
 	],
 	providers: [
 		AuthService,
