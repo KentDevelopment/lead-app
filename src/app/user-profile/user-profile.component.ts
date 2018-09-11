@@ -1,26 +1,17 @@
-import {Component, OnInit, TemplateRef} from '@angular/core'
-import {FormGroup, FormBuilder} from '@angular/forms'
-import {finalize} from 'rxjs/operators'
-
+import { Component, OnInit, TemplateRef } from '@angular/core'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { MatDialog, MatSnackBar } from '@angular/material'
 import {
 	AngularFirestore,
 	AngularFirestoreDocument
-} from 'angularfire2/firestore'
-
-import {AngularFireStorage} from 'angularfire2/storage'
-import {Observable} from 'rxjs'
-
-import {AuthService} from './../core/auth.service'
-
-import {BsModalService} from 'ngx-bootstrap/modal'
-import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service'
-
-import {ToastrService} from 'ngx-toastr'
-import {Ng2ImgToolsService} from 'ng2-img-tools'
-
-import {User} from '../core/interfaces/user'
-
-import {environment} from '../../environments/environment'
+} from '@angular/fire/firestore'
+import { AngularFireStorage } from '@angular/fire/storage'
+import { Ng2ImgToolsService } from 'ng2-img-tools'
+import { Observable } from 'rxjs'
+import { finalize } from 'rxjs/operators'
+import { environment } from '../../environments/environment'
+import { User } from '../core/interfaces/user'
+import { AuthService } from './../core/auth.service'
 
 @Component({
 	selector: 'app-user-profile',
@@ -28,32 +19,30 @@ import {environment} from '../../environments/environment'
 	styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+	dialogRef: any
+	downloadURL: Observable<string>
 	item: Observable<User>
-	modalRef: BsModalRef
+	uploadPercent: Observable<number>
+	user: any
+	userForm: FormGroup
 	version: string = environment.version
 
-	uploadPercent: Observable<number>
-	downloadURL: Observable<string>
-
-	userForm: FormGroup
-	user: any
-
 	constructor(
-		public auth: AuthService,
-		private toastr: ToastrService,
-		private fb: FormBuilder,
-		private storage: AngularFireStorage,
 		private afs: AngularFirestore,
+		private fb: FormBuilder,
 		private ng2ImgToolsService: Ng2ImgToolsService,
-		private modalService: BsModalService
+		private storage: AngularFireStorage,
+		public auth: AuthService,
+		public dialog: MatDialog,
+		public snackBar: MatSnackBar
 	) {
 		this.auth.user$.subscribe(data => {
 			this.user = data
 		})
 
 		this.userForm = this.fb.group({
-			displayName: [{value: '', disabled: true}],
-			email: [{value: '', disabled: true}],
+			displayName: [{ value: '', disabled: true }],
+			email: [{ value: '', disabled: true }],
 			password: ['']
 		})
 	}
@@ -105,28 +94,40 @@ export class UserProfileComponent implements OnInit {
 		}
 
 		return userRef.update(data).catch(err => {
-			// this.showError(err)
 			console.error('Update error', err)
 		})
 	}
 
-	openModal(templateRef: TemplateRef<any>) {
-		this.modalRef = this.modalService.show(templateRef)
-	}
-
 	confirmIncognito() {
-		this.auth.leaveIncognito(this.user).catch(err => console.error(err))
-		this.modalRef.hide()
+		this.auth
+			.leaveIncognito(this.user)
+			.then(() => {
+				this.dialogRef.close()
+			})
+			.catch(err => console.error(err))
 	}
 
-	// Alerts
-	// showSuccess(title, message?) {
-	// 	this.toastr.success(message, title)
-	// }
-	// showWarning(title, message?) {
-	// 	this.toastr.warning(message, title)
-	// }
-	showError(title, message?) {
-		this.toastr.error(message, title)
+	// Dialog Box
+	openDialog(leaveIncognito: TemplateRef<any>): void {
+		this.dialogRef = this.dialog.open(leaveIncognito, {
+			autoFocus: false
+		})
+	}
+
+	closeDialog() {
+		this.dialogRef.close()
+	}
+
+	showError(title, message?, action?: string) {
+		this.snackBar.open(
+			`${title}
+			${message}`,
+			action,
+			{
+				horizontalPosition: 'right',
+				verticalPosition: 'top',
+				duration: 4000
+			}
+		)
 	}
 }

@@ -1,11 +1,7 @@
-// Lato Font
-// @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
-// $font-family-base: 'Lato', sans-serif;
-// Montserrat Font
-@import '../node_modules/bootstrap/scss/functions';
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-$font-family-base: 'Roboto', sans-serif;
-// $body-color: #676767;
+// My Custom Styles
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 $theme-colors: (
 	'primary': #662d91,
 	'secondary': #868e96,
@@ -16,4 +12,3 @@ $theme-colors: (
 	'kent-primary': #f04f23,
 	'kent-secondary': #0072bb
 );
-@import '../node_modules/bootstrap/scss/bootstrap';

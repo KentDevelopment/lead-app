@@ -1,36 +1,42 @@
-import {of as observableOf, Observable} from 'rxjs'
-import {switchMap} from 'rxjs/operators'
-
-import {Injectable} from '@angular/core'
-import {Router} from '@angular/router'
-
-import {firebase} from '@firebase/app'
+import { Injectable } from '@angular/core'
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
+import { Router } from '@angular/router'
+import { firebase } from '@firebase/app'
 import '@firebase/auth'
-
-import {AngularFireAuth} from 'angularfire2/auth'
+import { AngularFireAuth } from '@angular/fire/auth'
 import {
 	AngularFirestore,
 	AngularFirestoreDocument
-} from 'angularfire2/firestore'
-
-import {ToastrService} from 'ngx-toastr'
-
-import {User} from './interfaces/user'
+} from '@angular/fire/firestore'
+import { Observable, of as observableOf } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
+import { User } from './interfaces/user'
 
 @Injectable()
 export class AuthService {
 	user$: Observable<User>
+	credential: any
+
+	snackBarOptions: MatSnackBarConfig = {
+		horizontalPosition: 'right',
+		verticalPosition: 'top',
+		duration: 5000
+	}
+
+	snackBarErrorOptions: MatSnackBarConfig = {
+		horizontalPosition: 'right',
+		verticalPosition: 'top'
+	}
 
 	constructor(
 		private afAuth: AngularFireAuth,
 		private afs: AngularFirestore,
 		private router: Router,
-		private toastr: ToastrService
+		public snackBar: MatSnackBar
 	) {
 		// Get auth data, then get firestore user document || null
 		this.user$ = this.afAuth.authState.pipe(
 			switchMap(user => {
-				// console.log('USER', user)
 				if (user) {
 					return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
 				} else {
@@ -53,47 +59,46 @@ export class AuthService {
 		return this.afAuth.auth
 			.signInWithPopup(provider)
 			.then(credential => {
-				// console.log('CREDENTIAL', credential)
 				const userDomain = credential.user.email.slice(
 					credential.user.email.indexOf('@')
 				)
-				// console.log('DOMAIN', userDomain)
-
 				if (credential.additionalUserInfo.isNewUser === true) {
 					if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
-						this.setUserDoc(credential.user).catch(err => console.error(err)) // create initial user document
+						this.setUserDoc(credential.user)
+							.then(() => {
+								return this.showInfo(
+									'It may take up to 3 business days for your points to be applied'
+								)
+							})
+							.catch(err => {
+								this.router.navigate(['/login'])
+								console.error(err)
+							})
 					} else {
-						// console.log('ELSE')
 						this.router.navigate(['/login'])
 						this.showError(
-							`It looks like ${userDomain} is not valid`,
+							`It looks like ${credential.user.email} is not valid`,
 							`Please try to login again`
 						)
 					}
-				} else if (!credential.additionalUserInfo.isNewUser) {
-					this.user$.subscribe(ref => {
-						if (!ref.campus) {
-							return
-						}
-					})
 				} else {
 					this.router
 						.navigate(['/leaderboard'])
-						.catch(err => console.error(err))
+						.then(() => {
+							return this.showInfo(
+								'It may take up to 3 business days for your points to be applied'
+							)
+						})
+						.catch(err => {
+							this.router.navigate(['/login'])
+							console.error(err)
+						})
 				}
 			})
 			.catch(err => {
 				console.error(err)
 				this.showError('Something went wrong...', err.message)
 			})
-
-		// this.afAuth.auth.getRedirectResult().then(res => {
-		// 	console.log('RES', res)
-		// })
-		// .catch(err => {
-		// 			console.error(err)
-		// 			this.showError('Something went wrong...', err.message)
-		// 		})
 	}
 
 	// Sets user data to firestore after succesful login
@@ -110,10 +115,11 @@ export class AuthService {
 			role: 'user',
 			points: 0,
 			incognitoMode: true,
-			termsAndConditions: true
+			termsAndConditions: true,
+			campus: ''
 		}
 
-		return userRef.set(data, {merge: false}).catch(err => console.error(err))
+		return userRef.set(data, { merge: false }).catch(err => console.error(err))
 	}
 
 	// Update properties on the user document
@@ -141,7 +147,7 @@ export class AuthService {
 			incognitoMode: false
 		}
 		return userRef
-			.set(data, {merge: true})
+			.set(data, { merge: true })
 			.then(() => {
 				this.showInfo('Incognito mode has been disabled')
 				this.router.navigate(['/leaderboard']).catch(err => console.error(err))
@@ -159,11 +165,15 @@ export class AuthService {
 	}
 
 	// Alerts
-	showError(title, message?) {
-		this.toastr.error(message, title)
+	showInfo(message, action?: string) {
+		this.snackBar.open(`${message}`, action, this.snackBarOptions)
 	}
-
-	showInfo(title, message?) {
-		this.toastr.info(message, title)
+	showError(title, message?) {
+		this.snackBar.open(
+			`${title}
+			${message}`,
+			'Dismiss',
+			this.snackBarErrorOptions
+		)
 	}
 }

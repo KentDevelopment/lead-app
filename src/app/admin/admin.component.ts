@@ -1,27 +1,21 @@
-import {Component, OnInit, TemplateRef} from '@angular/core'
+import { Component, OnInit, TemplateRef } from '@angular/core'
 import {
-	FormControl,
-	FormGroup,
 	FormArray,
 	FormBuilder,
+	FormControl,
+	FormGroup,
 	Validators
 } from '@angular/forms'
-
-import {FirestoreService} from './../core/firestore.service'
+import { MatDialog, MatSnackBar } from '@angular/material'
 import {
 	AngularFirestore,
 	AngularFirestoreCollection,
 	AngularFirestoreDocument
-} from 'angularfire2/firestore'
-
-import {ToastrService} from 'ngx-toastr'
-
-import {User} from '../core/interfaces/user'
-import {Course} from '../core/interfaces/course'
-import {take} from 'rxjs/operators'
-
-import {BsModalService} from 'ngx-bootstrap/modal'
-import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service'
+} from '@angular/fire/firestore'
+import { take } from 'rxjs/operators'
+import { Course } from '../core/interfaces/course'
+import { User } from '../core/interfaces/user'
+import { FirestoreService } from './../core/firestore.service'
 
 @Component({
 	selector: 'app-admin',
@@ -29,19 +23,18 @@ import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service'
 	styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-	isActive = 'points'
 	addPointsForm: FormGroup
 	coursesForm: FormGroup
-	modalRef: BsModalRef
-
+	dialogRef: any
+	isActive = 'points'
 	myTime: any = new Date()
 
 	constructor(
 		private fss: FirestoreService,
 		private fb: FormBuilder,
 		private afs: AngularFirestore,
-		private toastr: ToastrService,
-		private modalService: BsModalService
+		public dialog: MatDialog,
+		public snackBar: MatSnackBar
 	) {
 		this.addPointsForm = this.fb.group({
 			uid: this.fb.array([]),
@@ -78,11 +71,8 @@ export class AdminComponent implements OnInit {
 		userRef
 			.update(data)
 			.then(() => {
-				this.showSuccess(
-					`User updated successfully`,
-					`${user.displayName} has ${data.points} pts`
-				)
 				this.fss.addLog(`${user.displayName} has ${data.points} pts`)
+				this.showSuccess(`User ${user.displayName} has ${data.points} pts`)
 			})
 			.catch(err => {
 				this.showError(`Ops, it looks like something has gone wrong`, err)
@@ -109,7 +99,13 @@ export class AdminComponent implements OnInit {
 				`users/${userUid}`
 			)
 
-			const item = userRef.valueChanges().pipe(take(1))
+			const item = userRef.valueChanges().pipe(
+				take(1)
+				// finalize(() => this.showSuccess(
+				// 	// `User ${ref.displayName} has ${data.points} pts`
+				// 	`Action Completed`
+				// ))
+			)
 
 			item.subscribe(ref => {
 				const totalPoints: number = Number(ref.points) + Number(user.points)
@@ -122,12 +118,13 @@ export class AdminComponent implements OnInit {
 				userRef
 					.update(data)
 					.then(() => {
-						this.showSuccess(
-							`User updated successfully`,
-							`${ref.displayName} has ${data.points} pts`
-						)
 						this.fss.addLog(`${ref.displayName} has ${data.points} pts`)
-						return
+					})
+					.then(() => {
+						this.showSuccess(
+							// `User ${ref.displayName} has ${data.points} pts`
+							`Points successfully added`
+						)
 					})
 					.catch(err => {
 						this.showError(`Ops, it looks like something has gone wrong`, err)
@@ -153,10 +150,7 @@ export class AdminComponent implements OnInit {
 		courseRef
 			.add(data)
 			.then(() => {
-				this.showSuccess(
-					`Course added successfully`,
-					`${data.title} on ${data.date}`
-				)
+				this.showSuccess(`Course ${data.title} added on ${data.date}`)
 			})
 			.catch(err => {
 				this.showError(`Ops, it looks like something has gone wrong`, err)
@@ -169,10 +163,7 @@ export class AdminComponent implements OnInit {
 		const myTimeParsed = Date.parse(this.myTime)
 
 		if (myTimeParsed <= dateToResetParsed) {
-			this.showWarning(
-				`Ops, it looks like that's not the time yet`,
-				`Please come back after ${dateToReset}`
-			)
+			this.showWarning(`Please come back after ${dateToReset}`, 'Dismiss')
 		} else {
 			this.fss.localUsers$.pipe(take(1)).subscribe(users => {
 				for (const user of users) {
@@ -203,21 +194,42 @@ export class AdminComponent implements OnInit {
 			)
 			this.showSuccess(`All points have been successfully deleted`)
 		}
-		this.modalRef.hide()
+		this.dialogRef.close()
 	}
 
-	openModal(templateRef: TemplateRef<any>) {
-		this.modalRef = this.modalService.show(templateRef)
+	// Dialog Box
+	openDialog(resetPoints: TemplateRef<any>): void {
+		this.dialogRef = this.dialog.open(resetPoints, {
+			autoFocus: false
+		})
 	}
 
 	// Alerts
-	showSuccess(title, message?) {
-		this.toastr.success(message, title)
+	showSuccess(message, action?: string) {
+		this.snackBar.open(message, action, {
+			horizontalPosition: 'right',
+			verticalPosition: 'top',
+			duration: 3000
+		})
 	}
-	showWarning(title, message?) {
-		this.toastr.warning(message, title)
+
+	showWarning(message, action?: string) {
+		this.snackBar.open(`${message}`, action, {
+			horizontalPosition: 'right',
+			verticalPosition: 'top'
+		})
 	}
-	showError(title, message?) {
-		this.toastr.error(message, title)
+
+	showError(title, message?, action?: string) {
+		this.snackBar.open(
+			`${title}
+			${message}`,
+			action,
+			{
+				horizontalPosition: 'right',
+				verticalPosition: 'top',
+				duration: 4000
+			}
+		)
 	}
 }
