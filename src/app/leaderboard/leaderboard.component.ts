@@ -40,8 +40,9 @@ export class LeaderboardComponent implements OnInit {
 	openDialog(aboutLead: TemplateRef<any>): void {
 		this.dialogRef = this.dialog.open(aboutLead, {
 			position: {
-				top: '3vh'
+				top: '2vh'
 			},
+			minHeight: '68vh',
 			maxWidth: '96vw',
 			maxHeight: '96vh',
 			autoFocus: false
