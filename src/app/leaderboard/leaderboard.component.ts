@@ -42,7 +42,7 @@ export class LeaderboardComponent implements OnInit {
 			position: {
 				top: '2vh'
 			},
-			minHeight: '68vh',
+			minHeight: '70vh',
 			maxWidth: '96vw',
 			maxHeight: '96vh',
 			autoFocus: false
