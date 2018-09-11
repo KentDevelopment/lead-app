@@ -11,7 +11,7 @@ import {
 	AngularFirestore,
 	AngularFirestoreCollection,
 	AngularFirestoreDocument
-} from 'angularfire2/firestore'
+} from '@angular/fire/firestore'
 import { take } from 'rxjs/operators'
 import { Course } from '../core/interfaces/course'
 import { User } from '../core/interfaces/user'
@@ -99,7 +99,13 @@ export class AdminComponent implements OnInit {
 				`users/${userUid}`
 			)
 
-			const item = userRef.valueChanges().pipe(take(1))
+			const item = userRef.valueChanges().pipe(
+				take(1)
+				// finalize(() => this.showSuccess(
+				// 	// `User ${ref.displayName} has ${data.points} pts`
+				// 	`Action Completed`
+				// ))
+			)
 
 			item.subscribe(ref => {
 				const totalPoints: number = Number(ref.points) + Number(user.points)
@@ -193,7 +199,9 @@ export class AdminComponent implements OnInit {
 
 	// Dialog Box
 	openDialog(resetPoints: TemplateRef<any>): void {
-		this.dialogRef = this.dialog.open(resetPoints)
+		this.dialogRef = this.dialog.open(resetPoints, {
+			autoFocus: false
+		})
 	}
 
 	// Alerts

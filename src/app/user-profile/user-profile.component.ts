@@ -4,8 +4,8 @@ import { MatDialog, MatSnackBar } from '@angular/material'
 import {
 	AngularFirestore,
 	AngularFirestoreDocument
-} from 'angularfire2/firestore'
-import { AngularFireStorage } from 'angularfire2/storage'
+} from '@angular/fire/firestore'
+import { AngularFireStorage } from '@angular/fire/storage'
 import { Ng2ImgToolsService } from 'ng2-img-tools'
 import { Observable } from 'rxjs'
 import { finalize } from 'rxjs/operators'
@@ -109,7 +109,9 @@ export class UserProfileComponent implements OnInit {
 
 	// Dialog Box
 	openDialog(leaveIncognito: TemplateRef<any>): void {
-		this.dialogRef = this.dialog.open(leaveIncognito)
+		this.dialogRef = this.dialog.open(leaveIncognito, {
+			autoFocus: false
+		})
 	}
 
 	closeDialog() {

@@ -3,11 +3,11 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 import { Router } from '@angular/router'
 import { firebase } from '@firebase/app'
 import '@firebase/auth'
-import { AngularFireAuth } from 'angularfire2/auth'
+import { AngularFireAuth } from '@angular/fire/auth'
 import {
 	AngularFirestore,
 	AngularFirestoreDocument
-} from 'angularfire2/firestore'
+} from '@angular/fire/firestore'
 import { Observable, of as observableOf } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 import { User } from './interfaces/user'

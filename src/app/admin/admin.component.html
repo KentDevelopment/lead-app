@@ -117,9 +117,9 @@
 </section>
 
 <ng-template #resetPoints>
-	<div class="modal-reset-points">
+	<mat-dialog-content class="modal-incognito" class="modal-reset-points">
 		<div class="modal-header">
-			<h4 class="modal-title">Reset LEAD Points</h4>
+			<h4 mat-dialog-title>Reset LEAD Points</h4>
 			<button type="button" class="close" aria-label="Close" (click)="dialogRef.close()">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -133,5 +133,5 @@
 				<button type="button" class="btn btn-outline-danger" (click)="deletePoints()">Yes</button>
 			</div>
 		</div>
-	</div>
+	</mat-dialog-content>
 </ng-template>

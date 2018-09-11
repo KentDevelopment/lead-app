@@ -8,11 +8,6 @@
 	}
 }
 
-%highlight-btn {
-	box-shadow: 0;
-	color: var(--light);
-}
-
 .btn-group {
 	border: 1px solid var(--primary);
 	border-radius: 1.25rem;
@@ -74,6 +69,11 @@ mat-dialog-content {
 small {
 	color: var(--secondary);
 }
+
+// %highlight-btn {
+// 	box-shadow: 0;
+// 	color: var(--light);
+// }
 
 // .highlight-btn-left {
 // 	@extend %highlight-btn;

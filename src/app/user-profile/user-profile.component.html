@@ -63,7 +63,7 @@
 <ng-template #leaveIncognito>
 	<mat-dialog-content class="modal-incognito">
 		<div class="modal-header">
-			<h4 class="modal-title">Leave Incognito!</h4>
+			<h4 mat-dialog-title>Leave Incognito!</h4>
 			<button type="button" class="close" aria-label="Close" (click)="dialogRef.close()">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -73,7 +73,7 @@
 			<p>By leaving incognito mode, your profile photo, name and number of LEAD points will be publicly available to other users of this application.</p>
 			<p>Do you wish to continue?</p>
 			<div class="d-flex justify-content-around">
-				<button type="button" class="btn btn-secondary" (click)="dialogRef.close()">Not now</button>
+				<button type="button" class="btn btn-secondary" (click)="dialogRef.close()">No</button>
 				<button type="button" class="btn btn-primary" (click)="confirmIncognito()">Yes, let's do this!</button>
 			</div>
 		</div>
