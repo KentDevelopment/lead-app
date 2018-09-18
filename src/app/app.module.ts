@@ -22,37 +22,37 @@ import { LoginComponent } from './login/login.component'
 import { UserProfileComponent } from './user-profile/user-profile.component'
 
 @NgModule({
-	declarations: [
-		AdminComponent,
-		AppComponent,
-		LeaderboardComponent,
-		LoginComponent,
-		UserProfileComponent
-	],
-	imports: [
-		AngularFireAuthModule,
-		AngularFireModule,
-		AngularFireStorageModule,
-		AngularFirestoreModule.enablePersistence(),
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		BrowserModule,
-		CoreModule,
-		FormsModule,
-		HttpClientModule,
-		MatDialogModule,
-		MatSnackBarModule,
-		Ng2ImgToolsModule,
-		ReactiveFormsModule
-		// ServiceWorkerModule.register('/ngsw-worker.js', {
-		// 	enabled: environment.production
-		// })
-	],
-	providers: [
-		AuthService,
-		FirestoreService,
-		{ provide: FirebaseOptionsToken, useValue: environment.firebase }
-	],
-	bootstrap: [AppComponent]
+  declarations: [
+    AdminComponent,
+    AppComponent,
+    LeaderboardComponent,
+    LoginComponent,
+    UserProfileComponent
+  ],
+  imports: [
+    AngularFireAuthModule,
+    AngularFireModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule.enablePersistence(),
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    CoreModule,
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    Ng2ImgToolsModule,
+    ReactiveFormsModule
+    // ServiceWorkerModule.register('/ngsw-worker.js', {
+    // 	enabled: environment.production
+    // })
+  ],
+  providers: [
+    AuthService,
+    FirestoreService,
+    { provide: FirebaseOptionsToken, useValue: environment.firebase }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -4,56 +4,56 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 import { AuthService } from '../core/auth.service'
 
 @Component({
-	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-	loginForm: FormGroup
-	campusForm: FormGroup
-	snackBarOptions: MatSnackBarConfig = {
-		horizontalPosition: 'right',
-		verticalPosition: 'top',
-		duration: 4000
-	}
+  loginForm: FormGroup
+  campusForm: FormGroup
+  snackBarOptions: MatSnackBarConfig = {
+    horizontalPosition: 'right',
+    verticalPosition: 'top',
+    duration: 4000
+  }
 
-	constructor(
-		private fb: FormBuilder,
-		public auth: AuthService,
-		public snackBar: MatSnackBar
-	) {
-		this.loginForm = this.fb.group({
-			domain: ['', [Validators.required]]
-		})
+  constructor(
+    private fb: FormBuilder,
+    public auth: AuthService,
+    public snackBar: MatSnackBar
+  ) {
+    this.loginForm = this.fb.group({
+      domain: ['', [Validators.required]]
+    })
 
-		// Campus Form
-		this.campusForm = this.fb.group({
-			campus: ['', [Validators.required]]
-		})
-	}
+    // Campus Form
+    this.campusForm = this.fb.group({
+      campus: ['', [Validators.required]]
+    })
+  }
 
-	ngOnInit() {}
+  ngOnInit() {}
 
-	get domain() {
-		return this.loginForm.get('domain')
-	}
+  get domain() {
+    return this.loginForm.get('domain')
+  }
 
-	get campus() {
-		return this.campusForm.get('campus')
-	}
+  get campus() {
+    return this.campusForm.get('campus')
+  }
 
-	// Login Function
-	login(domain) {
-		return this.auth.googleLogin(domain).catch(err => console.error(err))
-	}
+  // Login Function
+  login(domain) {
+    return this.auth.googleLogin(domain).catch(err => console.error(err))
+  }
 
-	// Campus Function
-	setCampus(user) {
-		return this.auth.updateUser(user, { campus: this.campus.value })
-	}
+  // Campus Function
+  setCampus(user) {
+    return this.auth.updateUser(user, { campus: this.campus.value })
+  }
 
-	// Alerts
-	showInfo(message, action?: string) {
-		this.snackBar.open(`${message}`, action, this.snackBarOptions)
-	}
+  // Alerts
+  showInfo(message, action?: string) {
+    this.snackBar.open(`${message}`, action, this.snackBarOptions)
+  }
 }

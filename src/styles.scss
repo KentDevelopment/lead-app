@@ -3,29 +3,29 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 :root {
-	// Typography
-	// CSS Variables
-	--primary: #662d91;
-	--secondary: #007bff;
-	--danger: #dc3545;
-	--warning: #ffc107;
-	--success: #217c49;
-	--dark-gray: #676767;
-	--dark: #000;
-	--light-gray: #868e96;
-	--light: #fff;
-	--kent-primary: #f04f23;
-	--kent-secondary: #0072bb;
+  // Typography
+  // CSS Variables
+  --primary: #662d91;
+  --secondary: #007bff;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --success: #217c49;
+  --dark-gray: #676767;
+  --dark: #000;
+  --light-gray: #868e96;
+  --light: #fff;
+  --kent-primary: #f04f23;
+  --kent-secondary: #0072bb;
 
-	.primary-header {
-		background-image: linear-gradient(
-			-139deg,
-			var(--secondary) 10%,
-			var(--primary) 100%
-		);
-		border: 1px solid #979797;
-		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-		color: var(--light);
-		z-index: 999;
-	}
+  .primary-header {
+    background-image: linear-gradient(
+      -139deg,
+      var(--secondary) 10%,
+      var(--primary) 100%
+    );
+    border: 1px solid #979797;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    color: var(--light);
+    z-index: 999;
+  }
 }

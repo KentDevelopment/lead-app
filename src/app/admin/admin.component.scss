@@ -1,63 +1,63 @@
 .primary-header {
-	i {
-		padding: 13px;
-	}
+  i {
+    padding: 13px;
+  }
 }
 
 .img-profile-list {
-	border-radius: 50%;
-	width: 35px;
+  border-radius: 50%;
+  width: 35px;
 }
 
 .card {
-	max-width: 98vw;
-	min-width: 19rem;
+  max-width: 98vw;
+  min-width: 19rem;
 }
 
 .highlight-btn {
-	background-color: var(--primary);
-	box-shadow: 0;
-	color: var(--light);
+  background-color: var(--primary);
+  box-shadow: 0;
+  color: var(--light);
 }
 
 .btn-group {
-	.btn {
-		width: 6.4rem;
-	}
+  .btn {
+    width: 6.4rem;
+  }
 }
 
 .input-group-text {
-	background-color: var(--light);
-	border-right: 0;
+  background-color: var(--light);
+  border-right: 0;
 }
 
 .form-control {
-	border-left: 0;
+  border-left: 0;
 
-	p {
-		margin-bottom: 0;
-	}
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .points-box {
-	width: 4.2rem;
+  width: 4.2rem;
 }
 
 .campus {
-	color: var(--light-gray);
-	font-size: 0.9rem;
+  color: var(--light-gray);
+  font-size: 0.9rem;
 }
 
 .fix-line {
-	height: 100%;
+  height: 100%;
 }
 
 .modal-reset-points {
-	button {
-		width: 30%;
-	}
+  button {
+    width: 30%;
+  }
 
-	.material-icons {
-		font-size: 4rem;
-	}
+  .material-icons {
+    font-size: 4rem;
+  }
 }

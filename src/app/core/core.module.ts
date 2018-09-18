@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core'
 import { AuthService } from './auth.service'
 
 @NgModule({
-	imports: [CommonModule],
-	declarations: [],
-	providers: [AuthService]
+  imports: [CommonModule],
+  declarations: [],
+  providers: [AuthService]
 })
 export class CoreModule {}
