@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { AdminComponent } from './admin/admin.component'
-import { LeaderboardComponent } from './leaderboard/leaderboard.component'
-import { LoginComponent } from './login/login.component'
-import { UserProfileComponent } from './user-profile/user-profile.component'
+
+import { AdminComponent } from './modules/admin/admin.component'
+import { LeaderboardComponent } from './modules/leaderboard/leaderboard.component'
+import { LoginComponent } from './modules/login/login.component'
+import { UserProfileComponent } from './modules/user-profile/user-profile.component'
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent, data: { animation: 'login' } },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { animation: 'login' }
+  },
   {
     path: 'leaderboard',
     component: LeaderboardComponent,

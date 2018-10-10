@@ -1,17 +1,21 @@
 import { Component, OnInit, TemplateRef } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatDialog, MatSnackBar } from '@angular/material'
+
 import {
   AngularFirestore,
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
 import { AngularFireStorage } from '@angular/fire/storage'
 import { Ng2ImgToolsService } from 'ng2-img-tools'
+
 import { Observable } from 'rxjs'
 import { finalize } from 'rxjs/operators'
-import { environment } from '../../environments/environment'
-import { User } from '../core/interfaces/user'
-import { AuthService } from './../core/auth.service'
+
+import { environment } from '../../../environments/environment'
+
+import { AuthService } from './../../core/auth.service'
+import { User } from '../../core/interfaces/user'
 
 @Component({
   selector: 'app-user-profile',

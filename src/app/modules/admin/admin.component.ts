@@ -7,15 +7,18 @@ import {
   Validators
 } from '@angular/forms'
 import { MatDialog, MatSnackBar } from '@angular/material'
+
 import {
   AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
+
 import { take } from 'rxjs/operators'
-import { Course } from '../core/interfaces/course'
-import { User } from '../core/interfaces/user'
-import { FirestoreService } from './../core/firestore.service'
+
+import { Course } from '../../core/interfaces/course'
+import { User } from '../../core/interfaces/user'
+import { FirestoreService } from './../../core/firestore.service'
 
 @Component({
   selector: 'app-admin',
