@@ -5,7 +5,7 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore'
 import { Observable } from 'rxjs'
-import { AuthService } from './../core/auth.service'
+import { AuthService } from './../core/authentication/auth.service'
 import { Course } from './interfaces/course'
 import { Log } from './interfaces/log'
 import { User } from './interfaces/user'

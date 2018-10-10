@@ -15,9 +15,10 @@ import { AngularFireStorageModule } from '@angular/fire/storage'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 
-import { AuthService } from './core/auth.service'
+import { AuthService } from './core/authentication/auth.service'
 import { CoreModule } from './core/core.module'
 import { FirestoreService } from './core/firestore.service'
+import { FooterComponent } from './core/footer/footer.component'
 
 import { AdminComponent } from './modules/admin/admin.component'
 import { LeaderboardComponent } from './modules/leaderboard/leaderboard.component'
@@ -33,7 +34,8 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools'
     AppComponent,
     LeaderboardComponent,
     LoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    FooterComponent
   ],
   imports: [
     AngularFireAuthModule,

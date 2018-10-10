@@ -10,7 +10,7 @@ import {
 } from '@angular/fire/firestore'
 import { Observable, of as observableOf } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-import { User } from './interfaces/user'
+import { User } from '../interfaces/user'
 
 @Injectable()
 export class AuthService {

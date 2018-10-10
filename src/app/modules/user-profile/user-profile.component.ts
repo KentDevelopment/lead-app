@@ -14,7 +14,7 @@ import { finalize } from 'rxjs/operators'
 
 import { environment } from '../../../environments/environment'
 
-import { AuthService } from './../../core/auth.service'
+import { AuthService } from './../../core/authentication/auth.service'
 import { User } from '../../core/interfaces/user'
 
 @Component({

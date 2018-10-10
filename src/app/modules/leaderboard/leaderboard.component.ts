@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatDialog } from '@angular/material'
 
-import { AuthService } from './../../core/auth.service'
+import { AuthService } from './../../core/authentication/auth.service'
 import { FirestoreService } from './../../core/firestore.service'
 
 @Component({
