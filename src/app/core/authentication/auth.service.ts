@@ -11,11 +11,11 @@ import {
 import { Observable, of as observableOf } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 import { User } from '../interfaces/user'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Injectable()
 export class AuthService {
   user$: Observable<User>
-  credential: any
 
   snackBarOptions: MatSnackBarConfig = {
     horizontalPosition: 'right',
@@ -32,7 +32,8 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public http: HttpClient
   ) {
     // Get auth data, then get firestore user document || null
     this.user$ = this.afAuth.authState.pipe(
@@ -115,20 +116,22 @@ export class AuthService {
       role: 'user',
       points: 0,
       incognitoMode: true,
-      termsAndConditions: true,
-      campus: ''
+      termsAndConditions: true
     }
 
     return userRef.set(data, { merge: false }).catch(err => console.error(err))
   }
 
   // Update properties on the user document
-  updateUser(user: User, data: any) {
+  updateCampus(user: User, campus: any) {
     this.afs
       .doc(`users/${user.uid}`)
-      .update(data)
+      .update(user)
       .then(() => {
-        this.router.navigate(['/leaderboard']).catch(err => console.error(err))
+        this.sendEmail(user, campus)
+      })
+      .then(() => {
+        this.router.navigate(['/leaderboard'])
       })
       .catch(err => {
         // Error occurred. Inspect error.code.
@@ -137,7 +140,39 @@ export class AuthService {
       })
   }
 
-  public leaveIncognito(user) {
+  sendEmail(user, campus) {
+    // console.log('USER', user);
+    // console.log('CAMPUS', campus);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    user.campus = campus.campus
+
+    // const userPreferences = Object.assign(
+    //   { campus: campus.campus },
+    //   user
+    // )
+
+    // console.log('USERPREFERENCES', user);
+    this.http
+      .post(
+        'https://us-central1-kent-ac75b.cloudfunctions.net/sendEmail',
+        user,
+        httpOptions
+      )
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => {
+          console.log('Error occured', err)
+        }
+      )
+  }
+
+  leaveIncognito(user) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
@@ -146,11 +181,12 @@ export class AuthService {
     const data: User = {
       incognitoMode: false
     }
+
     return userRef
       .set(data, { merge: true })
       .then(() => {
         this.showInfo('Incognito mode has been disabled')
-        this.router.navigate(['/leaderboard']).catch(err => console.error(err))
+        this.router.navigate(['/leaderboard'])
       })
       .catch(err => console.error(err))
   }
@@ -168,6 +204,7 @@ export class AuthService {
   showInfo(message, action?: string) {
     this.snackBar.open(`${message}`, action, this.snackBarOptions)
   }
+
   showError(title, message?) {
     this.snackBar.open(
       `${title}

@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     public auth: AuthService,
     public snackBar: MatSnackBar
   ) {
+    // Login Form
     this.loginForm = this.fb.group({
       domain: ['', [Validators.required]]
     })
@@ -50,7 +51,11 @@ export class LoginComponent implements OnInit {
 
   // Campus Function
   setCampus(user) {
-    return this.auth.updateUser(user, { campus: this.campus.value })
+    // const userPreferences = Object.assign(
+    //   { campus: this.campus.value },
+    //   user
+    // )
+    return this.auth.updateCampus(user, { campus: this.campus.value })
   }
 
   // Alerts
