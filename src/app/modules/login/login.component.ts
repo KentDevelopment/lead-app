@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     //   { campus: this.campus.value },
     //   user
     // )
-    return this.auth.updateCampus(user, { campus: this.campus.value })
+    return this.auth.updateCampus(user, this.campus.value)
   }
 
   // Alerts

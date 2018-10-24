@@ -65,16 +65,10 @@ export class AuthService {
         )
         if (credential.additionalUserInfo.isNewUser === true) {
           if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
-            this.setUserDoc(credential.user)
-              .then(() => {
-                return this.showInfo(
-                  'It may take up to 3 business days for your points to be applied'
-                )
-              })
-              .catch(err => {
-                this.router.navigate(['/login'])
-                console.error(err)
-              })
+            this.setUserDoc(credential.user).catch(err => {
+              this.router.navigate(['/login'])
+              console.error(err)
+            })
           } else {
             this.router.navigate(['/login'])
             this.showError(
@@ -124,14 +118,22 @@ export class AuthService {
 
   // Update properties on the user document
   updateCampus(user: User, campus: any) {
-    this.afs
-      .doc(`users/${user.uid}`)
-      .update(user)
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
+      `users/${user.uid}`
+    )
+
+    userRef
+      .set({ campus: campus }, { merge: true })
       .then(() => {
-        this.sendEmail(user, campus)
+        this.sendEmail(user)
       })
       .then(() => {
         this.router.navigate(['/leaderboard'])
+      })
+      .then(() => {
+        return this.showInfo(
+          'It may take up to 3 business days for your points to be applied'
+        )
       })
       .catch(err => {
         // Error occurred. Inspect error.code.
@@ -140,26 +142,19 @@ export class AuthService {
       })
   }
 
-  sendEmail(user, campus) {
-    // console.log('USER', user);
-    // console.log('CAMPUS', campus);
+  sendEmail(user) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    user.campus = campus.campus
 
-    // const userPreferences = Object.assign(
-    //   { campus: campus.campus },
-    //   user
-    // )
+    console.log('USER', user)
 
-    // console.log('USERPREFERENCES', user);
     this.http
       .post(
         'https://us-central1-kent-ac75b.cloudfunctions.net/sendEmail',
-        user,
+        user.uid,
         httpOptions
       )
       .subscribe(
@@ -195,7 +190,7 @@ export class AuthService {
     this.afAuth.auth
       .signOut()
       .then(() => {
-        this.router.navigate(['/login']).catch(err => console.error(err))
+        this.router.navigate(['/login'])
       })
       .catch(err => console.error(err))
   }
