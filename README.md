@@ -4,7 +4,7 @@ The LEAD Points app has been develop to foment the student engagement with Kent'
 
 ## Development server
 
-1. Run `yarn serve` for a dev server.
+1. Run `yarn start` for a dev server.
 
 1. The app will automatically reload if you change any of the source files.
 

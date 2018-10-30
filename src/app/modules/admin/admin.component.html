@@ -31,9 +31,9 @@
 				<li class="list-group-item list-group-item-action" *ngFor="let user of fss.orderedUsers$ | async">
 					<div class="d-flex justify-content-between">
 						<div class="d-flex flex-column align-self-center">
-							<div class="pr-2 d-flex align-items-center">{{user.displayName}}</div>
-							<div class="pr-2 d-flex align-items-center campus">{{user.email}}</div>
-							<div class="pr-2 d-flex align-items-center campus">{{user.campus}}</div>
+							<div class="pr-2 d-flex align-items-center">{{ user.displayName }}</div>
+							<div class="pr-2 d-flex align-items-center campus">{{ user.email }}</div>
+							<div class="pr-2 d-flex align-items-center campus">{{ user.campus }}</div>
 						</div>
 
 						<div class="form-group mt-3 points-box">
@@ -70,7 +70,7 @@
 					</div>
 
 					<div *ngFor="let user of users | async">
-						<input type="checkbox"> {{user.displayName}}
+						<input type="checkbox"> {{ user.displayName }}
 					</div>
 
 					<div class="d-flex justify-content-between form-control fix-line">
@@ -107,10 +107,10 @@
 
 		<div class="card-body" *ngFor="let log of fss.logs$ | async">
 			<div class="alert alert-secondary text-left" role="alert">
-				{{log.log}}
+				{{ log.log }}
 				<br>
-				<h6>{{log.adminName}}</h6>
-				<p class="text-right pt-2">{{log.date | date: 'medium'}}</p>
+				<h6>{{ log.adminName }}</h6>
+				<p class="text-right pt-2">{{ log.date | date: 'medium' }}</p>
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,5 @@
-export interface Log {
-	date?: any
-	log: string
-	adminName: string
+export interface ILog {
+  date?: any
+  log: string
+  adminName: string
 }
