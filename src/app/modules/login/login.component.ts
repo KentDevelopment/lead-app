@@ -45,8 +45,12 @@ export class LoginComponent implements OnInit {
   }
 
   // Login Function
-  login(domain) {
-    return this.auth.googleLogin(domain).catch(error => error)
+  async login(domain) {
+    try {
+      return this.auth.googleLogin(domain)
+    } catch (error) {
+      return error
+    }
   }
 
   // Campus Function

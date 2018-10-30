@@ -49,55 +49,57 @@ export class AuthService {
   }
 
   // Google Auth
-  googleLogin(domain) {
+  async googleLogin(domain) {
     const provider = new firebase.auth.GoogleAuthProvider()
     provider.setCustomParameters({
       hd: domain
     })
-    return this.oAuthLogin(provider).catch(error => error)
+    try {
+      return this.oAuthLogin(provider)
+    } catch (error) {
+      return error
+    }
   }
 
-  private oAuthLogin(provider) {
-    return this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(credential => {
-        const userDomain = credential.user.email.slice(
-          credential.user.email.indexOf('@')
-        )
-        if (credential.additionalUserInfo.isNewUser === true) {
-          if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
-            this.setUserDoc(credential.user).catch(error => {
-              this.router.navigate(['/login'])
-              return error
-            })
-          } else {
+  private async oAuthLogin(provider) {
+    try {
+      const credential = await this.afAuth.auth.signInWithPopup(provider)
+      const userDomain = credential.user.email.slice(
+        credential.user.email.indexOf('@')
+      )
+      if (credential.additionalUserInfo.isNewUser === true) {
+        if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
+          this.setUserDoc(credential.user).catch(error => {
             this.router.navigate(['/login'])
-            this.showError(
-              `It looks like ${credential.user.email} is not valid`,
-              `Please try to login again`
-            )
-          }
+            return error
+          })
         } else {
-          this.router
-            .navigate(['/leaderboard'])
-            .then(() => {
-              return this.showInfo(
-                'It may take up to 3 business days for your points to be applied'
-              )
-            })
-            .catch(error => {
-              this.router.navigate(['/login'])
-              return error
-            })
+          this.router.navigate(['/login'])
+          this.showError(
+            `It looks like ${credential.user.email} is not valid`,
+            `Please try to login again`
+          )
         }
-      })
-      .catch(error => {
-        this.showError('Something went wrong...', error.message)
-      })
+      } else {
+        this.router
+          .navigate(['/leaderboard'])
+          .then(() => {
+            return this.showInfo(
+              'It may take up to 3 business days for your points to be applied'
+            )
+          })
+          .catch(error_1 => {
+            this.router.navigate(['/login'])
+            return error_1
+          })
+      }
+    } catch (error_2) {
+      this.showError('Something went wrong...', error_2.message)
+    }
   }
 
   // Sets user data to firestore after succesful login
-  private setUserDoc(user) {
+  private async setUserDoc(user) {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(
       `users/${user.uid}`
     )
@@ -113,7 +115,11 @@ export class AuthService {
       termsAndConditions: true
     }
 
-    return userRef.set(data, { merge: false }).catch(error => error)
+    try {
+      return userRef.set(data, { merge: false })
+    } catch (error) {
+      return error
+    }
   }
 
   // Update properties on the user document
@@ -155,7 +161,7 @@ export class AuthService {
       )
   }
 
-  leaveIncognito(user) {
+  async leaveIncognito(user) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
@@ -165,13 +171,13 @@ export class AuthService {
       incognitoMode: false
     }
 
-    return userRef
-      .set(data, { merge: true })
-      .then(() => {
-        this.showInfo('Incognito mode has been disabled')
-        this.router.navigate(['/leaderboard'])
-      })
-      .catch(error => error)
+    try {
+      await userRef.set(data, { merge: true })
+      this.showInfo('Incognito mode has been disabled')
+      this.router.navigate(['/leaderboard'])
+    } catch (error) {
+      return error
+    }
   }
 
   signOut() {
