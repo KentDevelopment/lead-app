@@ -51,10 +51,6 @@ export class LoginComponent implements OnInit {
 
   // Campus Function
   setCampus(user) {
-    // const userPreferences = Object.assign(
-    //   { campus: this.campus.value },
-    //   user
-    // )
     return this.auth.updateCampus(user, this.campus.value)
   }
 

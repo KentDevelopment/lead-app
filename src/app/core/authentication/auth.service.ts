@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/auth'
 import {
@@ -116,7 +116,7 @@ export class AuthService {
   }
 
   // Update properties on the user document
-  updateCampus(user: IUser, campus: any) {
+  updateCampus(user: IUser, campus: string) {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(
       `users/${user.uid}`
     )
@@ -135,24 +135,15 @@ export class AuthService {
         )
       })
       .catch(error => {
-        // Error occurred. Inspect error.code.
         this.showError('Something went wrong...', error.message)
       })
   }
 
   sendEmail(user) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }
-
     this.http
-      .post(
-        'https://us-central1-kent-ac75b.cloudfunctions.net/sendEmail',
-        user.uid,
-        httpOptions
-      )
+      .post('https://us-central1-kent-ac75b.cloudfunctions.net/sendEmail', {
+        uid: user.uid
+      })
       .subscribe(
         res => {
           return res
