@@ -38,11 +38,11 @@
 						{{ i + 1 }}
 					</div>
 					<div class="p-2 d-flex align-items-center">
-						<img class="img-fluid img-profile-list" [src]="user.photoURL" alt="User Profile Image">
+						<img class="img-profile-list" [src]="user.photoURL" alt="User Profile Image">
 					</div>
 
 					<div class="flex-column align-self-center">
-						<div class="pl-2 d-flex align-items-center">{{ user.displayName }}</div>
+						<div class="pl-2 pr-2 d-flex">{{ user.displayName | titlecase }}</div>
 					</div>
 
 					<!-- Show Score to Admin -->
