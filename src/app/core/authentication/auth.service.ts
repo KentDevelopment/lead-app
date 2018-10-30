@@ -8,11 +8,11 @@ import {
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 import { Router } from '@angular/router'
 import { IUser } from '@core/interfaces/user'
+import { Environment } from '@environments/environment'
 import { firebase } from '@firebase/app'
 import '@firebase/auth'
 import { Observable, of as observableOf } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-import { Environment } from '@environments/environment'
 
 @Injectable()
 export class AuthService {
