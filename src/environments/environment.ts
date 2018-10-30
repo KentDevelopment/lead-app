@@ -5,6 +5,8 @@
 export const Environment = {
   production: false,
   version: require('../../package.json').version,
+  firebaseEmailAPI:
+    'https://us-central1-kent-ac75b.cloudfunctions.net/sendEmail',
   firebase: {
     apiKey: 'AIzaSyCUJMRYmjbzCCFKfm--Go7rX00_h9qWwfk',
     authDomain: 'kent-ac75b.firebaseapp.com',

@@ -12,6 +12,7 @@ import { firebase } from '@firebase/app'
 import '@firebase/auth'
 import { Observable, of as observableOf } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
+import { Environment } from '@environments/environment'
 
 @Injectable()
 export class AuthService {
@@ -141,7 +142,7 @@ export class AuthService {
 
   sendEmail(user) {
     this.http
-      .post('https://us-central1-kent-ac75b.cloudfunctions.net/sendEmail', {
+      .post(Environment.firebaseEmailAPI, {
         uid: user.uid
       })
       .subscribe(
