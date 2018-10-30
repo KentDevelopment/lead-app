@@ -1,7 +1,6 @@
 {
-  "extends": "stylelint-config-sass-guidelines",
+  "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
   "rules": {
-    "indentation": "tab",
-    "function-parentheses-space-inside": "never-single-line"
+    "selector-type-no-unknown": null
   }
 }

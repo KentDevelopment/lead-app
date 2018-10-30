@@ -11,7 +11,7 @@ before_script:
   - yarn global add @angular/cli
 
 script:
-  - yarn build-prod
+  - yarn build:prod
 
 after_success:
   - test $TRAVIS_BRANCH = "master" && firebase deploy --token $FIREBASE_TOKEN

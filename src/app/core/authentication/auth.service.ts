@@ -1,21 +1,21 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
-import { Router } from '@angular/router'
-import { firebase } from '@firebase/app'
-import '@firebase/auth'
 import { AngularFireAuth } from '@angular/fire/auth'
 import {
   AngularFirestore,
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
+import { Router } from '@angular/router'
+import { IUser } from '@core/interfaces/user'
+import { firebase } from '@firebase/app'
+import '@firebase/auth'
 import { Observable, of as observableOf } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-import { User } from '../interfaces/user'
-import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Injectable()
 export class AuthService {
-  user$: Observable<User>
+  user$: Observable<IUser>
 
   snackBarOptions: MatSnackBarConfig = {
     horizontalPosition: 'right',
@@ -39,7 +39,7 @@ export class AuthService {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+          return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges()
         } else {
           return observableOf(null)
         }
@@ -53,7 +53,7 @@ export class AuthService {
     provider.setCustomParameters({
       hd: domain
     })
-    return this.oAuthLogin(provider).catch(err => console.error(err))
+    return this.oAuthLogin(provider).catch(error => error)
   }
 
   private oAuthLogin(provider) {
@@ -65,9 +65,9 @@ export class AuthService {
         )
         if (credential.additionalUserInfo.isNewUser === true) {
           if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
-            this.setUserDoc(credential.user).catch(err => {
+            this.setUserDoc(credential.user).catch(error => {
               this.router.navigate(['/login'])
-              console.error(err)
+              return error
             })
           } else {
             this.router.navigate(['/login'])
@@ -84,25 +84,24 @@ export class AuthService {
                 'It may take up to 3 business days for your points to be applied'
               )
             })
-            .catch(err => {
+            .catch(error => {
               this.router.navigate(['/login'])
-              console.error(err)
+              return error
             })
         }
       })
-      .catch(err => {
-        console.error(err)
-        this.showError('Something went wrong...', err.message)
+      .catch(error => {
+        this.showError('Something went wrong...', error.message)
       })
   }
 
   // Sets user data to firestore after succesful login
   private setUserDoc(user) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
+    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(
       `users/${user.uid}`
     )
 
-    const data: User = {
+    const data: IUser = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
@@ -113,17 +112,17 @@ export class AuthService {
       termsAndConditions: true
     }
 
-    return userRef.set(data, { merge: false }).catch(err => console.error(err))
+    return userRef.set(data, { merge: false }).catch(error => error)
   }
 
   // Update properties on the user document
-  updateCampus(user: User, campus: any) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
+  updateCampus(user: IUser, campus: any) {
+    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(
       `users/${user.uid}`
     )
 
     userRef
-      .set({ campus: campus }, { merge: true })
+      .set({ campus }, { merge: true })
       .then(() => {
         this.sendEmail(user)
       })
@@ -135,10 +134,9 @@ export class AuthService {
           'It may take up to 3 business days for your points to be applied'
         )
       })
-      .catch(err => {
+      .catch(error => {
         // Error occurred. Inspect error.code.
-        console.error(err)
-        this.showError('Something went wrong...', err.message)
+        this.showError('Something went wrong...', error.message)
       })
   }
 
@@ -149,8 +147,6 @@ export class AuthService {
       })
     }
 
-    console.log('USER', user)
-
     this.http
       .post(
         'https://us-central1-kent-ac75b.cloudfunctions.net/sendEmail',
@@ -159,10 +155,10 @@ export class AuthService {
       )
       .subscribe(
         res => {
-          console.log(res)
+          return res
         },
-        err => {
-          console.log('Error occured', err)
+        error => {
+          return error
         }
       )
   }
@@ -173,7 +169,7 @@ export class AuthService {
       `users/${user.uid}`
     )
 
-    const data: User = {
+    const data: IUser = {
       incognitoMode: false
     }
 
@@ -183,7 +179,7 @@ export class AuthService {
         this.showInfo('Incognito mode has been disabled')
         this.router.navigate(['/leaderboard'])
       })
-      .catch(err => console.error(err))
+      .catch(error => error)
   }
 
   signOut() {
@@ -192,7 +188,7 @@ export class AuthService {
       .then(() => {
         this.router.navigate(['/login'])
       })
-      .catch(err => console.error(err))
+      .catch(error => error)
   }
 
   // Alerts

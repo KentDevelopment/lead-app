@@ -1,4 +1,4 @@
-export interface Course {
+export interface ICourse {
   title: string
   points: number
   url?: string

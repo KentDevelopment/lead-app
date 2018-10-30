@@ -17,6 +17,7 @@ footer {
 
   .banner-active {
     @extend %banner;
+
     background-color: #dadada;
   }
 }

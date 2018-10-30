@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core'
 import {
-  trigger,
-  style,
   animate,
-  transition,
+  group,
   query,
-  group
+  style,
+  transition,
+  trigger
 } from '@angular/animations'
-// import { SwUpdate } from '@angular/service-worker'
-// import { interval } from 'rxjs'
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-root',
@@ -103,9 +101,7 @@ import {
   ]
 })
 export class AppComponent implements OnInit {
-  constructor() {
-    // interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate())
-  }
+  constructor() {}
 
   ngOnInit() {}
   // change the animation state

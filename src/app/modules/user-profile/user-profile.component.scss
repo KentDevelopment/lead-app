@@ -5,11 +5,7 @@ section {
 }
 
 .secondary-header {
-  background-image: radial-gradient(
-    at 50% 70%,
-    #f1592a 12%,
-    var(--primary) 100%
-  );
+  background-image: radial-gradient(at 50% 70%, #f1592a 12%, var(--primary) 100%);
   border: 1px solid #979797;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   color: var(--light);

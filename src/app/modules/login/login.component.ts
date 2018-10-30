@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 
-import { AuthService } from '../../core/authentication/auth.service'
+import { AuthService } from '@core/authentication/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
   // Login Function
   login(domain) {
-    return this.auth.googleLogin(domain).catch(err => console.error(err))
+    return this.auth.googleLogin(domain).catch(error => error)
   }
 
   // Campus Function

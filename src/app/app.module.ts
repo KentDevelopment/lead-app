@@ -15,27 +15,27 @@ import { AngularFireStorageModule } from '@angular/fire/storage'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 
-import { AuthService } from './core/authentication/auth.service'
-import { CoreModule } from './core/core.module'
-import { FirestoreService } from './core/firestore.service'
-import { FooterComponent } from './core/footer/footer.component'
+import { AuthService } from '@core/authentication/auth.service'
+import { CoreModule } from '@core/core.module'
+import { FirestoreService } from '@core/firestore.service'
+import { FooterComponent } from '@core/footer/footer.component'
 
 import { AdminComponent } from './modules/admin/admin.component'
 import { LeaderboardComponent } from './modules/leaderboard/leaderboard.component'
 import { LoginComponent } from './modules/login/login.component'
 import { UserProfileComponent } from './modules/user-profile/user-profile.component'
 
-import { environment } from '../environments/environment'
+import { Environment } from '@environments/environment'
 import { Ng2ImgToolsModule } from 'ng2-img-tools'
 
 @NgModule({
   declarations: [
     AdminComponent,
     AppComponent,
+    FooterComponent,
     LeaderboardComponent,
     LoginComponent,
-    UserProfileComponent,
-    FooterComponent
+    UserProfileComponent
   ],
   imports: [
     AngularFireAuthModule,
@@ -52,14 +52,11 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools'
     MatSnackBarModule,
     Ng2ImgToolsModule,
     ReactiveFormsModule
-    // ServiceWorkerModule.register('/ngsw-worker.js', {
-    // 	enabled: environment.production
-    // })
   ],
   providers: [
     AuthService,
     FirestoreService,
-    { provide: FirebaseOptionsToken, useValue: environment.firebase }
+    { provide: FirebaseOptionsToken, useValue: Environment.firebase }
   ],
   bootstrap: [AppComponent]
 })

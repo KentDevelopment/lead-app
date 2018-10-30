@@ -12,10 +12,10 @@ import { Ng2ImgToolsService } from 'ng2-img-tools'
 import { Observable } from 'rxjs'
 import { finalize } from 'rxjs/operators'
 
-import { environment } from '../../../environments/environment'
+import { Environment } from '@environments/environment'
 
-import { AuthService } from './../../core/authentication/auth.service'
-import { User } from '../../core/interfaces/user'
+import { AuthService } from '@core/authentication/auth.service'
+import { IUser } from '@core/interfaces/user'
 
 @Component({
   selector: 'app-user-profile',
@@ -25,11 +25,11 @@ import { User } from '../../core/interfaces/user'
 export class UserProfileComponent implements OnInit {
   dialogRef: any
   downloadURL: Observable<string>
-  item: Observable<User>
+  item: Observable<IUser>
   uploadPercent: Observable<number>
   user: any
   userForm: FormGroup
-  version: string = environment.version
+  version: string = Environment.version
 
   constructor(
     private afs: AngularFirestore,
@@ -61,8 +61,9 @@ export class UserProfileComponent implements OnInit {
     const filePath = `users/${this.user.uid}`
     const storageRef = this.storage.ref(filePath)
 
-    this.ng2ImgToolsService.resizeExactCrop([file], 130, 130).subscribe(
-      imgResized => {
+    this.ng2ImgToolsService
+      .resizeExactCrop([file], 130, 130)
+      .subscribe(imgResized => {
         imgCompressed = new File([imgResized], this.user.uid)
 
         const task = this.storage.upload(filePath, imgCompressed)
@@ -75,31 +76,29 @@ export class UserProfileComponent implements OnInit {
             finalize(() => {
               this.downloadURL = storageRef.getDownloadURL()
               this.downloadURL.subscribe(ref => {
-                this.update(this.user, ref).catch(err => console.error(err))
+                this.update(this.user, ref).catch(error => error)
               })
             })
           )
           .subscribe()
-      },
-      error => {
-        console.error('ERROR', error)
-      }
-    )
+      })
   }
 
-  update(user: User, downloadURL) {
+  async update(user: IUser, downloadURL) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     )
 
-    const data: User = {
+    const data: IUser = {
       photoURL: downloadURL
     }
 
-    return userRef.update(data).catch(err => {
-      console.error('Update error', err)
-    })
+    try {
+      return userRef.update(data)
+    } catch (error) {
+      return error
+    }
   }
 
   confirmIncognito() {
@@ -108,7 +107,7 @@ export class UserProfileComponent implements OnInit {
       .then(() => {
         this.dialogRef.close()
       })
-      .catch(err => console.error(err))
+      .catch(error => error)
   }
 
   // Dialog Box

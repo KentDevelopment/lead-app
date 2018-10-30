@@ -16,9 +16,9 @@ import {
 
 import { take } from 'rxjs/operators'
 
-import { Course } from '../../core/interfaces/course'
-import { User } from '../../core/interfaces/user'
-import { FirestoreService } from './../../core/firestore.service'
+import { FirestoreService } from '@core/firestore.service'
+import { ICourse } from '@core/interfaces/course'
+import { IUser } from '@core/interfaces/user'
 
 @Component({
   selector: 'app-admin',
@@ -67,7 +67,7 @@ export class AdminComponent implements OnInit {
       `users/${user.uid}`
     )
 
-    const data: User = {
+    const data: IUser = {
       points: Number(event.target.value)
     }
 
@@ -79,13 +79,12 @@ export class AdminComponent implements OnInit {
       })
       .catch(err => {
         this.showError(`Ops, it looks like something has gone wrong`, err)
-        console.error(err)
       })
   }
 
   // Push or remove item from the array
   onChange(uid: string, isChecked: boolean) {
-    const pointsFormArray = <FormArray>this.addPointsForm.controls.uid
+    const pointsFormArray = this.addPointsForm.controls.uid as FormArray
 
     if (isChecked) {
       pointsFormArray.push(new FormControl(uid))
@@ -113,7 +112,7 @@ export class AdminComponent implements OnInit {
       item.subscribe(ref => {
         const totalPoints: number = Number(ref.points) + Number(user.points)
 
-        const data: User = {
+        const data: IUser = {
           uid: userUid,
           points: totalPoints
         }
@@ -141,7 +140,7 @@ export class AdminComponent implements OnInit {
       `courses`
     )
 
-    const data: Course = {
+    const data: ICourse = {
       title: formData.title,
       points: formData.points,
       url: formData.url,
@@ -176,20 +175,14 @@ export class AdminComponent implements OnInit {
             `users/${user.uid}`
           )
 
-          const data: User = {
+          const data: IUser = {
             // points: Number(randomNumber.toFixed(0))
             points: 0
           }
 
-          userRef
-            .update(data)
-            .then(() => {
-              console.log(`${user.displayName} has ${data.points} pts`)
-              return
-            })
-            .catch(err => {
-              this.showError(`Ops, it looks like something has gone wrong`, err)
-            })
+          userRef.update(data).catch(err => {
+            this.showError(`Ops, it looks like something has gone wrong`, err)
+          })
         }
       })
       this.fss.addLog(

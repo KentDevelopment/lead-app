@@ -35,20 +35,20 @@
 			<li class="list-group-item list-group-item-action" *ngFor="let user of fss.users$; let i = index;" [ngClass]="{'highlight-user':user.uid === authUser.uid}">
 				<div class="d-flex">
 					<div class="p-2 d-flex align-items-center">
-						{{i + 1}}
+						{{ i + 1 }}
 					</div>
 					<div class="p-2 d-flex align-items-center">
 						<img class="img-fluid img-profile-list" [src]="user.photoURL" alt="User Profile Image">
 					</div>
 
 					<div class="flex-column align-self-center">
-						<div class="pl-2 d-flex align-items-center">{{user.displayName}}</div>
+						<div class="pl-2 d-flex align-items-center">{{ user.displayName }}</div>
 					</div>
 
 					<!-- Show Score to Admin -->
-					<div class="ml-auto p-2 d-flex align-items-center" *ngIf="authUser.role === 'admin'">{{user.points}}</div>
+					<div class="ml-auto p-2 d-flex align-items-center" *ngIf="authUser.role === 'admin'">{{ user.points }}</div>
 					<!-- Show Score to User -->
-					<div class="ml-auto p-2 d-flex align-items-center" *ngIf="user.points < 100 && authUser.role !== 'admin'">{{user.points}}</div>
+					<div class="ml-auto p-2 d-flex align-items-center" *ngIf="user.points < 100 && authUser.role !== 'admin'">{{ user.points }}</div>
 					<div class="ml-auto p-2 d-flex align-items-center" *ngIf="user.points >= 100 && authUser.role !== 'admin'">100+</div>
 
 				</div>
