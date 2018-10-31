@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core'
+import { Component, TemplateRef } from '@angular/core'
 import { MatDialog } from '@angular/material'
 
 import { AuthService } from '@core/authentication/auth.service'
@@ -9,7 +9,7 @@ import { FirestoreService } from '@core/firestore.service'
   templateUrl: './leaderboard.component.html',
   styleUrls: ['./leaderboard.component.scss']
 })
-export class LeaderboardComponent implements OnInit {
+export class LeaderboardComponent {
   aboutLeadDialog: any
 
   constructor(
@@ -17,8 +17,6 @@ export class LeaderboardComponent implements OnInit {
     public dialog: MatDialog,
     public fss: FirestoreService
   ) {}
-
-  ngOnInit() {}
 
   // Dialog Box
   openDialog(aboutLead: TemplateRef<any>): void {
