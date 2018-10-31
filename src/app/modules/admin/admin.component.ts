@@ -10,7 +10,6 @@ import { MatDialog, MatSnackBar } from '@angular/material'
 
 import {
   AngularFirestore,
-  AngularFirestoreCollection,
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
 
@@ -18,7 +17,6 @@ import { AuthService } from '@core/authentication/auth.service'
 import { take } from 'rxjs/operators'
 
 import { FirestoreService } from '@core/firestore.service'
-import { ICourse } from '@core/interfaces/course'
 import { ILog, ILogText } from '@core/interfaces/log'
 import { IUser } from '@core/interfaces/user'
 
@@ -31,16 +29,16 @@ export class AdminComponent implements OnInit {
   addPointsForm: FormGroup
   coursesForm: FormGroup
   dialogRef: any
-  isActive = 'points'
   myTime: any = new Date()
+  tabActive = 'points'
 
   constructor(
-    private fss: FirestoreService,
-    private fb: FormBuilder,
-    private afs: AngularFirestore,
+    public auth: AuthService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    public auth: AuthService
+    private afs: AngularFirestore,
+    private fb: FormBuilder,
+    private fss: FirestoreService
   ) {
     this.addPointsForm = this.fb.group({
       uid: this.fb.array([]),
@@ -61,7 +59,7 @@ export class AdminComponent implements OnInit {
 
   // Toggle the menu
   toggle(ref) {
-    this.isActive = ref
+    this.tabActive = ref
   }
 
   // Add Points to one user onChange - Update the user value at the DB
@@ -150,30 +148,6 @@ export class AdminComponent implements OnInit {
     })
   }
 
-  courseSignup(formData) {
-    const courseRef: AngularFirestoreCollection<any> = this.afs.collection(
-      `courses`
-    )
-
-    const data: ICourse = {
-      title: formData.title,
-      points: formData.points,
-      url: formData.url,
-      location: formData.location,
-      date: formData.date,
-      campus: formData.campus
-    }
-
-    courseRef
-      .add(data)
-      .then(() => {
-        this.showSuccess(`Course ${data.title} added on ${data.date}`)
-      })
-      .catch(err => {
-        this.showError(`Ops, it looks like something has gone wrong`, err)
-      })
-  }
-
   deletePoints() {
     const dateToReset = '01 Jan 2019 00:00:00 GMT+1000'
     const dateToResetParsed = Date.parse(dateToReset)
@@ -248,3 +222,27 @@ export class AdminComponent implements OnInit {
     )
   }
 }
+
+// courseSignup(formData) {
+//   const courseRef: AngularFirestoreCollection<any> = this.afs.collection(
+//     `courses`
+//   )
+//
+//   const data: ICourse = {
+//     title: formData.title,
+//     points: formData.points,
+//     url: formData.url,
+//     location: formData.location,
+//     date: formData.date,
+//     campus: formData.campus
+//   }
+//
+//   courseRef
+//     .add(data)
+//     .then(() => {
+//       this.showSuccess(`Course ${data.title} added on ${data.date}`)
+//     })
+//     .catch(err => {
+//       this.showError(`Ops, it looks like something has gone wrong`, err)
+//     })
+// }

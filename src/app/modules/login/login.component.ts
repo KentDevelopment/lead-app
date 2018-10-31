@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder,
     public auth: AuthService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private fb: FormBuilder
   ) {
     // Login Form
     this.loginForm = this.fb.group({

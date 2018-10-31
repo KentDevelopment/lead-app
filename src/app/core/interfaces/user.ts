@@ -1,12 +1,11 @@
 export interface IUser {
+  campus?: string
   displayName?: string
   email?: string
-  photoURL?: string
-  role?: string
-  points?: number
-  position?: number
-  uid?: string
-  campus?: string
   incognitoMode?: boolean
+  photoURL?: string
+  points?: number
+  role?: string
   termsAndConditions?: boolean
+  uid?: string
 }

@@ -25,29 +25,28 @@ import { IUser } from '@core/interfaces/user'
 export class UserProfileComponent implements OnInit {
   dialogRef: any
   downloadURL: Observable<string>
-  item: Observable<IUser>
   uploadPercent: Observable<number>
   user: any
   userForm: FormGroup
   version: string = Environment.version
 
   constructor(
+    public auth: AuthService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     private afs: AngularFirestore,
     private fb: FormBuilder,
     private ng2ImgToolsService: Ng2ImgToolsService,
-    private storage: AngularFireStorage,
-    public auth: AuthService,
-    public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    private storage: AngularFireStorage
   ) {
     this.auth.user$.subscribe(data => {
       this.user = data
     })
 
     this.userForm = this.fb.group({
-      displayName: [{ value: '', disabled: true }],
-      email: [{ value: '', disabled: true }],
-      password: ['']
+      displayName: [{ value: null, disabled: true }],
+      email: [{ value: null, disabled: true }],
+      password: [null]
     })
   }
 
@@ -115,10 +114,6 @@ export class UserProfileComponent implements OnInit {
     this.dialogRef = this.dialog.open(leaveIncognito, {
       autoFocus: false
     })
-  }
-
-  closeDialog() {
-    this.dialogRef.close()
   }
 
   showError(title, message?, action?: string) {

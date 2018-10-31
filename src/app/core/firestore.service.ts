@@ -6,7 +6,6 @@ import {
 } from '@angular/fire/firestore'
 
 import { AuthService } from '@core/authentication/auth.service'
-import { ICourse } from '@core/interfaces/course'
 import { ILog, ILogText } from '@core/interfaces/log'
 import { IUser } from '@core/interfaces/user'
 import { Observable } from 'rxjs'
@@ -16,14 +15,10 @@ import { Environment } from '@environments/environment'
 @Injectable()
 export class FirestoreService {
   usersCollection: AngularFirestoreCollection<IUser>
-  orderedUsers$Collection: AngularFirestoreCollection<IUser>
-  coursesCollection: AngularFirestoreCollection<ICourse>
-  logsCollection: AngularFirestoreCollection<ILog>
 
   users$: Observable<IUser[]>
   localUsers$: Observable<IUser[]>
   orderedUsers$: Observable<IUser[]>
-  courses$: Observable<ICourse[]>
   logs$: Observable<ILog[]>
 
   position: any
@@ -31,8 +26,8 @@ export class FirestoreService {
 
   constructor(
     public afs: AngularFirestore,
-    private auth: AuthService,
-    public http: HttpClient
+    public http: HttpClient,
+    private auth: AuthService
   ) {
     this.auth.user$.subscribe(userRef => {
       if (
@@ -49,9 +44,7 @@ export class FirestoreService {
             res.orderBy('campus', 'desc').orderBy('displayName', 'asc')
           )
           .valueChanges()
-        this.logs$ = afs
-          .collection<ILog>('logs', res => res.orderBy('date', 'desc'))
-          .valueChanges()
+        this.getLogs()
       } else if (userRef.campus === 'Sydney') {
         this.localUsers$ = afs
           .collection<IUser>('users', res =>
@@ -63,9 +56,7 @@ export class FirestoreService {
             res.where('campus', '==', 'Sydney').orderBy('displayName', 'asc')
           )
           .valueChanges()
-        this.logs$ = afs
-          .collection<ILog>('logs', res => res.orderBy('date', 'desc'))
-          .valueChanges()
+        this.getLogs()
       } else {
         this.localUsers$ = afs
           .collection<IUser>('users', res =>
@@ -77,9 +68,7 @@ export class FirestoreService {
             res.where('campus', '==', 'Melbourne').orderBy('displayName', 'asc')
           )
           .valueChanges()
-        this.logs$ = afs
-          .collection<ILog>('logs', res => res.orderBy('date', 'desc'))
-          .valueChanges()
+        this.getLogs()
       }
 
       this.apiMarvel().subscribe((res: any) => {
@@ -116,6 +105,12 @@ export class FirestoreService {
     })
   }
 
+  getLogs() {
+    return (this.logs$ = this.afs
+      .collection<ILog>('logs', res => res.orderBy('date', 'desc'))
+      .valueChanges())
+  }
+
   generateNumber() {
     const randomNumber = Math.floor(Math.random() * 100)
     if (randomNumber < this.validPicture.length) {
@@ -139,14 +134,18 @@ export class FirestoreService {
 
   // LOG FUNCTION
   addLogText(logObj: ILogText) {
-    const logRef: AngularFirestoreCollection<any> = this.afs.collection('logs')
-    logRef.add(logObj).catch(error => error)
+    const logsCollection: AngularFirestoreCollection<
+      ILogText
+    > = this.afs.collection('logs')
+    logsCollection.add(logObj).catch(error => error)
   }
 
   async addLog(logObj: ILog) {
-    const logRef: AngularFirestoreCollection<any> = this.afs.collection('logs')
+    const logsCollection: AngularFirestoreCollection<
+      ILog
+    > = this.afs.collection('logs')
     try {
-      return logRef.add(logObj)
+      return logsCollection.add(logObj)
     } catch (error) {
       return error
     }

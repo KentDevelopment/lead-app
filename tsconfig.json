@@ -5,7 +5,8 @@
     "outDir": "./dist/out-tsc",
     "paths": {
       "@core/*": ["app/core/*"],
-      "@environments/*": ["environments/*"]
+      "@environments/*": ["environments/*"],
+      "@modules/*": ["app/modules/*"]
     },
     "sourceMap": true,
     "declaration": false,

@@ -11,9 +11,9 @@
 <!-- Toogle View -->
 <div class="d-flex flex-column align-items-center">
 	<div class="btn-group mt-3" role="group" aria-label="Admin Panel Selection">
-		<button type="button" class="btn btn-outline-secondary" (click)="toggle('points')" [ngClass]="{'highlight-btn': isActive === 'points'}">Points</button>
-		<button type="button" class="btn btn-outline-secondary" (click)="toggle('bulk')" [ngClass]="{'highlight-btn': isActive === 'bulk'}">Bulk</button>
-		<button type="button" class="btn btn-outline-secondary" (click)="toggle('log')" [ngClass]="{'highlight-btn': isActive === 'log'}">Logs</button>
+		<button type="button" class="btn btn-outline-secondary" (click)="toggle('points')" [ngClass]="{'highlight-btn': tabActive === 'points'}">Points</button>
+		<button type="button" class="btn btn-outline-secondary" (click)="toggle('bulk')" [ngClass]="{'highlight-btn': tabActive === 'bulk'}">Bulk</button>
+		<button type="button" class="btn btn-outline-secondary" (click)="toggle('log')" [ngClass]="{'highlight-btn': tabActive === 'log'}">Logs</button>
 	</div>
 </div>
 
@@ -21,7 +21,7 @@
 <section class="text-center mt-4 mb-5 d-flex flex-column align-items-center">
 
 	<!-- Add Points -->
-	<div class="card border-primary mb-2" *ngIf="isActive === 'points'">
+	<div class="card border-primary mb-2" *ngIf="tabActive === 'points'">
 		<div class="card-header border-primary">
 			<h5 class="card-title text-primary">LEAD Points</h5>Add their points below!
 		</div>
@@ -45,12 +45,12 @@
 		</div>
 	</div>
 
-	<div class="mt-5 mb-5" *ngIf="isActive === 'points'">
+	<div class="mt-5 mb-5" *ngIf="tabActive === 'points'">
 		<button type="button" class="btn btn-block btn-outline-primary" (click)="openDialog(resetPoints)">Reset All Points</button>
 	</div>
 
 	<!-- Bulk Edit -->
-	<div class="card border-primary mb-3" *ngIf="isActive === 'bulk'">
+	<div class="card border-primary mb-3" *ngIf="tabActive === 'bulk'">
 		<div class="card-header border-primary">
 			<h5 class="card-title text-primary">Bulk Edit</h5>Manage users
 		</div>
@@ -100,7 +100,7 @@
 	</div>
 
 	<!-- Logs -->
-	<div class="card border-primary mb-3" *ngIf="isActive === 'log'">
+	<div class="card border-primary mb-3" *ngIf="tabActive === 'log'">
 		<div class="card-header border-primary">
 			<h5 class="card-title text-primary">Logs</h5>Check all the changes that have been made
 		</div>

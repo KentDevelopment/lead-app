@@ -30,7 +30,7 @@
 
 	<!-- TODO:  Separate into a component -->
 	<!-- Users List -->
-	<div *ngIf="isActive === 'points'" class="leaderboard-list">
+	<div class="leaderboard-list">
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item list-group-item-action" *ngFor="let user of fss.users$; let i = index;" [ngClass]="{'highlight-user':user.uid === authUser.uid}">
 				<div class="d-flex">
@@ -62,7 +62,7 @@
 	<mat-dialog-content class="about-lead">
 		<div class="modal-header">
 			<h4 mat-dialog-title>More about LEAD</h4>
-			<button type="button" class="close" aria-label="Close" (click)="dialogRef.close()">
+			<button type="button" class="close" aria-label="Close" (click)="aboutLeadDialog.close()">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>

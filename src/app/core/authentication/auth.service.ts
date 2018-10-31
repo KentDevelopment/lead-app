@@ -30,11 +30,11 @@ export class AuthService {
   }
 
   constructor(
+    public http: HttpClient,
+    public snackBar: MatSnackBar,
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router,
-    public snackBar: MatSnackBar,
-    public http: HttpClient
+    private router: Router
   ) {
     // Get auth data, then get firestore user document || null
     this.user$ = this.afAuth.authState.pipe(
