@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core'
+import { Component, TemplateRef } from '@angular/core'
 import {
   FormArray,
   FormBuilder,
@@ -25,20 +25,19 @@ import { IUser } from '@core/interfaces/user'
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
   addPointsForm: FormGroup
   coursesForm: FormGroup
   dialogRef: any
   myTime: any = new Date()
-  tabActive = 'points'
 
   constructor(
     public auth: AuthService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
+    public fss: FirestoreService,
     private afs: AngularFirestore,
-    private fb: FormBuilder,
-    private fss: FirestoreService
+    private fb: FormBuilder
   ) {
     this.addPointsForm = this.fb.group({
       uid: this.fb.array([]),
@@ -53,13 +52,6 @@ export class AdminComponent implements OnInit {
       date: ['', Validators.required],
       campus: ['', Validators.required]
     })
-  }
-
-  ngOnInit() {}
-
-  // Toggle the menu
-  toggle(ref) {
-    this.tabActive = ref
   }
 
   // Add Points to one user onChange - Update the user value at the DB

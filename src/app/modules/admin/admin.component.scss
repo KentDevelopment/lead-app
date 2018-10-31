@@ -4,19 +4,6 @@
   }
 }
 
-.btn-group {
-  .btn {
-    border: 1px solid var(--light-gray);
-    width: 6.4rem;
-  }
-
-  .highlight-btn {
-    background-color: var(--primary);
-    box-shadow: 0;
-    color: var(--light);
-  }
-}
-
 .img-profile-list {
   border-radius: 50%;
   width: 35px;
@@ -41,7 +28,7 @@
 }
 
 .points-box {
-  width: 4.2rem;
+  max-width: 4.6rem;
 }
 
 .secondary-text {

@@ -29,6 +29,7 @@ import { Environment } from '@environments/environment'
 import { Ng2ImgToolsModule } from 'ng2-img-tools'
 
 import { MatButtonModule } from '@angular/material/button'
+import { MatTabsModule } from '@angular/material/tabs'
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MatButtonModule } from '@angular/material/button'
     MatSnackBarModule,
     Ng2ImgToolsModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule
   ],
   providers: [
     AuthService,
