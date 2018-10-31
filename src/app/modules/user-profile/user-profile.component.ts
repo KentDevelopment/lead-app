@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core'
+import { Component, TemplateRef } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatDialog, MatSnackBar } from '@angular/material'
 
@@ -22,7 +22,7 @@ import { IUser } from '@core/interfaces/user'
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
   dialogRef: any
   downloadURL: Observable<string>
   uploadPercent: Observable<number>
@@ -49,8 +49,6 @@ export class UserProfileComponent implements OnInit {
       password: [null]
     })
   }
-
-  ngOnInit() {}
 
   uploadFile(event) {
     // TODO: if image < 120x120 prompt an error: image it's too small

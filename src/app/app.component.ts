@@ -6,7 +6,7 @@ import {
   transition,
   trigger
 } from '@angular/animations'
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-root',
@@ -100,10 +100,7 @@ import { Component, OnInit } from '@angular/core'
     ])
   ]
 })
-export class AppComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
+export class AppComponent {
   // change the animation state
   getRouteAnimation(outlet) {
     return outlet.activatedRouteData.animation

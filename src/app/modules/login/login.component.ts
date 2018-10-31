@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 
@@ -9,7 +9,7 @@ import { AuthService } from '@core/authentication/auth.service'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm: FormGroup
   campusForm: FormGroup
   snackBarOptions: MatSnackBarConfig = {
@@ -33,8 +33,6 @@ export class LoginComponent implements OnInit {
       campus: ['', [Validators.required]]
     })
   }
-
-  ngOnInit() {}
 
   get domain() {
     return this.loginForm.get('domain')
