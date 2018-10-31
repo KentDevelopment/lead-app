@@ -108,7 +108,7 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL || 'assets/placeholders/placeholder-user.png',
+      photoURL: user.photoURL || 'assets/placeholders/placeholder-user.svg',
       role: 'user',
       points: 0,
       incognitoMode: true,

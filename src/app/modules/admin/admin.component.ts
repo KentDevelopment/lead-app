@@ -14,10 +14,12 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
 
+import { AuthService } from '@core/authentication/auth.service'
 import { take } from 'rxjs/operators'
 
 import { FirestoreService } from '@core/firestore.service'
 import { ICourse } from '@core/interfaces/course'
+import { ILog, ILogText } from '@core/interfaces/log'
 import { IUser } from '@core/interfaces/user'
 
 @Component({
@@ -37,7 +39,8 @@ export class AdminComponent implements OnInit {
     private fb: FormBuilder,
     private afs: AngularFirestore,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public auth: AuthService
   ) {
     this.addPointsForm = this.fb.group({
       uid: this.fb.array([]),
@@ -63,23 +66,24 @@ export class AdminComponent implements OnInit {
 
   // Add Points to one user onChange - Update the user value at the DB
   update(user, event) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+    const userDoc: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     )
 
-    const data: IUser = {
-      points: Number(event.target.value)
-    }
+    const userData = userDoc.valueChanges().pipe(take(1))
 
-    userRef
-      .update(data)
-      .then(() => {
-        this.fss.addLog(`${user.displayName} has ${data.points} pts`)
-        this.showSuccess(`User ${user.displayName} has ${data.points} pts`)
-      })
-      .catch(err => {
-        this.showError(`Ops, it looks like something has gone wrong`, err)
-      })
+    userData.subscribe(userRef => {
+      const addedPoints: number =
+        Number(event.target.value) - Number(userRef.points)
+      const points: number = Number(event.target.value)
+
+      const newData: IUser = {
+        points
+      }
+
+      this.updateData(userDoc, newData)
+      this.logData(points, addedPoints, userRef)
+    })
   }
 
   // Push or remove item from the array
@@ -95,44 +99,55 @@ export class AdminComponent implements OnInit {
   }
 
   // Add Points in Bulk
-  addPoints(user) {
+  addPoints(event) {
     for (const userUid of this.addPointsForm.value.uid) {
-      const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+      const userDoc: AngularFirestoreDocument<any> = this.afs.doc(
         `users/${userUid}`
       )
 
-      const item = userRef.valueChanges().pipe(
-        take(1)
-        // finalize(() => this.showSuccess(
-        // 	// `User ${ref.displayName} has ${data.points} pts`
-        // 	`Action Completed`
-        // ))
-      )
+      const userData = userDoc.valueChanges().pipe(take(1))
 
-      item.subscribe(ref => {
-        const totalPoints: number = Number(ref.points) + Number(user.points)
+      userData.subscribe(userRef => {
+        const addedPoints: number = Number(event.points)
+        const totalPoints: number = Number(userRef.points) + addedPoints
 
-        const data: IUser = {
+        const newData: IUser = {
           uid: userUid,
           points: totalPoints
         }
 
-        userRef
-          .update(data)
-          .then(() => {
-            this.fss.addLog(`${ref.displayName} has ${data.points} pts`)
-          })
-          .then(() => {
-            this.showSuccess(
-              // `User ${ref.displayName} has ${data.points} pts`
-              `Points successfully added`
-            )
-          })
-          .catch(err => {
-            this.showError(`Ops, it looks like something has gone wrong`, err)
-          })
+        this.updateData(userDoc, newData)
+        this.logData(totalPoints, addedPoints, userRef)
       })
     }
+  }
+
+  private async updateData(
+    userRef: AngularFirestoreDocument<any>,
+    data: IUser
+  ) {
+    return userRef.update(data)
+  }
+
+  private async logData(points: number, addedPoints: number, ref: any) {
+    return this.auth.user$.subscribe(admin => {
+      const dataObj: ILog = {
+        log: `${ref.displayName} now has ${points} pts`,
+        adminName: admin.displayName,
+        pointsAdded: addedPoints,
+        userName: ref.displayName,
+        date: new Date().getTime()
+      }
+
+      this.fss
+        .addLog(dataObj)
+        .then(() => {
+          this.showSuccess(`Points successfully added`)
+        })
+        .catch(err => {
+          this.showError(`Ops, it looks like something has gone wrong`, err)
+        })
+    })
   }
 
   courseSignup(formData) {
@@ -169,14 +184,11 @@ export class AdminComponent implements OnInit {
     } else {
       this.fss.localUsers$.pipe(take(1)).subscribe(users => {
         for (const user of users) {
-          // let randomNumber = Math.random() * 1000
-
           const userRef: AngularFirestoreDocument<any> = this.afs.doc(
             `users/${user.uid}`
           )
 
           const data: IUser = {
-            // points: Number(randomNumber.toFixed(0))
             points: 0
           }
 
@@ -185,9 +197,16 @@ export class AdminComponent implements OnInit {
           })
         }
       })
-      this.fss.addLog(
-        `All points have been successfully deleted at ${this.myTime}`
-      )
+
+      this.auth.user$.subscribe(admin => {
+        const dataObj: ILogText = {
+          log: `All points have been successfully deleted at ${this.myTime}`,
+          adminName: admin.displayName,
+          date: new Date().getTime()
+        }
+        this.fss.addLogText(dataObj)
+      })
+
       this.showSuccess(`All points have been successfully deleted`)
     }
     this.dialogRef.close()

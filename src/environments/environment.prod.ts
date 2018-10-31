@@ -10,5 +10,9 @@ export const Environment = {
     projectId: 'lead-app-514e3',
     storageBucket: 'lead-app-514e3.appspot.com',
     messagingSenderId: '500998961888'
+  },
+  marvel: {
+    publicKey: '5227aa2518375785b9d1179a789368c4',
+    baseUrl: 'https://gateway.marvel.com/v1/public/'
   }
 }

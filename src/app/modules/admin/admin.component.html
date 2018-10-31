@@ -31,9 +31,9 @@
 				<li class="list-group-item list-group-item-action" *ngFor="let user of fss.orderedUsers$ | async">
 					<div class="d-flex justify-content-between">
 						<div class="d-flex flex-column align-self-center">
-							<div class="pr-2 d-flex align-items-center">{{ user.displayName }}</div>
-							<div class="pr-2 d-flex align-items-center campus">{{ user.email }}</div>
-							<div class="pr-2 d-flex align-items-center campus">{{ user.campus }}</div>
+							<div class="pr-2 d-flex">{{ user.displayName | titlecase }}</div>
+							<div class="pr-2 d-flex secondary-text">{{ user.email }}</div>
+							<div class="pr-2 d-flex secondary-text">{{ user.campus }}</div>
 						</div>
 
 						<div class="form-group mt-3 points-box">
@@ -76,8 +76,8 @@
 					<div class="d-flex justify-content-between form-control fix-line">
 						<div class="flex-column text-left">
 							<p>{{ user.displayName }}</p>
-							<p class="campus">{{ user.email }}</p>
-							<p class="campus">{{ user.campus }}</p>
+							<p class="secondary-text">{{ user.email }}</p>
+							<p class="secondary-text">{{ user.campus }}</p>
 						</div>
 						<p class="pr-2 align-self-center">{{ user.points }}</p>
 					</div>
@@ -107,9 +107,9 @@
 
 		<div class="card-body" *ngFor="let log of fss.logs$ | async">
 			<div class="alert alert-secondary text-left" role="alert">
-				{{ log.log }}
+				<strong>{{ log.adminName | titlecase }}</strong> added <strong>{{ log.pointsAdded }} points</strong> to <strong>{{ log.userName | titlecase }}</strong>
 				<br>
-				<h6>{{ log.adminName }}</h6>
+				{{ log.log }}
 				<p class="text-right pt-2">{{ log.date | date: 'medium' }}</p>
 			</div>
 		</div>

@@ -7,10 +7,11 @@ import {
 
 import { AuthService } from '@core/authentication/auth.service'
 import { ICourse } from '@core/interfaces/course'
-import { ILog } from '@core/interfaces/log'
+import { ILog, ILogText } from '@core/interfaces/log'
 import { IUser } from '@core/interfaces/user'
-
 import { Observable } from 'rxjs'
+
+import { Environment } from '@environments/environment'
 
 @Injectable()
 export class FirestoreService {
@@ -126,27 +127,28 @@ export class FirestoreService {
 
   // MARVEL API
   apiMarvel() {
-    const apikey = '5227aa2518375785b9d1179a789368c4'
+    const publicKey = Environment.marvel.publicKey
+    const baseUrl = Environment.marvel.baseUrl
     const offset = Math.floor(Math.random() * 1400)
-    const limit = 15
+    const limit = 20
 
-    const endpointApi = `https://gateway.marvel.com:443/v1/public/characters?offset=${offset}&limit=${limit}&apikey=${apikey}`
+    const endpointApi = `${baseUrl}characters?offset=${offset}&limit=${limit}&apikey=${publicKey}`
 
     return this.http.get(endpointApi)
   }
 
   // LOG FUNCTION
-  addLog(log) {
+  addLogText(logObj: ILogText) {
     const logRef: AngularFirestoreCollection<any> = this.afs.collection('logs')
+    logRef.add(logObj).catch(error => error)
+  }
 
-    this.auth.user$.subscribe(ref => {
-      const data: ILog = {
-        log,
-        adminName: ref.displayName,
-        date: new Date().getTime()
-      }
-
-      logRef.add(data).catch(error => error)
-    })
+  async addLog(logObj: ILog) {
+    const logRef: AngularFirestoreCollection<any> = this.afs.collection('logs')
+    try {
+      return logRef.add(logObj)
+    } catch (error) {
+      return error
+    }
   }
 }

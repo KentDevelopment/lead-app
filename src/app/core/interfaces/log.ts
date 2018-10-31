@@ -1,5 +1,13 @@
 export interface ILog {
-  date?: any
+  date: number
+  log: string
+  pointsAdded: number
+  userName: string
+  adminName: string
+}
+
+export interface ILogText {
+  date: number
   log: string
   adminName: string
 }
