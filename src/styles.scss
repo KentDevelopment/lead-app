@@ -6,16 +6,15 @@
   // Typography
   // CSS Variables
   --primary: #662d91;
-  --secondary: #007bff;
+  --secondary: #0072bb;
+  --tertiary: #f04f23;
   --danger: #dc3545;
   --warning: #ffc107;
   --success: #217c49;
-  --dark-gray: #676767;
+  --dark-gray: #6c757d;
   --dark: #000;
   --light-gray: #868e96;
   --light: #fff;
-  --kent-primary: #f04f23;
-  --kent-secondary: #0072bb;
 
   .primary-header {
     background-image: linear-gradient(-139deg, var(--secondary) 10%, var(--primary) 100%);

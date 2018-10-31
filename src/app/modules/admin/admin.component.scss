@@ -4,6 +4,19 @@
   }
 }
 
+.btn-group {
+  .btn {
+    border: 1px solid var(--light-gray);
+    width: 6.4rem;
+  }
+
+  .highlight-btn {
+    background-color: var(--primary);
+    box-shadow: 0;
+    color: var(--light);
+  }
+}
+
 .img-profile-list {
   border-radius: 50%;
   width: 35px;
@@ -12,18 +25,6 @@
 .card {
   max-width: 98vw;
   min-width: 19rem;
-}
-
-.highlight-btn {
-  background-color: var(--primary);
-  box-shadow: 0;
-  color: var(--light);
-}
-
-.btn-group {
-  .btn {
-    width: 6.4rem;
-  }
 }
 
 .input-group-text {

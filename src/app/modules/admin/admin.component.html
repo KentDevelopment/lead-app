@@ -11,9 +11,9 @@
 <!-- Toogle View -->
 <div class="d-flex flex-column align-items-center">
 	<div class="btn-group mt-3" role="group" aria-label="Admin Panel Selection">
-		<button type="button" class="btn btn-outline-secondary" (click)="toggle('points')" [ngClass]="{'highlight-btn': tabActive === 'points'}">Points</button>
-		<button type="button" class="btn btn-outline-secondary" (click)="toggle('bulk')" [ngClass]="{'highlight-btn': tabActive === 'bulk'}">Bulk</button>
-		<button type="button" class="btn btn-outline-secondary" (click)="toggle('log')" [ngClass]="{'highlight-btn': tabActive === 'log'}">Logs</button>
+		<button type="button" class="btn btn-outline-dark-gray" (click)="toggle('points')" [ngClass]="{'highlight-btn': tabActive === 'points'}">Points</button>
+		<button type="button" class="btn btn-outline-dark-gray" (click)="toggle('bulk')" [ngClass]="{'highlight-btn': tabActive === 'bulk'}">Bulk</button>
+		<button type="button" class="btn btn-outline-dark-gray" (click)="toggle('log')" [ngClass]="{'highlight-btn': tabActive === 'log'}">Logs</button>
 	</div>
 </div>
 
@@ -106,7 +106,7 @@
 		</div>
 
 		<div class="card-body" *ngFor="let log of fss.logs$ | async">
-			<div class="alert alert-secondary text-left" role="alert">
+			<div class="alert alert-dark-gray text-left" role="alert">
 				<strong>{{ log.adminName | titlecase }}</strong> added <strong>{{ log.pointsAdded }} points</strong> to <strong>{{ log.userName | titlecase }}</strong>
 				<br>
 				{{ log.log }}
@@ -129,7 +129,7 @@
 			<p>This will permanently delete ALL points of every single user.</p>
 			<p>Do you want to continue?</p>
 			<div class="d-flex justify-content-around">
-				<button type="button" class="btn btn-secondary" (click)="dialogRef.close()">No</button>
+				<button type="button" class="btn btn-dark-gray" (click)="dialogRef.close()">No</button>
 				<button type="button" class="btn btn-outline-danger" (click)="deletePoints()">Yes</button>
 			</div>
 		</div>

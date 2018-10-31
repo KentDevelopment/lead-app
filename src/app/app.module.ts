@@ -28,6 +28,8 @@ import { UserProfileComponent } from '@modules/user-profile/user-profile.compone
 import { Environment } from '@environments/environment'
 import { Ng2ImgToolsModule } from 'ng2-img-tools'
 
+import { MatButtonModule } from '@angular/material/button'
+
 @NgModule({
   declarations: [
     AdminComponent,
@@ -51,7 +53,8 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools'
     MatDialogModule,
     MatSnackBarModule,
     Ng2ImgToolsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   providers: [
     AuthService,

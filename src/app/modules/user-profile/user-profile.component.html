@@ -15,7 +15,7 @@
 			<div class="d-flex align-items-center" routerLink="/profile">
 				<img id="upload" class="img-profile" src="{{ user.photoURL }}" alt="User Profile Image">
 				<div class="edit-img" *ngIf="!user.incognitoMode">
-					<img class="img-profile" src="assets/profile/edit.png" alt="Edit" (click)="file.click()">
+					<img class="img-profile" src="assets/profile/edit.svg" alt="Edit" (click)="file.click()">
 				</div>
 			</div>
 		</div>
@@ -54,7 +54,9 @@
 		<button type="submit" class="btn btn-block btn-primary" (click)="openDialog(leaveIncognito)">Leave Incognito!</button>
 	</div>
 
-	<h5 class="text-center mb-5 mt-2" [routerLink]="['admin']" *ngIf="user.role === 'admin'">Go to Admin Panel</h5>
+	<div class="text-center mb-5 mt-2">
+		<button mat-button [routerLink]="['admin']" *ngIf="user.role === 'admin'">Go to Admin Panel</button>
+	</div>
 
 	<small class="text-right fixed-bottom pr-2">v.{{ version }}</small>
 </section>
@@ -73,7 +75,7 @@
 			<p>By leaving incognito mode, your profile photo, name and number of LEAD points will be publicly available to other users of this application.</p>
 			<p>Do you wish to continue?</p>
 			<div class="d-flex justify-content-around">
-				<button type="button" class="btn btn-secondary" (click)="dialogRef.close()">No</button>
+				<button type="button" class="btn btn-dark-gray" (click)="dialogRef.close()">No</button>
 				<button type="button" class="btn btn-primary" (click)="confirmIncognito()">Yes!</button>
 			</div>
 		</div>
