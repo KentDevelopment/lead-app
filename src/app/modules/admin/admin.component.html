@@ -97,10 +97,9 @@
 					</div>
 					<div class="card-body" *ngFor="let log of fss.logs$ | async">
 						<div class="alert alert-dark-gray text-left" role="alert">
-							<strong>{{ log.adminName | titlecase }}</strong> added <strong>{{ log.pointsAdded }} points</strong> to <strong>{{ log.userName | titlecase }}</strong>
-							<br>
+							<p *ngIf="log.pointsAdded"><strong>{{ log.adminName | titlecase }}</strong> added <strong>{{ log.pointsAdded }} points</strong> to <strong>{{ log.userName | titlecase }}</strong></p>
 							{{ log.log }}
-							<p class="text-right pt-2">{{ log.date | date: 'medium' }}</p>
+							<p class="text-right pt-2" *ngIf="!log.pointsAdded">{{ log.date | date: 'medium' }}</p>
 						</div>
 					</div>
 				</div>

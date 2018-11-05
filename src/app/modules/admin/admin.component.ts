@@ -27,7 +27,6 @@ import { IUser } from '@core/interfaces/user'
 })
 export class AdminComponent {
   addPointsForm: FormGroup
-  coursesForm: FormGroup
   dialogRef: any
   myTime: any = new Date()
 
@@ -41,16 +40,7 @@ export class AdminComponent {
   ) {
     this.addPointsForm = this.fb.group({
       uid: this.fb.array([]),
-      points: Number['']
-    })
-
-    this.coursesForm = this.fb.group({
-      title: ['', Validators.required],
-      points: ['', Validators.required],
-      url: ['', Validators.required],
-      location: ['', Validators.required],
-      date: ['', Validators.required],
-      campus: ['', Validators.required]
+      points: [Number[''], Validators.required]
     })
   }
 
@@ -214,27 +204,3 @@ export class AdminComponent {
     )
   }
 }
-
-// courseSignup(formData) {
-//   const courseRef: AngularFirestoreCollection<any> = this.afs.collection(
-//     `courses`
-//   )
-//
-//   const data: ICourse = {
-//     title: formData.title,
-//     points: formData.points,
-//     url: formData.url,
-//     location: formData.location,
-//     date: formData.date,
-//     campus: formData.campus
-//   }
-//
-//   courseRef
-//     .add(data)
-//     .then(() => {
-//       this.showSuccess(`Course ${data.title} added on ${data.date}`)
-//     })
-//     .catch(err => {
-//       this.showError(`Ops, it looks like something has gone wrong`, err)
-//     })
-// }

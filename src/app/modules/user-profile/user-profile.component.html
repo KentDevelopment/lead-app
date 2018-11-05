@@ -33,21 +33,16 @@
 			<div class="progress">
 				<div class="progress-bar w-{{ uploadPercent | async }}" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
-
 			<div>Progress: {{ uploadPercent | async }}%</div>
 		</div>
-
 		<form [formGroup]="userForm" novalidate>
-
 			<div class="form-group mt-3">
 				<input type="text" class="form-control" aria-describedby="displayName" placeholder="{{user.displayName | titlecase}}" formControlName="displayName">
 			</div>
 			<div class="form-group mt-3">
 				<input type="email" class="form-control" aria-describedby="email" placeholder="{{user.email}}" formControlName="email">
 			</div>
-
 		</form>
-
 	</div>
 
 	<div class="text-center container" *ngIf="user.incognitoMode">

@@ -28,6 +28,7 @@ import { UserProfileComponent } from '@modules/user-profile/user-profile.compone
 import { Environment } from '@environments/environment'
 import { Ng2ImgToolsModule } from 'ng2-img-tools'
 
+import { ScrollingModule } from '@angular/cdk/scrolling'
 import { MatButtonModule } from '@angular/material/button'
 import { MatTabsModule } from '@angular/material/tabs'
 
@@ -56,7 +57,8 @@ import { MatTabsModule } from '@angular/material/tabs'
     Ng2ImgToolsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    ScrollingModule
   ],
   providers: [
     AuthService,

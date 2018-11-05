@@ -1,4 +1,5 @@
-import { Component, TemplateRef } from '@angular/core'
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling'
+import { Component, TemplateRef, ViewChild } from '@angular/core'
 import { MatDialog } from '@angular/material'
 
 import { AuthService } from '@core/authentication/auth.service'
@@ -10,6 +11,9 @@ import { FirestoreService } from '@core/firestore.service'
   styleUrls: ['./leaderboard.component.scss']
 })
 export class LeaderboardComponent {
+  @ViewChild(CdkVirtualScrollViewport)
+  viewport: CdkVirtualScrollViewport
+
   aboutLeadDialog: any
 
   constructor(
