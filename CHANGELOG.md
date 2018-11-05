@@ -1,3 +1,62 @@
+# 1.3.5 (2018-11-05)
+
+## Features
+  * Virtual Scroll added to the leaderboard page
+
+# 1.3.4 (2018-10-31)
+
+## Features
+  * New animation added to the footer
+
+# 1.3.3 (2018-10-31)
+
+## Features
+  * New tabs to the admin section
+  * New logs format
+
+# 1.3.2 (2018-10-31)
+
+## Bug Fixes
+* Typography fixes
+* Travis CI updated
+
+# 1.3.1 (2018-10-30)
+
+## Bug Fixes
+* Cloud Function URL added to ENV file
+
+# 1.3.0 (2018-10-30)
+
+## Bug Fixes
+* Campus field not appearing on emails fixed
+
+## Features
+  * Angular updated to version 7
+  * Code structure refactored
+  * Route Guard added
+  * Compatibility with email notification added
+
+# 1.2.1 (2018-09-12)
+
+## Bug Fixes
+* Service worker removed
+* Minor adjustments to the modal
+
+# 1.2.0 (2018-09-11)
+
+## Bug Fixes
+* Auth bugs fixed
+
+## Features
+  * Modal changed to Angular Material
+
+# 1.1.0 (2018-09-07)
+
+## Bug Fixes
+* Login Fixed
+* Unnecessary code removed
+* Log Entry fixed
+
 # 1.0.4 (2018-08-10)
 
 ## Bug Fixes
