@@ -1,107 +1,128 @@
 # 1.3.5 (2018-11-05)
 
 ## Features
-  * Virtual Scroll added to the leaderboard page
+
+- Virtual Scroll added to the leaderboard page
 
 # 1.3.4 (2018-10-31)
 
 ## Features
-  * New animation added to the footer
+
+- New animation added to the footer
 
 # 1.3.3 (2018-10-31)
 
 ## Features
-  * New tabs to the admin section
-  * New logs format
+
+- New tabs to the admin section
+- New logs format
 
 # 1.3.2 (2018-10-31)
 
 ## Bug Fixes
-* Typography fixes
-* Travis CI updated
+
+- Typography fixes
+- Travis CI updated
 
 # 1.3.1 (2018-10-30)
 
 ## Bug Fixes
-* Cloud Function URL added to ENV file
+
+- Cloud Function URL added to ENV file
 
 # 1.3.0 (2018-10-30)
 
 ## Bug Fixes
-* Campus field not appearing on emails fixed
+
+- Campus field not appearing on emails fixed
 
 ## Features
-  * Angular updated to version 7
-  * Code structure refactored
-  * Route Guard added
-  * Compatibility with email notification added
+
+- Angular updated to version 7
+- Code structure refactored
+- Route Guard added
+- Compatibility with email notification added
 
 # 1.2.1 (2018-09-12)
 
 ## Bug Fixes
-* Service worker removed
-* Minor adjustments to the modal
+
+- Service worker removed
+- Minor adjustments to the modal
 
 # 1.2.0 (2018-09-11)
 
 ## Bug Fixes
-* Auth bugs fixed
+
+- Auth bugs fixed
 
 ## Features
-  * Modal changed to Angular Material
+
+- Modal changed to Angular Material
 
 # 1.1.0 (2018-09-07)
 
 ## Bug Fixes
-* Login Fixed
-* Unnecessary code removed
-* Log Entry fixed
+
+- Login Fixed
+- Unnecessary code removed
+- Log Entry fixed
 
 # 1.0.4 (2018-08-10)
 
 ## Bug Fixes
-* Dependencies updated
+
+- Dependencies updated
 
 ## Features
-  * Ngx-bootstrap replaced by Angular Material
+
+- Ngx-bootstrap replaced by Angular Material
 
 # 1.0.3 (2018-08-06)
 
 ## Bug Fixes
-* Dependencies updated
+
+- Dependencies updated
 
 ## Features
-  * Login bug fixed
-  * Emails being displayed for the admin
+
+- Login bug fixed
+- Emails being displayed for the admin
 
 # 1.0.2 (2018-07-30)
 
 ## Bug Fixes
-* Dependencies updated
+
+- Dependencies updated
 
 ## Features
-  * Cypress added as the default environment test  
+
+- Cypress added as the default environment test
 
 # 1.0.1 (2018-07-17)
 
 ## Bugs Fixes
-  * Dependencies updated
+
+- Dependencies updated
 
 # 1.0.0 (2018-06-19)
 
 ## Features
-  * Leaderboard Panel
-  * Admin Panel
-  * Incognito Mode
-  * Bulk Editing
-  * Admin Logs
+
+- Leaderboard Panel
+- Admin Panel
+- Incognito Mode
+- Bulk Editing
+- Admin Logs
 
 ## Docs
-  * Many guides added! - [First Guide](README.md)
+
+- Many guides added! - [First Guide](README.md)
 
 ## Breaking Changes:
-  * Initial Release
+
+- Initial Release
 
 ### Known issues
 
-  * PWA not authenticating
+- PWA not authenticating
