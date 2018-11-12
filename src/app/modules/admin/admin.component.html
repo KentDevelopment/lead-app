@@ -5,161 +5,148 @@
       >keyboard_arrow_left</i
     >
   </div>
-
   <h2 class="text-center pt-4">Admin Panel</h2>
 </div>
 
-<!-- Big Div that align everything to the center -->
-<section class="text-center mt-4 mb-5 d-flex flex-column align-items-center">
-  <mat-tab-group mat-stretch-tabs>
-    <mat-tab label="Points">
-      <!-- Add Points -->
-      <div class="mt-3">
-        <div class="card border-primary mb-2">
-          <div class="card-header border-primary">
-            <h5 class="card-title text-primary">LEAD Points</h5>
-            Add LEAD points to one user
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li
-                class="list-group-item list-group-item-action"
-                *ngFor="let user of (fss.orderedUsers$ | async)"
-              >
-                <div class="d-flex justify-content-between">
-                  <div class="d-flex flex-column align-self-center">
-                    <div class="pr-2 d-flex text-left">
-                      {{ user.displayName | titlecase }}
-                    </div>
-                    <div class="pr-2 d-flex secondary-text">
-                      {{ user.email }}
-                    </div>
-                    <div class="pr-2 d-flex secondary-text">
-                      {{ user.campus }}
-                    </div>
-                  </div>
-                  <div class="form-group mt-3 points-box">
-                    <input
-                      type="number"
-                      class="form-control text-right points-box"
-                      step="10"
-                      placeholder="{{ user.points }}"
-                      value="{{ user.points }}"
-                      (change)="update(user, $event)"
-                    />
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Points">
+    <!-- Add Points -->
+    <div class="card border-primary mb-2 mt-3 scroll-points">
+      <div class="card-header text-center border-primary">
+        <h5 class="card-title text-primary">LEAD Points</h5>
+        Add LEAD points to one user
       </div>
 
-      <div class="mt-4 mb-5">
-        <button
-          type="button"
-          class="btn btn-block btn-outline-primary"
-          (click)="openDialog(resetPoints)"
+      <cdk-virtual-scroll-viewport
+        itemSize="100"
+        class="card-body list-group list-group-flush"
+      >
+        <li
+          *cdkVirtualFor="let user of (fss.orderedUsers$ | async)"
+          class="list-group-item list-group-item-action"
         >
-          Reset All Points
-        </button>
-      </div>
-    </mat-tab>
-
-    <mat-tab label="Bulk">
-      <div class="mt-3">
-        <!-- Bulk Edit -->
-        <div class="card border-primary mb-3">
-          <div class="card-header border-primary">
-            <h5 class="card-title text-primary">LEAD Points in Bulk</h5>
-            Add LEAD points to multiple users
-          </div>
-
-          <div class="card-body">
-            <h5 class="card-title">Select Users</h5>
-            <form
-              [formGroup]="addPointsForm"
-              (ngSubmit)="addPoints(addPointsForm.value)"
-              novalidate
-            >
-              <div
-                class="input-group mb-3"
-                *ngFor="let user of (fss.orderedUsers$ | async)"
-              >
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <input
-                      type="checkbox"
-                      aria-label="Checkbox for following text input"
-                      (change)="onChange(user.uid, $event.target.checked)"
-                    />
-                  </div>
-                </div>
-                <div *ngFor="let user of (users | async)">
-                  <input type="checkbox" /> {{ user.displayName }}
-                </div>
-                <div
-                  class="d-flex justify-content-between form-control fix-line"
-                >
-                  <div class="flex-column text-left">
-                    <p>{{ user.displayName }}</p>
-                    <p class="secondary-text">{{ user.email }}</p>
-                    <p class="secondary-text">{{ user.campus }}</p>
-                  </div>
-                  <p class="pr-2 align-self-center">{{ user.points }}</p>
-                </div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex flex-column align-self-center">
+              <div class="pr-2 d-flex text-left">
+                {{ user.displayName | titlecase }}
               </div>
-
-              <h5 class="card-title">Insert Points</h5>
-              <div class="form-group mt-3">
-                <div class="p-2">
-                  <input
-                    type="number"
-                    class="form-control"
-                    step="10"
-                    aria-describedby="points"
-                    placeholder="Points to add"
-                    formControlName="points"
-                  />
-                </div>
-                <div class="p-2">
-                  <button type="submit" class="btn btn-primary">
-                    Add Points
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </mat-tab>
-
-    <mat-tab label="Logs">
-      <div class="mt-3">
-        <!-- Logs -->
-        <div class="card border-primary mb-3">
-          <div class="card-header border-primary">
-            <h5 class="card-title text-primary">Logs</h5>
-            Check all the changes that have been made
-          </div>
-          <div class="card-body" *ngFor="let log of (fss.logs$ | async)">
-            <div class="alert alert-dark-gray text-left" role="alert">
-              <p *ngIf="log.pointsAdded">
-                <strong>{{ log.adminName | titlecase }}</strong> added
-                <strong>{{ log.pointsAdded }} points</strong> to
-                <strong>{{ log.userName | titlecase }}</strong>
-              </p>
-              {{ log.log }}
-              <p class="text-right pt-2" *ngIf="!log.pointsAdded">
-                {{ log.date | date: 'medium' }}
-              </p>
+              <div class="pr-2 d-flex secondary-text">{{ user.email }}</div>
+              <div class="pr-2 d-flex secondary-text">{{ user.campus }}</div>
+            </div>
+            <div class="form-group mt-3 points-box">
+              <input
+                type="number"
+                class="form-control text-right points-box"
+                step="10"
+                placeholder="{{ user.points }}"
+                value="{{ user.points }}"
+                (change)="update(user, $event)"
+              />
             </div>
           </div>
-        </div>
+        </li>
+      </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="m-4">
+      <button
+        type="button"
+        class="btn btn-block btn-outline-primary"
+        (click)="openDialog(resetPoints)"
+      >
+        Reset All Points
+      </button>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Bulk">
+    <!-- Bulk Edit -->
+    <div class="card border-primary mb-3 mt-3">
+      <div class="card-header text-center border-primary">
+        <h5 class="card-title text-primary">LEAD Points in Bulk</h5>
+        Add LEAD points to multiple users
       </div>
-    </mat-tab>
-  </mat-tab-group>
-</section>
+
+      <cdk-virtual-scroll-viewport itemSize="100" class="card-body">
+        <form
+          [formGroup]="addPointsForm"
+          (ngSubmit)="addPoints(addPointsForm.value)"
+          novalidate
+        >
+          <div
+            class="input-group p-1"
+            *ngFor="let user of (fss.orderedUsers$ | async)"
+          >
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input
+                  type="checkbox"
+                  aria-label="Checkbox for following text input"
+                  (change)="onChange(user.uid, $event.target.checked)"
+                />
+              </div>
+            </div>
+            <div *ngFor="let user of (users | async)">
+              <input type="checkbox" /> {{ user.displayName }}
+            </div>
+            <div class="d-flex justify-content-between form-control fix-line">
+              <div class="flex-column text-left">
+                <p>{{ user.displayName }}</p>
+                <p class="secondary-text">{{ user.email }}</p>
+                <p class="secondary-text">{{ user.campus }}</p>
+              </div>
+              <p class="pr-2 align-self-center">{{ user.points }}</p>
+            </div>
+          </div>
+
+          <h5 class="card-title text-center mt-3">Insert Points</h5>
+          <div class="form-group ml-5 mr-5">
+            <input
+              type="number"
+              class="form-control"
+              step="10"
+              aria-describedby="points"
+              placeholder="Points to add"
+              formControlName="points"
+            />
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary m-2">
+                Add Points
+              </button>
+            </div>
+          </div>
+        </form>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Logs">
+    <!-- Logs -->
+    <div class="card border-primary mb-3 mt-3">
+      <div class="card-header text-center border-primary">
+        <h5 class="card-title text-primary">Logs</h5>
+        Check all the changes that have been made
+      </div>
+
+      <cdk-virtual-scroll-viewport itemSize="90">
+        <div
+          *cdkVirtualFor="let log of (fss.logs$ | async); let i = index"
+          class="card-body animated fadeInUp"
+        >
+          <div class="alert alert-dark-gray text-left" role="alert">
+            <p *ngIf="log.pointsAdded">
+              <strong>{{ log.adminName | titlecase }}</strong> added
+              <strong>{{ log.pointsAdded }} points</strong> to
+              <strong>{{ log.userName | titlecase }}</strong>
+            </p>
+            <p *ngIf="!log.pointsAdded">{{ log.log }}</p>
+            <p class="text-right pt-2">{{ log.date | date: 'medium' }}</p>
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </mat-tab>
+</mat-tab-group>
 
 <ng-template #resetPoints>
   <mat-dialog-content class="modal-incognito" class="modal-reset-points">

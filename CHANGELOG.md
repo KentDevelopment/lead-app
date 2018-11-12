@@ -2,7 +2,7 @@
 
 ## Features
 
-- Virtual Scroll added to the leaderboard page
+- Virtual Scroll added to the leaderboard and admin pages
 
 ## Bug Fixes
 
