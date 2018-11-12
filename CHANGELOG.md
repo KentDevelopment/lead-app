@@ -4,6 +4,10 @@
 
 - Virtual Scroll added to the leaderboard page
 
+## Bug Fixes
+
+- Login on incognito mode fixed
+
 # 1.3.4 (2018-10-31)
 
 ## Features
