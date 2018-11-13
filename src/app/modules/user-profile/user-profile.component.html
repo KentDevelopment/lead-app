@@ -99,8 +99,8 @@
   </div>
 
   <div class="text-center mb-5 mt-2">
-    <button mat-button [routerLink]="['admin']" *ngIf="user.role === 'admin'">
-      Go to Admin Panel
+    <button mat-button routerLink="/dashboard" *ngIf="user.role === 'admin'">
+      Go to Admin Dashboard
     </button>
   </div>
 

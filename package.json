@@ -17,6 +17,7 @@
     "lint": "yarn lint:ts && yarn lint:styles",
     "prettier": "prettier --config ./.prettierrc.json --write '**/*.{ts,js,json,yml,html,md}'",
     "start": "ng serve -o",
+    "serve": "ng serve -o --host=0.0.0.0",
     "test": "yarn lint:fix && yarn build:prod",
     "update": "yarn upgrade-interactive --latest"
   },

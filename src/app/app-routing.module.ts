@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { AuthGuard } from '@core/guards/auth.guard'
 
-import { AdminComponent } from '@modules/admin/admin.component'
 import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
 import { LoginComponent } from '@modules/login/login.component'
 import { UserProfileComponent } from '@modules/user-profile/user-profile.component'
@@ -28,8 +27,8 @@ const routes: Routes = [
     data: { animation: 'profile' }
   },
   {
-    path: 'profile/admin',
-    component: AdminComponent,
+    path: 'dashboard',
+    loadChildren: '@modules/dashboard/dashboard.module#DashboardModule',
     canActivate: [AuthGuard],
     data: { animation: 'admin' }
   }

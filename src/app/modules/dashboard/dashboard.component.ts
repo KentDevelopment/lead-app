@@ -21,11 +21,11 @@ import { ILog, ILogText } from '@core/interfaces/log'
 import { IUser } from '@core/interfaces/user'
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class AdminComponent {
+export class DashboardComponent {
   addPointsForm: FormGroup
   dialogRef: any
   myTime: any = new Date()
@@ -194,7 +194,7 @@ export class AdminComponent {
   showError(title, message?, action?: string) {
     this.snackBar.open(
       `${title}
-			${message}`,
+       ${message}`,
       action,
       {
         horizontalPosition: 'right',

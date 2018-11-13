@@ -6,7 +6,7 @@
 
 ## Bug Fixes
 
-- Login on incognito mode fixed
+- Login on incognito mode fixed on desktops
 
 # 1.3.4 (2018-10-31)
 
