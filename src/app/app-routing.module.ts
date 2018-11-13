@@ -5,7 +5,6 @@ import { AuthGuard } from '@core/guards/auth.guard'
 
 import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
 import { LoginComponent } from '@modules/login/login.component'
-import { UserProfileComponent } from '@modules/user-profile/user-profile.component'
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -22,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: UserProfileComponent,
+    loadChildren: '@modules/profile/profile.module#ProfileModule',
     canActivate: [AuthGuard],
     data: { animation: 'profile' }
   },

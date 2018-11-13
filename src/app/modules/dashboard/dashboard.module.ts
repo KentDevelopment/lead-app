@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
 import { DashboardComponent } from './dashboard.component'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { ScrollingModule } from '@angular/cdk/scrolling'
-import { MatTabsModule } from '@angular/material/tabs'
 import { MatDialogModule } from '@angular/material/dialog'
+import { MatTabsModule } from '@angular/material/tabs'
 
-import { Routes, RouterModule } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router'
 
 const routes: Routes = [{ path: '', component: DashboardComponent }]
 

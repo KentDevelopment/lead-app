@@ -19,23 +19,21 @@ import { FooterComponent } from '@core/footer/footer.component'
 
 import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
 import { LoginComponent } from '@modules/login/login.component'
-import { UserProfileComponent } from '@modules/user-profile/user-profile.component'
 
 import { Environment } from '@environments/environment'
 import { Ng2ImgToolsModule } from 'ng2-img-tools'
 
-import { MatDialogModule } from '@angular/material/dialog'
-import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { ScrollingModule } from '@angular/cdk/scrolling'
 import { MatButtonModule } from '@angular/material/button'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     LeaderboardComponent,
-    LoginComponent,
-    UserProfileComponent
+    LoginComponent
   ],
   imports: [
     AngularFireAuthModule,
