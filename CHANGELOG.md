@@ -7,6 +7,7 @@
 ## Bug Fixes
 
 - Login on incognito mode fixed on desktops
+- NPM added as default package manager
 
 # 1.3.4 (2018-10-31)
 

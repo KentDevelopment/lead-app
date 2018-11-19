@@ -4,13 +4,13 @@ The LEAD Points app has been develop to foment the student engagement with Kent'
 
 ## Development server
 
-1. Run `yarn start` for a dev server.
+1. Run `npm run start` for a dev server.
 
 1. The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `yarn build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `yarn build-prod` flag for a production build.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `npm run build-prod` flag for a production build.
 
 ## Deploying to production
 
@@ -42,7 +42,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [Prettier](https://prettier.io/) - Prettier is an opinionated code formatter.
 - [Husky](https://github.com/typicode/husky.git) - Git hooks made easy.
 - [Travis CI](https://travis-ci.org/) - Easily sync your GitHub projects with Travis CI and you'll be testing your code in minutes.
-- [Yarn](https://yarnpkg.com/en/) - Fast, reliable, and secure dependency management.
+- [NPM](https://www.npmjs.com/) - Build amazing things.
 - [Cypress](https://www.cypress.io/) - Fast, easy and reliable testing for anything that runs in a browser.
 - [Chance](http://chancejs.com/) - Random generator helper for JavaScript.
 

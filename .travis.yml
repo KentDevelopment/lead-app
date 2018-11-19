@@ -6,15 +6,12 @@ branches:
   only:
     - master
 
-cache:
-  yarn: true
-
 before_script:
-  - yarn global add firebase-tools
-  - yarn global add @angular/cli
+  - npm install -g firebase-tools
+  - npm install -g @angular/cli
 
 script:
-  - yarn build:prod
+  - npm run build:prod
 
 after_success:
   - test $TRAVIS_BRANCH = "master" && firebase deploy --token $FIREBASE_TOKEN
