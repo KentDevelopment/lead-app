@@ -1,14 +1,21 @@
-<footer class="fixed-bottom" (click)="toogleCredits()" [@openClose]="isOpen ? 'open' : 'closed'">
+<footer
+  class="fixed-bottom"
+  (click)="toogleCredits()"
+  [@openClose]="isOpen ? 'open' : 'closed'"
+>
+  <div class="banner-inactive" *ngIf="!isOpen">
+    <i class="material-icons">remove</i> <span>Created by Renan Sigolo</span>
+  </div>
 
-	<div class="banner-inactive" *ngIf="!isOpen">
-		<i class="material-icons">remove</i>
-		<span>Created by Renan Sigolo</span>
-	</div>
-
-	<div class="banner-active" *ngIf="isOpen">
-		<i class="material-icons">keyboard_arrow_down</i>
-		<span>Created by Renan Sigolo</span>
-		<br>
-		<p class="pt-1">Mr Renan Ferreira is a student of Kent’s Diploma of Website Development course who offered to create this website as a volunteer project. Kent Institute Australia sincerely thanks Renan and acknowledges the amazing contribution he has made to the LEAD program by volunteering his time and skills to make this service available to his fellow students.</p>
-	</div>
+  <div class="banner-active" *ngIf="isOpen">
+    <i class="material-icons">keyboard_arrow_down</i>
+    <span>Created by Renan Sigolo</span> <br />
+    <p class="pt-1">
+      Mr Renan Ferreira is a student of Kent’s Diploma of Website Development
+      course who offered to create this website as a volunteer project. Kent
+      Institute Australia sincerely thanks Renan and acknowledges the amazing
+      contribution he has made to the LEAD program by volunteering his time and
+      skills to make this service available to his fellow students.
+    </p>
+  </div>
 </footer>

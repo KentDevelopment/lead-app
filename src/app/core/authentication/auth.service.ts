@@ -11,7 +11,7 @@ import { IUser } from '@core/interfaces/user'
 import { Environment } from '@environments/environment'
 import { firebase } from '@firebase/app'
 import '@firebase/auth'
-import { Observable, of as observableOf } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 
 @Injectable()
@@ -38,13 +38,11 @@ export class AuthService {
   ) {
     // Get auth data, then get firestore user document || null
     this.user$ = this.afAuth.authState.pipe(
-      switchMap(user => {
-        if (user) {
-          return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges()
-        } else {
-          return observableOf(null)
-        }
-      })
+      switchMap(user =>
+        user
+          ? this.afs.doc<IUser>(`users/${user.uid}`).valueChanges()
+          : of(null)
+      )
     )
   }
 
@@ -180,13 +178,9 @@ export class AuthService {
     }
   }
 
-  signOut() {
-    this.afAuth.auth
-      .signOut()
-      .then(() => {
-        this.router.navigate(['/login'])
-      })
-      .catch(error => error)
+  async signOut() {
+    await this.afAuth.auth.signOut()
+    return this.router.navigate(['/'])
   }
 
   // Alerts
@@ -197,7 +191,7 @@ export class AuthService {
   showError(title, message?) {
     this.snackBar.open(
       `${title}
-			${message}`,
+    ${message}`,
       'Dismiss',
       this.snackBarErrorOptions
     )

@@ -68,43 +68,10 @@ small {
   color: var(--secondary);
 }
 
-// %highlight-btn {
-// 	box-shadow: 0;
-// 	color: var(--light);
-// }
+cdk-virtual-scroll-viewport {
+  height: 64vh;
 
-// .highlight-btn-left {
-// 	@extend %highlight-btn;
-// 	animation-duration: 650ms;
-// 	animation-name: rightLeft;
-//
-// 	@keyframes rightLeft {
-// 		0% {
-// 			left: 50%;
-// 			top: 0;
-// 		}
-//
-// 		100% {
-// 			left: 0;
-// 			top: 0;
-// 		}
-// 	}
-// }
-//
-// .highlight-btn-right {
-// 	@extend %highlight-btn;
-// 	animation-duration: 650ms;
-// 	animation-name: leftRight;
-//
-// 	@keyframes leftRight {
-// 		0% {
-// 			right: 50%;
-// 			top: 0;
-// 		}
-//
-// 		100% {
-// 			right: 0;
-// 			top: 0;
-// 		}
-// 	}
-// }
+  li {
+    height: 100px;
+  }
+}

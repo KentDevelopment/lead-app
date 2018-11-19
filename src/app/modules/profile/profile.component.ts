@@ -18,11 +18,11 @@ import { AuthService } from '@core/authentication/auth.service'
 import { IUser } from '@core/interfaces/user'
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class UserProfileComponent {
+export class ProfileComponent {
   dialogRef: any
   downloadURL: Observable<string>
   uploadPercent: Observable<number>
@@ -117,7 +117,7 @@ export class UserProfileComponent {
   showError(title, message?, action?: string) {
     this.snackBar.open(
       `${title}
-			${message}`,
+  			${message}`,
       action,
       {
         horizontalPosition: 'right',

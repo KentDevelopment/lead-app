@@ -45,7 +45,7 @@ export class LoginComponent {
   // Login Function
   async login(domain) {
     try {
-      return this.auth.googleLogin(domain)
+      return await this.auth.googleLogin(domain)
     } catch (error) {
       return error
     }

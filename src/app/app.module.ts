@@ -4,9 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
-import { MatDialogModule } from '@angular/material/dialog'
-import { MatSnackBarModule } from '@angular/material/snack-bar'
-
 import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
@@ -20,25 +17,23 @@ import { CoreModule } from '@core/core.module'
 import { FirestoreService } from '@core/firestore.service'
 import { FooterComponent } from '@core/footer/footer.component'
 
-import { AdminComponent } from '@modules/admin/admin.component'
 import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
 import { LoginComponent } from '@modules/login/login.component'
-import { UserProfileComponent } from '@modules/user-profile/user-profile.component'
 
 import { Environment } from '@environments/environment'
 import { Ng2ImgToolsModule } from 'ng2-img-tools'
 
+import { ScrollingModule } from '@angular/cdk/scrolling'
 import { MatButtonModule } from '@angular/material/button'
-import { MatTabsModule } from '@angular/material/tabs'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
-    AdminComponent,
     AppComponent,
     FooterComponent,
     LeaderboardComponent,
-    LoginComponent,
-    UserProfileComponent
+    LoginComponent
   ],
   imports: [
     AngularFireAuthModule,
@@ -56,7 +51,7 @@ import { MatTabsModule } from '@angular/material/tabs'
     Ng2ImgToolsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatTabsModule
+    ScrollingModule
   ],
   providers: [
     AuthService,

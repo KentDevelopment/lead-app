@@ -1,4 +1,4 @@
-# Kent LEAD Points &middot; [![Build Status](https://travis-ci.org/KentDevelopment/lead-app.svg?branch=master)](https://travis-ci.org/KentDevelopment/lead-app)
+# LEAD Points - Kent Institute &middot; [![Build Status](https://travis-ci.org/KentDevelopment/lead-app.svg?branch=master)](https://travis-ci.org/KentDevelopment/lead-app)
 
 The LEAD Points app has been develop to foment the student engagement with Kent's events, workshops and social activities.
 
@@ -28,28 +28,27 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Built With
 
-* [Angular](https://angular.io/) - The framework used
-* [Angular Material](https://material.angular.io/) - Material Design components for Angular
-* [Bootstrap](https://getbootstrap.com/) - Framework for building responsive sites
-* [Firebase](https://firebase.google.com/) - Used as host, storage and fireStore as a DB
-
+- [Angular](https://angular.io/) - The framework used
+- [Angular Material](https://material.angular.io/) - Material Design components for Angular
+- [Bootstrap](https://getbootstrap.com/) - Framework for building responsive sites
+- [Firebase](https://firebase.google.com/) - Used as host, storage and fireStore as a DB
 
 ## Plugins
 
-* [ng2-img-tools](https://github.com/bergben/ng2-img-tools) - Angular module to resize images, crop images or compress images down to a certain filesize.
+- [ng2-img-tools](https://github.com/bergben/ng2-img-tools) - Angular module to resize images, crop images or compress images down to a certain filesize.
 
 ## Dev tools
 
-* [Prettier](https://prettier.io/) - Prettier is an opinionated code formatter.
-* [Husky](https://github.com/typicode/husky.git) - Git hooks made easy.
-* [Travis CI](https://travis-ci.org/) - Easily sync your GitHub projects with Travis CI and you'll be testing your code in minutes.
-* [Yarn](https://yarnpkg.com/en/) - Fast, reliable, and secure dependency management.
-* [Cypress](https://www.cypress.io/) - Fast, easy and reliable testing for anything that runs in a browser.
-* [Chance](http://chancejs.com/) - Random generator helper for JavaScript.
+- [Prettier](https://prettier.io/) - Prettier is an opinionated code formatter.
+- [Husky](https://github.com/typicode/husky.git) - Git hooks made easy.
+- [Travis CI](https://travis-ci.org/) - Easily sync your GitHub projects with Travis CI and you'll be testing your code in minutes.
+- [Yarn](https://yarnpkg.com/en/) - Fast, reliable, and secure dependency management.
+- [Cypress](https://www.cypress.io/) - Fast, easy and reliable testing for anything that runs in a browser.
+- [Chance](http://chancejs.com/) - Random generator helper for JavaScript.
 
 ## Authors
 
-* [Renan Sigolo](https://github.com/renansigolo)
+- [Renan Sigolo](https://github.com/renansigolo)
 
 ## License
 
@@ -57,5 +56,5 @@ This project is licensed under the APACHE 2.0 License - see the [LICENSE.md](LIC
 
 ## Acknowledgments
 
-* Thanks to everyone at Kent Institute
-* Inspiring the world to be more collaborative
+- Thanks to everyone at Kent Institute
+- Inspiring the world to be more collaborative
