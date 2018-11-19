@@ -3,11 +3,11 @@
   (click)="toogleCredits()"
   [@openClose]="isOpen ? 'open' : 'closed'"
 >
-  <div class="banner-inactive" *ngIf="!isOpen">
+  <div class="banner" *ngIf="!isOpen">
     <i class="material-icons">remove</i> <span>Created by Renan Sigolo</span>
   </div>
 
-  <div class="banner-active" *ngIf="isOpen">
+  <div class="banner" *ngIf="isOpen">
     <i class="material-icons">keyboard_arrow_down</i>
     <span>Created by Renan Sigolo</span> <br />
     <p class="pt-1">

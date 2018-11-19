@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core'
+import { Component } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatDialog, MatSnackBar } from '@angular/material'
 
@@ -16,6 +16,8 @@ import { Environment } from '@environments/environment'
 
 import { AuthService } from '@core/authentication/auth.service'
 import { IUser } from '@core/interfaces/user'
+import { ResetPointsComponent } from './dialogs/reset-points/reset-points.component'
+import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
 
 @Component({
   selector: 'app-profile',
@@ -98,18 +100,15 @@ export class ProfileComponent {
     }
   }
 
-  confirmIncognito() {
-    this.auth
-      .leaveIncognito(this.user)
-      .then(() => {
-        this.dialogRef.close()
-      })
-      .catch(error => error)
+  // Dialog Box
+  openIncognitoDialog(): void {
+    this.dialogRef = this.dialog.open(LeaveIncognitoComponent, {
+      autoFocus: false
+    })
   }
 
-  // Dialog Box
-  openDialog(leaveIncognito: TemplateRef<any>): void {
-    this.dialogRef = this.dialog.open(leaveIncognito, {
+  openResetDialog(): void {
+    this.dialogRef = this.dialog.open(ResetPointsComponent, {
       autoFocus: false
     })
   }

@@ -4,7 +4,6 @@ import { AuthService } from './authentication/auth.service'
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [],
   providers: [AuthService]
 })
 export class CoreModule {}

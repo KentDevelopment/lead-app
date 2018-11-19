@@ -24,13 +24,8 @@
   }
 }
 
-.mat-button {
-  color: var(--primary);
-  font-size: 1.25rem;
-}
-
 small {
-  padding-bottom: 1vh;
+  padding: 0.5vh;
 }
 
 .modal-incognito {
@@ -40,5 +35,16 @@ small {
 
   .material-icons {
     font-size: 6rem;
+  }
+}
+
+.button-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    min-width: 60%;
+    margin: 0.6em;
   }
 }

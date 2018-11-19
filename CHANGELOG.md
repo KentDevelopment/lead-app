@@ -1,3 +1,14 @@
+# 1.3.6 (2018-11-20)
+
+## Features
+
+- New Design to the Modals
+
+## Bug Fixes
+
+- Logs rendered as one whole list
+- Footer size reduced
+
 # 1.3.5 (2018-11-05)
 
 ## Features

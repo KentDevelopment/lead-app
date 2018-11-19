@@ -16,7 +16,7 @@ import { Component } from '@angular/core'
       state(
         'closed',
         style({
-          height: '7.1vh',
+          height: '3vh',
           opacity: 0.6
         })
       ),

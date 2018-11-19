@@ -88,67 +88,31 @@
     </form>
   </div>
 
-  <div class="text-center container" *ngIf="user.incognitoMode">
+  <div class="button-column">
     <button
+      mat-raised-button
+      color="primary"
       type="submit"
-      class="btn btn-block btn-primary"
-      (click)="openDialog(leaveIncognito)"
+      *ngIf="user.incognitoMode"
+      (click)="openIncognitoDialog()"
     >
       Leave Incognito!
     </button>
-  </div>
 
-  <div class="text-center mb-5 mt-2">
     <button
+      mat-stroked-button
+      color="primary"
       type="button"
-      class="btn btn-outline-primary"
       routerLink="/dashboard"
       *ngIf="user.role === 'admin'"
     >
       Go to Admin Dashboard
     </button>
+
+    <button mat-stroked-button type="button" (click)="openResetDialog()">
+      Reset All Points
+    </button>
   </div>
 
-  <small class="text-right fixed-bottom pr-2">v.{{ version }}</small>
+  <small class="text-right fixed-bottom">v.{{ version }}</small>
 </section>
-
-<!-- Leave Incognito Modal -->
-<ng-template #leaveIncognito>
-  <mat-dialog-content class="modal-incognito">
-    <div class="modal-header">
-      <h4 mat-dialog-title>Leave Incognito!</h4>
-      <button
-        type="button"
-        class="close"
-        aria-label="Close"
-        (click)="dialogRef.close()"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body text-center">
-      <i class="material-icons">sentiment_very_satisfied</i>
-      <p>
-        By leaving incognito mode, your profile photo, name and number of LEAD
-        points will be publicly available to other users of this application.
-      </p>
-      <p>Do you wish to continue?</p>
-      <div class="d-flex justify-content-around">
-        <button
-          type="button"
-          class="btn btn-dark-gray"
-          (click)="dialogRef.close()"
-        >
-          No
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="confirmIncognito()"
-        >
-          Yes!
-        </button>
-      </div>
-    </div>
-  </mat-dialog-content>
-</ng-template>

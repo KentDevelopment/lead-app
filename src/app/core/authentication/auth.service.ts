@@ -53,7 +53,7 @@ export class AuthService {
       hd: domain
     })
     try {
-      return this.oAuthLogin(provider)
+      return await this.oAuthLogin(provider)
     } catch (error) {
       return error
     }
@@ -114,7 +114,7 @@ export class AuthService {
     }
 
     try {
-      return userRef.set(data, { merge: false })
+      return await userRef.set(data, { merge: false })
     } catch (error) {
       return error
     }
@@ -191,7 +191,7 @@ export class AuthService {
   showError(title, message?) {
     this.snackBar.open(
       `${title}
-    ${message}`,
+      ${message}`,
       'Dismiss',
       this.snackBarErrorOptions
     )

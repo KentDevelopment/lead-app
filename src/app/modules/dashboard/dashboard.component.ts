@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core'
+import { Component } from '@angular/core'
 import {
   FormArray,
   FormBuilder,
@@ -17,7 +17,7 @@ import { AuthService } from '@core/authentication/auth.service'
 import { take } from 'rxjs/operators'
 
 import { FirestoreService } from '@core/firestore.service'
-import { ILog, ILogText } from '@core/interfaces/log'
+import { ILog } from '@core/interfaces/log'
 import { IUser } from '@core/interfaces/user'
 
 @Component({
@@ -127,51 +127,6 @@ export class DashboardComponent {
         .catch(err => {
           this.showError(`Ops, it looks like something has gone wrong`, err)
         })
-    })
-  }
-
-  deletePoints() {
-    const dateToReset = '01 Jan 2019 00:00:00 GMT+1000'
-    const dateToResetParsed = Date.parse(dateToReset)
-    const myTimeParsed = Date.parse(this.myTime)
-
-    if (myTimeParsed <= dateToResetParsed) {
-      this.showWarning(`Please come back after ${dateToReset}`, 'Dismiss')
-    } else {
-      this.fss.localUsers$.pipe(take(1)).subscribe(users => {
-        for (const user of users) {
-          const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-            `users/${user.uid}`
-          )
-
-          const data: IUser = {
-            points: 0
-          }
-
-          userRef.update(data).catch(err => {
-            this.showError(`Ops, it looks like something has gone wrong`, err)
-          })
-        }
-      })
-
-      this.auth.user$.subscribe(admin => {
-        const dataObj: ILogText = {
-          log: `All points have been successfully deleted at ${this.myTime}`,
-          adminName: admin.displayName,
-          date: new Date().getTime()
-        }
-        this.fss.addLogText(dataObj)
-      })
-
-      this.showSuccess(`All points have been successfully deleted`)
-    }
-    this.dialogRef.close()
-  }
-
-  // Dialog Box
-  openDialog(resetPoints: TemplateRef<any>): void {
-    this.dialogRef = this.dialog.open(resetPoints, {
-      autoFocus: false
     })
   }
 

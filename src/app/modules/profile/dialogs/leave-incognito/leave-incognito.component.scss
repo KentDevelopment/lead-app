@@ -1,0 +1,21 @@
+.mat-dialog-title,
+.mat-dialog-content {
+  text-align: center;
+}
+
+.mat-dialog-title {
+  color: var(--primary);
+}
+
+.mat-dialog-actions {
+  button {
+    width: 48%;
+    margin: 1%;
+  }
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

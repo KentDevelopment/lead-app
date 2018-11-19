@@ -3,7 +3,7 @@
   "version": "1.3.5",
   "license": "Apache-2.0",
   "author": "Renan Sigolo <renan.sigolo@gmail.com>",
-  "private": true,
+  "private": false,
   "scripts": {
     "build:prod": "ng build --prod",
     "build": "ng build",
