@@ -39,12 +39,12 @@ small {
 }
 
 .button-column {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   button {
-    min-width: 60%;
     margin: 0.6em;
+    min-width: 60%;
   }
 }

@@ -10,8 +10,8 @@ p {
 
 .img-profile-list {
   border-radius: 50%;
-  width: 35px;
   height: 35px;
+  width: 35px;
 }
 
 .card {
@@ -70,14 +70,13 @@ cdk-virtual-scroll-viewport {
   li {
     height: 100px;
   }
-
 }
 
 .log-item {
   background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 6px;
   margin: 4% 2%;
   padding: 1.8rem;
-  border-radius: 6px;
 
   p:first-child {
     margin-bottom: 0.5em;

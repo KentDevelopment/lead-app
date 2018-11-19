@@ -16,8 +16,8 @@ import { Environment } from '@environments/environment'
 
 import { AuthService } from '@core/authentication/auth.service'
 import { IUser } from '@core/interfaces/user'
-import { ResetPointsComponent } from './dialogs/reset-points/reset-points.component'
 import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
+import { ResetPointsComponent } from './dialogs/reset-points/reset-points.component'
 
 @Component({
   selector: 'app-profile',

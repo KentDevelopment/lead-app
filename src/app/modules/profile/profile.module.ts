@@ -5,12 +5,12 @@ import { ProfileComponent } from './profile.component'
 import { RouterModule, Routes } from '@angular/router'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { MatDialogModule } from '@angular/material/dialog'
 import { MatButtonModule } from '@angular/material/button'
+import { MatDialogModule } from '@angular/material/dialog'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
-import { ResetPointsComponent } from './dialogs/reset-points/reset-points.component'
 import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
+import { ResetPointsComponent } from './dialogs/reset-points/reset-points.component'
 
 const routes: Routes = [
   { path: '', component: ProfileComponent },

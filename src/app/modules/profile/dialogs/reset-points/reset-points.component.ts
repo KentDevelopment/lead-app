@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { MatDialog, MatSnackBar, MatDialogRef } from '@angular/material'
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material'
 
 import { AuthService } from '@core/authentication/auth.service'
 import { FirestoreService } from '@core/firestore.service'
@@ -10,8 +10,8 @@ import {
   AngularFirestore,
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
-import { IUser } from '@core/interfaces/user'
 import { ILogText } from '@core/interfaces/log'
+import { IUser } from '@core/interfaces/user'
 
 @Component({
   selector: 'app-reset-points',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 
-import { AuthService } from '@core/authentication/auth.service'
 import { MatDialogRef } from '@angular/material'
+import { AuthService } from '@core/authentication/auth.service'
 
 import { IUser } from '@core/interfaces/user'
 
@@ -12,7 +12,7 @@ import { IUser } from '@core/interfaces/user'
 })
 export class LeaveIncognitoComponent {
   user: IUser
-  isLoading: Boolean = false
+  isLoading = false
 
   constructor(
     public auth: AuthService,
