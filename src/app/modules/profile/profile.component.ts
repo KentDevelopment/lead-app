@@ -14,8 +14,8 @@ import { finalize } from 'rxjs/operators'
 
 import { Environment } from '@environments/environment'
 
-import { AuthService } from '@core/authentication/auth.service'
 import { IUser } from '@core/interfaces/user'
+import { AuthService } from '@services/auth.service'
 import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
 import { ResetPointsComponent } from './dialogs/reset-points/reset-points.component'
 

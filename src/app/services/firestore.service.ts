@@ -5,9 +5,9 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore'
 
-import { AuthService } from '@core/authentication/auth.service'
 import { ILog, ILogText } from '@core/interfaces/log'
 import { IUser } from '@core/interfaces/user'
+import { AuthService } from '@services/auth.service'
 import { Observable } from 'rxjs'
 
 import { Environment } from '@environments/environment'

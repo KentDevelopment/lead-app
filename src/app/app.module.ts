@@ -12,10 +12,10 @@ import { AngularFireStorageModule } from '@angular/fire/storage'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 
-import { AuthService } from '@core/authentication/auth.service'
-import { CoreModule } from '@core/core.module'
-import { FirestoreService } from '@core/firestore.service'
-import { FooterComponent } from '@core/footer/footer.component'
+import { AuthService } from '@services/auth.service'
+import { FirestoreService } from '@services/firestore.service'
+
+import { FooterComponent } from '@shared/footer/footer.component'
 
 import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
 import { LoginComponent } from '@modules/login/login.component'
@@ -43,7 +43,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    CoreModule,
     FormsModule,
     HttpClientModule,
     MatDialogModule,

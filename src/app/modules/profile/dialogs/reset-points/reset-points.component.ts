@@ -1,8 +1,8 @@
 import { Component } from '@angular/core'
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material'
 
-import { AuthService } from '@core/authentication/auth.service'
-import { FirestoreService } from '@core/firestore.service'
+import { AuthService } from '@services/auth.service'
+import { FirestoreService } from '@services/firestore.service'
 
 import { take } from 'rxjs/operators'
 

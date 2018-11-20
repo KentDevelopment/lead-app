@@ -10,7 +10,14 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "styleext": "scss",
+          "spec": false
+        },
+        "@schematics/angular:service": {
+          "spec": false
+        },
+        "@schematics/angular:module": {
+          "spec": false
         }
       },
       "architect": {
@@ -78,7 +85,7 @@
     }
   },
   "cli": {
-    "packageManager": "yarn"
+    "packageManager": "npm"
   },
   "defaultProject": "kent"
 }

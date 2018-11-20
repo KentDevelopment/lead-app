@@ -42,6 +42,7 @@
       <li
         *cdkVirtualFor="let user of fss.users$; let i = index"
         class="animated fadeInUp list-group-item list-group-item-action"
+        [ngClass]="{ 'highlight-user': user.uid === authUser.uid }"
       >
         <div class="d-flex">
           <div class="p-2 d-flex align-items-center">{{ i + 1 }}</div>

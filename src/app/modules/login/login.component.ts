@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 
-import { AuthService } from '@core/authentication/auth.service'
+import { AuthService } from '@services/auth.service'
 
 @Component({
   selector: 'app-login',

@@ -1,8 +1,8 @@
 import { Component, TemplateRef } from '@angular/core'
 import { MatDialog } from '@angular/material'
 
-import { AuthService } from '@core/authentication/auth.service'
-import { FirestoreService } from '@core/firestore.service'
+import { AuthService } from '@services/auth.service'
+import { FirestoreService } from '@services/firestore.service'
 
 @Component({
   selector: 'app-leaderboard',

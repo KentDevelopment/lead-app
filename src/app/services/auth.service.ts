@@ -9,8 +9,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 import { Router } from '@angular/router'
 import { IUser } from '@core/interfaces/user'
 import { Environment } from '@environments/environment'
-import { firebase } from '@firebase/app'
-import '@firebase/auth'
+import { auth } from 'firebase/app'
 import { Observable, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 
@@ -48,11 +47,11 @@ export class AuthService {
 
   // Google Auth
   async googleLogin(domain) {
-    const provider = new firebase.auth.GoogleAuthProvider()
-    provider.setCustomParameters({
-      hd: domain
-    })
     try {
+      const provider = new auth.GoogleAuthProvider()
+      provider.setCustomParameters({
+        hd: domain
+      })
       return await this.oAuthLogin(provider)
     } catch (error) {
       return error
@@ -61,38 +60,29 @@ export class AuthService {
 
   private async oAuthLogin(provider) {
     try {
-      const credential = await this.afAuth.auth.signInWithPopup(provider)
+      let credential
+      credential = await this.afAuth.auth.signInWithPopup(provider)
       const userDomain = credential.user.email.slice(
         credential.user.email.indexOf('@')
       )
       if (credential.additionalUserInfo.isNewUser === true) {
         if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
-          this.setUserDoc(credential.user).catch(error => {
-            this.router.navigate(['/login'])
-            return error
-          })
+          this.setUserDoc(credential.user)
         } else {
-          this.router.navigate(['/login'])
-          this.showError(
-            `It looks like ${credential.user.email} is not valid`,
-            `Please try to login again`
+          throw new Error(
+            'Please use an email with @student.kent.edu.au or @kent.edu.au'
           )
         }
       } else {
-        this.router
-          .navigate(['/leaderboard'])
-          .then(() => {
-            return this.showInfo(
-              'It may take up to 3 business days for your points to be applied'
-            )
-          })
-          .catch(error_1 => {
-            this.router.navigate(['/login'])
-            return error_1
-          })
+        this.router.navigate(['/leaderboard']).then(() => {
+          this.showInfo(
+            'It may take up to 3 business days for your points to be applied'
+          )
+        })
       }
-    } catch (error_2) {
-      this.showError('Something went wrong...', error_2.message)
+    } catch (err) {
+      this.router.navigate(['/login'])
+      this.showError('Something went wrong...', err.message)
     }
   }
 

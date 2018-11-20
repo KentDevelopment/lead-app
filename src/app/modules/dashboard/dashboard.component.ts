@@ -13,12 +13,12 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
 
-import { AuthService } from '@core/authentication/auth.service'
+import { AuthService } from '@services/auth.service'
 import { take } from 'rxjs/operators'
 
-import { FirestoreService } from '@core/firestore.service'
 import { ILog } from '@core/interfaces/log'
 import { IUser } from '@core/interfaces/user'
+import { FirestoreService } from '@services/firestore.service'
 
 @Component({
   selector: 'app-dashboard',
