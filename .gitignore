@@ -41,3 +41,6 @@ Thumbs.db
 # Firebase Functions
 functions
 .firebase
+
+# Cypress
+/cypress/videos

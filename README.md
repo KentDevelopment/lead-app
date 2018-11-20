@@ -44,7 +44,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [Travis CI](https://travis-ci.org/) - Easily sync your GitHub projects with Travis CI and you'll be testing your code in minutes.
 - [NPM](https://www.npmjs.com/) - Build amazing things.
 - [Cypress](https://www.cypress.io/) - Fast, easy and reliable testing for anything that runs in a browser.
-- [Chance](http://chancejs.com/) - Random generator helper for JavaScript.
 
 ## Authors
 
