@@ -18,6 +18,9 @@
         },
         "@schematics/angular:module": {
           "spec": false
+        },
+        "@schematics/angular:guard": {
+          "spec": false
         }
       },
       "architect": {

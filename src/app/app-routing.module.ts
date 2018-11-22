@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
+import { AdminGuard } from '@core/guards/admin.guard'
 import { AuthGuard } from '@core/guards/auth.guard'
 
 import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
@@ -28,7 +29,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: '@modules/dashboard/dashboard.module#DashboardModule',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
     data: { animation: 'admin' }
   }
 ]
