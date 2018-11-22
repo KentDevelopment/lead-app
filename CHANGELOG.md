@@ -1,3 +1,10 @@
+# 1.3.8 (2018-11-22)
+
+## Features
+
+- Router Guard added to the Admin Dashboard
+- New Text for the Logs Notifications
+
 # 1.3.7 (2018-11-22)
 
 ## Features

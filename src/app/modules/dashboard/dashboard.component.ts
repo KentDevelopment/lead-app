@@ -109,12 +109,12 @@ export class DashboardComponent {
     return userRef.update(data)
   }
 
-  private async logData(points: number, addedPoints: number, ref: any) {
+  private async logData(points: number, pointsAdded: number, ref: any) {
     return this.auth.user$.subscribe(admin => {
       const dataObj: ILog = {
         log: `${ref.displayName} now has ${points} pts`,
         adminName: admin.displayName,
-        pointsAdded: addedPoints,
+        pointsAdded: pointsAdded,
         userName: ref.displayName,
         date: new Date().getTime()
       }
@@ -122,12 +122,29 @@ export class DashboardComponent {
       this.fss
         .addLog(dataObj)
         .then(() => {
-          this.showSuccess(`Points successfully added`)
+          this.showSuccess(
+            `You've ${this.logText(pointsAdded, ref.displayName)}`
+          )
         })
         .catch(err => {
           this.showError(`Ops, it looks like something has gone wrong`, err)
         })
     })
+  }
+
+  logText(pointsAdded: number, displayName: string) {
+    const isPositive = pointsAdded > 0 ? true : false
+    return isPositive
+      ? `added ${pointsAdded} point${this.checkPlural(
+          pointsAdded
+        )} to ${displayName}`
+      : `removed ${pointsAdded} point${this.checkPlural(
+          pointsAdded
+        )} from ${displayName}`
+  }
+
+  checkPlural(pointsAdded: number) {
+    return pointsAdded === -1 || pointsAdded === 1 ? '' : 's'
   }
 
   // Alerts

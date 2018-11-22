@@ -126,9 +126,8 @@
       class="log-item"
     >
       <p *ngIf="log.pointsAdded">
-        <strong>{{ log.adminName | titlecase }}</strong> added
-        <strong>{{ log.pointsAdded }} points</strong> to
-        <strong>{{ log.userName | titlecase }}</strong>
+        <strong>{{ log.adminName | titlecase }}</strong> <br />
+        {{ logText(log.pointsAdded, log.userName) }}
       </p>
       <p *ngIf="!log.pointsAdded">{{ log.log }}</p>
       <p class="text-right">{{ log.date | date: 'medium' }}</p>
