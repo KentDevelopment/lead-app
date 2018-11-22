@@ -1,3 +1,13 @@
+# 1.3.7 (2018-11-22)
+
+## Features
+
+- End to end testing created for the login page
+
+## General Improvements
+
+- Better files structure
+
 # 1.3.6 (2018-11-20)
 
 ## Features
