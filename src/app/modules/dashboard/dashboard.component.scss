@@ -4,7 +4,11 @@ p {
 
 .primary-header {
   i {
-    padding: 13px;
+    padding: 8px 0 8px 2px;
+  }
+
+  h2 {
+    text-align: center;
   }
 }
 
@@ -65,7 +69,7 @@ cdk-virtual-scroll-viewport {
 }
 
 .scroll-points {
-  height: 71vh;
+  height: 75vh;
 
   li {
     height: 100px;

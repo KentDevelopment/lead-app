@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms'
-import { MatDialog, MatSnackBar } from '@angular/material'
+import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material'
 
 import {
   AngularFirestore,
@@ -29,6 +29,7 @@ export class DashboardComponent {
   addPointsForm: FormGroup
   dialogRef: any
   myTime: any = new Date()
+  snackBarConfig: MatSnackBarConfig
 
   constructor(
     public auth: AuthService,
@@ -42,6 +43,12 @@ export class DashboardComponent {
       uid: this.fb.array([]),
       points: [Number[''], Validators.required]
     })
+
+    this.snackBarConfig = {
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      direction: 'rtl'
+    }
   }
 
   // Add Points to one user onChange - Update the user value at the DB
@@ -114,7 +121,7 @@ export class DashboardComponent {
       const dataObj: ILog = {
         log: `${ref.displayName} now has ${points} pts`,
         adminName: admin.displayName,
-        pointsAdded: pointsAdded,
+        pointsAdded,
         userName: ref.displayName,
         date: new Date().getTime()
       }
@@ -150,17 +157,13 @@ export class DashboardComponent {
   // Alerts
   showSuccess(message, action?: string) {
     this.snackBar.open(message, action, {
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
+      ...this.snackBarConfig,
       duration: 3000
     })
   }
 
   showWarning(message, action?: string) {
-    this.snackBar.open(`${message}`, action, {
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    })
+    this.snackBar.open(`${message}`, action, this.snackBarConfig)
   }
 
   showError(title, message?, action?: string) {
@@ -169,8 +172,7 @@ export class DashboardComponent {
        ${message}`,
       action,
       {
-        horizontalPosition: 'right',
-        verticalPosition: 'top',
+        ...this.snackBarConfig,
         duration: 4000
       }
     )

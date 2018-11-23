@@ -30,6 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 - [Angular](https://angular.io/) - The framework used
 - [Angular Material](https://material.angular.io/) - Material Design components for Angular
+- [Angular Flex Layout](https://github.com/angular/flex-layout#readme) - Material Design components for Angular
 - [Bootstrap](https://getbootstrap.com/) - Framework for building responsive sites
 - [Firebase](https://firebase.google.com/) - Used as host, storage and fireStore as a DB
 

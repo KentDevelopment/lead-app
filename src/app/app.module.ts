@@ -28,6 +28,8 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 
+import { FlexLayoutModule } from '@angular/flex-layout'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     Ng2ImgToolsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    ScrollingModule
+    ScrollingModule,
+    FlexLayoutModule
   ],
   providers: [
     AuthService,

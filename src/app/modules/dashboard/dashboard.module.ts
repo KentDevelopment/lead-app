@@ -10,6 +10,8 @@ import { MatTabsModule } from '@angular/material/tabs'
 
 import { RouterModule, Routes } from '@angular/router'
 
+import { FlexLayoutModule } from '@angular/flex-layout'
+
 const routes: Routes = [{ path: '', component: DashboardComponent }]
 
 @NgModule({
@@ -21,7 +23,8 @@ const routes: Routes = [{ path: '', component: DashboardComponent }]
     MatTabsModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
   ]
 })
 export class DashboardModule {}

@@ -1,9 +1,14 @@
-# 1.3.8 (2018-11-22)
+# 1.3.8 (2018-11-23)
 
 ## Features
 
 - Router Guard added to the Admin Dashboard
 - New Text for the Logs Notifications
+
+## General Improvements
+
+- Angular Flex Layout added to the project
+- Dashboard Header adjusted
 
 # 1.3.7 (2018-11-22)
 
