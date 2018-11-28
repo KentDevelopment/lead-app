@@ -19,8 +19,12 @@
     transform: translate(-50%, -50%);
   }
 
-  i {
-    padding: 13px;
+  div {
+    position: relative;
+
+    i {
+      padding: 13px;
+    }
   }
 }
 

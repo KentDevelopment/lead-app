@@ -12,6 +12,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
 import { ResetPointsComponent } from './dialogs/reset-points/reset-points.component'
 
+import { SharedModule } from '@shared/shared.module'
+
 const routes: Routes = [
   { path: '', component: ProfileComponent },
   { path: 'reset-points', component: ResetPointsComponent },
@@ -31,7 +33,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    SharedModule
   ]
 })
 export class ProfileModule {}

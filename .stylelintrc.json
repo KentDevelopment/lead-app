@@ -1,6 +1,7 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
   "rules": {
-    "selector-type-no-unknown": null
+    "selector-type-no-unknown": null,
+    "max-nesting-depth": null
   }
 }

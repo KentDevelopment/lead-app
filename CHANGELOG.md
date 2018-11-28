@@ -1,5 +1,9 @@
 # 1.3.9 (2018-11-28)
 
+## Features
+
+- Banner for the Awards Ceremony Added
+
 ## General Improvements
 
 - Notifications refactored

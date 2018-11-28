@@ -15,8 +15,6 @@ import { AppComponent } from './app.component'
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 
-import { FooterComponent } from '@shared/footer/footer.component'
-
 import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
 import { LoginComponent } from '@modules/login/login.component'
 
@@ -29,14 +27,10 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 import { FlexLayoutModule } from '@angular/flex-layout'
+import { SharedModule } from '@shared/shared.module'
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-    LeaderboardComponent,
-    LoginComponent
-  ],
+  declarations: [AppComponent, LeaderboardComponent, LoginComponent],
   imports: [
     AngularFireAuthModule,
     AngularFireModule,
@@ -53,7 +47,8 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     ReactiveFormsModule,
     MatButtonModule,
     ScrollingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SharedModule
   ],
   providers: [
     AuthService,
