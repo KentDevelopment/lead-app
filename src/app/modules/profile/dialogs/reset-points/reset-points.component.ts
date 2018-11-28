@@ -1,8 +1,9 @@
 import { Component } from '@angular/core'
-import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material'
+import { MatDialog, MatDialogRef } from '@angular/material'
 
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
+import { ToastService } from '@services/toast.service'
 
 import { take } from 'rxjs/operators'
 
@@ -24,7 +25,7 @@ export class ResetPointsComponent {
   constructor(
     public dialogRef: MatDialogRef<ResetPointsComponent>,
     public auth: AuthService,
-    public snackBar: MatSnackBar,
+    public toast: ToastService,
     public dialog: MatDialog,
     public fss: FirestoreService,
     private afs: AngularFirestore
@@ -36,7 +37,7 @@ export class ResetPointsComponent {
     const myTimeParsed = Date.parse(this.myTime)
 
     if (myTimeParsed <= dateToResetParsed) {
-      this.showWarning(`Please come back after ${dateToReset}`, 'Dismiss')
+      this.toast.showWarning(`Please come back after ${dateToReset}`)
     } else {
       this.fss.localUsers$.pipe(take(1)).subscribe(users => {
         for (const user of users) {
@@ -48,8 +49,8 @@ export class ResetPointsComponent {
             points: 0
           }
 
-          userRef.update(data).catch(err => {
-            this.showError(`Ops, it looks like something has gone wrong`, err)
+          userRef.update(data).catch(error => {
+            this.toast.showError(error)
           })
         }
       })
@@ -63,41 +64,12 @@ export class ResetPointsComponent {
         this.fss.addLogText(dataObj)
       })
 
-      this.showSuccess(`All points have been successfully deleted`)
+      this.toast.showSuccess(`All points have been successfully deleted`)
     }
     this.dialogRef.close()
   }
 
   onNoClick(): void {
     this.dialogRef.close()
-  }
-
-  // Alerts
-  showSuccess(message, action?: string) {
-    this.snackBar.open(message, action, {
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      duration: 3000
-    })
-  }
-
-  showWarning(message, action?: string) {
-    this.snackBar.open(`${message}`, action, {
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    })
-  }
-
-  showError(title, message?, action?: string) {
-    this.snackBar.open(
-      `${title}
-       ${message}`,
-      action,
-      {
-        horizontalPosition: 'right',
-        verticalPosition: 'top',
-        duration: 4000
-      }
-    )
   }
 }

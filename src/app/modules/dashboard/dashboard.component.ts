@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms'
-import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material'
+import { MatDialog } from '@angular/material'
 
 import {
   AngularFirestore,
@@ -18,7 +18,9 @@ import { take } from 'rxjs/operators'
 
 import { ILog } from '@core/interfaces/log'
 import { IUser } from '@core/interfaces/user'
+
 import { FirestoreService } from '@services/firestore.service'
+import { ToastService } from '@services/toast.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -29,12 +31,11 @@ export class DashboardComponent {
   addPointsForm: FormGroup
   dialogRef: any
   myTime: any = new Date()
-  snackBarConfig: MatSnackBarConfig
 
   constructor(
     public auth: AuthService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar,
+    public toast: ToastService,
     public fss: FirestoreService,
     private afs: AngularFirestore,
     private fb: FormBuilder
@@ -43,12 +44,6 @@ export class DashboardComponent {
       uid: this.fb.array([]),
       points: [Number[''], Validators.required]
     })
-
-    this.snackBarConfig = {
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      direction: 'rtl'
-    }
   }
 
   // Add Points to one user onChange - Update the user value at the DB
@@ -129,12 +124,12 @@ export class DashboardComponent {
       this.fss
         .addLog(dataObj)
         .then(() => {
-          this.showSuccess(
+          this.toast.showSuccess(
             `You've ${this.logText(pointsAdded, ref.displayName)}`
           )
         })
-        .catch(err => {
-          this.showError(`Ops, it looks like something has gone wrong`, err)
+        .catch(error => {
+          this.toast.showError(error)
         })
     })
   }
@@ -152,29 +147,5 @@ export class DashboardComponent {
 
   checkPlural(pointsAdded: number) {
     return pointsAdded === -1 || pointsAdded === 1 ? '' : 's'
-  }
-
-  // Alerts
-  showSuccess(message, action?: string) {
-    this.snackBar.open(message, action, {
-      ...this.snackBarConfig,
-      duration: 3000
-    })
-  }
-
-  showWarning(message, action?: string) {
-    this.snackBar.open(`${message}`, action, this.snackBarConfig)
-  }
-
-  showError(title, message?, action?: string) {
-    this.snackBar.open(
-      `${title}
-       ${message}`,
-      action,
-      {
-        ...this.snackBarConfig,
-        duration: 4000
-      }
-    )
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { MatDialog, MatSnackBar } from '@angular/material'
+import { MatDialog } from '@angular/material'
 
 import {
   AngularFirestore,
@@ -35,7 +35,6 @@ export class ProfileComponent {
   constructor(
     public auth: AuthService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar,
     private afs: AngularFirestore,
     private fb: FormBuilder,
     private ng2ImgToolsService: Ng2ImgToolsService,
@@ -111,18 +110,5 @@ export class ProfileComponent {
     this.dialogRef = this.dialog.open(ResetPointsComponent, {
       autoFocus: false
     })
-  }
-
-  showError(title, message?, action?: string) {
-    this.snackBar.open(
-      `${title}
-  			${message}`,
-      action,
-      {
-        horizontalPosition: 'right',
-        verticalPosition: 'top',
-        duration: 4000
-      }
-    )
   }
 }

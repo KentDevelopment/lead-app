@@ -5,7 +5,6 @@ import {
   AngularFirestore,
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material'
 import { Router } from '@angular/router'
 import { IUser } from '@core/interfaces/user'
 import { Environment } from '@environments/environment'
@@ -13,24 +12,15 @@ import { auth } from 'firebase/app'
 import { Observable, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 
+import { ToastService } from '@services/toast.service'
+
 @Injectable()
 export class AuthService {
   user$: Observable<IUser>
 
-  snackBarOptions: MatSnackBarConfig = {
-    horizontalPosition: 'right',
-    verticalPosition: 'top',
-    duration: 5000
-  }
-
-  snackBarErrorOptions: MatSnackBarConfig = {
-    horizontalPosition: 'right',
-    verticalPosition: 'top'
-  }
-
   constructor(
     public http: HttpClient,
-    public snackBar: MatSnackBar,
+    public toast: ToastService,
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router
@@ -75,14 +65,14 @@ export class AuthService {
         }
       } else {
         this.router.navigate(['/leaderboard']).then(() => {
-          this.showInfo(
+          this.toast.showInfo(
             'It may take up to 3 business days for your points to be applied'
           )
         })
       }
-    } catch (err) {
+    } catch (error) {
       this.router.navigate(['/login'])
-      this.showError('Something went wrong...', err.message)
+      this.toast.showError(error.message)
     }
   }
 
@@ -125,12 +115,12 @@ export class AuthService {
         this.router.navigate(['/leaderboard'])
       })
       .then(() => {
-        return this.showInfo(
+        return this.toast.showInfo(
           'It may take up to 3 business days for your points to be applied'
         )
       })
       .catch(error => {
-        this.showError('Something went wrong...', error.message)
+        this.toast.showError(error.message)
       })
   }
 
@@ -161,7 +151,7 @@ export class AuthService {
 
     try {
       await userRef.set(data, { merge: true })
-      this.showInfo('Incognito mode has been disabled')
+      this.toast.showInfo('Incognito mode has been disabled')
       this.router.navigate(['/leaderboard'])
     } catch (error) {
       return error
@@ -171,19 +161,5 @@ export class AuthService {
   async signOut() {
     await this.afAuth.auth.signOut()
     return this.router.navigate(['/'])
-  }
-
-  // Alerts
-  showInfo(message, action?: string) {
-    this.snackBar.open(`${message}`, action, this.snackBarOptions)
-  }
-
-  showError(title, message?) {
-    this.snackBar.open(
-      `${title}
-      ${message}`,
-      'Dismiss',
-      this.snackBarErrorOptions
-    )
   }
 }

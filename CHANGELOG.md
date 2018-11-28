@@ -1,3 +1,9 @@
+# 1.3.9 (2018-11-28)
+
+## General Improvements
+
+- Notifications refactored
+
 # 1.3.8 (2018-11-23)
 
 ## Features
