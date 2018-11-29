@@ -7,6 +7,10 @@ $lead-app-primary: mat-palette($mat-purple, 800);
 $lead-app-accent: mat-palette($mat-light-blue, 800);
 $lead-app-warn: mat-palette($mat-deep-orange, 700);
 
-$lead-app-theme: mat-light-theme($lead-app-primary, $lead-app-accent, $lead-app-warn);
+$lead-app-theme: mat-light-theme(
+	$lead-app-primary,
+	$lead-app-accent,
+	$lead-app-warn
+);
 
 @include angular-material-theme($lead-app-theme);

@@ -1,54 +1,58 @@
 .secondary-header {
-  background-image: radial-gradient(at 50% 70%, #f1592a 12%, var(--primary) 100%);
-  border: 1px solid #979797;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-  color: var(--light);
-  z-index: 999;
+	background-image: radial-gradient(
+		at 50% 70%,
+		#f1592a 12%,
+		var(--primary) 100%
+	);
+	border: 1px solid #979797;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+	color: var(--light);
+	z-index: 999;
 
-  .img-profile {
-    border-radius: 50%;
-    height: 120px;
-    width: 120px;
-  }
+	.img-profile {
+		border-radius: 50%;
+		height: 120px;
+		width: 120px;
+	}
 
-  .edit-img {
-    left: 50%;
-    opacity: 0.9;
-    position: absolute;
-    top: 68%;
-    transform: translate(-50%, -50%);
-  }
+	.edit-img {
+		left: 50%;
+		opacity: 0.9;
+		position: absolute;
+		top: 68%;
+		transform: translate(-50%, -50%);
+	}
 
-  div {
-    position: relative;
+	div {
+		position: relative;
 
-    i {
-      padding: 13px;
-    }
-  }
+		i {
+			padding: 13px;
+		}
+	}
 }
 
 small {
-  padding: 0.5vh;
+	padding: 0.5vh;
 }
 
 .modal-incognito {
-  button {
-    width: 30%;
-  }
+	button {
+		width: 30%;
+	}
 
-  .material-icons {
-    font-size: 6rem;
-  }
+	.material-icons {
+		font-size: 6rem;
+	}
 }
 
 .button-column {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
 
-  button {
-    margin: 0.6em;
-    min-width: 60%;
-  }
+	button {
+		margin: 0.6em;
+		min-width: 60%;
+	}
 }

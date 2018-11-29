@@ -1,120 +1,121 @@
 <!-- User Profile -->
 <div *ngIf="(auth.user$ | async) as user">
-  <app-awards-banner></app-awards-banner>
+	<app-awards-banner></app-awards-banner>
 
-  <!-- User Status -->
-  <div class="sticky-top secondary-header pb-3">
-    <div class="fixed-top">
-      <i class="material-icons float-left" routerLink="/leaderboard"
-        >keyboard_arrow_left</i
-      >
-      <i class="material-icons float-right" (click)="auth.signOut()"
-        >power_settings_new</i
-      >
-    </div>
+	<!-- User Status -->
+	<div class="sticky-top secondary-header pb-3">
+		<div class="fixed-top">
+			<i class="material-icons float-left" routerLink="/leaderboard">
+				keyboard_arrow_left
+			</i>
+			<i class="material-icons float-right" (click)="auth.signOut()">
+				power_settings_new
+			</i>
+		</div>
 
-    <h3 class="text-center pt-4 text-truncate">
-      Hello <br />
-      {{ user.displayName | titlecase }}
-    </h3>
+		<h3 class="text-center pt-4 text-truncate">
+			Hello
+			<br />
+			{{ user.displayName | titlecase }}
+		</h3>
 
-    <div class="d-flex justify-content-around">
-      <div class="d-flex align-items-center" routerLink="/profile">
-        <img
-          id="upload"
-          class="img-profile"
-          src="{{ user.photoURL }}"
-          alt="User Profile Image"
-        />
-        <div class="edit-img" *ngIf="!user.incognitoMode">
-          <img
-            class="img-profile"
-            src="assets/profile/edit.svg"
-            alt="Edit"
-            (click)="file.click()"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
+		<div class="d-flex justify-content-around">
+			<div class="d-flex align-items-center" routerLink="/profile">
+				<img
+					id="upload"
+					class="img-profile"
+					src="{{ user.photoURL }}"
+					alt="User Profile Image"
+				/>
+				<div class="edit-img" *ngIf="!user.incognitoMode">
+					<img
+						class="img-profile"
+						src="assets/profile/edit.svg"
+						alt="Edit"
+						(click)="file.click()"
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <div class="text-center mt-2" *ngIf="user.incognitoMode">
-    Only you can see your profile picture!
-  </div>
+	<div class="text-center mt-2" *ngIf="user.incognitoMode">
+		Only you can see your profile picture!
+	</div>
 
-  <div class="card-body">
-    <div class="form-group fileContainer" hidden>
-      <input
-        id="file"
-        type="file"
-        (change)="uploadFile($event)"
-        accept="image/*"
-        #file
-      />
-    </div>
-    <div
-      class="form-group"
-      class="alert alert-light border-primary text-center"
-      role="alert"
-      *ngIf="uploadPercent"
-    >
-      <div class="progress">
-        <div
-          class="progress-bar w-{{ uploadPercent | async }}"
-          role="progressbar"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
-      <div>Progress: {{ uploadPercent | async }}%</div>
-    </div>
-    <form [formGroup]="userForm" novalidate>
-      <div class="form-group mt-3">
-        <input
-          type="text"
-          class="form-control"
-          aria-describedby="displayName"
-          placeholder="{{user.displayName | titlecase}}"
-          formControlName="displayName"
-        />
-      </div>
-      <div class="form-group mt-3">
-        <input
-          type="email"
-          class="form-control"
-          aria-describedby="email"
-          placeholder="{{user.email}}"
-          formControlName="email"
-        />
-      </div>
-    </form>
-  </div>
+	<div class="card-body">
+		<div class="form-group fileContainer" hidden>
+			<input
+				id="file"
+				type="file"
+				(change)="uploadFile($event)"
+				accept="image/*"
+				#file
+			/>
+		</div>
+		<div
+			class="form-group"
+			class="alert alert-light border-primary text-center"
+			role="alert"
+			*ngIf="uploadPercent"
+		>
+			<div class="progress">
+				<div
+					class="progress-bar w-{{ uploadPercent | async }}"
+					role="progressbar"
+					aria-valuemin="0"
+					aria-valuemax="100"
+				></div>
+			</div>
+			<div>Progress: {{ uploadPercent | async }}%</div>
+		</div>
+		<form [formGroup]="userForm" novalidate>
+			<div class="form-group mt-3">
+				<input
+					type="text"
+					class="form-control"
+					aria-describedby="displayName"
+					placeholder="{{user.displayName | titlecase}}"
+					formControlName="displayName"
+				/>
+			</div>
+			<div class="form-group mt-3">
+				<input
+					type="email"
+					class="form-control"
+					aria-describedby="email"
+					placeholder="{{user.email}}"
+					formControlName="email"
+				/>
+			</div>
+		</form>
+	</div>
 
-  <div class="button-column">
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      *ngIf="user.incognitoMode"
-      (click)="openIncognitoDialog()"
-    >
-      Leave Incognito!
-    </button>
+	<div class="button-column">
+		<button
+			mat-raised-button
+			color="primary"
+			type="submit"
+			*ngIf="user.incognitoMode"
+			(click)="openIncognitoDialog()"
+		>
+			Leave Incognito!
+		</button>
 
-    <button
-      mat-stroked-button
-      color="primary"
-      type="button"
-      routerLink="/dashboard"
-      *ngIf="user.role === 'admin'"
-    >
-      Go to Admin Dashboard
-    </button>
+		<button
+			mat-stroked-button
+			color="primary"
+			type="button"
+			routerLink="/dashboard"
+			*ngIf="user.role === 'admin'"
+		>
+			Go to Admin Dashboard
+		</button>
 
-    <button mat-stroked-button type="button" (click)="openResetDialog()">
-      Reset All Points
-    </button>
-  </div>
+		<button mat-stroked-button type="button" (click)="openResetDialog()">
+			Reset All Points
+		</button>
+	</div>
 
-  <small class="text-right fixed-bottom">v.{{ version }}</small>
+	<small class="text-right fixed-bottom">v.{{ version }}</small>
 </div>

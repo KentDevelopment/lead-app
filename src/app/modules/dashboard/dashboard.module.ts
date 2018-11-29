@@ -15,16 +15,16 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 const routes: Routes = [{ path: '', component: DashboardComponent }]
 
 @NgModule({
-  declarations: [DashboardComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    ScrollingModule,
-    MatTabsModule,
-    MatDialogModule,
-    FormsModule,
-    ReactiveFormsModule,
-    FlexLayoutModule
-  ]
+	declarations: [DashboardComponent],
+	imports: [
+		CommonModule,
+		RouterModule.forChild(routes),
+		ScrollingModule,
+		MatTabsModule,
+		MatDialogModule,
+		FormsModule,
+		ReactiveFormsModule,
+		FlexLayoutModule
+	]
 })
 export class DashboardModule {}
