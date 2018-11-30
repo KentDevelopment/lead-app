@@ -30,31 +30,31 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { SharedModule } from '@shared/shared.module'
 
 @NgModule({
-	declarations: [AppComponent, LeaderboardComponent, LoginComponent],
-	imports: [
-		AngularFireAuthModule,
-		AngularFireModule,
-		AngularFireStorageModule,
-		AngularFirestoreModule.enablePersistence(),
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		BrowserModule,
-		FormsModule,
-		HttpClientModule,
-		MatDialogModule,
-		MatSnackBarModule,
-		Ng2ImgToolsModule,
-		ReactiveFormsModule,
-		MatButtonModule,
-		ScrollingModule,
-		FlexLayoutModule,
-		SharedModule
-	],
-	providers: [
-		AuthService,
-		FirestoreService,
-		{ provide: FirebaseOptionsToken, useValue: Environment.firebase }
-	],
-	bootstrap: [AppComponent]
+  declarations: [AppComponent, LeaderboardComponent, LoginComponent],
+  imports: [
+    AngularFireAuthModule,
+    AngularFireModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule.enablePersistence(),
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    Ng2ImgToolsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    ScrollingModule,
+    FlexLayoutModule,
+    SharedModule
+  ],
+  providers: [
+    AuthService,
+    FirestoreService,
+    { provide: FirebaseOptionsToken, useValue: Environment.firebase }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

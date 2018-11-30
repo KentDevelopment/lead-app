@@ -1,81 +1,81 @@
 .primary-header {
-	div {
-		position: relative;
+  div {
+    position: relative;
 
-		i {
-			padding: 13px;
-		}
-	}
+    i {
+      padding: 13px;
+    }
+  }
 
-	.alert {
-		margin-bottom: 0;
-	}
+  .alert {
+    margin-bottom: 0;
+  }
 }
 
 .btn-group {
-	border: 1px solid var(--primary);
-	border-radius: 1.25rem;
-	width: 70%;
+  border: 1px solid var(--primary);
+  border-radius: 1.25rem;
+  width: 70%;
 }
 
 .btn {
-	border: 0;
-	border-bottom-right-radius: 0;
-	border-top-right-radius: 0;
-	width: 51%;
+  border: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  width: 51%;
 }
 
 .leaderboard-list {
-	margin-bottom: 7vh;
+  margin-bottom: 7vh;
 }
 
 .img-profile {
-	border-radius: 50%;
-	height: 100px;
-	width: 100px;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
 }
 
 .img-profile-list {
-	border-radius: 50%;
-	height: 60px;
-	width: 60px;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
 }
 
 .highlight-user {
-	background-color: rgba(0, 123, 255, 0.2);
+  background-color: rgba(0, 123, 255, 0.2);
 }
 
 .campus {
-	color: var(--light-gray);
-	font-size: 0.9rem;
+  color: var(--light-gray);
+  font-size: 0.9rem;
 }
 
 // Modal
 mat-dialog-content {
-	h4,
-	li,
-	a {
-		color: var(--primary);
-	}
+  h4,
+  li,
+  a {
+    color: var(--primary);
+  }
 
-	li span {
-		color: var(--dark-gray);
-	}
+  li span {
+    color: var(--dark-gray);
+  }
 
-	.modal-header {
-		margin-bottom: 1em;
-		padding: 0;
-	}
+  .modal-header {
+    margin-bottom: 1em;
+    padding: 0;
+  }
 }
 
 small {
-	color: var(--secondary);
+  color: var(--secondary);
 }
 
 cdk-virtual-scroll-viewport {
-	height: 77vh;
+  height: 77vh;
 
-	li {
-		height: 100px;
-	}
+  li {
+    height: 100px;
+  }
 }
