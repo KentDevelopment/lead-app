@@ -128,6 +128,8 @@
 				<strong>{{ log.adminName | titlecase }}</strong>
 				<br />
 				{{ logText(log.pointsAdded, log.userName) }}
+				<br />
+				{{ log.log }}
 			</p>
 			<p *ngIf="!log.pointsAdded">{{ log.log }}</p>
 			<p class="text-right">{{ log.date | date: 'medium' }}</p>
