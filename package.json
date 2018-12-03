@@ -15,7 +15,6 @@
     "url": "https://github.com/KentDevelopment/lead-app.git"
   },
   "scripts": {
-    "preinstall": "npm run clean",
     "build:prod": "ng build --prod",
     "build": "ng build",
     "clean": "rm -rf node_modules package-lock.json dist",
@@ -29,7 +28,7 @@
     "prettier": "prettier --config ./.prettierrc.json --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md,component.html,yml}\"",
     "serve": "ng serve -o --host=0.0.0.0",
     "start": "ng serve -o",
-    "test": "npm run lint:fix && npm run build:prod"
+    "test": "npm run lint && npm run build:prod"
   },
   "dependencies": {
     "@angular/animations": "^7.1.1",
