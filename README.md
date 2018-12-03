@@ -12,13 +12,38 @@ The LEAD Points app has been develop to foment the student engagement with Kent'
 
 Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `npm run build-prod` flag for a production build.
 
-## Deploying to production
+## Contributing
+
+### Deploying to production
+
+To release a new version do the following steps:
+
+1. Open a `Pull request` to merge your changes to the `development` branch
+
+1. `Merge` the `development` branch to the `master` branch
+
+1. Checkout to the `master` branch
+
+1. On the `master` branch run one of the following commands
+
+```
+npm version patch
+npm version minor
+npm version major
+```
+
+Which will...
+
+- Build a production version of the app
+- Bump the version
+- Create a tag with the new version
+- Push the code with the tags to the repo
+- Start the CI script
+- Checkout, merge and push the new Bump to the development branch
 
 The code it's automatically uploaded to production when committed to the master branch if passed the tests.
 
 Alternatively, you can run `firebase deploy` to update the host [Firebase CLI](https://firebase.google.com/docs/cli/)
-
-To deploy firebase functions to productions run `deploy-functions`
 
 ## Further help
 
