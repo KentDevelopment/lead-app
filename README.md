@@ -14,11 +14,27 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 ## Contributing
 
+### Developing
+
+1. Create a new feature branch `feature_{{ NameOfTheFeature }}` from the `development`
+
+1. Make changes
+
+1. Update the [CHANGELOG](CHANGELOG.md) file
+
+1. Commit those changes
+
+1. Run `npm test`
+
+1. Open a [Pull request](https://github.com/KentDevelopment/lead-app/compare) to merge your changes to the `development` branch
+
+1. Make sure Travis turns green
+
+1. Wait for an admin approval
+
 ### Deploying to production
 
 To release a new version do the following steps:
-
-1. Open a `Pull request` to merge your changes to the `development` branch
 
 1. `Merge` the `development` branch to the `master` branch
 
