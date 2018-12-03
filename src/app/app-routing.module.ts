@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
-import { AdminGuard } from '@core/guards/admin.guard'
-import { AuthGuard } from '@core/guards/auth.guard'
+import { AdminGuard } from '@guards/admin.guard'
+import { AuthGuard } from '@guards/auth.guard'
 
 import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
 import { LoginComponent } from '@modules/login/login.component'

@@ -8,7 +8,6 @@
 
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Points">
-    <!-- Add Points -->
     <div class="card-header text-center border-primary pt-3">
       <h5 class="card-title text-primary">LEAD Points</h5>
       Add LEAD points to one user
@@ -45,7 +44,7 @@
               step="10"
               placeholder="{{ user.points }}"
               value="{{ user.points }}"
-              (change)="update(user, $event)"
+              (change)="update(user, $event.target.value)"
             />
           </div>
         </div>
@@ -54,7 +53,6 @@
   </mat-tab>
 
   <mat-tab label="Bulk">
-    <!-- Bulk Edit -->
     <div class="card-header text-center border-primary pt-3">
       <h5 class="card-title text-primary">LEAD Points in Bulk</h5>
       Add LEAD points to multiple users
@@ -114,7 +112,6 @@
   </mat-tab>
 
   <mat-tab label="Logs">
-    <!-- Logs -->
     <div class="card-header text-center border-primary pt-3">
       <h5 class="card-title text-primary">Logs</h5>
       Check all the changes that have been made

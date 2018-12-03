@@ -1,4 +1,4 @@
-export interface ILog {
+export interface Log {
   adminName: string
   date: number
   log: string
@@ -6,7 +6,7 @@ export interface ILog {
   userName: string
 }
 
-export interface ILogText {
+export interface LogText {
   adminName: string
   date: number
   log: string

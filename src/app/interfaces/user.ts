@@ -1,4 +1,4 @@
-export interface IUser {
+export interface User {
   campus?: string
   displayName?: string
   email?: string
