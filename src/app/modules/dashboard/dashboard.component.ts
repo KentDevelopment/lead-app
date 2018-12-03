@@ -16,8 +16,8 @@ import {
 import { AuthService } from '@services/auth.service'
 import { take } from 'rxjs/operators'
 
-import { ILog } from '@core/interfaces/log'
-import { IUser } from '@core/interfaces/user'
+import { Log } from '@interfaces/log'
+import { User } from '@interfaces/user'
 
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
@@ -29,7 +29,6 @@ import { ToastService } from '@services/toast.service'
 })
 export class DashboardComponent {
   addPointsForm: FormGroup
-  dialogRef: any
   myTime: any = new Date()
 
   constructor(
@@ -47,19 +46,18 @@ export class DashboardComponent {
   }
 
   // Add Points to one user onChange - Update the user value at the DB
-  update(user, event) {
-    const userDoc: AngularFirestoreDocument<any> = this.afs.doc(
+  update(user: User, newPoints: number) {
+    const userDoc: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     )
 
-    const userData = userDoc.valueChanges().pipe(take(1))
+    const userData$ = userDoc.valueChanges().pipe(take(1))
 
-    userData.subscribe(userRef => {
-      const addedPoints: number =
-        Number(event.target.value) - Number(userRef.points)
-      const points: number = Number(event.target.value)
+    userData$.subscribe(userRef => {
+      const addedPoints = newPoints - userRef.points
+      const points = newPoints
 
-      const newData: IUser = {
+      const newData: User = {
         points
       }
 
@@ -82,19 +80,19 @@ export class DashboardComponent {
 
   // Add Points in Bulk
   addPoints(event) {
-    for (const userUid of this.addPointsForm.value.uid) {
-      const userDoc: AngularFirestoreDocument<any> = this.afs.doc(
-        `users/${userUid}`
+    for (const uid of this.addPointsForm.value.uid) {
+      const userDoc: AngularFirestoreDocument<User> = this.afs.doc(
+        `users/${uid}`
       )
 
-      const userData = userDoc.valueChanges().pipe(take(1))
+      const userData$ = userDoc.valueChanges().pipe(take(1))
 
-      userData.subscribe(userRef => {
-        const addedPoints: number = Number(event.points)
-        const totalPoints: number = Number(userRef.points) + addedPoints
+      userData$.subscribe(userRef => {
+        const addedPoints = Number(event.points)
+        const totalPoints = userRef.points + addedPoints
 
-        const newData: IUser = {
-          uid: userUid,
+        const newData: User = {
+          uid,
           points: totalPoints
         }
 
@@ -105,19 +103,19 @@ export class DashboardComponent {
   }
 
   private async updateData(
-    userRef: AngularFirestoreDocument<any>,
-    data: IUser
+    userRef: AngularFirestoreDocument<User>,
+    data: User
   ) {
     return userRef.update(data)
   }
 
-  private async logData(points: number, pointsAdded: number, ref: any) {
+  private async logData(points: number, pointsAdded: number, userRef: User) {
     return this.auth.user$.subscribe(admin => {
-      const dataObj: ILog = {
-        log: `${ref.displayName} now has ${points} pts`,
+      const dataObj: Log = {
+        log: `${userRef.displayName} now has ${points} pts`,
         adminName: admin.displayName,
         pointsAdded,
-        userName: ref.displayName,
+        userName: userRef.displayName,
         date: new Date().getTime()
       }
 
@@ -125,7 +123,7 @@ export class DashboardComponent {
         .addLog(dataObj)
         .then(() => {
           this.toast.showSuccess(
-            `You've ${this.logText(pointsAdded, ref.displayName)}`
+            `You've ${this.logText(pointsAdded, userRef.displayName)}`
           )
         })
         .catch(error => {

@@ -13,13 +13,22 @@
           "styleext": "scss",
           "spec": false
         },
-        "@schematics/angular:service": {
+        "@schematics/angular:class": {
+          "spec": false
+        },
+        "@schematics/angular:directive": {
+          "spec": false
+        },
+        "@schematics/angular:guard": {
           "spec": false
         },
         "@schematics/angular:module": {
           "spec": false
         },
-        "@schematics/angular:guard": {
+        "@schematics/angular:pipe": {
+          "spec": false
+        },
+        "@schematics/angular:service": {
           "spec": false
         }
       },
@@ -80,7 +89,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "tsConfig": ["src/tsconfig.app.json"],
             "exclude": ["**/node_modules/**"]
           }
         }

@@ -11,8 +11,8 @@ import {
   AngularFirestore,
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
-import { ILogText } from '@core/interfaces/log'
-import { IUser } from '@core/interfaces/user'
+import { LogText } from '@interfaces/log'
+import { User } from '@interfaces/user'
 
 @Component({
   selector: 'app-reset-points',
@@ -45,7 +45,7 @@ export class ResetPointsComponent {
             `users/${user.uid}`
           )
 
-          const data: IUser = {
+          const data: User = {
             points: 0
           }
 
@@ -56,7 +56,7 @@ export class ResetPointsComponent {
       })
 
       this.auth.user$.subscribe(admin => {
-        const dataObj: ILogText = {
+        const dataObj: LogText = {
           log: `All points have been successfully deleted at ${this.myTime}`,
           adminName: admin.displayName,
           date: new Date().getTime()

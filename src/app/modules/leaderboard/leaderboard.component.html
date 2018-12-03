@@ -1,4 +1,3 @@
-<!-- User Status -->
 <div
   *ngIf="(auth.user$ | async) as authUser"
   [ngClass]="{ incognitoMode: authUser.incognitoMode }"
@@ -8,9 +7,9 @@
   <div class="sticky-top primary-header pb-3">
     <div class="fixed-top">
       <i class="material-icons float-left" routerLink="/profile">settings</i>
-      <i class="material-icons float-right" (click)="openDialog(aboutLead)"
-        >help</i
-      >
+      <i class="material-icons float-right" (click)="openDialog(aboutLead)">
+        help
+      </i>
     </div>
 
     <h2 class="text-center pt-4">LEAD Points</h2>
@@ -32,13 +31,12 @@
       Only you can see your profile picture!
     </div>
     <div class="text-center mt-2" *ngIf="authUser.points >= 100">
-      Congratulations on achieving 100 points or more! <br />
+      Congratulations on achieving 100 points or more!
+      <br />
       You’re now eligible to receive a LEAD Certificate
     </div>
   </div>
 
-  <!-- TODO:  Separate into a component -->
-  <!-- Users List -->
   <ng-container>
     <cdk-virtual-scroll-viewport itemSize="100">
       <li
@@ -99,9 +97,9 @@
     </div>
     <p>
       Employers are looking for candidates who have done something
-      <i><u>extra</u></i
-      >. LEAD provides you with an opportunity to gain recognition for
-      developing a range of skills outside your course.
+      <i><u>extra</u></i>
+      . LEAD provides you with an opportunity to gain recognition for developing
+      a range of skills outside your course.
     </p>
     <p>
       LEAD gives aspiring leaders an opportunity to build leadership capacity,
@@ -109,34 +107,33 @@
     </p>
     <ul>
       <li>
-        <span
-          >Participate in LEAD Workshops, Activities, Events or Initiatives to
-          gain points</span
-        >
+        <span>
+          Participate in LEAD Workshops, Activities, Events or Initiatives to
+          gain points
+        </span>
       </li>
       <li>
-        <span
-          >Students/Alumni who accumulate 100 points or more over the year will
+        <span>
+          Students/Alumni who accumulate 100 points or more over the year will
           receive a Kent LEAD Program certificate and transcript of achievements
-          for their portfolio’s</span
-        >
+          for their portfolio’s
+        </span>
       </li>
       <li>
-        <span
-          >Gain the most points this year and receive the LEAD Ambassador of the
+        <span>
+          Gain the most points this year and receive the LEAD Ambassador of the
           Year Award. Recipient receives a trophy and is nominated by Kent to
-          win the NSW or VIC International Student of the Year Award
-          competition</span
-        >
+          win the NSW or VIC International Student of the Year Award competition
+        </span>
       </li>
     </ul>
 
     <h4 mat-dialog-title>Register for Events:</h4>
     <p>
       Go to
-      <a href="http://kent.edu.au/events" target="_blank" rel="noopener"
-        >Kent.edu.au/Events</a
-      >
+      <a href="http://kent.edu.au/events" target="_blank" rel="noopener">
+        Kent.edu.au/Events
+      </a>
       and look for events that attract LEAD points!
     </p>
 
@@ -146,8 +143,9 @@
       <a
         href="mailto:lead@kent.edu.au?Subject=LEAD%20App%20Contact"
         target="_top"
-        >Lead@kent.edu.au</a
       >
+        Lead@kent.edu.au
+      </a>
     </p>
   </mat-dialog-content>
 </ng-template>

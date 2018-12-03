@@ -5,24 +5,26 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore'
 
-import { ILog, ILogText } from '@core/interfaces/log'
-import { IUser } from '@core/interfaces/user'
+import { Log, LogText } from '@interfaces/log'
+import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { Observable } from 'rxjs'
 
 import { Environment } from '@environments/environment'
+import { Marvel, Results } from '@interfaces/marvel'
+import { map } from 'rxjs/operators'
 
 @Injectable()
 export class FirestoreService {
-  usersCollection: AngularFirestoreCollection<IUser>
+  usersCollection: AngularFirestoreCollection<User>
 
-  users$: Observable<IUser[]>
-  localUsers$: Observable<IUser[]>
-  orderedUsers$: Observable<IUser[]>
-  logs$: Observable<ILog[]>
+  users$: Observable<User[]>
+  localUsers$: Observable<User[]>
+  orderedUsers$: Observable<User[]>
+  logs$: Observable<Log[]>
 
-  position: any
-  validPicture: any = []
+  position: number
+  validPicture = []
 
   constructor(
     public afs: AngularFirestore,
@@ -35,50 +37,51 @@ export class FirestoreService {
         userRef.email === 'k170535@student.kent.edu.au'
       ) {
         this.localUsers$ = afs
-          .collection<IUser>('users', res =>
+          .collection<User>('users', res =>
             res.where('campus', '==', 'Sydney').orderBy('points', 'desc')
           )
           .valueChanges()
         this.orderedUsers$ = afs
-          .collection<IUser>('users', res =>
+          .collection<User>('users', res =>
             res.orderBy('campus', 'desc').orderBy('displayName', 'asc')
           )
           .valueChanges()
         this.getLogs()
       } else if (userRef.campus === 'Sydney') {
         this.localUsers$ = afs
-          .collection<IUser>('users', res =>
+          .collection<User>('users', res =>
             res.where('campus', '==', 'Sydney').orderBy('points', 'desc')
           )
           .valueChanges()
         this.orderedUsers$ = afs
-          .collection<IUser>('users', res =>
+          .collection<User>('users', res =>
             res.where('campus', '==', 'Sydney').orderBy('displayName', 'asc')
           )
           .valueChanges()
         this.getLogs()
       } else {
         this.localUsers$ = afs
-          .collection<IUser>('users', res =>
+          .collection<User>('users', res =>
             res.where('campus', '==', 'Melbourne').orderBy('points', 'desc')
           )
           .valueChanges()
         this.orderedUsers$ = afs
-          .collection<IUser>('users', res =>
+          .collection<User>('users', res =>
             res.where('campus', '==', 'Melbourne').orderBy('displayName', 'asc')
           )
           .valueChanges()
         this.getLogs()
       }
 
-      this.apiMarvel().subscribe((res: any) => {
-        for (const result of res.data.results) {
+      this.apiMarvel().subscribe((res: Results[]) => {
+        for (const thumb of res) {
           if (
-            result.thumbnail.path !==
+            thumb.thumbnail.path !==
               'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' &&
-            result.thumbnail.extension !== 'gif'
+            thumb.thumbnail.extension !== 'gif'
           ) {
-            this.validPicture.push(result)
+            thumb.thumbnail.path += '/standard_medium'
+            this.validPicture.push(thumb)
           }
         }
 
@@ -107,7 +110,7 @@ export class FirestoreService {
 
   getLogs() {
     return (this.logs$ = this.afs
-      .collection<ILog>('logs', res => res.orderBy('date', 'desc'))
+      .collection<Log>('logs', res => res.orderBy('date', 'desc'))
       .valueChanges())
   }
 
@@ -129,21 +132,27 @@ export class FirestoreService {
 
     const endpointApi = `${baseUrl}characters?offset=${offset}&limit=${limit}&apikey=${publicKey}`
 
-    return this.http.get(endpointApi)
+    return this.http.get(endpointApi).pipe(
+      map(
+        (res: Marvel): Results[] => {
+          return res.data.results
+        }
+      )
+    )
   }
 
   // LOG FUNCTION
-  addLogText(logObj: ILogText) {
+  addLogText(logObj: LogText) {
     const logsCollection: AngularFirestoreCollection<
-      ILogText
+      LogText
     > = this.afs.collection('logs')
     logsCollection.add(logObj).catch(error => error)
   }
 
-  async addLog(logObj: ILog) {
-    const logsCollection: AngularFirestoreCollection<
-      ILog
-    > = this.afs.collection('logs')
+  async addLog(logObj: Log) {
+    const logsCollection: AngularFirestoreCollection<Log> = this.afs.collection(
+      'logs'
+    )
     try {
       return logsCollection.add(logObj)
     } catch (error) {

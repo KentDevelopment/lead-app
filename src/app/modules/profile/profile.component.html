@@ -5,16 +5,17 @@
   <!-- User Status -->
   <div class="sticky-top secondary-header pb-3">
     <div class="fixed-top">
-      <i class="material-icons float-left" routerLink="/leaderboard"
-        >keyboard_arrow_left</i
-      >
-      <i class="material-icons float-right" (click)="auth.signOut()"
-        >power_settings_new</i
-      >
+      <i class="material-icons float-left" routerLink="/leaderboard">
+        keyboard_arrow_left
+      </i>
+      <i class="material-icons float-right" (click)="auth.signOut()">
+        power_settings_new
+      </i>
     </div>
 
     <h3 class="text-center pt-4 text-truncate">
-      Hello <br />
+      Hello
+      <br />
       {{ user.displayName | titlecase }}
     </h3>
 
@@ -74,7 +75,7 @@
           type="text"
           class="form-control"
           aria-describedby="displayName"
-          placeholder="{{user.displayName | titlecase}}"
+          placeholder="{{ user.displayName | titlecase }}"
           formControlName="displayName"
         />
       </div>
@@ -83,7 +84,7 @@
           type="email"
           class="form-control"
           aria-describedby="email"
-          placeholder="{{user.email}}"
+          placeholder="{{ user.email }}"
           formControlName="email"
         />
       </div>

@@ -1,14 +1,13 @@
 <!-- Admin Header -->
 <div class="primary-header pb-1 pt-2" fxLayout="row wrap">
-  <i class="material-icons" routerLink="/profile" fxFlex="initial"
-    >keyboard_arrow_left</i
-  >
+  <i class="material-icons" routerLink="/profile" fxFlex="initial">
+    keyboard_arrow_left
+  </i>
   <h2 fxFlex fxFill>Admin Dashboard</h2>
 </div>
 
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Points">
-    <!-- Add Points -->
     <div class="card-header text-center border-primary pt-3">
       <h5 class="card-title text-primary">LEAD Points</h5>
       Add LEAD points to one user
@@ -45,7 +44,7 @@
               step="10"
               placeholder="{{ user.points }}"
               value="{{ user.points }}"
-              (change)="update(user, $event)"
+              (change)="update(user, $event.target.value)"
             />
           </div>
         </div>
@@ -54,7 +53,6 @@
   </mat-tab>
 
   <mat-tab label="Bulk">
-    <!-- Bulk Edit -->
     <div class="card-header text-center border-primary pt-3">
       <h5 class="card-title text-primary">LEAD Points in Bulk</h5>
       Add LEAD points to multiple users
@@ -80,7 +78,8 @@
             </div>
           </div>
           <div *ngFor="let user of (users | async)">
-            <input type="checkbox" /> {{ user.displayName }}
+            <input type="checkbox" />
+            {{ user.displayName }}
           </div>
           <div class="d-flex justify-content-between form-control fix-line">
             <div class="flex-column text-left">
@@ -113,7 +112,6 @@
   </mat-tab>
 
   <mat-tab label="Logs">
-    <!-- Logs -->
     <div class="card-header text-center border-primary pt-3">
       <h5 class="card-title text-primary">Logs</h5>
       Check all the changes that have been made
@@ -124,8 +122,11 @@
       class="log-item"
     >
       <p *ngIf="log.pointsAdded">
-        <strong>{{ log.adminName | titlecase }}</strong> <br />
+        <strong>{{ log.adminName | titlecase }}</strong>
+        <br />
         {{ logText(log.pointsAdded, log.userName) }}
+        <br />
+        {{ log.log }}
       </p>
       <p *ngIf="!log.pointsAdded">{{ log.log }}</p>
       <p class="text-right">{{ log.date | date: 'medium' }}</p>

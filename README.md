@@ -4,9 +4,9 @@ The LEAD Points app has been develop to foment the student engagement with Kent'
 
 ## Development server
 
-1. Run `npm run start` for a dev server.
+- Run `npm start` for a dev server. The app will automatically reload if you change any of the source files.
 
-1. The app will automatically reload if you change any of the source files.
+- Run `npm run serve` to access the app over the network and test it on mobile.
 
 ## Build
 
