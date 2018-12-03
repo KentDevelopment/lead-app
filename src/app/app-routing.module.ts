@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router'
 import { AdminGuard } from '@guards/admin.guard'
 import { AuthGuard } from '@guards/auth.guard'
 
-import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
-import { LoginComponent } from '@modules/login/login.component'
+import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
+import { LoginComponent } from '@pages/login/login.component'
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -22,13 +22,13 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: '@modules/profile/profile.module#ProfileModule',
+    loadChildren: '@pages/profile/profile.module#ProfileModule',
     canActivate: [AuthGuard],
     data: { animation: 'profile' }
   },
   {
     path: 'dashboard',
-    loadChildren: '@modules/dashboard/dashboard.module#DashboardModule',
+    loadChildren: '@pages/dashboard/dashboard.module#DashboardModule',
     canActivate: [AuthGuard, AdminGuard],
     data: { animation: 'admin' }
   }
