@@ -2,6 +2,9 @@
   "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
   "rules": {
     "selector-type-no-unknown": null,
-    "max-nesting-depth": null
+    "max-nesting-depth": null,
+    "function-parentheses-newline-inside": null,
+    "function-parentheses-space-inside": null,
+    "declaration-colon-newline-after": null
   }
 }

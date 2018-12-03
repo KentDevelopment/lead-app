@@ -13,12 +13,10 @@ export class LoginComponent {
   campusForm: FormGroup
 
   constructor(public auth: AuthService, private fb: FormBuilder) {
-    // Login Form
     this.loginForm = this.fb.group({
       domain: ['', [Validators.required]]
     })
 
-    // Campus Form
     this.campusForm = this.fb.group({
       campus: ['', [Validators.required]]
     })
@@ -32,8 +30,7 @@ export class LoginComponent {
     return this.campusForm.get('campus')
   }
 
-  // Login Function
-  async login(domain) {
+  async login(domain: string) {
     try {
       return await this.auth.googleLogin(domain)
     } catch (error) {
@@ -41,7 +38,6 @@ export class LoginComponent {
     }
   }
 
-  // Campus Function
   setCampus(user) {
     return this.auth.updateCampus(user, this.campus.value)
   }

@@ -4,7 +4,8 @@
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@core/*": ["app/core/*"],
+      "@guards/*": ["app/guards/*"],
+      "@interfaces/*": ["app/interfaces/*"],
       "@shared/*": ["app/shared/*"],
       "@services/*": ["app/services/*"],
       "@environments/*": ["environments/*"],

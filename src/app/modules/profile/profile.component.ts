@@ -14,7 +14,7 @@ import { finalize } from 'rxjs/operators'
 
 import { Environment } from '@environments/environment'
 
-import { IUser } from '@core/interfaces/user'
+import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
 import { ResetPointsComponent } from './dialogs/reset-points/reset-points.component'
@@ -82,13 +82,13 @@ export class ProfileComponent {
       })
   }
 
-  async update(user: IUser, downloadURL) {
+  async update(user: User, downloadURL) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     )
 
-    const data: IUser = {
+    const data: User = {
       photoURL: downloadURL
     }
 

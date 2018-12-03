@@ -1,4 +1,3 @@
-<!-- User Status -->
 <div
   *ngIf="(auth.user$ | async) as authUser"
   [ngClass]="{ incognitoMode: authUser.incognitoMode }"
@@ -38,8 +37,6 @@
     </div>
   </div>
 
-  <!-- TODO:  Separate into a component -->
-  <!-- Users List -->
   <ng-container>
     <cdk-virtual-scroll-viewport itemSize="100">
       <li

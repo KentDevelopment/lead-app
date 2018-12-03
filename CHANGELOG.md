@@ -1,3 +1,11 @@
+# 1.4.0 (2018-12-03)
+
+## Improvements
+
+- Loading time for the leaderboard page dramatically reduced
+- Award Registration Date added to the banner
+- Types added
+
 # 1.3.9 (2018-11-28)
 
 ## Features

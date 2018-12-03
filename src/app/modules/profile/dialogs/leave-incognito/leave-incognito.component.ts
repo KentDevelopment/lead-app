@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 import { MatDialogRef } from '@angular/material'
 import { AuthService } from '@services/auth.service'
 
-import { IUser } from '@core/interfaces/user'
+import { User } from '@interfaces/user'
 
 @Component({
   selector: 'app-leave-incognito',
@@ -11,7 +11,7 @@ import { IUser } from '@core/interfaces/user'
   styleUrls: ['./leave-incognito.component.scss']
 })
 export class LeaveIncognitoComponent {
-  user: IUser
+  user: User
   isLoading = false
 
   constructor(

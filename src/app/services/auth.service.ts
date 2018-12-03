@@ -6,8 +6,8 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
 import { Router } from '@angular/router'
-import { IUser } from '@core/interfaces/user'
 import { Environment } from '@environments/environment'
+import { User } from '@interfaces/user'
 import { auth } from 'firebase/app'
 import { Observable, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
@@ -16,7 +16,7 @@ import { ToastService } from '@services/toast.service'
 
 @Injectable()
 export class AuthService {
-  user$: Observable<IUser>
+  user$: Observable<User>
 
   constructor(
     public http: HttpClient,
@@ -28,15 +28,13 @@ export class AuthService {
     // Get auth data, then get firestore user document || null
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user =>
-        user
-          ? this.afs.doc<IUser>(`users/${user.uid}`).valueChanges()
-          : of(null)
+        user ? this.afs.doc<User>(`users/${user.uid}`).valueChanges() : of(null)
       )
     )
   }
 
   // Google Auth
-  async googleLogin(domain) {
+  async googleLogin(domain: string) {
     try {
       const provider = new auth.GoogleAuthProvider()
       provider.setCustomParameters({
@@ -48,7 +46,7 @@ export class AuthService {
     }
   }
 
-  private async oAuthLogin(provider) {
+  private async oAuthLogin(provider: auth.GoogleAuthProvider) {
     try {
       let credential
       credential = await this.afAuth.auth.signInWithPopup(provider)
@@ -77,12 +75,12 @@ export class AuthService {
   }
 
   // Sets user data to firestore after succesful login
-  private async setUserDoc(user) {
-    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(
+  private async setUserDoc(user: User) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     )
 
-    const data: IUser = {
+    const data: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
@@ -101,8 +99,8 @@ export class AuthService {
   }
 
   // Update properties on the user document
-  updateCampus(user: IUser, campus: string) {
-    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(
+  updateCampus(user: User, campus: string) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     )
 
@@ -124,7 +122,7 @@ export class AuthService {
       })
   }
 
-  sendEmail(user) {
+  sendEmail(user: User) {
     this.http
       .post(Environment.firebaseEmailAPI, {
         uid: user.uid
@@ -139,13 +137,13 @@ export class AuthService {
       )
   }
 
-  async leaveIncognito(user) {
+  async leaveIncognito(user: User) {
     // Sets user data to firestore on login
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     )
 
-    const data: IUser = {
+    const data: User = {
       incognitoMode: false
     }
 
