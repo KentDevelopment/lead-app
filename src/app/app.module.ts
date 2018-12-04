@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 
+import { TitleCasePipe } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { SharedModule } from '@shared/shared.module'
 
@@ -53,6 +54,7 @@ import { SharedModule } from '@shared/shared.module'
   providers: [
     AuthService,
     FirestoreService,
+    TitleCasePipe,
     { provide: FirebaseOptionsToken, useValue: Environment.firebase }
   ],
   bootstrap: [AppComponent]
