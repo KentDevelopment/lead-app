@@ -19,9 +19,9 @@ import { take } from 'rxjs/operators'
 import { Log } from '@interfaces/log'
 import { User } from '@interfaces/user'
 
+import { TitleCasePipe } from '@angular/common'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
-import { TitleCasePipe } from '@angular/common'
 
 @Component({
   selector: 'app-dashboard',
