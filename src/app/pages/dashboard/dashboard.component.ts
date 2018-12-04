@@ -21,6 +21,7 @@ import { User } from '@interfaces/user'
 
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
+import { TitleCasePipe } from '@angular/common'
 
 @Component({
   selector: 'app-dashboard',
@@ -37,7 +38,8 @@ export class DashboardComponent {
     public toast: ToastService,
     public fss: FirestoreService,
     private afs: AngularFirestore,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private titlecasePipe: TitleCasePipe
   ) {
     this.addPointsForm = this.fb.group({
       uid: this.fb.array([]),
@@ -110,12 +112,13 @@ export class DashboardComponent {
   }
 
   private async logData(points: number, pointsAdded: number, userRef: User) {
+    const displayName = this.titlecasePipe.transform(userRef.displayName)
     return this.auth.user$.subscribe(admin => {
       const dataObj: Log = {
-        log: `${userRef.displayName} now has ${points} pts`,
+        log: `${displayName} now has ${points} pts`,
         adminName: admin.displayName,
         pointsAdded,
-        userName: userRef.displayName,
+        userName: displayName,
         date: new Date().getTime()
       }
 
@@ -123,7 +126,7 @@ export class DashboardComponent {
         .addLog(dataObj)
         .then(() => {
           this.toast.showSuccess(
-            `You've ${this.logText(pointsAdded, userRef.displayName)}`
+            `You've ${this.logText(pointsAdded, displayName)}`
           )
         })
         .catch(error => {
