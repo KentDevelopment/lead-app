@@ -1,4 +1,9 @@
+import { TitleCasePipe } from '@angular/common'
 import { Component } from '@angular/core'
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from '@angular/fire/firestore'
 import {
   FormArray,
   FormBuilder,
@@ -7,21 +12,13 @@ import {
   Validators
 } from '@angular/forms'
 import { MatDialog } from '@angular/material'
-
-import {
-  AngularFirestore,
-  AngularFirestoreDocument
-} from '@angular/fire/firestore'
-
-import { AuthService } from '@services/auth.service'
-import { take } from 'rxjs/operators'
-
 import { Log } from '@interfaces/log'
 import { User } from '@interfaces/user'
-
-import { TitleCasePipe } from '@angular/common'
+import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
+import { take } from 'rxjs/operators'
+import { DashboardService } from './dashboard.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -39,7 +36,8 @@ export class DashboardComponent {
     public fss: FirestoreService,
     private afs: AngularFirestore,
     private fb: FormBuilder,
-    private titlecasePipe: TitleCasePipe
+    private titlecasePipe: TitleCasePipe,
+    private dashboardService: DashboardService
   ) {
     this.addPointsForm = this.fb.group({
       uid: this.fb.array([]),
@@ -81,7 +79,7 @@ export class DashboardComponent {
   }
 
   // Add Points in Bulk
-  addPoints(event) {
+  addPoints(event: User) {
     for (const uid of this.addPointsForm.value.uid) {
       const userDoc: AngularFirestoreDocument<User> = this.afs.doc(
         `users/${uid}`
@@ -90,7 +88,7 @@ export class DashboardComponent {
       const userData$ = userDoc.valueChanges().pipe(take(1))
 
       userData$.subscribe(userRef => {
-        const addedPoints = Number(event.points)
+        const addedPoints = event.points
         const totalPoints = userRef.points + addedPoints
 
         const newData: User = {
@@ -99,7 +97,9 @@ export class DashboardComponent {
         }
 
         this.updateData(userDoc, newData)
-        this.logData(totalPoints, addedPoints, userRef)
+        this.logData(totalPoints, addedPoints, userRef).finally(() =>
+          this.addPointsForm.reset()
+        )
       })
     }
   }
@@ -126,27 +126,12 @@ export class DashboardComponent {
         .addLog(dataObj)
         .then(() => {
           this.toast.showSuccess(
-            `You've ${this.logText(pointsAdded, displayName)}`
+            `You've ${this.dashboardService.logText(pointsAdded, displayName)}`
           )
         })
         .catch(error => {
           this.toast.showError(error)
         })
     })
-  }
-
-  logText(pointsAdded: number, displayName: string) {
-    const isPositive = pointsAdded > 0 ? true : false
-    return isPositive
-      ? `added ${pointsAdded} point${this.checkPlural(
-          pointsAdded
-        )} to ${displayName}`
-      : `removed ${pointsAdded} point${this.checkPlural(
-          pointsAdded
-        )} from ${displayName}`
-  }
-
-  checkPlural(pointsAdded: number) {
-    return pointsAdded === -1 || pointsAdded === 1 ? '' : 's'
   }
 }

@@ -1,0 +1,10 @@
+.log-item {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 6px;
+  margin: 4% 2%;
+  padding: 1rem;
+
+  p:first-child {
+    margin-bottom: 0.5em;
+  }
+}

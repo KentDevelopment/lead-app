@@ -12,11 +12,12 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { TitleCasePipe } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
+import { LogsComponent } from './logs/logs.component'
 
 const routes: Routes = [{ path: '', component: DashboardComponent }]
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, LogsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
