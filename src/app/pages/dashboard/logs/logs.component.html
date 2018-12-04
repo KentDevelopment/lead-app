@@ -1,0 +1,16 @@
+<div class="card-header text-center border-primary pt-3">
+  <h5 class="card-title text-primary">Logs</h5>
+  Check all the changes that have been made
+</div>
+
+<div *ngFor="let log of (fss.logs$ | async); let i = index" class="log-item">
+  <p *ngIf="log.pointsAdded">
+    <strong>{{ log.adminName | titlecase }}</strong>
+    <br />
+    {{ dashboardService.logText(log.pointsAdded, log.userName) }}
+    <br />
+    {{ log.log }}
+  </p>
+  <p *ngIf="!log.pointsAdded">{{ log.log }}</p>
+  <p class="text-right">{{ log.date | date: 'medium' }}</p>
+</div>
