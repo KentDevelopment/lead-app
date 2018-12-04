@@ -16,7 +16,7 @@
   },
   "scripts": {
     "preversion": "npm run test",
-    "postversion": "git push && git push --tags && git checkout development && git merge origin/master && git push",
+    "postversion": "git push && git push --tags && git checkout develop && git merge origin/master && git push",
     "build:prod": "ng build --prod",
     "build": "ng build",
     "clean": "rm -rf node_modules package-lock.json dist",
