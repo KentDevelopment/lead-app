@@ -1,3 +1,13 @@
+# 1.3.11 (2018-12-05)
+
+## Improvements
+
+- Dashboard pages are now handled individually as components
+
+## Bug fixes
+
+- Names being rendered as TitleCase
+
 # 1.3.10 (2018-12-03)
 
 ## Improvements
