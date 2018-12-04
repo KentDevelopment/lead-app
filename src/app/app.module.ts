@@ -15,8 +15,8 @@ import { AppComponent } from './app.component'
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 
-import { LeaderboardComponent } from '@modules/leaderboard/leaderboard.component'
-import { LoginComponent } from '@modules/login/login.component'
+import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
+import { LoginComponent } from '@pages/login/login.component'
 
 import { Environment } from '@environments/environment'
 import { Ng2ImgToolsModule } from 'ng2-img-tools'

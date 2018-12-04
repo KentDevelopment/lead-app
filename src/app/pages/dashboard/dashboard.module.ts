@@ -10,6 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs'
 
 import { RouterModule, Routes } from '@angular/router'
 
+import { TitleCasePipe } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
 
 const routes: Routes = [{ path: '', component: DashboardComponent }]
@@ -25,6 +26,7 @@ const routes: Routes = [{ path: '', component: DashboardComponent }]
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule
-  ]
+  ],
+  providers: [TitleCasePipe]
 })
 export class DashboardModule {}
