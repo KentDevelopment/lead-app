@@ -1,14 +1,10 @@
-<footer
-  class="fixed-bottom"
-  (click)="toogleCredits()"
-  [@openClose]="isOpen ? 'open' : 'closed'"
->
-  <div class="banner" *ngIf="!isOpen">
+<footer (click)="toogleCredits()" [@openClose]="isOpen ? 'open' : 'closed'">
+  <div *ngIf="!isOpen">
     <i class="material-icons">remove</i>
     <span>Created by Renan Sigolo</span>
   </div>
 
-  <div class="banner" *ngIf="isOpen">
+  <div *ngIf="isOpen">
     <i class="material-icons">keyboard_arrow_down</i>
     <span>Created by Renan Sigolo</span>
     <br />

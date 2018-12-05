@@ -1,3 +1,15 @@
+# 1.3.13 (2018-12-06)
+
+## Improvements
+
+- Login page refactored
+
+# 1.3.12 (2018-12-05)
+
+## Bug fixes
+
+- Testing version bump
+
 # 1.3.11 (2018-12-05)
 
 ## Improvements

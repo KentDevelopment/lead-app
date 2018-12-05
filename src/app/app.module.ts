@@ -1,34 +1,34 @@
+import { ScrollingModule } from '@angular/cdk/scrolling'
+import { TitleCasePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { BrowserModule } from '@angular/platform-browser'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-
 import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage'
+import { FlexLayoutModule } from '@angular/flex-layout'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { MatButtonModule } from '@angular/material/button'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatSelectModule } from '@angular/material/select'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
-import { AppRoutingModule } from './app-routing.module'
-import { AppComponent } from './app.component'
+import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
-import { AuthService } from '@services/auth.service'
-import { FirestoreService } from '@services/firestore.service'
+import { Environment } from '@environments/environment'
 
 import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
 import { LoginComponent } from '@pages/login/login.component'
 
-import { Environment } from '@environments/environment'
-import { Ng2ImgToolsModule } from 'ng2-img-tools'
+import { AuthService } from '@services/auth.service'
+import { FirestoreService } from '@services/firestore.service'
 
-import { ScrollingModule } from '@angular/cdk/scrolling'
-import { MatButtonModule } from '@angular/material/button'
-import { MatDialogModule } from '@angular/material/dialog'
-import { MatSnackBarModule } from '@angular/material/snack-bar'
-
-import { TitleCasePipe } from '@angular/common'
-import { FlexLayoutModule } from '@angular/flex-layout'
 import { SharedModule } from '@shared/shared.module'
+
+import { Ng2ImgToolsModule } from 'ng2-img-tools'
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
 
 @NgModule({
   declarations: [AppComponent, LeaderboardComponent, LoginComponent],
@@ -49,7 +49,8 @@ import { SharedModule } from '@shared/shared.module'
     MatButtonModule,
     ScrollingModule,
     FlexLayoutModule,
-    SharedModule
+    SharedModule,
+    MatSelectModule
   ],
   providers: [
     AuthService,

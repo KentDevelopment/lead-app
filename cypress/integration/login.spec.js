@@ -13,23 +13,25 @@ describe('Login Page', () => {
   })
 
   it('has selection field with Kent emails', () => {
-    cy.get('select[name=domain]')
-      .select('Choose your email...')
-      .should('have.value', '')
-      .select('@kent.edu.au')
-      .should('have.value', 'kent.edu.au')
-      .select('@student.kent.edu.au')
-      .should('have.value', 'student.kent.edu.au')
+    cy.get('mat-select').click()
+    cy.get('mat-option')
+      .contains('@kent.edu.au')
+      .click()
+
+    cy.get('mat-select').click()
+    cy.get('mat-option')
+      .contains('@student.kent.edu.au')
+      .click()
 
     cy.get('button[type=submit]')
-      .contains('Sign in with Google')
+      .contains('Sign in')
       .click()
   })
 
   it('has a Terms and Conditions text and link', () => {
     cy.get('small')
     cy.contains(
-      `By login with Google it means that you've read and agreed with our`
+      `By clicking Sign in, it means that you've read and agreed with our`
     )
     cy.get('a')
       .click()

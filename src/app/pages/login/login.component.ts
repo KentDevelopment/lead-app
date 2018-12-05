@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormControl, Validators } from '@angular/forms'
 
+import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 
 @Component({
@@ -9,28 +10,17 @@ import { AuthService } from '@services/auth.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginForm: FormGroup
-  campusForm: FormGroup
+  loginForm = new FormControl('', Validators.required)
+  domains = ['student.kent.edu.au', 'kent.edu.au']
 
-  constructor(public auth: AuthService, private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      domain: ['', [Validators.required]]
-    })
+  campusForm = new FormControl('', Validators.required)
+  campuses = ['Sydney', 'Melbourne']
 
-    this.campusForm = this.fb.group({
-      campus: ['', [Validators.required]]
-    })
-  }
+  constructor(public auth: AuthService) {}
 
-  get domain() {
-    return this.loginForm.get('domain')
-  }
+  async login() {
+    const domain: string = this.loginForm.value
 
-  get campus() {
-    return this.campusForm.get('campus')
-  }
-
-  async login(domain: string) {
     try {
       return await this.auth.googleLogin(domain)
     } catch (error) {
@@ -38,7 +28,9 @@ export class LoginComponent {
     }
   }
 
-  setCampus(user) {
-    return this.auth.updateCampus(user, this.campus.value)
+  setCampus(user: User) {
+    const campus: string = this.campusForm.value
+
+    return this.auth.updateCampus(user, campus)
   }
 }
