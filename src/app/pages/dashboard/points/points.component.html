@@ -28,14 +28,25 @@
       </div>
 
       <div class="form-group mt-3 points-box">
-        <input
+        <mat-form-field>
+          <input
+            matInput
+            value="{{ user.points }}"
+            [formControl]="pointsInputForm"
+            type="number"
+            step="10"
+            class="example-right-align"
+            (change)="openDialogConfirmation(user, $event.target.value)"
+          />
+        </mat-form-field>
+        <!-- <input
           type="number"
           class="form-control text-right points-box"
           step="10"
           placeholder="{{ user.points }}"
           value="{{ user.points }}"
-          (change)="update(user, $event.target.value)"
-        />
+          (change)="openDialogConfirmation(user, $event.target.value)"
+        /> -->
       </div>
     </div>
   </li>
