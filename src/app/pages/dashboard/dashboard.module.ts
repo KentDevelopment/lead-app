@@ -15,6 +15,12 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { BulkComponent } from './bulk/bulk.component'
 import { LogsComponent } from './logs/logs.component'
 import { PointsComponent } from './points/points.component'
+import { DashboardLogsComponent } from './dashboard-logs/dashboard-logs.component'
+import {
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
+} from '@angular/material'
 
 const routes: Routes = [{ path: '', component: DashboardComponent }]
 
@@ -23,7 +29,8 @@ const routes: Routes = [{ path: '', component: DashboardComponent }]
     DashboardComponent,
     LogsComponent,
     BulkComponent,
-    PointsComponent
+    PointsComponent,
+    DashboardLogsComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +40,10 @@ const routes: Routes = [{ path: '', component: DashboardComponent }]
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [TitleCasePipe]
 })

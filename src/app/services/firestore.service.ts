@@ -5,7 +5,7 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore'
 
-import { Log, LogText } from '@interfaces/log'
+import { Log } from '@interfaces/log'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { Observable } from 'rxjs'
@@ -108,12 +108,6 @@ export class FirestoreService {
     })
   }
 
-  getLogs() {
-    return (this.logs$ = this.afs
-      .collection<Log>('logs', res => res.orderBy('date', 'desc'))
-      .valueChanges())
-  }
-
   generateNumber() {
     const randomNumber = Math.floor(Math.random() * 100)
     if (randomNumber < this.validPicture.length) {
@@ -142,13 +136,6 @@ export class FirestoreService {
   }
 
   // LOG FUNCTION
-  addLogText(logObj: LogText) {
-    const logsCollection: AngularFirestoreCollection<
-      LogText
-    > = this.afs.collection('logs')
-    logsCollection.add(logObj).catch(error => error)
-  }
-
   async addLog(logObj: Log) {
     const logsCollection: AngularFirestoreCollection<Log> = this.afs.collection(
       'logs'
@@ -158,5 +145,11 @@ export class FirestoreService {
     } catch (error) {
       return error
     }
+  }
+
+  getLogs() {
+    return (this.logs$ = this.afs
+      .collection<Log>('logs', res => res.orderBy('date', 'desc'))
+      .valueChanges())
   }
 }
