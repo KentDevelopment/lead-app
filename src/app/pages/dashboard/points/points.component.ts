@@ -26,18 +26,19 @@ export class PointsComponent {
       `users/${user.uid}`
     )
 
-    const userData$ = userDoc.valueChanges().pipe(take(1))
+    userDoc
+      .valueChanges()
+      .pipe(take(1))
+      .subscribe(userRef => {
+        const addedPoints = newPoints - userRef.points
+        const points = newPoints
 
-    userData$.subscribe(userRef => {
-      const addedPoints = newPoints - userRef.points
-      const points = newPoints
+        const newData: User = {
+          points
+        }
 
-      const newData: User = {
-        points
-      }
-
-      this.dashboardService.updateData(userDoc, newData)
-      this.dashboardService.logData(points, addedPoints, userRef)
-    })
+        this.dashboardService.updateData(userDoc, newData)
+        this.dashboardService.logData(points, addedPoints, userRef)
+      })
   }
 }

@@ -12,15 +12,15 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { TitleCasePipe } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
+import {
+  MatPaginatorModule,
+  MatSortModule,
+  MatTableModule
+} from '@angular/material'
 import { BulkComponent } from './bulk/bulk.component'
+import { DashboardLogsComponent } from './dashboard-logs/dashboard-logs.component'
 import { LogsComponent } from './logs/logs.component'
 import { PointsComponent } from './points/points.component'
-import { DashboardLogsComponent } from './dashboard-logs/dashboard-logs.component'
-import {
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule
-} from '@angular/material'
 
 const routes: Routes = [{ path: '', component: DashboardComponent }]
 

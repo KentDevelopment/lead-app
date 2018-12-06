@@ -7,15 +7,21 @@
     aria-label="Elements"
   >
     <!-- Id Column -->
-    <ng-container matColumnDef="id">
+    <!-- <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
       <td mat-cell *matCellDef="let row">{{ row.id }}</td>
-    </ng-container>
+    </ng-container> -->
 
     <!-- User Picture Column -->
     <ng-container matColumnDef="user-picture">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>User Image</th>
-      <td mat-cell *matCellDef="let row">{{ row.userPicture }}</td>
+      <td mat-cell *matCellDef="let row">
+        <img
+          src="{{ row.userPicture }}.png"
+          alt="User Picture"
+          class="img-profile"
+        />
+      </td>
     </ng-container>
 
     <!-- Date Column -->
@@ -63,7 +69,7 @@
     <!-- Admin Name Column -->
     <ng-container matColumnDef="log-message">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Log Message</th>
-      <td mat-cell *matCellDef="let row">{{ row.logMessage }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.message }}</td>
     </ng-container>
 
     <!-- Admin Name Column -->

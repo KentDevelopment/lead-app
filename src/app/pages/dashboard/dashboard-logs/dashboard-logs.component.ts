@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator, MatSort } from '@angular/material'
-import { DashboardLogsDataSource } from './dashboard-logs-datasource'
 import { FirestoreService } from '@services/firestore.service'
+import { DashboardLogsDataSource } from './dashboard-logs-datasource'
+import { DbService } from '@services/db.service'
 
 @Component({
   selector: 'app-dashboard-logs',
@@ -16,7 +17,7 @@ export class DashboardLogsComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
     // 'id',
-    // 'user-picture',
+    'user-picture',
     'date',
     'user-id',
     'user-name',
@@ -28,13 +29,15 @@ export class DashboardLogsComponent implements OnInit {
     'admin-name'
   ]
 
-  constructor(private fss: FirestoreService) {}
+  constructor(private fss: FirestoreService) // private db: DbService
+  {}
 
   ngOnInit() {
     this.dataSource = new DashboardLogsDataSource(
       this.paginator,
       this.sort,
       this.fss
+      // this.db
     )
   }
 }

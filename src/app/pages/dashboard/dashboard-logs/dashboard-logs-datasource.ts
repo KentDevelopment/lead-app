@@ -1,9 +1,9 @@
 import { DataSource } from '@angular/cdk/collections'
 import { MatPaginator, MatSort } from '@angular/material'
-import { map } from 'rxjs/operators'
-import { Observable, merge } from 'rxjs'
+import { DashboardLogItem, NewLog } from '@interfaces/log'
 import { FirestoreService } from '@services/firestore.service'
-import { DashboardLogItem, Log } from '@interfaces/log'
+import { merge, Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 
 /**
  * Data source for the DashboardLogs view. This class should
@@ -18,7 +18,8 @@ export class DashboardLogsDataSource extends DataSource<DashboardLogItem> {
     private paginator: MatPaginator,
     private sort: MatSort,
     private fss: FirestoreService
-  ) {
+  ) // private db: DbService
+  {
     super()
   }
 
@@ -31,27 +32,24 @@ export class DashboardLogsDataSource extends DataSource<DashboardLogItem> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
 
+    // this.fss.getLogsValue().subscribe(ref =>{
+    //   console.log('REF', ref)
+    // })
+
     this.fss
       .getLogs()
-      .pipe(
-        map(res => {
-          return res.map((logItem: Log) => {
-            let newData: DashboardLogItem = {
-              ...logItem,
-              id: 123,
-              date: new Date(),
-              userId: 'string',
-              userPicture: 'string',
-              userName: 'string',
-              userEmail: 'string',
-              userCampus: 'string',
-              pointsCurrent: 123,
-              message: 'string'
-            }
-            return newData
-          })
-        })
-      )
+      // .pipe(
+      //   map(res => {
+      //     return res.map((logItem: any) => {
+      //       console.log('LOGITEM', logItem)
+      //
+      //       const newData: any = {
+      //         ...logItem
+      //       }
+      //       return newData
+      //     })
+      //   })
+      // )
       .subscribe(res => {
         this.data = res
       })
@@ -61,8 +59,6 @@ export class DashboardLogsDataSource extends DataSource<DashboardLogItem> {
       this.paginator.page,
       this.sort.sortChange
     ]
-
-    console.log('DATAMUTATIONS', dataMutations)
 
     // // Set the paginator's length
     this.paginator.length = this.data.length
