@@ -29,8 +29,9 @@ export class DashboardLogsComponent implements OnInit {
     'admin-name'
   ]
 
-  constructor(private fss: FirestoreService) // private db: DbService
-  {}
+  constructor(
+    private fss: FirestoreService // private db: DbService
+  ) {}
 
   ngOnInit() {
     this.dataSource = new DashboardLogsDataSource(

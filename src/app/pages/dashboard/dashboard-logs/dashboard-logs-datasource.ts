@@ -17,9 +17,8 @@ export class DashboardLogsDataSource extends DataSource<DashboardLogItem> {
   constructor(
     private paginator: MatPaginator,
     private sort: MatSort,
-    private fss: FirestoreService
-  ) // private db: DbService
-  {
+    private fss: FirestoreService // private db: DbService
+  ) {
     super()
   }
 

@@ -187,15 +187,15 @@ export class FirestoreService {
       .valueChanges()).pipe(
       map(res => {
         return res.map((logItem: any) => {
-          console.log('LOGITEM', logItem)
+          // console.log('LOGITEM', logItem)
 
           this.db.doc$(`/users/${logItem.userId}`).subscribe(userData => {
-            console.log('USERDATA', userData)
+            // console.log('USERDATA', userData)
             // this.userData = userData
           })
 
           this.db.doc$(`/users/${logItem.adminId}`).subscribe(adminData => {
-            console.log('ADMINDATA', adminData)
+            // console.log('ADMINDATA', adminData)
             // this.adminData = adminData
           })
 
