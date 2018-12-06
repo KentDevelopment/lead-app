@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator, MatSort } from '@angular/material'
+import { DbService } from '@services/db.service'
 import { FirestoreService } from '@services/firestore.service'
 import { DashboardLogsDataSource } from './dashboard-logs-datasource'
-import { DbService } from '@services/db.service'
 
 @Component({
   selector: 'app-dashboard-logs',

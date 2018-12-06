@@ -168,7 +168,7 @@ export class FirestoreService {
   // LOG FUNCTION
   async addLog(refObj: NewLog) {
     this.auth.user$.subscribe(adminData => {
-      let dataObj: NewLog = {
+      const dataObj: NewLog = {
         ...refObj,
         adminId: adminData.uid
       }
@@ -215,7 +215,7 @@ export class FirestoreService {
       .pipe(
         map(actions => {
           return actions.map(a => {
-            const data: Object = a.payload.doc.data()
+            const data: object = a.payload.doc.data()
             const id = a.payload.doc.id
             const additionalData = {
               userId: 'string',

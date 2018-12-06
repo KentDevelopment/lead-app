@@ -1,12 +1,12 @@
 import { TitleCasePipe } from '@angular/common'
 import { Injectable } from '@angular/core'
 import { AngularFirestoreDocument } from '@angular/fire/firestore'
+import { NewLog } from '@interfaces/log'
 // import { Log } from '@interfaces/log'
 import { User } from '@interfaces/user'
 // import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
-import { NewLog } from '@interfaces/log'
 
 @Injectable({
   providedIn: 'root'

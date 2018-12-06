@@ -16,7 +16,7 @@ export class DbService {
       .pipe(
         map(actions => {
           return actions.map(a => {
-            const data: Object = a.payload.doc.data()
+            const data: object = a.payload.doc.data()
             const id = a.payload.doc.id
             return { id, ...data }
           })
@@ -30,7 +30,7 @@ export class DbService {
       .snapshotChanges()
       .pipe(
         map(doc => {
-          const data: Object = doc.payload.data()
+          const data: object = doc.payload.data()
           const id = doc.payload.id
           const ref = doc.payload.ref
 
@@ -40,7 +40,7 @@ export class DbService {
       )
   }
 
-  updateAt(path: string, data: Object): Promise<any> {
+  updateAt(path: string, data: object): Promise<any> {
     const segments = path.split('/').filter(v => v)
     if (segments.length % 2) {
       // Odd is always a collection
