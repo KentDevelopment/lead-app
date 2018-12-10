@@ -67,7 +67,10 @@
           aria-valuemax="100"
         ></div>
       </div>
-      <div>Progress: {{ uploadPercent | async }}%</div>
+      <div *ngIf="(uploadPercent | async) !== 100">
+        Progress: {{ uploadPercent | async }}%
+      </div>
+      <div *ngIf="(uploadPercent | async) === 100">Upload Completed</div>
     </div>
     <form [formGroup]="userForm" novalidate>
       <div class="form-group mt-3">

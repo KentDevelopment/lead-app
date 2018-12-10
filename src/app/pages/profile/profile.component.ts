@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { MatDialog } from '@angular/material'
+import { MatDialog, MatDialogRef } from '@angular/material'
 
 import {
   AngularFirestore,
@@ -25,10 +25,10 @@ import { ResetPointsComponent } from './dialogs/reset-points/reset-points.compon
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
-  dialogRef: any
+  dialogRef: MatDialogRef<any>
   downloadURL: Observable<string>
   uploadPercent: Observable<number>
-  user: any
+  user: User
   userForm: FormGroup
   version: string = Environment.version
 

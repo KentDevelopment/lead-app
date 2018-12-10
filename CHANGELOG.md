@@ -1,3 +1,9 @@
+# 1.4.2 (2018-12-13)
+
+## Improvements
+
+- Upload message changes when completed
+
 # 1.4.1 (2018-12-10)
 
 ## Improvements
