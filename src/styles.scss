@@ -28,40 +28,33 @@
     z-index: 999;
   }
 
-  // .snackBarWarning{
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+
+  .mat-button {
+    span {
+      color: var(--light);
+    }
+  }
+
+  .snack-bar-warning {
+    background: var(--warning);
+    color: var(--light);
+  }
+
+  .snack-bar-success {
+    background: var(--success);
+    color: var(--light);
+  }
+
+  .snack-bar-error {
+    background: var(--danger);
+    color: var(--light);
+  }
+
+  // .snack-bar-info{
   //   background: #f8d7da;
   //   color: #721c24;
-  //   .mat-button {
-  //     span {
-  //       color: var(--primary);
-  //     }
-  //   }
-  // }
-  // .snackBarSuccess{
-  //   background: #f8d7da;
-  //   color: #721c24;
-  //   .mat-button {
-  //     span {
-  //       color: var(--primary);
-  //     }
-  //   }
-  // }
-  // .snackBarError{
-  //   background: #f8d7da;
-  //   color: #721c24;
-  //   .mat-button {
-  //     span {
-  //       color: var(--primary);
-  //     }
-  //   }
-  // }
-  // .snackBarInfo{
-  //   background: #f8d7da;
-  //   color: #721c24;
-  //   .mat-button {
-  //     span {
-  //       color: var(--primary);
-  //     }
-  //   }
   // }
 }

@@ -3,40 +3,27 @@
   Add LEAD points to one user
 </div>
 
-<cdk-virtual-scroll-viewport
-  itemSize="100"
-  class="card-body list-group list-group-flush"
->
-  <li
-    *cdkVirtualFor="let user of (fss.orderedUsers$ | async)"
-    class="list-group-item list-group-item-action align-items-center"
-  >
-    <div class="d-flex justify-content-between">
-      <div class="d-flex align-items-center">
-        <img
-          class="img-profile-list mr-2"
-          [src]="user.photoURL"
-          alt="User Profile Image"
-        />
-        <div class="d-flex flex-column">
-          <div class="pr-2 d-flex text-left">
-            {{ user.displayName | titlecase }}
-          </div>
-          <div class="pr-2 d-flex secondary-text">{{ user.email }}</div>
-          <div class="pr-2 d-flex secondary-text">{{ user.campus }}</div>
-        </div>
-      </div>
-
-      <div class="form-group mt-3 points-box">
-        <input
-          type="number"
-          class="form-control text-right points-box"
-          step="10"
-          placeholder="{{ user.points }}"
-          value="{{ user.points }}"
-          (change)="update(user, $event.target.value)"
-        />
+<cdk-virtual-scroll-viewport itemSize="100">
+  <li *cdkVirtualFor="let user of (fss.orderedUsers$ | async)">
+    <div class="profile-info">
+      <img [src]="user.photoURL" alt="User Profile Image" />
+      <div class="profile-content">
+        <h6>{{ user.displayName | titlecase }}</h6>
+        <p class="secondary-text">{{ user.email }}</p>
+        <p class="secondary-text">{{ user.campus }}</p>
       </div>
     </div>
+
+    <mat-form-field appearance="outline" color="primary">
+      <input
+        matInput
+        value="{{ user.points }}"
+        [formControl]="pointsInputForm"
+        type="number"
+        step="10"
+        class="example-right-align"
+        (change)="update(user, $event.target.value)"
+      />
+    </mat-form-field>
   </li>
 </cdk-virtual-scroll-viewport>

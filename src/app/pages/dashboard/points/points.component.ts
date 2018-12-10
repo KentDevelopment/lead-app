@@ -8,14 +8,24 @@ import { FirestoreService } from '@services/firestore.service'
 import { take } from 'rxjs/operators'
 import { DashboardService } from '../dashboard.service'
 
+// import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component'
+// import { MatDialog, MatDialogRef } from '@angular/material'
+import { FormControl } from '@angular/forms'
+import { ToastService } from '@services/toast.service'
+
 @Component({
   selector: 'app-points',
   templateUrl: './points.component.html',
   styleUrls: ['./points.component.scss']
 })
 export class PointsComponent {
+  // dialogRef: MatDialogRef<DialogConfirmationComponent>
+  pointsInputForm = new FormControl('')
+
   constructor(
     public fss: FirestoreService,
+    // public dialog: MatDialog,
+    public toast: ToastService,
     private dashboardService: DashboardService,
     private afs: AngularFirestore
   ) {}
@@ -32,6 +42,10 @@ export class PointsComponent {
       const addedPoints = newPoints - userRef.points
       const points = newPoints
 
+      if (addedPoints > 700) {
+        return this.toast.showError(`Please add less than 700 points`)
+      }
+
       const newData: User = {
         points
       }
@@ -40,4 +54,10 @@ export class PointsComponent {
       this.dashboardService.logData(points, addedPoints, userRef)
     })
   }
+
+  // openDialogConfirmation(): void {
+  //   this.dialogRef = this.dialog.open(DialogConfirmationComponent, {
+  //     autoFocus: false
+  //   })
+  // }
 }

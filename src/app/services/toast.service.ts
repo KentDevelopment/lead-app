@@ -13,25 +13,25 @@ export class ToastService {
 
   snackBarInfo: MatSnackBarConfig = {
     ...this.snackBarConfig,
-    panelClass: 'snackBarInfo'
+    panelClass: 'snack-bar-info'
   }
 
   snackBarSuccess: MatSnackBarConfig = {
     ...this.snackBarConfig,
-    duration: 4000,
-    panelClass: 'snackBarSuccess'
+    duration: 5000,
+    panelClass: 'snack-bar-success'
   }
 
   snackBarWarning: MatSnackBarConfig = {
     ...this.snackBarConfig,
     duration: null,
-    panelClass: 'snackBarWarning'
+    panelClass: 'snack-bar-warning'
   }
 
   snackBarError: MatSnackBarConfig = {
     ...this.snackBarConfig,
     duration: null,
-    panelClass: 'snackBarError'
+    panelClass: 'snack-bar-error'
   }
 
   constructor(public snackBar: MatSnackBar) {}

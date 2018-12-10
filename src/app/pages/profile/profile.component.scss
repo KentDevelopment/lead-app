@@ -33,7 +33,10 @@
 }
 
 small {
-  padding: 0.5vh;
+  bottom: 3px;
+  // padding: 0.5vh;
+  position: fixed;
+  right: 5px;
 }
 
 .modal-incognito {

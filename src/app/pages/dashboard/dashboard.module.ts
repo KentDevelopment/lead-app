@@ -12,18 +12,26 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { TitleCasePipe } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
+import { MatInputModule } from '@angular/material'
+import { MatButtonModule } from '@angular/material/button'
+import { MatFormFieldModule } from '@angular/material/form-field'
 import { BulkComponent } from './bulk/bulk.component'
+import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component'
 import { LogsComponent } from './logs/logs.component'
 import { PointsComponent } from './points/points.component'
 
-const routes: Routes = [{ path: '', component: DashboardComponent }]
+const routes: Routes = [
+  { path: '', component: DashboardComponent },
+  { path: 'confirm-points', component: DialogConfirmationComponent }
+]
 
 @NgModule({
   declarations: [
     DashboardComponent,
     LogsComponent,
     BulkComponent,
-    PointsComponent
+    PointsComponent,
+    DialogConfirmationComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +41,10 @@ const routes: Routes = [{ path: '', component: DashboardComponent }]
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [TitleCasePipe]
 })

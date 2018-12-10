@@ -1,3 +1,19 @@
+# 1.4.0 (2018-12-10)
+
+## Features
+
+- Added a restriction of 700 points
+
+## Improvements
+
+- Input Field redesigned
+- Dashboard Points Page refactored
+- Footer removed from the Dashboard page
+
+## Bugs
+
+- EDIT image adjusted
+
 # 1.3.13 (2018-12-06)
 
 ## Improvements
