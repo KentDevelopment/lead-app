@@ -10,7 +10,8 @@ import { Component } from '@angular/core'
       state(
         'open',
         style({
-          opacity: 1
+          opacity: 1,
+          backgroundColor: '#dadada'
         })
       ),
       state(
