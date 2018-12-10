@@ -1,3 +1,10 @@
+# 1.3.14 (2018-12-10)
+
+## Improvements
+
+- Input Field redesigned
+- Dashboard Points Page refactored
+
 # 1.3.13 (2018-12-06)
 
 ## Improvements

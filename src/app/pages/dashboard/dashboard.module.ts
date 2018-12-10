@@ -12,13 +12,13 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { TitleCasePipe } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import { BulkComponent } from './bulk/bulk.component'
-import { LogsComponent } from './logs/logs.component'
-import { PointsComponent } from './points/points.component'
-import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component'
+import { MatInputModule } from '@angular/material'
 import { MatButtonModule } from '@angular/material/button'
 import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule } from '@angular/material'
+import { BulkComponent } from './bulk/bulk.component'
+import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component'
+import { LogsComponent } from './logs/logs.component'
+import { PointsComponent } from './points/points.component'
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },

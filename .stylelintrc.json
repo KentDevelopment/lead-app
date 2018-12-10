@@ -5,6 +5,7 @@
     "max-nesting-depth": null,
     "function-parentheses-newline-inside": null,
     "function-parentheses-space-inside": null,
-    "declaration-colon-newline-after": null
+    "declaration-colon-newline-after": null,
+    "selector-max-compound-selectors": null
   }
 }
