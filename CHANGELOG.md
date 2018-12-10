@@ -1,3 +1,9 @@
+# 1.4.1 (2018-12-10)
+
+## Improvements
+
+- Bulk Tab removed for the time being
+
 # 1.4.0 (2018-12-10)
 
 ## Features
