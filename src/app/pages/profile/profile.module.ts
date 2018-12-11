@@ -14,11 +14,7 @@ import { ResetPointsComponent } from './dialogs/reset-points/reset-points.compon
 
 import { SharedModule } from '@shared/shared.module'
 
-const routes: Routes = [
-  { path: '', component: ProfileComponent },
-  { path: 'reset-points', component: ResetPointsComponent },
-  { path: 'leave-incognito', component: LeaveIncognitoComponent }
-]
+const routes: Routes = [{ path: '', component: ProfileComponent }]
 
 @NgModule({
   declarations: [
@@ -35,6 +31,7 @@ const routes: Routes = [
     MatButtonModule,
     MatProgressSpinnerModule,
     SharedModule
-  ]
+  ],
+  bootstrap: [ResetPointsComponent, LeaveIncognitoComponent]
 })
 export class ProfileModule {}

@@ -1,8 +1,13 @@
-# 1.4.2 (2018-12-13)
+# 1.4.2 (2018-12-11)
+
+## Features
+
+- Upload message changes when completed
+- Spinner added to the leaderboard page
 
 ## Improvements
 
-- Upload message changes when completed
+- About dialog moved to it's own component
 
 # 1.4.1 (2018-12-10)
 

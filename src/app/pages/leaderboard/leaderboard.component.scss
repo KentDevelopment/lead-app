@@ -50,24 +50,6 @@
   font-size: 0.9rem;
 }
 
-// Modal
-mat-dialog-content {
-  h4,
-  li,
-  a {
-    color: var(--primary);
-  }
-
-  li span {
-    color: var(--dark-gray);
-  }
-
-  .modal-header {
-    margin-bottom: 1em;
-    padding: 0;
-  }
-}
-
 small {
   color: var(--secondary);
 }
@@ -78,4 +60,8 @@ cdk-virtual-scroll-viewport {
   li {
     height: 100px;
   }
+}
+
+.spinner {
+  margin-top: 10vh;
 }

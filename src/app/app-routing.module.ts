@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { AdminGuard } from '@guards/admin.guard'
 import { AuthGuard } from '@guards/auth.guard'
 
+import { AboutComponent } from '@pages/leaderboard/dialogs/about/about.component'
 import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
 import { LoginComponent } from '@pages/login/login.component'
 
@@ -36,6 +37,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  bootstrap: [AboutComponent]
 })
 export class AppRoutingModule {}

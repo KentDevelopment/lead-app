@@ -7,9 +7,7 @@
   <div class="sticky-top primary-header pb-3">
     <div class="fixed-top">
       <i class="material-icons float-left" routerLink="/profile">settings</i>
-      <i class="material-icons float-right" (click)="openDialog(aboutLead)">
-        help
-      </i>
+      <i class="material-icons float-right" (click)="openDialog()">help</i>
     </div>
 
     <h2 class="text-center pt-4">LEAD Points</h2>
@@ -38,6 +36,8 @@
   </div>
 
   <ng-container>
+    <div *ngIf="!fss.users$" class="spinner"><mat-spinner></mat-spinner></div>
+
     <cdk-virtual-scroll-viewport itemSize="100">
       <li
         *cdkVirtualFor="let user of fss.users$; let i = index"
@@ -81,73 +81,5 @@
     </cdk-virtual-scroll-viewport>
   </ng-container>
 </div>
-
-<ng-template #aboutLead>
-  <mat-dialog-content class="about-lead">
-    <div class="modal-header">
-      <h4 mat-dialog-title>More about LEAD</h4>
-      <button
-        type="button"
-        class="close"
-        aria-label="Close"
-        (click)="aboutLeadDialog.close()"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <p>
-      Employers are looking for candidates who have done something
-      <i><u>extra</u></i>
-      . LEAD provides you with an opportunity to gain recognition for developing
-      a range of skills outside your course.
-    </p>
-    <p>
-      LEAD gives aspiring leaders an opportunity to build leadership capacity,
-      interpersonal communication and gain skills for future employment.
-    </p>
-    <ul>
-      <li>
-        <span>
-          Participate in LEAD Workshops, Activities, Events or Initiatives to
-          gain points
-        </span>
-      </li>
-      <li>
-        <span>
-          Students/Alumni who accumulate 100 points or more over the year will
-          receive a Kent LEAD Program certificate and transcript of achievements
-          for their portfolio’s
-        </span>
-      </li>
-      <li>
-        <span>
-          Gain the most points this year and receive the LEAD Ambassador of the
-          Year Award. Recipient receives a trophy and is nominated by Kent to
-          win the NSW or VIC International Student of the Year Award competition
-        </span>
-      </li>
-    </ul>
-
-    <h4 mat-dialog-title>Register for Events:</h4>
-    <p>
-      Go to
-      <a href="http://kent.edu.au/events" target="_blank" rel="noopener">
-        Kent.edu.au/Events
-      </a>
-      and look for events that attract LEAD points!
-    </p>
-
-    <h4 mat-dialog-title>Contact us:</h4>
-    <p>
-      Email:
-      <a
-        href="mailto:lead@kent.edu.au?Subject=LEAD%20App%20Contact"
-        target="_top"
-      >
-        Lead@kent.edu.au
-      </a>
-    </p>
-  </mat-dialog-content>
-</ng-template>
 
 <app-footer></app-footer>
