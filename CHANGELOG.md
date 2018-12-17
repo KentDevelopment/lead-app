@@ -1,3 +1,9 @@
+# 1.4.3 (2018-12-17)
+
+## Improvements
+
+- Pointer changes on hovering icons
+
 # 1.4.2 (2018-12-11)
 
 ## Features

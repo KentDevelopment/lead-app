@@ -14,5 +14,9 @@ footer {
     flex-direction: column;
     padding: 0 7% 1%;
     text-align: center;
+
+    i {
+      cursor: pointer;
+    }
   }
 }
