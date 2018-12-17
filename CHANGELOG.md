@@ -1,3 +1,9 @@
+# 1.4.4 (2018-12-17)
+
+## Bugs
+
+- Points type fixed
+
 # 1.4.3 (2018-12-17)
 
 ## Improvements

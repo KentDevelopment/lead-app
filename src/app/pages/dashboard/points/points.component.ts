@@ -40,7 +40,7 @@ export class PointsComponent {
 
     userData$.subscribe(userRef => {
       const addedPoints = newPoints - userRef.points
-      const points = newPoints
+      const points = Number(newPoints)
 
       if (addedPoints > 700) {
         return this.toast.showError(`Please add less than 700 points`)
