@@ -62,7 +62,7 @@ export class BulkComponent {
 
         const newData: User = {
           uid,
-          points: totalPoints
+          points: Number(totalPoints)
         }
 
         this.dashboardService.updateData(userDoc, newData)

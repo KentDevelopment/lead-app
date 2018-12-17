@@ -1,7 +1,5 @@
 <!-- User Profile -->
 <div *ngIf="(auth.user$ | async) as user">
-  <app-awards-banner></app-awards-banner>
-
   <!-- User Status -->
   <div class="sticky-top secondary-header pb-3">
     <div class="fixed-top">
@@ -115,7 +113,12 @@
       Go to Admin Dashboard
     </button>
 
-    <button mat-stroked-button type="button" (click)="openResetDialog()">
+    <button
+      mat-stroked-button
+      type="button"
+      *ngIf="user.role === 'admin'"
+      (click)="openResetDialog()"
+    >
       Reset All Points
     </button>
   </div>

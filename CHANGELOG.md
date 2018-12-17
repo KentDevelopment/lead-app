@@ -1,6 +1,14 @@
+# 1.4.5 (2018-12-18)
+
+## Bugs Fixed
+
+- Bulk points insertion fixed
+- Reset all points restricted to admins
+- Awards banner removed
+
 # 1.4.4 (2018-12-17)
 
-## Bugs
+## Bugs Fixed
 
 - Points type fixed
 
