@@ -34,7 +34,7 @@ export class ToastService {
     panelClass: 'snack-bar-error'
   }
 
-  constructor(public snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar) {}
 
   showSuccess(message: string) {
     this.snackBar.open(message, '', this.snackBarSuccess)

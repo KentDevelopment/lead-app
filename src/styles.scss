@@ -1,9 +1,25 @@
 /* Global styles */
-@import 'assets/scss/style';
-@import '../node_modules/bootstrap/scss/bootstrap';
+// Custom Theme for Angular Material and Bootstrap
+@import 'assets/scss/custom-theme';
+
+// Import Bootstrap
+// @import '../node_modules/bootstrap/scss/bootstrap';
+// @import '../node_modules/bootstrap/scss/bootstrap-reboot';
+// @import '../node_modules/bootstrap/scss/bootstrap-grid';
+// @import '../node_modules/bootstrap/scss/utilities';
+
+// // Angular Material Reset
+// html,
+// body {
+//   height: 100%;
+// }
+//
+// body {
+//   font-family: Roboto, 'Helvetica Neue', sans-serif;
+//   margin: 0;
+// }
 
 :root {
-  // Typography
   // CSS Variables
   --primary: #662d91;
   --secondary: #0072bb;
@@ -16,51 +32,13 @@
   --light-gray: #868e96;
   --light: #fff;
 
-  .primary-header {
-    background-image: linear-gradient(
-      -139deg,
-      var(--secondary) 10%,
-      var(--primary) 100%
-    );
-    border: 1px solid #979797;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    color: var(--light);
-    z-index: 999;
-  }
+  // Custom Styles for Angular Material Components
+  @import 'assets/scss/custom-components/buttons';
+  @import 'assets/scss/custom-components/form-field';
+  @import 'assets/scss/custom-components/snack-bar';
+  @import 'assets/scss/custom-components/spinner';
 
-  .mat-form-field-wrapper {
-    padding-bottom: 0;
-  }
-
-  .mat-button {
-    span {
-      color: var(--light);
-    }
-  }
-
-  .snack-bar-warning {
-    background: var(--warning);
-    color: var(--light);
-  }
-
-  .snack-bar-success {
-    background: var(--success);
-    color: var(--light);
-  }
-
-  .snack-bar-error {
-    background: var(--danger);
-    color: var(--light);
-  }
-
-  // .snack-bar-info{
-  //   background: #f8d7da;
-  //   color: #721c24;
-  // }
-
-  .spinner {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-  }
+  // Custom General Styles
+  @import 'assets/scss/elements';
+  @import 'assets/scss/headers';
 }

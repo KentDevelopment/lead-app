@@ -10,6 +10,8 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button'
 import { MatDialogModule } from '@angular/material/dialog'
+import { MatDividerModule } from '@angular/material/divider'
+import { MatListModule } from '@angular/material/list'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSelectModule } from '@angular/material/select'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
@@ -27,6 +29,13 @@ import { FirestoreService } from '@services/firestore.service'
 
 import { SharedModule } from '@shared/shared.module'
 
+import { LayoutModule } from '@angular/cdk/layout'
+import {
+  MatCardModule,
+  MatGridListModule,
+  MatIconModule,
+  MatMenuModule
+} from '@angular/material'
 import { Ng2ImgToolsModule } from 'ng2-img-tools'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -58,7 +67,14 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     FlexLayoutModule,
     SharedModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatListModule,
+    MatDividerModule,
+    LayoutModule
   ],
   providers: [
     AuthService,

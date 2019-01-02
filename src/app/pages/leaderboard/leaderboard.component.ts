@@ -15,8 +15,8 @@ export class LeaderboardComponent {
 
   constructor(
     public auth: AuthService,
-    public dialog: MatDialog,
-    public fss: FirestoreService
+    public fss: FirestoreService,
+    private dialog: MatDialog
   ) {}
 
   // Dialog Box

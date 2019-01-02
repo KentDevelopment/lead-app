@@ -58,11 +58,7 @@ small {
 cdk-virtual-scroll-viewport {
   height: 77vh;
 
-  li {
-    height: 100px;
+  mat-list-item {
+    height: 100px !important;
   }
-}
-
-.spinner {
-  margin-top: 10vh;
 }

@@ -60,3 +60,22 @@ small {
     min-width: 60%;
   }
 }
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form > * {
+  min-width: 80%;
+  text-align: center;
+}
+
+.mat-progress-spinner {
+  left: -4px;
+  position: absolute;
+  top: -4px;
+  transform: rotate(180deg);
+}

@@ -1,0 +1,28 @@
+@import '~@angular/material/theming';
+
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+mat-card {
+  margin: 2%;
+  width: 46%;
+
+  mat-card-content {
+    text-align: center;
+  }
+}
+
+mat-card:hover {
+  @include mat-elevation(5);
+
+  cursor: pointer;
+}
+
+.mat-icon {
+  // text-align: center;
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+}

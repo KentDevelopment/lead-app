@@ -1,15 +1,9 @@
 <!-- Admin Header -->
-<div class="primary-header pb-1 pt-2" fxLayout="row wrap">
-  <i class="material-icons" routerLink="/profile" fxFlex="initial">
-    keyboard_arrow_left
-  </i>
-  <h2 fxFlex fxFill>Admin Dashboard</h2>
-</div>
+<mat-toolbar>
+  <mat-toolbar-row class="primary-header pb-1 pt-2" fxLayout="row wrap">
+    <mat-icon fxFlex="initial" (click)="goBack()">keyboard_arrow_left</mat-icon>
+    <h2 fxFlex fxFill>Test</h2>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-<mat-tab-group mat-stretch-tabs>
-  <mat-tab label="Points"><app-points></app-points></mat-tab>
-
-  <!-- <mat-tab label="Bulk"><app-bulk></app-bulk></mat-tab> -->
-
-  <mat-tab label="Logs"><app-logs></app-logs></mat-tab>
-</mat-tab-group>
+<router-outlet></router-outlet>

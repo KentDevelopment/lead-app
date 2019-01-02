@@ -1,9 +1,7 @@
-<div class="card-header text-center border-primary pt-3">
-  <h5 class="text-primary">LEAD Points in Bulk</h5>
-  Add LEAD points to multiple users
-</div>
-
 <cdk-virtual-scroll-viewport itemSize="100">
+  <div class="card-header text-center pt-3">
+    Add LEAD points to multiple users
+  </div>
   <form
     [formGroup]="addPointsForm"
     (ngSubmit)="addPoints(addPointsForm.value)"

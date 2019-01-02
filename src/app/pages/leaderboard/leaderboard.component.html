@@ -34,48 +34,35 @@
   </div>
 
   <ng-container>
-    <div *ngIf="!fss.users$" class="spinner"><mat-spinner></mat-spinner></div>
+    <div *ngIf="!fss.users$" class="spinner mt-5">
+      <mat-spinner></mat-spinner>
+    </div>
 
     <cdk-virtual-scroll-viewport itemSize="100">
-      <li
-        *cdkVirtualFor="let user of fss.users$; let i = index"
-        class="animated fadeInUp list-group-item list-group-item-action"
-        [ngClass]="{ 'highlight-user': user.uid === authUser.uid }"
-      >
-        <div class="d-flex">
-          <div class="p-2 d-flex align-items-center">{{ i + 1 }}</div>
-          <div class="p-2 d-flex align-items-center">
-            <img
-              class="img-profile-list"
-              [src]="user.photoURL"
-              alt="User Profile Image"
-            />
+      <mat-list>
+        <mat-list-item
+          *cdkVirtualFor="let user of fss.users$; let i = index"
+          class="animated fadeInUp"
+          [ngClass]="{ 'highlight-user': user.uid === authUser.uid }"
+        >
+          <img
+            class="img-profile-list"
+            [src]="user.photoURL"
+            alt="User Profile Image"
+            matListAvatar
+          />
+          <h4 mat-line>{{ user.displayName | titlecase }}</h4>
+
+          <div class="d-flex align-items-center ml-auto p-2">
+            <p *ngIf="authUser.role === 'admin'">{{ user.points }}</p>
+            <p *ngIf="user.points < 100 && authUser.role !== 'admin'">
+              {{ user.points }}
+            </p>
+            <p *ngIf="user.points >= 100 && authUser.role !== 'admin'">100+</p>
           </div>
-          <div class="flex-column align-self-center">
-            <div class="pl-2 pr-2 d-flex">
-              {{ user.displayName | titlecase }}
-            </div>
-          </div>
-          <div
-            class="ml-auto p-2 d-flex align-items-center"
-            *ngIf="authUser.role === 'admin'"
-          >
-            {{ user.points }}
-          </div>
-          <div
-            class="ml-auto p-2 d-flex align-items-center"
-            *ngIf="user.points < 100 && authUser.role !== 'admin'"
-          >
-            {{ user.points }}
-          </div>
-          <div
-            class="ml-auto p-2 d-flex align-items-center"
-            *ngIf="user.points >= 100 && authUser.role !== 'admin'"
-          >
-            100+
-          </div>
-        </div>
-      </li>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
     </cdk-virtual-scroll-viewport>
   </ng-container>
 </div>
