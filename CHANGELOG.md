@@ -1,3 +1,9 @@
+# 1.4.6 (2019-01-08)
+
+## Bugs Fixed
+
+- Reset Users points fixed
+
 # 1.4.5 (2018-12-18)
 
 ## Bugs Fixed
