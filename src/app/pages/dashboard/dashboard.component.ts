@@ -1,47 +1,63 @@
-import { Location } from '@angular/common'
-import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
-// import { Observable } from 'rxjs';
-// import { map, filter, take } from 'rxjs/operators';
+import { Component } from '@angular/core'
+import { map } from 'rxjs/operators'
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout'
+import { Observable } from 'rxjs'
+
+export interface DashboardMenuContent {
+  id: number
+  icon: string
+  title: string
+  subTitle: string
+  route: string
+}
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
-  // message: Observable<any>;
+export class DashboardComponent {
+  cardsContent: DashboardMenuContent[] = [
+    {
+      id: 0,
+      icon: 'insert_chart',
+      title: 'LEAD Points',
+      subTitle: 'Add LEAD points to one user',
+      route: 'points'
+    },
+    {
+      id: 1,
+      icon: 'supervised_user_circle',
+      title: 'User Management',
+      subTitle: 'A list with details of all users',
+      route: 'bulk'
+    },
+    {
+      id: 2,
+      icon: 'assignment',
+      title: 'Logs',
+      subTitle: 'Check all the changes that have been made',
+      route: 'logs'
+    },
+    {
+      id: 3,
+      icon: 'delete_forever',
+      title: 'Reset All Points',
+      subTitle: 'Reset the LEAD Points Leaderboard',
+      route: 'reset'
+    }
+  ]
 
-  constructor(
-    public router: Router,
-    public activatedRoute: ActivatedRoute,
-    private location: Location
-  ) {
-    // console.log('ACTIVATEDROUTE', activatedRoute)
-    // console.log('THIS.ROUTER.ROUTERSTATE', this.router.routerState)
-    // this.message = this.activatedRoute.data.pipe(map(d => {
-    //   console.log('D', d)
-    //   return d.title
-    // }))
-    //     this.message = this.router.events.pipe(
-    //   filter(event => event instanceof ActivationEnd),
-    //   take(1)
-    // )
-    // activatedRoute.url.subscribe(() => {
-    //   this.messageTest = activatedRoute.snapshot.data.title // any time url changes, this callback is fired
-    // });
-  }
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(map(result => result.matches))
 
-  ngOnInit() {
-    // this.message = this.activatedRoute.data.pipe(map(d => {
-    //   console.log('D', d)
-    //   return d.title
-    // }))
-    // this.title = this.activatedRoute.data.pipe(map(d => d.title))
-    // this.paramsSub = this.activatedRoute.params.subscribe(params => this.id = parseInt(params['id'], 10));
-  }
+  /** Based on the screen size, switch from standard to one column per row */
+  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(() => {
+      return [...this.cardsContent]
+    })
+  )
 
-  goBack() {
-    this.location.back()
-  }
+  constructor(private breakpointObserver: BreakpointObserver) {}
 }

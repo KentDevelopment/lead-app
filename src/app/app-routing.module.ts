@@ -31,13 +31,13 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: '@pages/dashboard/dashboard.module#DashboardModule',
     canActivate: [AuthGuard, AdminGuard],
-    data: { animation: 'admin' }
+    data: { animation: 'admin', title: 'Dashboard Menu' }
   }
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  bootstrap: [AboutComponent]
+  bootstrap: [AboutComponent, LeaderboardComponent]
 })
 export class AppRoutingModule {}

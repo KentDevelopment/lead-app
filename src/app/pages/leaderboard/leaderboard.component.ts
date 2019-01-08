@@ -1,5 +1,5 @@
 import { Component, TemplateRef } from '@angular/core'
-import { MatDialog } from '@angular/material'
+import { MatDialog } from '@angular/material/dialog'
 
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'

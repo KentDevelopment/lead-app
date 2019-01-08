@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 
-import { MatDialogRef } from '@angular/material'
+import { MatDialogRef } from '@angular/material/dialog'
 import { AuthService } from '@services/auth.service'
 
 import { User } from '@interfaces/user'

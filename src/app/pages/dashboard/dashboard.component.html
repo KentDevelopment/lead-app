@@ -1,9 +1,25 @@
-<!-- Admin Header -->
-<mat-toolbar>
-  <mat-toolbar-row class="primary-header pb-1 pt-2" fxLayout="row wrap">
-    <mat-icon fxFlex="initial" (click)="goBack()">keyboard_arrow_left</mat-icon>
-    <h2 fxFlex fxFill>Test</h2>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile
+      *ngFor="let card of (cards | async)"
+      [colspan]="(isHandset$ | async) ? '2' : '1'"
+      [rowspan]="1"
+    >
+      <a mat-list-item [routerLink]="[card.route]">
+        <mat-card
+          class="dashboard-card"
+          fxLayout="column"
+          fxLayoutAlign="space-around center"
+        >
+          <mat-icon>{{ card.icon }}</mat-icon>
 
-<router-outlet></router-outlet>
+          <mat-card-content>
+            <mat-card-title>{{ card.title }}</mat-card-title>
+            <mat-card-subtitle>{{ card.subTitle }}</mat-card-subtitle>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

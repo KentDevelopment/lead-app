@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
-import { MatDialog } from '@angular/material'
-import { Router } from '@angular/router'
-import { ResetPointsComponent } from '../reset-points/reset-points.component'
+// import { MatDialog } from '@angular/material/dialog'
+// import { Router } from '@angular/router'
+// import { ResetPointsComponent } from '../reset-points/reset-points.component'
 
 export interface DashboardMenuContent {
   id: number
@@ -48,17 +48,19 @@ export class MenuComponent {
     }
   ]
 
-  constructor(private dialog: MatDialog, private router: Router) {}
+  constructor() // private dialog: MatDialog,
+  // private router: Router
+  {}
 
-  checkOptionSelected(item) {
-    item.id === 3
-      ? this.openResetDialog()
-      : this.router.navigate([`/dashboard/${item.route}`])
-  }
-
-  openResetDialog(): void {
-    this.dialog.open(ResetPointsComponent, {
-      autoFocus: false
-    })
-  }
+  // checkOptionSelected(item: { id: number; route: any }) {
+  //   item.id === 3
+  //     ? this.openResetDialog()
+  //     : this.router.navigate([`/dashboard/${item.route}`])
+  // }
+  //
+  // openResetDialog(): void {
+  //   this.dialog.open(ResetPointsComponent, {
+  //     autoFocus: false
+  //   })
+  // }
 }

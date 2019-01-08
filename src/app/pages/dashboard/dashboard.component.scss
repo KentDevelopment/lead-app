@@ -1,3 +1,35 @@
-h2 {
-  text-align: center;
+@import '~@angular/material/theming';
+
+mat-card {
+  mat-card-content {
+    text-align: center;
+  }
+}
+
+mat-card:hover {
+  @include mat-elevation(5);
+  cursor: pointer;
+}
+
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mat-icon {
+  font-size: 5.6rem;
+  height: 5.6rem;
+  width: 5.6rem;
 }

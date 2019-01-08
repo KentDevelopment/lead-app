@@ -1,67 +1,82 @@
-import { CommonModule } from '@angular/common'
-import { NgModule } from '@angular/core'
-import { DashboardComponent } from './dashboard.component'
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-
+import { LayoutModule } from '@angular/cdk/layout'
 import { ScrollingModule } from '@angular/cdk/scrolling'
+import { CommonModule, TitleCasePipe } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { FlexLayoutModule } from '@angular/flex-layout'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import {
+  MatGridListModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatSidenavModule
+} from '@angular/material'
+import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
 import { MatDialogModule } from '@angular/material/dialog'
-
-import { RouterModule, Routes } from '@angular/router'
-
-import { TitleCasePipe } from '@angular/common'
-import { FlexLayoutModule } from '@angular/flex-layout'
-import { MatInputModule } from '@angular/material'
-import { MatButtonModule } from '@angular/material/button'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatIconModule } from '@angular/material/icon'
 import { MatToolbarModule } from '@angular/material/toolbar'
-
+import { RouterModule, Routes } from '@angular/router'
 import { BulkComponent } from './bulk/bulk.component'
+import { DashboardComponent } from './dashboard.component'
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component'
 import { LogsComponent } from './logs/logs.component'
 import { MenuComponent } from './menu/menu.component'
+import { NavComponent } from './nav/nav.component'
 import { PointsComponent } from './points/points.component'
 import { ResetPointsComponent } from './reset-points/reset-points.component'
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: NavComponent,
     children: [
-      { path: '', component: MenuComponent },
-      { path: 'points', component: PointsComponent },
+      { path: '', component: DashboardComponent },
+      {
+        path: 'points',
+        component: PointsComponent,
+        data: {
+          title: 'LEAD Points'
+        }
+      },
       { path: 'logs', component: LogsComponent },
-      { path: 'bulk', component: BulkComponent }
+      { path: 'bulk', component: BulkComponent },
+      { path: 'resetPoints', component: ResetPointsComponent }
     ]
   }
 ]
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    LogsComponent,
     BulkComponent,
-    PointsComponent,
+    DashboardComponent,
     DialogConfirmationComponent,
+    LogsComponent,
     MenuComponent,
+    NavComponent,
+    PointsComponent,
     ResetPointsComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
-    ScrollingModule,
+    FlexLayoutModule,
+    FormsModule,
+    LayoutModule,
+    MatButtonModule,
     MatCardModule,
     MatDialogModule,
-    FormsModule,
-    ReactiveFormsModule,
-    FlexLayoutModule,
-    MatButtonModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatGridListModule,
     MatIconModule,
-    MatToolbarModule
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+    ScrollingModule
   ],
   providers: [TitleCasePipe, RouterModule],
   bootstrap: [DialogConfirmationComponent, ResetPointsComponent]

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { MatDialog, MatDialogRef, ProgressSpinnerMode } from '@angular/material'
+import { MatDialog, MatDialogRef } from '@angular/material/dialog'
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner'
 
 import {
   AngularFirestore,
