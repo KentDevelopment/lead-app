@@ -25,7 +25,7 @@ export class PointsComponent {
   constructor(
     public fss: FirestoreService,
     // public dialog: MatDialog,
-    public toast: ToastService,
+    private toast: ToastService,
     private dashboardService: DashboardService,
     private afs: AngularFirestore
   ) {}

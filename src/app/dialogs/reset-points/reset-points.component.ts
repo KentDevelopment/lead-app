@@ -1,12 +1,9 @@
 import { Component } from '@angular/core'
-import { MatDialog, MatDialogRef } from '@angular/material/dialog'
-
+import { MatDialogRef } from '@angular/material/dialog'
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
-
 import { take } from 'rxjs/operators'
-
 import {
   AngularFirestore,
   AngularFirestoreDocument
@@ -23,7 +20,6 @@ export class ResetPointsComponent {
   myTime: any = new Date()
 
   constructor(
-    public dialog: MatDialog,
     private dialogRef: MatDialogRef<ResetPointsComponent>,
     private auth: AuthService,
     private fss: FirestoreService,

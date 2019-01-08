@@ -20,12 +20,9 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { RouterModule, Routes } from '@angular/router'
 import { BulkComponent } from './bulk/bulk.component'
 import { DashboardComponent } from './dashboard.component'
-import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component'
 import { LogsComponent } from './logs/logs.component'
-import { MenuComponent } from './menu/menu.component'
 import { NavComponent } from './nav/nav.component'
 import { PointsComponent } from './points/points.component'
-import { ResetPointsComponent } from './reset-points/reset-points.component'
 
 const routes: Routes = [
   {
@@ -41,8 +38,7 @@ const routes: Routes = [
         }
       },
       { path: 'logs', component: LogsComponent },
-      { path: 'bulk', component: BulkComponent },
-      { path: 'resetPoints', component: ResetPointsComponent }
+      { path: 'bulk', component: BulkComponent }
     ]
   }
 ]
@@ -51,12 +47,9 @@ const routes: Routes = [
   declarations: [
     BulkComponent,
     DashboardComponent,
-    DialogConfirmationComponent,
     LogsComponent,
-    MenuComponent,
     NavComponent,
-    PointsComponent,
-    ResetPointsComponent
+    PointsComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +71,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ScrollingModule
   ],
-  providers: [TitleCasePipe, RouterModule],
-  bootstrap: [DialogConfirmationComponent, ResetPointsComponent]
+  providers: [TitleCasePipe, RouterModule]
 })
 export class DashboardModule {}

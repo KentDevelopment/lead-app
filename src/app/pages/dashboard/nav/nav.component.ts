@@ -2,9 +2,7 @@ import { Component } from '@angular/core'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { MatDialog } from '@angular/material/dialog'
-import { Router } from '@angular/router'
-import { ResetPointsComponent } from '../reset-points/reset-points.component'
+import { DashboardService } from '../dashboard.service'
 
 export interface DashboardMenuContent {
   icon: string
@@ -28,13 +26,13 @@ export class NavComponent {
       icon: 'arrow_back',
       title: 'Back to the App',
       subTitle: 'Navigate back to the Leaderboard',
-      route: '/profile'
+      route: 'profile'
     },
     {
       icon: 'home',
       title: 'Dashboard',
       subTitle: 'Dashboard Menu',
-      route: '/dashboard'
+      route: 'dashboard'
     },
     {
       icon: 'insert_chart',
@@ -58,25 +56,12 @@ export class NavComponent {
       icon: 'delete_forever',
       title: 'Reset All Points',
       subTitle: 'Reset the LEAD Points Leaderboard',
-      route: 'resetPoints'
+      route: 'reset'
     }
   ]
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
-    private dialog: MatDialog,
-    private router: Router
+    public dashboardService: DashboardService,
+    private breakpointObserver: BreakpointObserver
   ) {}
-
-  checkOptionSelected(item: { id: number; route: any }) {
-    item.id === 3
-      ? this.openResetDialog()
-      : this.router.navigate([`/dashboard/${item.route}`])
-  }
-
-  openResetDialog(): void {
-    this.dialog.open(ResetPointsComponent, {
-      autoFocus: false
-    })
-  }
 }

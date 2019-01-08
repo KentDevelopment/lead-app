@@ -15,6 +15,7 @@
     "target": "es5",
     "paths": {
       "@guards/*": ["app/guards/*"],
+      "@dialogs/*": ["app/dialogs/*"],
       "@interfaces/*": ["app/interfaces/*"],
       "@shared/*": ["app/shared/*"],
       "@services/*": ["app/services/*"],

@@ -1,9 +1,8 @@
-import { Component, TemplateRef } from '@angular/core'
-import { MatDialog } from '@angular/material/dialog'
-
-import { AuthService } from '@services/auth.service'
-import { FirestoreService } from '@services/firestore.service'
 import { AboutComponent } from './dialogs/about/about.component'
+import { AuthService } from '@services/auth.service'
+import { Component, TemplateRef } from '@angular/core'
+import { FirestoreService } from '@services/firestore.service'
+import { MatDialog } from '@angular/material/dialog'
 
 @Component({
   selector: 'app-leaderboard',
@@ -19,7 +18,6 @@ export class LeaderboardComponent {
     private dialog: MatDialog
   ) {}
 
-  // Dialog Box
   openDialog(): void {
     this.dialog.open(AboutComponent, {
       position: {

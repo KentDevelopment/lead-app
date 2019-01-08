@@ -39,7 +39,7 @@ export class ProfileComponent {
 
   constructor(
     public auth: AuthService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private afs: AngularFirestore,
     private fb: FormBuilder,
     private ng2ImgToolsService: Ng2ImgToolsService,

@@ -1,3 +1,4 @@
+import { LayoutModule } from '@angular/cdk/layout'
 import { ScrollingModule } from '@angular/cdk/scrolling'
 import { TitleCasePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
@@ -8,6 +9,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import {
+  MatCardModule,
+  MatGridListModule,
+  MatIconModule,
+  MatMenuModule
+} from '@angular/material'
 import { MatButtonModule } from '@angular/material/button'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatDividerModule } from '@angular/material/divider'
@@ -15,38 +22,29 @@ import { MatListModule } from '@angular/material/list'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSelectModule } from '@angular/material/select'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
-
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-
 import { Environment } from '@environments/environment'
-
 import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
 import { LoginComponent } from '@pages/login/login.component'
-
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
-
 import { SharedModule } from '@shared/shared.module'
-
-import { LayoutModule } from '@angular/cdk/layout'
-import {
-  MatCardModule,
-  MatGridListModule,
-  MatIconModule,
-  MatMenuModule
-} from '@angular/material'
 import { Ng2ImgToolsModule } from 'ng2-img-tools'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { AboutComponent } from './pages/leaderboard/dialogs/about/about.component'
+import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.component'
+import { DialogConfirmationComponent } from '@dialogs/dialog-confirmation/dialog-confirmation.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LeaderboardComponent,
     LoginComponent,
-    AboutComponent
+    AboutComponent,
+    ResetPointsComponent,
+    DialogConfirmationComponent
   ],
   imports: [
     AngularFireAuthModule,
@@ -76,6 +74,7 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     MatDividerModule,
     LayoutModule
   ],
+  entryComponents: [ResetPointsComponent],
   providers: [
     AuthService,
     FirestoreService,

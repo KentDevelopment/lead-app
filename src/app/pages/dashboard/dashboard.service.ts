@@ -6,6 +6,9 @@ import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
+import { Router } from '@angular/router'
+import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.component'
+import { MatDialog } from '@angular/material/dialog'
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,9 @@ export class DashboardService {
     private auth: AuthService,
     private toast: ToastService,
     private fss: FirestoreService,
-    private titlecasePipe: TitleCasePipe
+    private titlecasePipe: TitleCasePipe,
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   private checkPlural(pointsAdded: number) {
@@ -59,5 +64,29 @@ export class DashboardService {
 
   async updateData(userRef: AngularFirestoreDocument<User>, data: User) {
     return userRef.update(data)
+  }
+
+  checkRoute(item: { route: string }) {
+    switch (item.route) {
+      case 'dashboard':
+      case 'profile': {
+        this.router.navigate([`${item.route}`])
+        break
+      }
+      case 'reset': {
+        this.openDialog()
+        break
+      }
+      default: {
+        this.router.navigate([`/dashboard/${item.route}`])
+        break
+      }
+    }
+  }
+
+  openDialog(): void {
+    this.dialog.open(ResetPointsComponent, {
+      autoFocus: false
+    })
   }
 }

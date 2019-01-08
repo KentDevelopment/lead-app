@@ -27,7 +27,7 @@ export class FirestoreService {
   validPicture = []
 
   constructor(
-    public afs: AngularFirestore,
+    private afs: AngularFirestore,
     private http: HttpClient,
     private auth: AuthService
   ) {

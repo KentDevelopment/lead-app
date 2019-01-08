@@ -19,8 +19,8 @@ export class AuthService {
   user$: Observable<User>
 
   constructor(
-    public http: HttpClient,
-    public toast: ToastService,
+    private http: HttpClient,
+    private toast: ToastService,
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router

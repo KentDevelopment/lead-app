@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { map } from 'rxjs/operators'
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout'
 import { Observable } from 'rxjs'
+import { DashboardService } from './dashboard.service'
 
 export interface DashboardMenuContent {
   id: number
@@ -59,5 +60,8 @@ export class DashboardComponent {
     })
   )
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    public dashboardService: DashboardService,
+    private breakpointObserver: BreakpointObserver
+  ) {}
 }

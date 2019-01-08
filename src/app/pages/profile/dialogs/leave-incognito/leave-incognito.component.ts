@@ -15,7 +15,7 @@ export class LeaveIncognitoComponent {
   isLoading = false
 
   constructor(
-    public auth: AuthService,
+    private auth: AuthService,
     private dialogRef: MatDialogRef<LeaveIncognitoComponent>
   ) {
     this.auth.user$.subscribe(data => {

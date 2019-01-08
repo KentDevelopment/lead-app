@@ -6,7 +6,7 @@
       [colspan]="(isHandset$ | async) ? '2' : '1'"
       [rowspan]="1"
     >
-      <a mat-list-item [routerLink]="[card.route]">
+      <a mat-list-item (click)="dashboardService.checkRoute(card)">
         <mat-card
           class="dashboard-card"
           fxLayout="column"
