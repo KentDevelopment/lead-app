@@ -28,7 +28,7 @@ export class FirestoreService {
 
   constructor(
     public afs: AngularFirestore,
-    public http: HttpClient,
+    private http: HttpClient,
     private auth: AuthService
   ) {
     this.auth.user$.subscribe(userRef => {
