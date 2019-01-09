@@ -1,12 +1,22 @@
 <cdk-virtual-scroll-viewport itemSize="100">
-  <div class="card-header text-center pt-3">
-    Add LEAD points to multiple users
-  </div>
-  <form
-    [formGroup]="addPointsForm"
-    (ngSubmit)="addPoints(addPointsForm.value)"
-    novalidate
-  >
+  <form [formGroup]="addPointsForm" (ngSubmit)="addPoints(addPointsForm.value)">
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+      <mat-form-field appearance="outline" color="primary">
+        <input
+          matInput
+          type="number"
+          step="10"
+          aria-describedby="points"
+          placeholder="Points to add"
+          formControlName="points"
+        />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">
+        Add Points
+      </button>
+    </div>
+
     <div
       class="input-group p-1"
       *ngFor="let user of (fss.orderedUsers$ | async)"
@@ -31,21 +41,6 @@
           <p class="secondary-text">{{ user.campus }}</p>
         </div>
         <p class="pr-2 align-self-center">{{ user.points }}</p>
-      </div>
-    </div>
-
-    <h5 class="text-center mt-3">Insert Points</h5>
-    <div class="form-group ml-5 mr-5">
-      <input
-        type="number"
-        class="form-control"
-        step="10"
-        aria-describedby="points"
-        placeholder="Points to add"
-        formControlName="points"
-      />
-      <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary m-2">Add Points</button>
       </div>
     </div>
   </form>

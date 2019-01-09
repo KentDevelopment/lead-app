@@ -1,17 +1,11 @@
-<!-- User Profile -->
 <div *ngIf="(auth.user$ | async) as user">
-  <!-- User Status -->
-  <div class="sticky-top secondary-header text-center pb-3">
-    <div class="fixed-top">
-      <i class="material-icons float-left" routerLink="/leaderboard">
-        keyboard_arrow_left
-      </i>
-      <i class="material-icons float-right" (click)="auth.signOut()">
-        power_settings_new
-      </i>
+  <div class="header">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <mat-icon routerLink="/leaderboard">keyboard_arrow_left</mat-icon>
+      <mat-icon (click)="auth.signOut()">power_settings_new</mat-icon>
     </div>
 
-    <h3 class="text-center pt-4 pb-2 text-truncate">
+    <h3 class="text-truncate">
       Hello
       <br />
       {{ user.displayName | titlecase }}
@@ -115,9 +109,9 @@
       Go to Admin Dashboard
     </button>
 
-    <button mat-stroked-button type="button" (click)="openPictureDialog()">
+    <!-- <button mat-stroked-button type="button" (click)="openPictureDialog()">
       Open Picture Editing dialog
-    </button>
+    </button> -->
   </div>
 
   <small>v.{{ version }}</small>

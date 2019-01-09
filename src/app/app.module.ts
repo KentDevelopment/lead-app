@@ -12,18 +12,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import {
   MatCardModule,
   MatGridListModule,
-  MatIconModule,
   MatMenuModule
 } from '@angular/material'
 import { MatButtonModule } from '@angular/material/button'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatDividerModule } from '@angular/material/divider'
+import { MatIconModule } from '@angular/material/icon'
 import { MatListModule } from '@angular/material/list'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSelectModule } from '@angular/material/select'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { DialogConfirmationComponent } from '@dialogs/dialog-confirmation/dialog-confirmation.component'
+import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.component'
 import { Environment } from '@environments/environment'
 import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
 import { LoginComponent } from '@pages/login/login.component'
@@ -34,8 +36,6 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { AboutComponent } from './pages/leaderboard/dialogs/about/about.component'
-import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.component'
-import { DialogConfirmationComponent } from '@dialogs/dialog-confirmation/dialog-confirmation.component'
 
 @NgModule({
   declarations: [

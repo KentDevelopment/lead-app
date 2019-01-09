@@ -1,23 +1,14 @@
 /* Global styles */
-// Custom Theme for Angular Material and Bootstrap
-@import 'assets/scss/custom-theme';
+// Angular Material Reset
+html,
+body {
+  height: 100%;
+}
 
-// Import Bootstrap
-// @import '../node_modules/bootstrap/scss/bootstrap';
-// @import '../node_modules/bootstrap/scss/bootstrap-reboot';
-// @import '../node_modules/bootstrap/scss/bootstrap-grid';
-// @import '../node_modules/bootstrap/scss/utilities';
-
-// // Angular Material Reset
-// html,
-// body {
-//   height: 100%;
-// }
-//
-// body {
-//   font-family: Roboto, 'Helvetica Neue', sans-serif;
-//   margin: 0;
-// }
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  margin: 0;
+}
 
 :root {
   // CSS Variables
@@ -33,12 +24,11 @@
   --light: #fff;
 
   // Custom Styles for Angular Material Components
-  @import 'assets/scss/custom-components/buttons';
-  @import 'assets/scss/custom-components/form-field';
-  @import 'assets/scss/custom-components/snack-bar';
-  @import 'assets/scss/custom-components/spinner';
+  @import 'assets/scss/material-components/buttons';
+  @import 'assets/scss/material-components/form-field';
+  @import 'assets/scss/material-components/snack-bar';
+  @import 'assets/scss/material-components/spinner';
 
   // Custom General Styles
-  @import 'assets/scss/elements';
-  @import 'assets/scss/headers';
+  @import 'assets/scss/custom-elements/elements';
 }

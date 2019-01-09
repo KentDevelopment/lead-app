@@ -8,7 +8,7 @@ import { FirestoreService } from '@services/firestore.service'
 import { take } from 'rxjs/operators'
 import { DashboardService } from '../dashboard.service'
 
-// import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component'
+// import { DialogConfirmationComponent } from '@dialogs/dialog-confirmation/dialog-confirmation.component'
 // import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { FormControl } from '@angular/forms'
 import { ToastService } from '@services/toast.service'

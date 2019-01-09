@@ -8,6 +8,7 @@ mat-card {
 
 mat-card:hover {
   @include mat-elevation(5);
+
   cursor: pointer;
 }
 
@@ -16,11 +17,11 @@ mat-card:hover {
 }
 
 .dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
   bottom: 15px;
+  left: 15px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
 }
 
 .dashboard-content {

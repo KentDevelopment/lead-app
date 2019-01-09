@@ -4,14 +4,12 @@ import {
   AngularFirestore,
   AngularFirestoreCollection
 } from '@angular/fire/firestore'
-
+import { Environment } from '@environments/environment'
 import { Log, LogText } from '@interfaces/log'
+import { Marvel, Results } from '@interfaces/marvel'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { Observable } from 'rxjs'
-
-import { Environment } from '@environments/environment'
-import { Marvel, Results } from '@interfaces/marvel'
 import { map } from 'rxjs/operators'
 
 @Injectable()

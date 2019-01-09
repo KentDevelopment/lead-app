@@ -8,11 +8,10 @@ import {
 import { Router } from '@angular/router'
 import { Environment } from '@environments/environment'
 import { User } from '@interfaces/user'
+import { ToastService } from '@services/toast.service'
 import { auth } from 'firebase/app'
 import { Observable, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-
-import { ToastService } from '@services/toast.service'
 
 @Injectable()
 export class AuthService {

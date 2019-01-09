@@ -1,34 +1,31 @@
-.secondary-header {
-  background-image: radial-gradient(
-    at 50% 70%,
-    #f1592a 12%,
-    var(--primary) 100%
-  );
-  border: 1px solid #979797;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-  color: var(--light);
-  z-index: 999;
+@import 'src/assets/scss/extendable/headers';
+@import 'src/assets/scss/mixins/avatars';
 
-  .img-profile {
-    border-radius: 50%;
-    height: 120px;
-    width: 120px;
+:host {
+  mat-icon {
+    cursor: pointer;
+    margin: 10px;
   }
 
-  .edit-img {
-    left: 50%;
-    opacity: 0.9;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+  .header {
+    @extend %header;
 
-  div {
-    position: relative;
+    background-image: radial-gradient(
+      at 50% 70%,
+      #f1592a 12%,
+      var(--primary) 100%
+    );
 
-    i {
-      cursor: pointer;
-      padding: 13px;
+    .img-profile {
+      @include profile(120px);
+    }
+
+    .edit-img {
+      left: 50%;
+      opacity: 0.9;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 }

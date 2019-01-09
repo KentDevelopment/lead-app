@@ -1,14 +1,14 @@
 import { TitleCasePipe } from '@angular/common'
 import { Injectable } from '@angular/core'
 import { AngularFirestoreDocument } from '@angular/fire/firestore'
+import { MatDialog } from '@angular/material/dialog'
+import { Router } from '@angular/router'
+import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.component'
 import { Log } from '@interfaces/log'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
-import { Router } from '@angular/router'
-import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.component'
-import { MatDialog } from '@angular/material/dialog'
 
 @Injectable({
   providedIn: 'root'

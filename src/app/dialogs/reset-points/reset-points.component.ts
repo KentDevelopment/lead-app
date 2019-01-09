@@ -1,15 +1,15 @@
 import { Component } from '@angular/core'
-import { MatDialogRef } from '@angular/material/dialog'
-import { AuthService } from '@services/auth.service'
-import { FirestoreService } from '@services/firestore.service'
-import { ToastService } from '@services/toast.service'
-import { take } from 'rxjs/operators'
 import {
   AngularFirestore,
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
+import { MatDialogRef } from '@angular/material/dialog'
 import { LogText } from '@interfaces/log'
 import { User } from '@interfaces/user'
+import { AuthService } from '@services/auth.service'
+import { FirestoreService } from '@services/firestore.service'
+import { ToastService } from '@services/toast.service'
+import { take } from 'rxjs/operators'
 
 @Component({
   selector: 'app-reset-points',

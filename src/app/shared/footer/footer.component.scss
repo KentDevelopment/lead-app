@@ -5,6 +5,7 @@ footer {
   left: 0;
   position: fixed;
   right: 0;
+  text-align: center;
   width: 100%;
 
   div {
@@ -13,9 +14,8 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 0 7% 1%;
-    text-align: center;
 
-    i {
+    mat-icon {
       cursor: pointer;
     }
   }

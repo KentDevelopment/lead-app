@@ -1,22 +1,18 @@
 import { Component, Input } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
-import { MatDialog, MatDialogRef } from '@angular/material/dialog'
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner'
-
 import {
   AngularFirestore,
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
 import { AngularFireStorage } from '@angular/fire/storage'
-import { Ng2ImgToolsService } from 'ng2-img-tools'
-
-import { Observable, of } from 'rxjs'
-import { finalize } from 'rxjs/operators'
-
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { MatDialog, MatDialogRef } from '@angular/material/dialog'
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner'
 import { Environment } from '@environments/environment'
-
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
+import { Ng2ImgToolsService } from 'ng2-img-tools'
+import { Observable, of } from 'rxjs'
+import { finalize } from 'rxjs/operators'
 import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
 import { EditPictureComponent } from './edit-picture/edit-picture.component'
 

@@ -37,8 +37,20 @@ const routes: Routes = [
           title: 'LEAD Points'
         }
       },
-      { path: 'logs', component: LogsComponent },
-      { path: 'bulk', component: BulkComponent }
+      {
+        path: 'logs',
+        component: LogsComponent,
+        data: {
+          title: 'Logs'
+        }
+      },
+      {
+        path: 'bulk',
+        component: BulkComponent,
+        data: {
+          title: 'Bulk editing'
+        }
+      }
     ]
   }
 ]

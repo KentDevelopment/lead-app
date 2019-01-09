@@ -1,7 +1,3 @@
-<div class="card-header text-center pt-3">
-  Check all the changes that have been made
-</div>
-
 <div *ngFor="let log of (fss.logs$ | async); let i = index" class="log-item">
   <p *ngIf="log.pointsAdded">
     <strong>{{ log.adminName | titlecase }}</strong>

@@ -1,6 +1,4 @@
 <cdk-virtual-scroll-viewport itemSize="100">
-  <div class="card-header text-center pt-3">Add LEAD points to one user</div>
-
   <li *cdkVirtualFor="let user of (fss.orderedUsers$ | async)">
     <div class="profile-info">
       <img [src]="user.photoURL" alt="User Profile Image" />

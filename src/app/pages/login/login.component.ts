@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
-
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 

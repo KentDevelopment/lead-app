@@ -1,7 +1,7 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { Component } from '@angular/core'
-import { map } from 'rxjs/operators'
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout'
 import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { DashboardService } from './dashboard.service'
 
 export interface DashboardMenuContent {

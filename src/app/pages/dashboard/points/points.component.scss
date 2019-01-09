@@ -1,7 +1,8 @@
 cdk-virtual-scroll-viewport {
   display: flex;
   flex-direction: column;
-  height: 86vh;
+  flex-wrap: wrap;
+  height: 94vh;
 
   li {
     align-items: center;
@@ -12,13 +13,11 @@ cdk-virtual-scroll-viewport {
     height: 100px;
     justify-content: space-around;
     padding: 0 1rem;
-    width: 100vw;
 
     .profile-info {
       align-items: center;
       display: flex;
       overflow: hidden;
-      width: 78vw;
       word-wrap: break-word;
 
       img {
@@ -34,7 +33,6 @@ cdk-virtual-scroll-viewport {
         p {
           color: var(--light-gray);
           font-size: 0.9rem;
-          // word-wrap: break-word;
           margin-bottom: 0;
         }
       }

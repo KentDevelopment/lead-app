@@ -1,5 +1,6 @@
-import { Component } from '@angular/core'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
+import { Component } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { DashboardService } from '../dashboard.service'
@@ -17,21 +18,17 @@ export interface DashboardMenuContent {
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
+  routeTitle: string
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches))
 
   cardsContent: DashboardMenuContent[] = [
     {
-      icon: 'arrow_back',
-      title: 'Back to the App',
-      subTitle: 'Navigate back to the Leaderboard',
-      route: 'profile'
-    },
-    {
       icon: 'home',
       title: 'Dashboard',
-      subTitle: 'Dashboard Menu',
+      subTitle: 'Dashboard',
       route: 'dashboard'
     },
     {
@@ -62,6 +59,11 @@ export class NavComponent {
 
   constructor(
     public dashboardService: DashboardService,
+    private route: ActivatedRoute,
     private breakpointObserver: BreakpointObserver
-  ) {}
+  ) {
+    this.route.data.subscribe(data => {
+      this.routeTitle = data.title
+    })
+  }
 }

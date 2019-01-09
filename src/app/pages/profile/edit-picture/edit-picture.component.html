@@ -1,35 +1,57 @@
 <p>edit-picture works!</p>
 
 <!-- <image-cropper
-[imageChangedEvent]="imageChangedEvent"
-[maintainAspectRatio]="true"
-[aspectRatio]="1/1"
-[resizeToWidth]="128"
-format="png"
-outputType="base64"
-(imageCropped)="imageCropped($event)"
-(imageLoaded)="imageLoaded()"
-(loadImageFailed)="loadImageFailed()"
-[style.display]="showCropper ? null : 'none'"
-style="max-height: 33vh"
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="1 / 1"
+  [resizeToWidth]="128"
+  format="png"
+  outputType="base64"
+  (imageCropped)="imageCropped($event)"
+  (imageLoaded)="imageLoaded()"
+  (loadImageFailed)="loadImageFailed()"
+  [style.display]="showCropper ? null : 'none'"
+  style="max-height: 33vh"
 ></image-cropper>
 
 <img [src]="croppedImage" />
 
 <div class="d-flex justify-content-around align-items-center mt-3">
   <div [style.display]="showCropper ? null : 'none'">
-    <button type="button" class="btn btn-raised btn-primary mr-1" (click)="imageCropper.rotateLeft()"><i class="material-icons">rotate_left</i></button>
-    <button type="button" class="btn btn-raised btn-primary mr-1" (click)="imageCropper.rotateRight()"><i class="material-icons">rotate_right</i></button>
-    <button type="button" class="btn btn-raised btn-primary mr-1" (click)="imageCropper.flipHorizontal()"><i class="material-icons">flip</i></button>
-    <button type="button" class="btn btn-raised btn-primary" (click)="imageCropper.flipVertical()"><i class="material-icons btn-flip-vertical">flip</i></button>
+    <button type="button" mat-flat-button (click)="imageCropper.rotateLeft()">
+      <mat-icon>rotate_left</mat-icon>
+    </button>
+    <button type="button" mat-flat-button (click)="imageCropper.rotateRight()">
+      <mat-icon>rotate_right</mat-icon>
+    </button>
+    <button
+      type="button"
+      mat-flat-button
+      (click)="imageCropper.flipHorizontal()"
+    >
+      <mat-icon>flip</mat-icon>
+    </button>
+    <button type="button" mat-flat-button (click)="imageCropper.flipVertical()">
+      <mat-icon class="btn-flip-vertical">flip</mat-icon>
+    </button>
   </div>
 
   <div [style.display]="showCropper ? null : 'none'">
-    <button type="button" class="btn btn-raised btn-warning mr-1" (click)="loadImageFailed()">
-      <i class="ft-x"></i> Cancel
+    <button
+      type="button"
+      class="btn btn-raised btn-warning mr-1"
+      (click)="loadImageFailed()"
+    >
+      <i class="ft-x"></i>
+      Cancel
     </button>
-    <button type="button" class="btn btn-raised btn-success mr-1" (click)="submitImage()">
-      <i class="fas fa-check"></i> Save Image
+    <button
+      type="button"
+      class="btn btn-raised btn-success mr-1"
+      (click)="submitImage()"
+    >
+      <i class="fas fa-check"></i>
+      Save Image
     </button>
   </div>
 </div> -->
