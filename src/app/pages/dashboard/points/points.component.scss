@@ -1,51 +1,17 @@
-cdk-virtual-scroll-viewport {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 94vh;
+:host {
+  cdk-virtual-scroll-viewport {
+    height: 92vh;
 
-  li {
-    align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    height: 100px;
-    justify-content: space-around;
-    padding: 0 1rem;
-
-    .profile-info {
-      align-items: center;
-      display: flex;
-      overflow: hidden;
-      word-wrap: break-word;
-
-      img {
-        border-radius: 50%;
-        height: 35px;
-        width: 35px;
+    mat-list-item {
+      p {
+        color: var(--light-gray);
       }
 
-      .profile-content {
-        padding: 0 2%;
-        width: 60vw;
-
-        p {
-          color: var(--light-gray);
-          font-size: 0.9rem;
-          margin-bottom: 0;
-        }
+      mat-form-field {
+        max-width: 8rem;
+        text-align: center;
+        width: 22vw;
       }
     }
-
-    mat-form-field {
-      max-width: 8rem;
-      text-align: center;
-      width: 22vw;
-    }
-  }
-
-  li:last-child {
-    border-bottom: 0;
   }
 }

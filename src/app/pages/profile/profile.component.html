@@ -5,55 +5,54 @@
       <mat-icon (click)="auth.signOut()">power_settings_new</mat-icon>
     </div>
 
-    <h3 class="text-truncate">
-      Hello
-      <br />
-      {{ user.displayName | titlecase }}
-    </h3>
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+      <h1 class="mat-display-1">Hello</h1>
+      <h1 class="mat-h2">{{ user.displayName | titlecase }}</h1>
 
-    <div class="d-flex justify-content-around pb-2">
-      <div class="d-flex align-items-center" routerLink="/profile">
-        <img
-          id="upload"
-          class="img-profile"
-          src="{{ user.photoURL }}"
-          alt="User Profile Image"
-        />
-        <div class="edit-img" *ngIf="!user.incognitoMode">
-          <img
-            class="img-profile"
-            src="assets/profile/edit.svg"
-            alt="Edit"
-            (click)="file.click()"
-          />
-        </div>
+      <img
+        id="upload"
+        class="img-profile"
+        src="{{ user.photoURL }}"
+        alt="User Profile Image"
+      />
 
-        <mat-progress-spinner
-          *ngIf="(uploadPercent | async) !== null"
-          color="primary"
-          diameter="128"
-          strokeWidth="4"
-          [mode]="mode"
-          value="{{ uploadPercent | async }}"
-        ></mat-progress-spinner>
-      </div>
+      <img
+        *ngIf="!user.incognitoMode"
+        class="edit-img img-profile"
+        src="assets/profile/edit.svg"
+        alt="Edit"
+        (click)="file.click()"
+      />
+
+      <mat-progress-spinner
+        *ngIf="(uploadPercent | async) !== null"
+        class="mat-progress-spinner"
+        color="primary"
+        diameter="128"
+        strokeWidth="4"
+        [mode]="mode"
+        value="{{ uploadPercent | async }}"
+      ></mat-progress-spinner>
+
+      <p class="mat-small" *ngIf="user.incognitoMode">
+        Only you can see your profile picture!
+      </p>
+
+      <p
+        class="mat-body"
+        *ngIf="
+          (uploadPercent | async) !== 100 && (uploadPercent | async) !== null
+        "
+      >
+        Loading {{ uploadPercent | async }}%
+      </p>
+      <p class="mat-body" *ngIf="(uploadPercent | async) === 100">
+        Upload Completed
+      </p>
     </div>
-
-    <div
-      *ngIf="
-        (uploadPercent | async) !== 100 && (uploadPercent | async) !== null
-      "
-    >
-      Loading {{ uploadPercent | async }}%
-    </div>
-    <div *ngIf="(uploadPercent | async) === 100">Upload Completed</div>
   </div>
 
-  <div class="text-center mt-2" *ngIf="user.incognitoMode">
-    Only you can see your profile picture!
-  </div>
-
-  <div class="form-group fileContainer" hidden>
+  <div hidden>
     <input type="file" (change)="fileChangeEvent($event)" />
     <input
       #file
@@ -64,7 +63,7 @@
     />
   </div>
 
-  <form [formGroup]="userForm" class="mt-3">
+  <form [formGroup]="userForm" fxLayout="column" fxLayoutAlign="center center">
     <mat-form-field appearance="outline">
       <input
         matInput
@@ -88,7 +87,7 @@
     </mat-form-field>
   </form>
 
-  <div class="button-column mt-3">
+  <div fxLayout="column" fxLayoutAlign="space-around center">
     <button
       mat-raised-button
       color="primary"
@@ -108,12 +107,8 @@
     >
       Go to Admin Dashboard
     </button>
-
-    <!-- <button mat-stroked-button type="button" (click)="openPictureDialog()">
-      Open Picture Editing dialog
-    </button> -->
   </div>
 
-  <small>v.{{ version }}</small>
+  <small class="mat-small">v.{{ version }}</small>
   <app-footer></app-footer>
 </div>

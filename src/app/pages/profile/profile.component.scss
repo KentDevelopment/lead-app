@@ -1,41 +1,5 @@
-@import 'src/assets/scss/extendable/headers';
+@import 'src/assets/scss/mixins/headers';
 @import 'src/assets/scss/mixins/avatars';
-
-:host {
-  mat-icon {
-    cursor: pointer;
-    margin: 10px;
-  }
-
-  .header {
-    @extend %header;
-
-    background-image: radial-gradient(
-      at 50% 70%,
-      #f1592a 12%,
-      var(--primary) 100%
-    );
-
-    .img-profile {
-      @include profile(120px);
-    }
-
-    .edit-img {
-      left: 50%;
-      opacity: 0.9;
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-}
-
-small {
-  bottom: 3px;
-  // padding: 0.5vh;
-  position: fixed;
-  right: 5px;
-}
 
 .modal-incognito {
   button {
@@ -47,32 +11,59 @@ small {
   }
 }
 
-.button-column {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+:host {
+  mat-icon {
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  .header {
+    @include header(
+      radial-gradient(at 50% 70%, #f1592a 12%, var(--primary) 100%)
+    );
+
+    min-height: 310px;
+
+    .mat-display-1 {
+      margin: 0 0 4px;
+    }
+
+    .img-profile {
+      @include profile(120px);
+    }
+
+    .edit-img {
+      left: 50%;
+      opacity: 0.9;
+      position: absolute;
+      top: 63.5%;
+      transform: translate(-50%, -50%);
+    }
+
+    .mat-progress-spinner {
+      position: absolute;
+      top: 43%;
+      transform: rotate(180deg);
+    }
+  }
 
   button {
     margin: 0.6em;
     min-width: 60%;
   }
-}
 
-form {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  form {
+    margin: 2.5rem 0 1.5rem;
+  }
 
-form > * {
-  min-width: 80%;
-  text-align: center;
-}
+  form > * {
+    min-width: 80%;
+    text-align: center;
+  }
 
-.mat-progress-spinner {
-  left: -4px;
-  position: absolute;
-  top: -4px;
-  transform: rotate(180deg);
+  small {
+    bottom: 3px;
+    position: fixed;
+    right: 5px;
+  }
 }

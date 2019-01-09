@@ -38,7 +38,9 @@
   </div>
 
   <ng-container>
-    <div class="spinner" *ngIf="!fss.users$"><mat-spinner></mat-spinner></div>
+    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!fss.users$">
+      <mat-spinner></mat-spinner>
+    </div>
 
     <cdk-virtual-scroll-viewport itemSize="100">
       <mat-list>
@@ -47,22 +49,15 @@
           class="animated fadeInUp"
           [ngClass]="{ 'highlight-user': user.uid === authUser.uid }"
         >
-          <p mat-list-icon>{{ i + 1 }}</p>
-          <img
-            class="img-profile-list"
-            [src]="user.photoURL"
-            alt="User Profile Image"
-            matListAvatar
-          />
+          <p matListIcon class="mat-h3">{{ i + 1 }}</p>
+          <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />
           <h4 mat-line>{{ user.displayName | titlecase }}</h4>
 
-          <div class="d-flex align-items-center ml-auto p-2">
-            <p *ngIf="authUser.role === 'admin'">{{ user.points }}</p>
-            <p *ngIf="user.points < 100 && authUser.role !== 'admin'">
-              {{ user.points }}
-            </p>
-            <p *ngIf="user.points >= 100 && authUser.role !== 'admin'">100+</p>
-          </div>
+          <p *ngIf="authUser.role === 'admin'">{{ user.points }}</p>
+          <p *ngIf="user.points < 100 && authUser.role !== 'admin'">
+            {{ user.points }}
+          </p>
+          <p *ngIf="user.points >= 100 && authUser.role !== 'admin'">100+</p>
 
           <mat-divider></mat-divider>
         </mat-list-item>

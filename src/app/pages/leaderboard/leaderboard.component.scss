@@ -1,14 +1,10 @@
-@import 'src/assets/scss/extendable/headers';
+@import 'src/assets/scss/mixins/headers';
 @import 'src/assets/scss/mixins/avatars';
 
 :host {
   .header {
-    @extend %header;
-
-    background-image: linear-gradient(
-      -139deg,
-      var(--secondary) 10%,
-      var(--primary) 100%
+    @include header(
+      linear-gradient(-139deg, var(--secondary) 10%, var(--primary) 100%)
     );
   }
 
@@ -22,8 +18,22 @@
     text-align: center;
   }
 
+  h4 {
+    text-align: left;
+  }
+
   .mat-display-1 {
     margin: 0 0 16px;
+  }
+
+  .mat-h1 {
+    color: var(--dark-gray);
+    margin: 0;
+  }
+
+  .mat-h3 {
+    font-size: 18px !important;
+    margin: 0 0.6rem 0 0;
   }
 
   .img-profile {
@@ -31,7 +41,7 @@
   }
 
   .img-profile-list {
-    @include profile(60px);
+    @include profile(80px);
   }
 
   .highlight-user {
@@ -42,7 +52,12 @@
     height: 80vh;
 
     mat-list-item {
-      height: 100px !important;
+      height: 100px;
     }
+  }
+
+  mat-spinner {
+    position: fixed;
+    top: 50%;
   }
 }

@@ -21,7 +21,7 @@ export class LeaveIncognitoComponent {
     })
   }
 
-  onNoClick(): void {
+  closeDialog(): void {
     this.dialogRef.close()
   }
 

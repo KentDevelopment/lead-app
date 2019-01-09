@@ -17,31 +17,21 @@
       </button>
     </div>
 
-    <div
-      class="input-group p-1"
-      *ngFor="let user of (fss.orderedUsers$ | async)"
-    >
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          <input
-            type="checkbox"
-            aria-label="Checkbox for following text input"
-            (change)="onChange(user.uid, $event.target.checked)"
-          />
-        </div>
-      </div>
-      <div *ngFor="let user of (users | async)">
-        <input type="checkbox" />
-        {{ user.displayName }}
-      </div>
-      <div class="d-flex justify-content-between form-control fix-line">
-        <div class="flex-column text-left">
-          <p>{{ user.displayName | titlecase }}</p>
-          <p class="secondary-text">{{ user.email }}</p>
-          <p class="secondary-text">{{ user.campus }}</p>
-        </div>
-        <p class="pr-2 align-self-center">{{ user.points }}</p>
-      </div>
-    </div>
+    <p>Users selected: {{ users.selectedOptions.selected.length }}</p>
+
+    <mat-selection-list #users>
+      <mat-list-option
+        checkboxPosition="before"
+        *ngFor="let user of (fss.orderedUsers$ | async)"
+      >
+        <mat-list-item>
+          <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />
+          <p matLine>{{ user.displayName | titlecase }}</p>
+          <p matLine class="secondary-text">{{ user.email }}</p>
+          <!-- <p matLine class="secondary-text">{{ user.campus }}</p> -->
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
   </form>
 </cdk-virtual-scroll-viewport>

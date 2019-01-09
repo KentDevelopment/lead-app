@@ -1,5 +1,5 @@
-mat-dialog-content {
-  h4,
+:host {
+  h1,
   li,
   a {
     color: var(--primary);
@@ -7,10 +7,5 @@ mat-dialog-content {
 
   li span {
     color: var(--dark-gray);
-  }
-
-  .modal-header {
-    margin-bottom: 1em;
-    padding: 0;
   }
 }
