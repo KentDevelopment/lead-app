@@ -1,272 +1,112 @@
 import { DataSource } from '@angular/cdk/collections'
 import { MatPaginator, MatSort } from '@angular/material'
+import { User } from '@interfaces/user'
+import { UserData } from '@interfaces/user-data'
+import { FirestoreService } from '@services/firestore.service'
+import { merge, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { Observable, of as observableOf, merge } from 'rxjs'
+// import { Chance } from 'chance'
+// import { AngularFirestore } from '@angular/fire/firestore'
 
-// TODO: Replace this with your own data model type
-export interface UserManagementItem {
-  position: number
-  id: number
-  picture: string
-  name: string
-  email: string
-  campus: string
-  incognito: boolean
-  role: string
-  points: number
-}
+export class UserManagementDataSource extends DataSource<User> {
+  data: UserData[] = []
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: UserManagementItem[] = [
-  {
-    position: 1,
-    id: 1,
-    picture: '/',
-    name: 'Hydrogen',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 2,
-    id: 2,
-    picture: '/',
-    name: 'Helium',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 3,
-    id: 3,
-    picture: '/',
-    name: 'Lithium',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 4,
-    id: 4,
-    picture: '/',
-    name: 'Beryllium',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 5,
-    id: 5,
-    picture: '/',
-    name: 'Boron',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 6,
-    id: 6,
-    picture: '/',
-    name: 'Carbon',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 7,
-    id: 7,
-    picture: '/',
-    name: 'Nitrogen',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 8,
-    id: 8,
-    picture: '/',
-    name: 'Oxygen',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 9,
-    id: 9,
-    picture: '/',
-    name: 'Fluorine',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 10,
-    id: 10,
-    picture: '/',
-    name: 'Neon',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 11,
-    id: 11,
-    picture: '/',
-    name: 'Sodium',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 12,
-    id: 12,
-    picture: '/',
-    name: 'Magnesium',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 13,
-    id: 13,
-    picture: '/',
-    name: 'Aluminum',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 14,
-    id: 14,
-    picture: '/',
-    name: 'Silicon',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 15,
-    id: 15,
-    picture: '/',
-    name: 'Phosphorus',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 16,
-    id: 16,
-    picture: '/',
-    name: 'Sulfur',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 17,
-    id: 17,
-    picture: '/',
-    name: 'Chlorine',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 18,
-    id: 18,
-    picture: '/',
-    name: 'Argon',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 19,
-    id: 19,
-    picture: '/',
-    name: 'Potassium',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  },
-  {
-    position: 20,
-    id: 20,
-    picture: '/',
-    name: 'Calcium',
-    email: '170535@kent.edu.com.au',
-    campus: 'Sydney',
-    incognito: true,
-    role: 'user',
-    points: 1234
-  }
-]
-
-/**
- * Data source for the UserManagement view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
-export class UserManagementDataSource extends DataSource<UserManagementItem> {
-  data: UserManagementItem[] = EXAMPLE_DATA
-
-  constructor(private paginator: MatPaginator, private sort: MatSort) {
+  constructor(
+    private paginator: MatPaginator,
+    public sort: MatSort,
+    private fss: FirestoreService
+  ) {
     super()
   }
+  //
+  // addUser() {
+  //   const chance = new Chance()
+  //   const user = {
+  //     uid: chance.string({
+  //       length: 28,
+  //       pool: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+  //     }),
+  //     photoUrl: chance.avatar({ protocol: 'https' }),
+  //     displayName: chance.first(),
+  //     email: `${chance.last()}@gmail.com`,
+  //     campus: chance.company(),
+  //     incognitoMode: chance.bool(),
+  //     role: 'user',
+  //     points: chance.integer({ min: 0, max: 2000 })
+  //   }
+  //
+  //   this.afs
+  //     .collection('userTest')
+  //     .doc(user.uid)
+  //     .set(user)
+  // }
 
   /**
    * Connect this data source to the table. The table will only update when
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<UserManagementItem[]> {
-    // Combine everything that affects the rendered data into one update
-    // stream for the data-table to consume.
+  connect(): Observable<User[]> {
+    // setInterval(() => {
+    //   this.addUser()
+    // }, 200)
+
+    // this.addUser()
+
+    // this.fss
+    //   .localUsers$
+    //   .pipe(
+    //     map(ref => {
+    //       return ref.map((user: User) => {
+    //         const newUserObj: UserTable = {
+    //           // position: 1,
+    //           id: user.uid,
+    //           picture: user.photoURL || 'assets/placeholders/placeholder-user.svg',
+    //           name: user.displayName,
+    //           email: user.email,
+    //           campus: user.campus,
+    //           incognito: user.incognitoMode,
+    //           role: user.role,
+    //           points: user.points
+    //         }
+    //         return newUserObj
+    //       })
+    //     })
+    //   )
+    //   .subscribe(res => {
+    //     this.data = res
+    //   })
+    this.fss.mockUser$
+      .pipe(
+        map(ref => {
+          return ref.map((user: User) => {
+            const newUserObj: UserData = {
+              // position: 1,
+              id: user.uid,
+              picture:
+                user.photoURL || 'assets/placeholders/placeholder-user.svg',
+              name: user.displayName,
+              email: user.email,
+              campus: user.campus,
+              incognito: user.incognitoMode,
+              role: user.role,
+              points: user.points
+            }
+            return newUserObj
+          })
+        })
+      )
+      .subscribe(res => {
+        this.data = res
+        console.log('THIS.DATA', this.data)
+      })
+
     const dataMutations = [
-      observableOf(this.data),
+      this.fss.mockUser$,
       this.paginator.page,
       this.sort.sortChange
     ]
 
-    // Set the paginator's length
     this.paginator.length = this.data.length
 
     return merge(...dataMutations).pipe(
@@ -286,7 +126,7 @@ export class UserManagementDataSource extends DataSource<UserManagementItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: UserManagementItem[]) {
+  private getPagedData(data: UserData[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize
     return data.splice(startIndex, this.paginator.pageSize)
   }
@@ -295,7 +135,7 @@ export class UserManagementDataSource extends DataSource<UserManagementItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: UserManagementItem[]) {
+  private getSortedData(data: UserData[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data
     }
@@ -303,8 +143,8 @@ export class UserManagementDataSource extends DataSource<UserManagementItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc'
       switch (this.sort.active) {
-        case 'position':
-          return compare(+a.position, +b.position, isAsc)
+        // case 'position':
+        //   return compare(+a.position, +b.position, isAsc)
         case 'id':
           return compare(+a.id, +b.id, isAsc)
         case 'picture':
@@ -329,6 +169,6 @@ export class UserManagementDataSource extends DataSource<UserManagementItem> {
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a, b, isAsc) {
+function compare(a: string | number, b: string | number, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1)
 }

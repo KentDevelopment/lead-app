@@ -9,23 +9,26 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatSidenavModule,
-  MatTableModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSidenavModule,
+  MatSortModule,
+  MatTableModule
 } from '@angular/material'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatIconModule } from '@angular/material/icon'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { RouterModule, Routes } from '@angular/router'
 import { BulkComponent } from './bulk/bulk.component'
+import { DashboardLogsComponent } from './dashboard-logs/dashboard-logs.component'
 import { DashboardComponent } from './dashboard.component'
 import { LogsComponent } from './logs/logs.component'
 import { NavComponent } from './nav/nav.component'
 import { PointsComponent } from './points/points.component'
+import { UserDetailComponent } from './user-management/user-detail/user-detail.component'
 import { UserManagementComponent } from './user-management/user-management.component'
 
 const routes: Routes = [
@@ -49,6 +52,20 @@ const routes: Routes = [
         }
       },
       {
+        path: 'logs',
+        component: LogsComponent,
+        data: {
+          title: 'Logs'
+        }
+      },
+      {
+        path: 'logs-management',
+        component: DashboardLogsComponent,
+        data: {
+          title: 'Logs Management'
+        }
+      },
+      {
         path: 'user-management',
         component: UserManagementComponent,
         data: {
@@ -56,11 +73,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'logs',
-        component: LogsComponent,
-        data: {
-          title: 'Logs'
-        }
+        path: 'user-management/:id',
+        component: UserDetailComponent
       }
     ]
   }
@@ -73,7 +87,9 @@ const routes: Routes = [
     LogsComponent,
     NavComponent,
     PointsComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    DashboardLogsComponent,
+    UserDetailComponent
   ],
   imports: [
     CommonModule,
@@ -96,7 +112,8 @@ const routes: Routes = [
     ScrollingModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
   providers: [TitleCasePipe, RouterModule]
 })

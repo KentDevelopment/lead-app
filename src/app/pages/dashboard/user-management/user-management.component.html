@@ -1,86 +1,102 @@
-<mat-form-field>
-  <input
-    matInput
-    (keyup)="applyFilter($event.target.value)"
-    placeholder="Filter"
-  />
-</mat-form-field>
+<div class="container">
+  <mat-card>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Search"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </mat-card>
 
-<mat-table
-  [dataSource]="dataSource"
-  class="mat-elevation-z8"
-  matSort
-  aria-label="Elements"
->
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>No.</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.position }}</mat-cell>
-  </ng-container>
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort aria-label="Elements">
+      <!-- Position Column -->
+      <!-- <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+    </ng-container> -->
 
-  <!-- ID Column -->
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
-  </ng-container>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
 
-  <!-- Picture Column -->
-  <ng-container matColumnDef="picture">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Picture</mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <img class="img-profile" [src]="row.picture" alt="User Profile Picture" />
-    </mat-cell>
-  </ng-container>
+      <!-- Picture Column -->
+      <ng-container matColumnDef="picture">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Picture</th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            class="img-profile"
+            [src]="element.picture"
+            alt="User Profile Picture"
+          />
+        </td>
+      </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
-  </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
 
-  <!-- Email Column -->
-  <ng-container matColumnDef="email">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
-  </ng-container>
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
 
-  <!-- Campus Column -->
-  <ng-container matColumnDef="campus">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Campus</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.campus }}</mat-cell>
-  </ng-container>
+      <!-- Campus Column -->
+      <ng-container matColumnDef="campus">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Campus</th>
+        <td mat-cell *matCellDef="let element">{{ element.campus }}</td>
+      </ng-container>
 
-  <!-- Incognito Column -->
-  <ng-container matColumnDef="incognito">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      Showing Image
-    </mat-header-cell>
-    <!-- <mat-cell *matCellDef="let row">{{row.incognito ? 'Yes' : 'No'}}</mat-cell> -->
-    <mat-cell *matCellDef="let row">
-      <mat-icon>{{ row.incognito ? 'check' : 'close' }}</mat-icon>
-    </mat-cell>
-  </ng-container>
+      <!-- Incognito Column -->
+      <ng-container matColumnDef="incognito">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Incognito</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon>{{ element.incognito ? 'check' : 'close' }}</mat-icon>
+        </td>
+      </ng-container>
 
-  <!-- Role Column -->
-  <ng-container matColumnDef="role">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.role }}</mat-cell>
-  </ng-container>
+      <!-- Role Column -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+        <td mat-cell *matCellDef="let element">{{ element.role }}</td>
+      </ng-container>
 
-  <!-- Points Column -->
-  <ng-container matColumnDef="points">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Points</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.points }}</mat-cell>
-  </ng-container>
+      <!-- Points Column -->
+      <ng-container matColumnDef="points">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Points</th>
+        <td mat-cell *matCellDef="let element">{{ element.points }}</td>
+      </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
+      <!-- Edit Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            routerLink="/dashboard/user-management/{{ element.id }}"
+          >
+            <mat-icon aria-label="Edit icon">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-<mat-paginator
-  #paginator
-  [length]="dataSource.data.length"
-  [pageIndex]="0"
-  [pageSize]="50"
-  [pageSizeOptions]="[25, 50, 100, 250]"
-></mat-paginator>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <mat-paginator
+    #paginator
+    [length]="dataSource.data.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[25, 50, 100, 250]"
+  ></mat-paginator>
+</div>

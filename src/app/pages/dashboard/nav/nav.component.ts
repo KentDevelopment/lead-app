@@ -38,16 +38,28 @@ export class NavComponent {
       route: 'points'
     },
     {
+      icon: 'group_add',
+      title: 'Bulk Edit',
+      subTitle: 'Add points to multiple users at once',
+      route: 'bulk'
+    },
+    {
       icon: 'supervised_user_circle',
       title: 'User Management',
       subTitle: 'A list with details of all users',
-      route: 'bulk'
+      route: 'user-management'
     },
     {
       icon: 'assignment',
       title: 'Logs',
       subTitle: 'Check all the changes that have been made',
       route: 'logs'
+    },
+    {
+      icon: 'assignment',
+      title: 'Logs Management',
+      subTitle: 'Check all the changes that have been made',
+      route: 'logs-management'
     },
     {
       icon: 'delete_forever',

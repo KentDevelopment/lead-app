@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators'
 import { DashboardService } from './dashboard.service'
 
 export interface DashboardMenuContent {
-  id: number
   icon: string
   title: string
   subTitle: string
@@ -20,35 +19,36 @@ export interface DashboardMenuContent {
 export class DashboardComponent {
   cardsContent: DashboardMenuContent[] = [
     {
-      id: 0,
       icon: 'insert_chart',
       title: 'LEAD Points',
       subTitle: 'Add LEAD points to one user',
       route: 'points'
     },
     {
-      id: 1,
       icon: 'group_add',
       title: 'Bulk Edit',
       subTitle: 'Add points to multiple users at once',
       route: 'bulk'
     },
     {
-      id: 2,
       icon: 'supervised_user_circle',
       title: 'User Management',
       subTitle: 'A list with details of all users',
       route: 'user-management'
     },
     {
-      id: 3,
       icon: 'assignment',
       title: 'Logs',
       subTitle: 'Check all the changes that have been made',
       route: 'logs'
     },
     {
-      id: 4,
+      icon: 'assignment',
+      title: 'Logs Management',
+      subTitle: 'Check all the changes that have been made',
+      route: 'logs-management'
+    },
+    {
       icon: 'delete_forever',
       title: 'Reset All Points',
       subTitle: 'Reset the LEAD Points Leaderboard',

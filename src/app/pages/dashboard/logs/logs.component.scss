@@ -1,10 +1,12 @@
-.log-item {
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 6px;
-  margin: 4% 2%;
-  padding: 1rem;
+:host {
+  .log-item {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    margin: 4% 2%;
+    padding: 1rem;
 
-  p:first-child {
-    margin-bottom: 0.5em;
+    p:first-child {
+      margin-bottom: 0.5em;
+    }
   }
 }

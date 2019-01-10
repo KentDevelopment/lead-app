@@ -4,7 +4,7 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore'
 import { MatDialogRef } from '@angular/material/dialog'
-import { LogText } from '@interfaces/log'
+// import { LogText } from '@interfaces/log'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
@@ -50,14 +50,15 @@ export class ResetPointsComponent {
             .update(data)
             .then(() => {
               this.auth.user$.subscribe(admin => {
-                const dataObj: LogText = {
-                  log: `All points have been successfully deleted at ${
-                    this.myTime
-                  }`,
-                  adminName: admin.displayName,
-                  date: new Date().getTime()
-                }
-                this.fss.addLogText(dataObj)
+                console.log('ADMIN', admin)
+                // const dataObj: LogText = {
+                //   log: `All points have been successfully deleted at ${
+                //     this.myTime
+                //   }`,
+                //   adminName: admin.displayName,
+                //   date: new Date().getTime()
+                // }
+                // this.fss.addLogText(dataObj)
                 this.toast.showSuccess(
                   `All points have been successfully deleted`
                 )

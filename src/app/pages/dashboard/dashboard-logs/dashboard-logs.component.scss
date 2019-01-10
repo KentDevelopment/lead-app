@@ -1,9 +1,16 @@
-.full-width-table {
-  width: 100%;
-}
+@import 'src/assets/scss/mixins/avatars';
 
-.img-profile {
-  border-radius: 50%;
-  height: 35px;
-  width: 35px;
+:host {
+  table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .img-profile {
+    @include profile(30px);
+  }
 }

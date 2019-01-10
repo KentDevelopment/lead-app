@@ -52,6 +52,7 @@
     "@angular/service-worker": "^7.2.0",
     "blueimp-canvas-to-blob": "^3.14.0",
     "bootstrap": "4.2.1",
+    "chance": "^1.0.18",
     "core-js": "^2.6.1",
     "firebase": "^5.7.2",
     "lint-staged": "^8.1.0",

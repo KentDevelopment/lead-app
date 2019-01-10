@@ -5,13 +5,13 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore'
 import { Environment } from '@environments/environment'
-import { Log, LogText, NewLog } from '@interfaces/log'
+import { Log, NewLog } from '@interfaces/log'
 import { Marvel, Results } from '@interfaces/marvel'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { DbService } from './db.service'
+// import { DbService } from './db.service'
 
 @Injectable()
 export class FirestoreService {
@@ -22,20 +22,21 @@ export class FirestoreService {
   orderedUsers$: Observable<User[]>
   logs$: Observable<Log[]>
 
+  mockUser$: Observable<User[]>
+
   position: number
   validPicture = []
-
-  userData
-  adminData
 
   logsCollectionRef = this.afs.collection('logs').ref
 
   constructor(
-    private db: DbService,
+    // private db: DbService,
     private afs: AngularFirestore,
     private http: HttpClient,
     private auth: AuthService
   ) {
+    this.mockUser$ = afs.collection<User>('userTest').valueChanges()
+
     this.auth.user$.subscribe(userRef => {
       if (
         userRef.email === 'lyndall.benton@kent.edu.au' ||
@@ -187,15 +188,15 @@ export class FirestoreService {
         return res.map((logItem: any) => {
           // console.log('LOGITEM', logItem)
 
-          this.db.doc$(`/users/${logItem.userId}`).subscribe(userData => {
-            // console.log('USERDATA', userData)
-            // this.userData = userData
-          })
-
-          this.db.doc$(`/users/${logItem.adminId}`).subscribe(adminData => {
-            // console.log('ADMINDATA', adminData)
-            // this.adminData = adminData
-          })
+          // this.db.doc$(`/users/${logItem.userId}`).subscribe(userData => {
+          //   // console.log('USERDATA', userData)
+          //   // this.userData = userData
+          // })
+          //
+          // this.db.doc$(`/users/${logItem.adminId}`).subscribe(adminData => {
+          //   // console.log('ADMINDATA', adminData)
+          //   // this.adminData = adminData
+          // })
 
           const newData: any = {
             ...logItem
@@ -214,16 +215,16 @@ export class FirestoreService {
         map(actions => {
           return actions.map(a => {
             const data: object = a.payload.doc.data()
-            const id = a.payload.doc.id
-            const additionalData = {
-              userId: 'string',
-              userPicture: 'assets/placeholders/placeholder-user',
-              userName: 'string',
-              userEmail: 'string',
-              userCampus: 'string',
-              pointsCurrent: 123,
-              message: 'string'
-            }
+            // const id = a.payload.doc.id
+            // const additionalData = {
+            //   userId: 'string',
+            //   userPicture: 'assets/placeholders/placeholder-user',
+            //   userName: 'string',
+            //   userEmail: 'string',
+            //   userCampus: 'string',
+            //   pointsCurrent: 123,
+            //   message: 'string'
+            // }
             return data
             // return { id, ...additionalData, ...data }
           })

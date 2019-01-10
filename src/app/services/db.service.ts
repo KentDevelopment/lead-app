@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/firestore'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+// import { Observable } from 'rxjs'
+// import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -9,36 +9,36 @@ import { map } from 'rxjs/operators'
 export class DbService {
   constructor(private afs: AngularFirestore) {}
 
-  collection$(path, query?): Observable<any> {
-    return this.afs
-      .collection(path, query)
-      .snapshotChanges()
-      .pipe(
-        map(actions => {
-          return actions.map(a => {
-            const data: object = a.payload.doc.data()
-            const id = a.payload.doc.id
-            return { id, ...data }
-          })
-        })
-      )
-  }
+  // collection$(path, query?): Observable<any> {
+  //   return this.afs
+  //     .collection(path, query)
+  //     .snapshotChanges()
+  //     .pipe(
+  //       map(actions => {
+  //         return actions.map(a => {
+  //           const data: object = a.payload.doc.data()
+  //           const id = a.payload.doc.id
+  //           return { id, ...data }
+  //         })
+  //       })
+  //     )
+  // }
 
-  doc$(path) {
-    return this.afs
-      .doc(path)
-      .snapshotChanges()
-      .pipe(
-        map(doc => {
-          const data: object = doc.payload.data()
-          const id = doc.payload.id
-          const ref = doc.payload.ref
-
-          return data
-          // return { id, ref, ...data }
-        })
-      )
-  }
+  // doc$(path) {
+  //   return this.afs
+  //     .doc(path)
+  //     .snapshotChanges()
+  //     .pipe(
+  //       map(doc => {
+  //         const data: object = doc.payload.data()
+  //         const id = doc.payload.id
+  //         const ref = doc.payload.ref
+  //
+  //         return data
+  //         // return { id, ref, ...data }
+  //       })
+  //     )
+  // }
 
   updateAt(path: string, data: object): Promise<any> {
     const segments = path.split('/').filter(v => v)
@@ -51,7 +51,7 @@ export class DbService {
     }
   }
 
-  delete(path) {
+  delete(path: string) {
     return this.afs.doc(path).delete()
   }
 }

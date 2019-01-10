@@ -1,8 +1,8 @@
 @import 'src/assets/scss/mixins/avatars';
 
 :host {
-  .full-width-table {
-    width: 100%;
+  .grid-container {
+    margin: 20px;
   }
 
   table {
@@ -16,5 +16,25 @@
 
   .img-profile {
     @include profile(30px);
+  }
+
+  /* Structure */
+  .container {
+    position: relative;
+  }
+
+  .table-container {
+    overflow: auto;
+    position: relative;
+  }
+
+  /* Column Widths */
+  .mat-column-number,
+  .mat-column-state {
+    max-width: 64px;
+  }
+
+  .mat-column-created {
+    max-width: 124px;
   }
 }

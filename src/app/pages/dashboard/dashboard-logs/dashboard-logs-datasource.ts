@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/collections'
 import { MatPaginator, MatSort } from '@angular/material'
-import { DashboardLogItem, NewLog } from '@interfaces/log'
+import { DashboardLogItem } from '@interfaces/log'
 import { FirestoreService } from '@services/firestore.service'
 import { merge, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
