@@ -11,7 +11,7 @@ import { DashboardService } from '../dashboard.service'
 // import { DialogConfirmationComponent } from '@dialogs/dialog-confirmation/dialog-confirmation.component'
 // import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { FormControl } from '@angular/forms'
-import { ToastService } from '@services/toast.service'
+// import { ToastService } from '@services/toast.service'
 
 @Component({
   selector: 'app-points',
@@ -25,7 +25,7 @@ export class PointsComponent {
   constructor(
     public fss: FirestoreService,
     // public dialog: MatDialog,
-    private toast: ToastService,
+    // private toast: ToastService,
     private dashboardService: DashboardService,
     private afs: AngularFirestore
   ) {}
@@ -36,23 +36,30 @@ export class PointsComponent {
       `users/${user.uid}`
     )
 
-    const userData$ = userDoc.valueChanges().pipe(take(1))
+    userDoc
+      .valueChanges()
+      .pipe(take(1))
+      .subscribe(userRef => {
+        const addedPoints = newPoints - userRef.points
+        const points = newPoints
 
-    userData$.subscribe(userRef => {
-      const addedPoints = newPoints - userRef.points
-      const points = Number(newPoints)
+        // <<<<<<< HEAD
+        //     userData$.subscribe(userRef => {
+        //       const addedPoints = newPoints - userRef.points
+        //       const points = Number(newPoints)
+        //
+        //       if (addedPoints > 700) {
+        //         return this.toast.showError(`Please add less than 700 points`)
+        //       }
+        // =======
+        //         const newData: User = {
+        //           points
+        //         }
+        // >>>>>>> feature-log-filter
 
-      if (addedPoints > 700) {
-        return this.toast.showError(`Please add less than 700 points`)
-      }
-
-      const newData: User = {
-        points
-      }
-
-      this.dashboardService.updateData(userDoc, newData)
-      this.dashboardService.logData(points, addedPoints, userRef)
-    })
+        // this.dashboardService.updateData(userDoc, newData)
+        this.dashboardService.logData(points, addedPoints, userRef)
+      })
   }
 
   // openDialogConfirmation(): void {

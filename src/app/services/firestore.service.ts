@@ -5,12 +5,13 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore'
 import { Environment } from '@environments/environment'
-import { Log, LogText } from '@interfaces/log'
+import { Log, LogText, NewLog } from '@interfaces/log'
 import { Marvel, Results } from '@interfaces/marvel'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
+import { DbService } from './db.service'
 
 @Injectable()
 export class FirestoreService {
@@ -24,7 +25,13 @@ export class FirestoreService {
   position: number
   validPicture = []
 
+  userData
+  adminData
+
+  logsCollectionRef = this.afs.collection('logs').ref
+
   constructor(
+    private db: DbService,
     private afs: AngularFirestore,
     private http: HttpClient,
     private auth: AuthService
@@ -104,12 +111,29 @@ export class FirestoreService {
         })
       })
     })
-  }
 
-  getLogs() {
-    return (this.logs$ = this.afs
-      .collection<Log>('logs', res => res.orderBy('date', 'desc'))
-      .valueChanges())
+    // this.userRef = afs.collection('users').doc('0QspwDQ2f1ZtJrWSrcfqOylc8uZ2').ref
+
+    // let uRef: DocumentReference = this.afs
+    // .collection<User>('users').snapshotChanges()
+    // .pipe(
+    //       map(actions => {
+    //         console.log('ACTIONS', actions)
+    //         return actions.map(a => {
+    //           return a.payload.doc.ref
+    // })}))
+
+    // let userData = this.userRef.get().then(ref => {
+    //   console.log('REF', ref.data)
+    //   return ref.data
+    //   // console.log('REF', ref.data.call())
+    // })
+    //
+    // userData.then(res => {
+    //   console.log('RES', res.arguments)
+    // })
+
+    // console.log('TEST', userData)
   }
 
   generateNumber() {
@@ -140,21 +164,70 @@ export class FirestoreService {
   }
 
   // LOG FUNCTION
-  addLogText(logObj: LogText) {
-    const logsCollection: AngularFirestoreCollection<
-      LogText
-    > = this.afs.collection('logs')
-    logsCollection.add(logObj).catch(error => error)
+  async addLog(refObj: NewLog) {
+    this.auth.user$.subscribe(adminData => {
+      const dataObj: NewLog = {
+        ...refObj,
+        adminId: adminData.uid
+      }
+
+      try {
+        return this.afs.collection('logs').add(dataObj)
+      } catch (error) {
+        return error
+      }
+    })
   }
 
-  async addLog(logObj: Log) {
-    const logsCollection: AngularFirestoreCollection<Log> = this.afs.collection(
-      'logs'
+  getLogs() {
+    return (this.logs$ = this.afs
+      .collection<Log>('logs', res => res.orderBy('date', 'desc'))
+      .valueChanges()).pipe(
+      map(res => {
+        return res.map((logItem: any) => {
+          // console.log('LOGITEM', logItem)
+
+          this.db.doc$(`/users/${logItem.userId}`).subscribe(userData => {
+            // console.log('USERDATA', userData)
+            // this.userData = userData
+          })
+
+          this.db.doc$(`/users/${logItem.adminId}`).subscribe(adminData => {
+            // console.log('ADMINDATA', adminData)
+            // this.adminData = adminData
+          })
+
+          const newData: any = {
+            ...logItem
+          }
+          return newData
+        })
+      })
     )
-    try {
-      return logsCollection.add(logObj)
-    } catch (error) {
-      return error
-    }
+  }
+
+  getLogsValue() {
+    return this.afs
+      .collection<Log>('logs', res => res.orderBy('date', 'desc'))
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data: object = a.payload.doc.data()
+            const id = a.payload.doc.id
+            const additionalData = {
+              userId: 'string',
+              userPicture: 'assets/placeholders/placeholder-user',
+              userName: 'string',
+              userEmail: 'string',
+              userCampus: 'string',
+              pointsCurrent: 123,
+              message: 'string'
+            }
+            return data
+            // return { id, ...additionalData, ...data }
+          })
+        })
+      )
   }
 }

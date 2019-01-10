@@ -1,0 +1,92 @@
+<div class="mat-elevation-z8">
+  <table
+    mat-table
+    class="full-width-table"
+    [dataSource]="dataSource"
+    matSort
+    aria-label="Elements"
+  >
+    <!-- Id Column -->
+    <!-- <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container> -->
+
+    <!-- User Picture Column -->
+    <ng-container matColumnDef="user-picture">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>User Image</th>
+      <td mat-cell *matCellDef="let row">
+        <img
+          src="{{ row.userPicture }}.png"
+          alt="User Picture"
+          class="img-profile"
+        />
+      </td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let row">{{ row.date | date: 'medium' }}</td>
+    </ng-container>
+
+    <!-- User ID Column -->
+    <ng-container matColumnDef="user-id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
+      <td mat-cell *matCellDef="let row">{{ row.userId }}</td>
+    </ng-container>
+
+    <!-- User Column -->
+    <ng-container matColumnDef="user-name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>User Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.userName }}</td>
+    </ng-container>
+
+    <!-- User Email Column -->
+    <ng-container matColumnDef="user-email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>User Email</th>
+      <td mat-cell *matCellDef="let row">{{ row.userEmail }}</td>
+    </ng-container>
+
+    <!-- User Campus Column -->
+    <ng-container matColumnDef="user-campus">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>User Campus</th>
+      <td mat-cell *matCellDef="let row">{{ row.userCampus }}</td>
+    </ng-container>
+
+    <!-- Points Changed Column -->
+    <ng-container matColumnDef="points-added">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Points Added</th>
+      <td mat-cell *matCellDef="let row">{{ row.pointsAdded }}</td>
+    </ng-container>
+
+    <!-- Total points Column -->
+    <ng-container matColumnDef="points-current">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Points</th>
+      <td mat-cell *matCellDef="let row">{{ row.pointsCurrent }}</td>
+    </ng-container>
+
+    <!-- Admin Name Column -->
+    <ng-container matColumnDef="log-message">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Log Message</th>
+      <td mat-cell *matCellDef="let row">{{ row.message }}</td>
+    </ng-container>
+
+    <!-- Admin Name Column -->
+    <ng-container matColumnDef="admin-name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Admin Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.adminName }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    [length]="dataSource.data.length"
+    [pageIndex]="0"
+    [pageSize]="25"
+    [pageSizeOptions]="[25, 50, 100, 250]"
+  ></mat-paginator>
+</div>
