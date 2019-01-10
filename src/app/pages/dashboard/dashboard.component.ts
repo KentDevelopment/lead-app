@@ -28,20 +28,27 @@ export class DashboardComponent {
     },
     {
       id: 1,
-      icon: 'supervised_user_circle',
-      title: 'User Management',
-      subTitle: 'A list with details of all users',
+      icon: 'group_add',
+      title: 'Bulk Edit',
+      subTitle: 'Add points to multiple users at once',
       route: 'bulk'
     },
     {
       id: 2,
+      icon: 'supervised_user_circle',
+      title: 'User Management',
+      subTitle: 'A list with details of all users',
+      route: 'user-management'
+    },
+    {
+      id: 3,
       icon: 'assignment',
       title: 'Logs',
       subTitle: 'Check all the changes that have been made',
       route: 'logs'
     },
     {
-      id: 3,
+      id: 4,
       icon: 'delete_forever',
       title: 'Reset All Points',
       subTitle: 'Reset the LEAD Points Leaderboard',

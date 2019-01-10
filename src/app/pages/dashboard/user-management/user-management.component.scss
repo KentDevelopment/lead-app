@@ -1,0 +1,20 @@
+@import 'src/assets/scss/mixins/avatars';
+
+:host {
+  .full-width-table {
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .img-profile {
+    @include profile(30px);
+  }
+}

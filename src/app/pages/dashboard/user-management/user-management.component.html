@@ -1,0 +1,86 @@
+<mat-form-field>
+  <input
+    matInput
+    (keyup)="applyFilter($event.target.value)"
+    placeholder="Filter"
+  />
+</mat-form-field>
+
+<mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8"
+  matSort
+  aria-label="Elements"
+>
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>No.</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.position }}</mat-cell>
+  </ng-container>
+
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+  </ng-container>
+
+  <!-- Picture Column -->
+  <ng-container matColumnDef="picture">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Picture</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <img class="img-profile" [src]="row.picture" alt="User Profile Picture" />
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+  </ng-container>
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
+  </ng-container>
+
+  <!-- Campus Column -->
+  <ng-container matColumnDef="campus">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Campus</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.campus }}</mat-cell>
+  </ng-container>
+
+  <!-- Incognito Column -->
+  <ng-container matColumnDef="incognito">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Showing Image
+    </mat-header-cell>
+    <!-- <mat-cell *matCellDef="let row">{{row.incognito ? 'Yes' : 'No'}}</mat-cell> -->
+    <mat-cell *matCellDef="let row">
+      <mat-icon>{{ row.incognito ? 'check' : 'close' }}</mat-icon>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Role Column -->
+  <ng-container matColumnDef="role">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.role }}</mat-cell>
+  </ng-container>
+
+  <!-- Points Column -->
+  <ng-container matColumnDef="points">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Points</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.points }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+<mat-paginator
+  #paginator
+  [length]="dataSource.data.length"
+  [pageIndex]="0"
+  [pageSize]="50"
+  [pageSizeOptions]="[25, 50, 100, 250]"
+></mat-paginator>

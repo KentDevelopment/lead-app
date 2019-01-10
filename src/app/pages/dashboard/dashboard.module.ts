@@ -9,7 +9,10 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
 } from '@angular/material'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
@@ -23,6 +26,7 @@ import { DashboardComponent } from './dashboard.component'
 import { LogsComponent } from './logs/logs.component'
 import { NavComponent } from './nav/nav.component'
 import { PointsComponent } from './points/points.component'
+import { UserManagementComponent } from './user-management/user-management.component'
 
 const routes: Routes = [
   {
@@ -38,17 +42,24 @@ const routes: Routes = [
         }
       },
       {
-        path: 'logs',
-        component: LogsComponent,
-        data: {
-          title: 'Logs'
-        }
-      },
-      {
         path: 'bulk',
         component: BulkComponent,
         data: {
           title: 'Bulk editing'
+        }
+      },
+      {
+        path: 'user-management',
+        component: UserManagementComponent,
+        data: {
+          title: 'User Management'
+        }
+      },
+      {
+        path: 'logs',
+        component: LogsComponent,
+        data: {
+          title: 'Logs'
         }
       }
     ]
@@ -61,7 +72,8 @@ const routes: Routes = [
     DashboardComponent,
     LogsComponent,
     NavComponent,
-    PointsComponent
+    PointsComponent,
+    UserManagementComponent
   ],
   imports: [
     CommonModule,
@@ -81,7 +93,10 @@ const routes: Routes = [
     MatToolbarModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    ScrollingModule
+    ScrollingModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [TitleCasePipe, RouterModule]
 })
