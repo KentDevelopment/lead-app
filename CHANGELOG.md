@@ -1,3 +1,9 @@
+# 1.4.7 (2019-01-15)
+
+## Improvements
+
+- Reset Users points date changed to 2020
+
 # 1.4.6 (2019-01-08)
 
 ## Bugs Fixed

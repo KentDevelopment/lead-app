@@ -31,7 +31,7 @@ export class ResetPointsComponent {
   ) {}
 
   deletePoints() {
-    const dateToReset = '01 Jan 2019 00:00:00 GMT+1000'
+    const dateToReset = '01 Jan 2020 00:00:00 GMT+1000'
     const dateToResetParsed = Date.parse(dateToReset)
     const myTimeParsed = Date.parse(this.myTime)
 
