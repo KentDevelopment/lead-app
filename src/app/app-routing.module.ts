@@ -7,7 +7,7 @@ import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
 import { LoginComponent } from '@pages/login/login.component'
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  // { path: '', component: LoginComponent },
   {
     path: 'login',
     component: LoginComponent,
@@ -28,9 +28,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: '@pages/dashboard/dashboard.module#DashboardModule',
-    canActivate: [AuthGuard, AdminGuard],
-    data: { animation: 'admin', title: 'Dashboard' }
-  }
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', component: LoginComponent }
 ]
 
 @NgModule({

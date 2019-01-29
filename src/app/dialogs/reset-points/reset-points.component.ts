@@ -1,12 +1,9 @@
+import { DatePipe } from '@angular/common'
 import { Component } from '@angular/core'
-import {
-  AngularFirestore,
-  AngularFirestoreDocument
-} from '@angular/fire/firestore'
 import { MatDialogRef } from '@angular/material/dialog'
-// import { LogText } from '@interfaces/log'
-import { User } from '@interfaces/user'
+import { LogReset } from '@interfaces/log'
 import { AuthService } from '@services/auth.service'
+import { DbService } from '@services/db.service'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
 import { take } from 'rxjs/operators'
@@ -17,48 +14,41 @@ import { take } from 'rxjs/operators'
   styleUrls: ['./reset-points.component.scss']
 })
 export class ResetPointsComponent {
-  myTime: any = new Date()
-
   constructor(
     private dialogRef: MatDialogRef<ResetPointsComponent>,
     private auth: AuthService,
     private fss: FirestoreService,
     private toast: ToastService,
-    private afs: AngularFirestore
+    private datePipe: DatePipe,
+    private db: DbService
   ) {}
 
   deletePoints() {
-    const dateToReset = '01 Jan 2020 00:00:00 GMT+1000'
-    const dateToResetParsed = Date.parse(dateToReset)
-    const myTimeParsed = Date.parse(this.myTime)
+    const dateToReset = Date.parse('01 Jan 2019 00:00:00 GMT+1000')
+    const myDate = Date.now()
 
-    if (myTimeParsed <= dateToResetParsed) {
-      this.toast.showWarning(`Please come back after ${dateToReset}`)
-      this.dialogRef.close()
+    if (myDate <= dateToReset) {
+      const displayResetDate = this.datePipe.transform(
+        dateToReset,
+        'mediumDate'
+      )
+      this.toast.showWarning(`Please come back after ${displayResetDate}`)
+      return this.closeDialog()
     } else {
-      this.fss.localUsers$.pipe(take(1)).subscribe(users => {
+      this.fss.usersByName$.pipe(take(1)).subscribe(users => {
         for (const user of users) {
-          const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-            `users/${user.uid}`
-          )
-
-          const data: User = {
-            points: 0
-          }
-
-          userRef
-            .update(data)
+          this.db
+            .updateAt(`users/${user.uid}`, { points: 0 })
             .then(() => {
               this.auth.user$.subscribe(admin => {
-                console.log('ADMIN', admin)
-                // const dataObj: LogText = {
-                //   log: `All points have been successfully deleted at ${
-                //     this.myTime
-                //   }`,
-                //   adminName: admin.displayName,
-                //   date: new Date().getTime()
-                // }
-                // this.fss.addLogText(dataObj)
+                const resetDate = this.datePipe.transform(myDate, 'medium')
+                const dataObj: LogReset = {
+                  message: `successfully deleted all points on ${resetDate}`,
+                  adminName: admin.displayName,
+                  date: new Date().getTime()
+                }
+                // TODO: Adjust the obj format to record the log
+                this.fss.addLog(dataObj)
                 this.toast.showSuccess(
                   `All points have been successfully deleted`
                 )
@@ -68,14 +58,14 @@ export class ResetPointsComponent {
               this.toast.showError(error)
             })
             .finally(() => {
-              this.dialogRef.close()
+              this.closeDialog()
             })
         }
       })
     }
   }
 
-  onNoClick(): void {
+  closeDialog(): void {
     this.dialogRef.close()
   }
 }

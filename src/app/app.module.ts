@@ -1,6 +1,6 @@
 import { LayoutModule } from '@angular/cdk/layout'
 import { ScrollingModule } from '@angular/cdk/scrolling'
-import { TitleCasePipe } from '@angular/common'
+import { DatePipe, TitleCasePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire'
@@ -24,7 +24,6 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { DialogConfirmationComponent } from '@dialogs/dialog-confirmation/dialog-confirmation.component'
 import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.component'
 import { Environment } from '@environments/environment'
 import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
@@ -32,9 +31,10 @@ import { LoginComponent } from '@pages/login/login.component'
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 import { SharedModule } from '@shared/shared.module'
-import { Ng2ImgToolsModule } from 'ng2-img-tools'
+import { Ng2ImgMaxModule } from 'ng2-img-max'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { ConfirmPointsComponent } from './dialogs/confirm-points/confirm-points.component'
 import { AboutComponent } from './pages/leaderboard/dialogs/about/about.component'
 
 @NgModule({
@@ -44,7 +44,7 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     LoginComponent,
     AboutComponent,
     ResetPointsComponent,
-    DialogConfirmationComponent
+    ConfirmPointsComponent
   ],
   imports: [
     AngularFireAuthModule,
@@ -58,7 +58,7 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     HttpClientModule,
     MatDialogModule,
     MatSnackBarModule,
-    Ng2ImgToolsModule,
+    Ng2ImgMaxModule,
     ReactiveFormsModule,
     MatButtonModule,
     ScrollingModule,
@@ -74,11 +74,12 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     MatDividerModule,
     LayoutModule
   ],
-  entryComponents: [ResetPointsComponent],
+  entryComponents: [ResetPointsComponent, ConfirmPointsComponent],
   providers: [
     AuthService,
     FirestoreService,
     TitleCasePipe,
+    DatePipe,
     { provide: FirebaseOptionsToken, useValue: Environment.firebase }
   ],
   bootstrap: [AppComponent]

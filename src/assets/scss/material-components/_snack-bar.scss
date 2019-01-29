@@ -1,19 +1,24 @@
-.snack-bar-warning {
-  background: var(--warning);
+@mixin snack-bar($bgColor) {
+  background: var($bgColor);
   color: var(--light);
+
+  span {
+    color: var(--light);
+  }
+}
+
+.snack-bar-warning {
+  @include snack-bar(--warning);
 }
 
 .snack-bar-success {
-  background: var(--success);
-  color: var(--light);
+  @include snack-bar(--success);
 }
 
 .snack-bar-error {
-  background: var(--danger);
-  color: var(--light);
+  @include snack-bar(--danger);
 }
 
-// .snack-bar-info{
-//   background: #f8d7da;
-//   color: #721c24;
-// }
+.snack-bar-info {
+  @include snack-bar(--dark-gray);
+}

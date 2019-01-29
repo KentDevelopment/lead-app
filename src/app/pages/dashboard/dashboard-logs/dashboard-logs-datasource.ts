@@ -30,25 +30,18 @@ export class DashboardLogsDataSource extends DataSource<DashboardLogItem> {
   connect(): Observable<DashboardLogItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
-
-    // this.fss.getLogsValue().subscribe(ref =>{
-    //   console.log('REF', ref)
-    // })
-
     this.fss
       .getLogs()
-      // .pipe(
-      //   map(res => {
-      //     return res.map((logItem: any) => {
-      //       console.log('LOGITEM', logItem)
-      //
-      //       const newData: any = {
-      //         ...logItem
-      //       }
-      //       return newData
-      //     })
-      //   })
-      // )
+      .pipe(
+        map(res => {
+          return res.map((logItem: any) => {
+            const newData: any = {
+              ...logItem
+            }
+            return newData
+          })
+        })
+      )
       .subscribe(res => {
         this.data = res
       })
@@ -74,6 +67,13 @@ export class DashboardLogsDataSource extends DataSource<DashboardLogItem> {
    * any open connections or free any held resources that were set up during connect.
    */
   disconnect() {}
+
+  /**
+   * Filter
+   */
+  // private getFilteredData(data: DashboardLogItem[]) {
+  //   return data.filter = filterValue.trim().toLowerCase();
+  // }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
@@ -124,6 +124,6 @@ export class DashboardLogsDataSource extends DataSource<DashboardLogItem> {
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a, b, isAsc) {
+function compare(a: string | number, b: string | number, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1)
 }

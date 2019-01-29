@@ -23,20 +23,26 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { RouterModule, Routes } from '@angular/router'
 import { BulkComponent } from './bulk/bulk.component'
-import { DashboardLogsComponent } from './dashboard-logs/dashboard-logs.component'
+// import { DashboardLogsComponent } from './dashboard-logs/dashboard-logs.component'
+// import { UserManagementComponent } from './user-management/user-management.component'
+// import { UserDetailComponent } from './user-management/user-detail/user-detail.component'
 import { DashboardComponent } from './dashboard.component'
 import { LogsComponent } from './logs/logs.component'
 import { NavComponent } from './nav/nav.component'
 import { PointsComponent } from './points/points.component'
-import { UserDetailComponent } from './user-management/user-detail/user-detail.component'
-import { UserManagementComponent } from './user-management/user-management.component'
 
 const routes: Routes = [
   {
     path: '',
     component: NavComponent,
     children: [
-      { path: '', component: DashboardComponent },
+      {
+        path: '',
+        component: DashboardComponent,
+        data: {
+          title: 'Dashboard'
+        }
+      },
       {
         path: 'points',
         component: PointsComponent,
@@ -57,25 +63,25 @@ const routes: Routes = [
         data: {
           title: 'Logs'
         }
-      },
-      {
-        path: 'logs-management',
-        component: DashboardLogsComponent,
-        data: {
-          title: 'Logs Management'
-        }
-      },
-      {
-        path: 'user-management',
-        component: UserManagementComponent,
-        data: {
-          title: 'User Management'
-        }
-      },
-      {
-        path: 'user-management/:id',
-        component: UserDetailComponent
       }
+      // {
+      //   path: 'logs-management',
+      //   component: DashboardLogsComponent,
+      //   data: {
+      //     title: 'Logs Management'
+      //   }
+      // },
+      // {
+      //   path: 'user-management',
+      //   component: UserManagementComponent,
+      //   data: {
+      //     title: 'User Management'
+      //   }
+      // },
+      // {
+      //   path: 'user-management/:id',
+      //   component: UserDetailComponent
+      // }
     ]
   }
 ]
@@ -86,10 +92,10 @@ const routes: Routes = [
     DashboardComponent,
     LogsComponent,
     NavComponent,
-    PointsComponent,
-    UserManagementComponent,
-    DashboardLogsComponent,
-    UserDetailComponent
+    PointsComponent
+    // UserManagementComponent,
+    // DashboardLogsComponent,
+    // UserDetailComponent
   ],
   imports: [
     CommonModule,

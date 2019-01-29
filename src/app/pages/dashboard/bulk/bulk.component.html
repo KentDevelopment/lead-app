@@ -1,37 +1,48 @@
-<cdk-virtual-scroll-viewport itemSize="100">
-  <form [formGroup]="addPointsForm" (ngSubmit)="addPoints(addPointsForm.value)">
-    <div fxLayout="row" fxLayoutAlign="space-evenly center">
-      <mat-form-field appearance="outline" color="primary">
-        <input
-          matInput
-          type="number"
-          step="10"
-          aria-describedby="points"
-          placeholder="Points to add"
-          formControlName="points"
-        />
-      </mat-form-field>
+<ng-container>
+  <form [formGroup]="addPointsForm" (ngSubmit)="addPoints()">
+    <mat-card>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            type="number"
+            step="10"
+            aria-describedby="points"
+            placeholder="Points to add"
+            formControlName="points"
+          />
+        </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit">
-        Add Points
-      </button>
-    </div>
+        <button mat-raised-button color="primary" type="submit">
+          Add Points
+        </button>
+      </div>
+      <!-- <mat-form-field appearance="outline">
+      <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Search"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field> -->
+      <p>Users selected: {{ users.selectedOptions.selected.length }}</p>
+    </mat-card>
 
-    <p>Users selected: {{ users.selectedOptions.selected.length }}</p>
-
-    <mat-selection-list #users>
-      <mat-list-option
-        checkboxPosition="before"
-        *ngFor="let user of (fss.orderedUsers$ | async)"
-      >
-        <mat-list-item>
-          <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />
-          <p matLine>{{ user.displayName | titlecase }}</p>
-          <p matLine class="secondary-text">{{ user.email }}</p>
-          <!-- <p matLine class="secondary-text">{{ user.campus }}</p> -->
-        </mat-list-item>
-        <mat-divider></mat-divider>
-      </mat-list-option>
-    </mat-selection-list>
+    <cdk-virtual-scroll-viewport itemSize="100">
+      <mat-selection-list #users>
+        <mat-list-option
+          checkboxPosition="before"
+          *ngFor="let user of (fss.usersByName$ | async)"
+        >
+          <mat-list-item>
+            <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />
+            <p matLine>{{ user.displayName | titlecase }}</p>
+            <p matLine class="secondary-text">{{ user.email }}</p>
+            <!-- <p matLine class="secondary-text">{{ user.campus }}</p> -->
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list-option>
+      </mat-selection-list>
+    </cdk-virtual-scroll-viewport>
   </form>
-</cdk-virtual-scroll-viewport>
+</ng-container>

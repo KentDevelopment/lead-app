@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const Environment = {
   production: false,
-  version: '2.0 DEV',
+  version: '2.0.beta_02 DEV',
   firebaseEmailAPI:
     'https://us-central1-kent-ac75b.cloudfunctions.net/sendEmail',
   firebase: {

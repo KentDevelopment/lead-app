@@ -1,11 +1,19 @@
 @import 'src/assets/scss/mixins/headers';
 @import 'src/assets/scss/mixins/avatars';
 
+.header {
+  @include header(
+    linear-gradient(-139deg, var(--secondary) 10%, var(--primary) 100%)
+  );
+
+  p {
+    margin-top: 0;
+  }
+}
+
 :host {
-  .header {
-    @include header(
-      linear-gradient(-139deg, var(--secondary) 10%, var(--primary) 100%)
-    );
+  .header-row {
+    padding-bottom: 14px;
   }
 
   mat-icon {
@@ -19,7 +27,9 @@
   }
 
   h4 {
+    padding-right: 16px !important;
     text-align: left;
+    white-space: pre-line !important;
   }
 
   .mat-display-1 {
@@ -58,6 +68,6 @@
 
   mat-spinner {
     position: fixed;
-    top: 50%;
+    top: 50vh;
   }
 }

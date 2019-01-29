@@ -14,7 +14,7 @@ import { Component } from '@angular/core'
   animations: [
     trigger('routerAnimation', [
       // Move Right to Left <-----
-      transition('leaderboard => profile, profile => admin, login => signup', [
+      transition('leaderboard => profile, login => signup', [
         style({ height: '!' }),
         query(':enter', style({ transform: 'translateX(100%)' })),
         query(
@@ -39,7 +39,7 @@ import { Component } from '@angular/core'
       ]),
 
       // Move Left to Right ---->
-      transition('profile => leaderboard , admin => *, signup => login', [
+      transition('profile => leaderboard, signup => login', [
         style({ height: '!' }),
         query(':enter', style({ transform: 'translateX(-100%)' })),
         query(

@@ -48,7 +48,8 @@ export class BulkComponent {
   }
 
   // Add Points in Bulk
-  addPoints(event: User) {
+  addPoints() {
+    console.log('TEST', this.addPointsForm.value.uid)
     for (const uid of this.addPointsForm.value.uid) {
       const userDoc: AngularFirestoreDocument<User> = this.afs.doc(
         `users/${uid}`
@@ -57,7 +58,7 @@ export class BulkComponent {
       const userData$ = userDoc.valueChanges().pipe(take(1))
 
       userData$.subscribe(userRef => {
-        const addedPoints = event.points
+        const addedPoints = this.addPointsForm.value.points
         const totalPoints = userRef.points + addedPoints
 
         const newData: User = {
@@ -65,7 +66,7 @@ export class BulkComponent {
           points: Number(totalPoints)
         }
 
-        this.dashboardService.updateData(userDoc, newData)
+        userDoc.update(newData)
         this.dashboardService
           .logData(totalPoints, addedPoints, userRef)
           .finally(() => this.addPointsForm.reset())

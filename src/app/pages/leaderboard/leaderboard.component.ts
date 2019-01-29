@@ -20,12 +20,12 @@ export class LeaderboardComponent {
 
   openDialog(): void {
     this.dialog.open(AboutComponent, {
-      position: {
-        top: '2vh'
-      },
-      minHeight: '70vh',
+      // position: {
+      //   top: '2vh'
+      // },
+      // minHeight: '70vh',
+      // maxHeight: '96vh',
       maxWidth: '96vw',
-      maxHeight: '96vh',
       autoFocus: false
     })
   }

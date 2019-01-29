@@ -1,6 +1,14 @@
 :host {
+  mat-card {
+    margin: 10px;
+
+    // .mat-form-field {
+    //   width: 100%;
+    // }
+  }
+
   cdk-virtual-scroll-viewport {
-    height: 100vh;
+    height: 80vh;
   }
 
   .secondary-text {

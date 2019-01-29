@@ -1,3 +1,14 @@
+# 2.0.0 (2019-01-15)
+
+## Features
+
+- Admin Dashboard Redesigned
+- New Animation for the user profile picture upload
+- New Logs structure
+- Faster profile picture upload (ng2-img-tools replaced by ng2-img-max for better img compression)
+- Bootstrap completely replaced by Angular Material
+- Rxjs completely migrated to v.6
+
 # 1.4.6 (2019-01-08)
 
 ## Bugs Fixed

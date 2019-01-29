@@ -1,19 +1,26 @@
-export interface Log {
-  adminName: string
-  date: number
-  log: string
-  pointsAdded: number
-  userName: string
-}
+// export interface Log {
+//   adminName: string
+//   date: number
+//   log: string
+//   pointsAdded: number
+//   userName: string
+// }
 
-export interface NewLog {
+export interface Log {
   date: number
   message: string
   pointsAdded: number
   pointsCurrent: number
-
+  userId: string
+  userName?: string
   adminId?: string
-  userId?: string
+  adminName?: string
+}
+
+export interface LogReset {
+  date: number
+  adminName: string
+  message: string
 }
 
 export interface DashboardLogItem {
@@ -28,10 +35,4 @@ export interface DashboardLogItem {
   pointsCurrent: number
   message: string
   adminName: string
-}
-
-export interface LogText {
-  adminName: string
-  date: number
-  log: string
 }

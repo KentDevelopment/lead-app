@@ -17,16 +17,16 @@ export class DashboardLogsComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
     // 'id',
-    'user-picture',
+    // 'user-picture',
+    // 'user-id',
+    // 'user-campus',
     'date',
-    'user-id',
-    'user-name',
-    'user-email',
-    'user-campus',
-    'points-added',
-    'points-current',
+    // 'user-name',
+    // 'user-email',
     'log-message',
-    'admin-name'
+    'points-added',
+    'points-current'
+    // 'admin-name'
   ]
 
   constructor(

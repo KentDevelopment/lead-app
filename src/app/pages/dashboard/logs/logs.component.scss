@@ -1,12 +1,19 @@
 :host {
-  .log-item {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 6px;
-    margin: 4% 2%;
-    padding: 1rem;
+  div {
+    height: 91vh;
+    margin: 10px;
+  }
 
-    p:first-child {
-      margin-bottom: 0.5em;
+  mat-card {
+    margin-bottom: 10px;
+
+    mat-card-footer {
+      margin: 0 10px;
     }
+  }
+
+  .no-records-msg {
+    margin-top: 64px;
+    text-align: center;
   }
 }

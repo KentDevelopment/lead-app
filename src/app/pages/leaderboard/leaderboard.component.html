@@ -10,10 +10,11 @@
 
     <h1 class="mat-display-1">LEAD Points</h1>
 
-    <div fxLayout="row" fxLayoutAlign="space-around center">
+    <div class="header-row" fxLayout="row" fxLayoutAlign="space-around center">
       <div
         fxLayout="column"
         fxLayoutAlign="center center"
+        fxLayoutGap="100px"
         routerLink="/profile"
       >
         <img
@@ -53,11 +54,21 @@
           <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />
           <h4 mat-line>{{ user.displayName | titlecase }}</h4>
 
-          <p *ngIf="authUser.role === 'admin'">{{ user.points }}</p>
-          <p *ngIf="user.points < 100 && authUser.role !== 'admin'">
+          <p
+            class="mat-h3"
+            *ngIf="
+              authUser.role === 'admin' ||
+              (user.points < 100 && authUser.role !== 'admin')
+            "
+          >
             {{ user.points }}
           </p>
-          <p *ngIf="user.points >= 100 && authUser.role !== 'admin'">100+</p>
+          <p
+            class="mat-h3"
+            *ngIf="user.points >= 100 && authUser.role !== 'admin'"
+          >
+            100+
+          </p>
 
           <mat-divider></mat-divider>
         </mat-list-item>

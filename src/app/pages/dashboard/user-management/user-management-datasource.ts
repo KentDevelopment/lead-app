@@ -5,7 +5,6 @@ import { UserData } from '@interfaces/user-data'
 import { FirestoreService } from '@services/firestore.service'
 import { merge, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-// import { Chance } from 'chance'
 // import { AngularFirestore } from '@angular/fire/firestore'
 
 export class UserManagementDataSource extends DataSource<User> {
@@ -18,28 +17,6 @@ export class UserManagementDataSource extends DataSource<User> {
   ) {
     super()
   }
-  //
-  // addUser() {
-  //   const chance = new Chance()
-  //   const user = {
-  //     uid: chance.string({
-  //       length: 28,
-  //       pool: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-  //     }),
-  //     photoUrl: chance.avatar({ protocol: 'https' }),
-  //     displayName: chance.first(),
-  //     email: `${chance.last()}@gmail.com`,
-  //     campus: chance.company(),
-  //     incognitoMode: chance.bool(),
-  //     role: 'user',
-  //     points: chance.integer({ min: 0, max: 2000 })
-  //   }
-  //
-  //   this.afs
-  //     .collection('userTest')
-  //     .doc(user.uid)
-  //     .set(user)
-  // }
 
   /**
    * Connect this data source to the table. The table will only update when
@@ -47,36 +24,7 @@ export class UserManagementDataSource extends DataSource<User> {
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<User[]> {
-    // setInterval(() => {
-    //   this.addUser()
-    // }, 200)
-
-    // this.addUser()
-
-    // this.fss
-    //   .localUsers$
-    //   .pipe(
-    //     map(ref => {
-    //       return ref.map((user: User) => {
-    //         const newUserObj: UserTable = {
-    //           // position: 1,
-    //           id: user.uid,
-    //           picture: user.photoURL || 'assets/placeholders/placeholder-user.svg',
-    //           name: user.displayName,
-    //           email: user.email,
-    //           campus: user.campus,
-    //           incognito: user.incognitoMode,
-    //           role: user.role,
-    //           points: user.points
-    //         }
-    //         return newUserObj
-    //       })
-    //     })
-    //   )
-    //   .subscribe(res => {
-    //     this.data = res
-    //   })
-    this.fss.mockUser$
+    this.fss.users$
       .pipe(
         map(ref => {
           return ref.map((user: User) => {
@@ -98,11 +46,10 @@ export class UserManagementDataSource extends DataSource<User> {
       )
       .subscribe(res => {
         this.data = res
-        console.log('THIS.DATA', this.data)
       })
 
     const dataMutations = [
-      this.fss.mockUser$,
+      this.fss.users$,
       this.paginator.page,
       this.sort.sortChange
     ]

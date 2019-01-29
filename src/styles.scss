@@ -15,17 +15,17 @@ body {
   --primary: #662d91;
   --secondary: #0072bb;
   --tertiary: #f04f23;
-  --danger: #dc3545;
-  --warning: #ffc107;
-  --success: #217c49;
+  --info: #1976d2;
+  --success: #43a047;
+  --warning: #ffa000;
+  --danger: #d32f2f;
   --dark-gray: #495057;
-  --dark: #000;
   --light-gray: #868e96;
+  --dark: #000;
   --light: #fff;
 
   // Custom Styles for Angular Material Components
-  @import 'assets/scss/material-components/buttons';
-  @import 'assets/scss/material-components/form-field';
+  // @import 'assets/scss/material-components/form-field';
   @import 'assets/scss/material-components/snack-bar';
   @import 'assets/scss/material-components/spinner';
 

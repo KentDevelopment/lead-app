@@ -21,7 +21,7 @@ export class LoginComponent {
     const domain: string = this.loginForm.value
 
     try {
-      return await this.auth.googleLogin(domain)
+      return await this.auth.googleSignin(domain)
     } catch (error) {
       return error
     }

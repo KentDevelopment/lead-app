@@ -1,23 +1,26 @@
-<mat-list>
+<ng-container>
   <cdk-virtual-scroll-viewport itemSize="100">
-    <mat-list-item *cdkVirtualFor="let user of (fss.orderedUsers$ | async)">
-      <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />
-      <h6 matLine>{{ user.displayName | titlecase }}</h6>
-      <p matLine>{{ user.email }}</p>
-      <p matLine>{{ user.campus }}</p>
-
-      <mat-form-field appearance="outline" color="primary">
-        <input
-          matInput
-          value="{{ user.points }}"
-          [formControl]="pointsInputForm"
-          type="number"
-          step="10"
-          class="example-right-align"
-          (change)="update(user, $event.target.value)"
-        />
-      </mat-form-field>
-      <mat-divider></mat-divider>
-    </mat-list-item>
+    <mat-list>
+      <mat-list-item
+        *ngFor="let user of (fss.usersByName$ | async); let i = index"
+      >
+        <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />
+        <h3 matLine>{{ user.displayName | titlecase }}</h3>
+        <p matLine>{{ user.email }}</p>
+        <p matLine>{{ user.campus }}</p>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            type="number"
+            step="10"
+            placeholder="Add Points"
+            [value]="user.points"
+            [formControl]="pointsFormControl"
+            (change)="checkPoints(user)"
+          />
+        </mat-form-field>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
   </cdk-virtual-scroll-viewport>
-</mat-list>
+</ng-container>

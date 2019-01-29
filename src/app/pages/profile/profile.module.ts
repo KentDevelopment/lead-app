@@ -12,19 +12,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { RouterModule, Routes } from '@angular/router'
 import { SharedModule } from '@shared/shared.module'
-import { ImageCropperModule } from 'ngx-image-cropper'
 import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
-import { EditPictureComponent } from './edit-picture/edit-picture.component'
 import { ProfileComponent } from './profile.component'
 
 const routes: Routes = [{ path: '', component: ProfileComponent }]
 
 @NgModule({
-  declarations: [
-    ProfileComponent,
-    LeaveIncognitoComponent,
-    EditPictureComponent
-  ],
+  declarations: [ProfileComponent, LeaveIncognitoComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -36,12 +30,11 @@ const routes: Routes = [{ path: '', component: ProfileComponent }]
     MatFormFieldModule,
     MatInputModule,
     SharedModule,
-    ImageCropperModule,
     MatDividerModule,
     MatProgressBarModule,
     MatIconModule,
     FlexLayoutModule
   ],
-  bootstrap: [LeaveIncognitoComponent, EditPictureComponent]
+  bootstrap: [LeaveIncognitoComponent]
 })
 export class ProfileModule {}

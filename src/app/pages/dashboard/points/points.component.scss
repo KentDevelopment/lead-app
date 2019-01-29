@@ -1,10 +1,22 @@
 :host {
   cdk-virtual-scroll-viewport {
-    height: 92vh;
+    height: 93vh;
 
     mat-list-item {
+      height: 100px;
+
       p {
         color: var(--light-gray);
+      }
+
+      h3,
+      p {
+        line-height: inherit;
+        max-width: 54vw;
+        padding-right: 10px;
+        text-align: left;
+        white-space: pre-line;
+        word-wrap: break-word;
       }
 
       mat-form-field {
