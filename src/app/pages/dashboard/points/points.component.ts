@@ -32,7 +32,7 @@ export class PointsComponent {
     const addedPoints = newPoints - originalPoints
 
     if (addedPoints > limitPoints) {
-      this.openDialog()
+      this.openDialog(user.displayName)
       this.dialogRef.afterClosed().subscribe(acceptedChanges => {
         if (acceptedChanges) {
           this.updatePoints(user, newPoints, addedPoints)
@@ -58,9 +58,13 @@ export class PointsComponent {
       })
   }
 
-  private openDialog(): void {
+  private openDialog(userName: string): void {
     this.dialogRef = this.dialog.open(ConfirmPointsComponent, {
-      autoFocus: false
+      autoFocus: false,
+      data: {
+        userPoints: this.pointsFormControl.value,
+        userName
+      }
     })
   }
 }

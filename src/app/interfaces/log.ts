@@ -1,11 +1,3 @@
-// export interface Log {
-//   adminName: string
-//   date: number
-//   log: string
-//   pointsAdded: number
-//   userName: string
-// }
-
 export interface Log {
   date: number
   message: string

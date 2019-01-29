@@ -1,5 +1,4 @@
 export interface UserData {
-  // position: number
   id: string
   picture: string
   name: string

@@ -7,7 +7,6 @@ import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.compone
 import { Log } from '@interfaces/log'
 import { NavItem } from '@interfaces/nav-item'
 import { User } from '@interfaces/user'
-// import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
 
@@ -30,30 +29,12 @@ export class DashboardService {
       subTitle: 'Add LEAD points to one user',
       routePath: 'points'
     },
-    // {
-    //   icon: 'group_add',
-    //   title: 'Add Bulk Points',
-    //   subTitle: 'Add points to multiple users at once',
-    //   routePath: 'bulk'
-    // },
-    // {
-    //   icon: 'supervised_user_circle',
-    //   title: 'User Management',
-    //   subTitle: 'A list with details of all users',
-    //   routePath: 'user-management'
-    // },
     {
       icon: 'assignment',
       title: 'Logs',
       subTitle: 'Check all the changes that have been made',
       routePath: 'logs'
     },
-    // {
-    //   icon: 'assignment',
-    //   title: 'Logs Management',
-    //   subTitle: 'Check all the changes that have been made',
-    //   routePath: 'logs-management'
-    // },
     {
       icon: 'delete_forever',
       title: 'Reset Points',

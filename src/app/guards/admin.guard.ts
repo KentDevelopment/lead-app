@@ -4,10 +4,9 @@ import {
   CanActivate,
   RouterStateSnapshot
 } from '@angular/router'
+import { AuthService } from '@services/auth.service'
 import { Observable } from 'rxjs'
 import { map, take, tap } from 'rxjs/operators'
-
-import { AuthService } from '@services/auth.service'
 
 @Injectable({
   providedIn: 'root'

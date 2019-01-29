@@ -24,7 +24,7 @@ export class ResetPointsComponent {
   ) {}
 
   deletePoints() {
-    const dateToReset = Date.parse('01 Jan 2019 00:00:00 GMT+1000')
+    const dateToReset = Date.parse('01 Jan 2020 00:00:00 GMT+1000')
     const myDate = Date.now()
 
     if (myDate <= dateToReset) {
