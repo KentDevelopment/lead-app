@@ -1,9 +1,14 @@
-<footer (click)="toogleCredits()" [@openClose]="isOpen ? 'open' : 'closed'">
-  <div *ngIf="!isOpen"><mat-icon>remove</mat-icon></div>
+<footer [@openClose]="isOpen ? 'open' : 'closed'">
+  <div *ngIf="!isOpen">
+    <mat-icon (click)="toogleCredits()">remove</mat-icon>
+  </div>
 
   <div *ngIf="isOpen">
-    <mat-icon>keyboard_arrow_down</mat-icon>
-    <small class="mat-body-strong">Created by Renan Sigolo</small>
+    <mat-icon (click)="toogleCredits()">keyboard_arrow_down</mat-icon>
+    <small class="mat-body-strong">
+      Created by
+      <a href="https://github.com/renansigolo" target="_blank">Renan Sigolo</a>
+    </small>
     <p class="mat-body">
       Mr Renan Ferreira is a student of Kent’s Diploma of Website Development
       course who offered to create this website as a volunteer project. Kent
