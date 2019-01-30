@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { ConfirmPointsComponent } from '@dialogs/confirm-points/confirm-points.component'
@@ -13,7 +13,7 @@ import { DashboardService } from '../dashboard.service'
   templateUrl: './points.component.html',
   styleUrls: ['./points.component.scss']
 })
-export class PointsComponent {
+export class PointsComponent implements OnInit {
   dialogRef: MatDialogRef<ConfirmPointsComponent>
   pointsFormControl = new FormControl(null)
 
@@ -24,6 +24,14 @@ export class PointsComponent {
     private dashboardService: DashboardService,
     private db: DbService
   ) {}
+
+  ngOnInit() {
+    this.pointsFormControl.valueChanges.subscribe(val => {
+      if (val > 2000) {
+        this.toast.showInfo(`😲 That's a really high score`)
+      }
+    })
+  }
 
   checkPoints(user: User) {
     const originalPoints = user.points
@@ -37,7 +45,7 @@ export class PointsComponent {
         if (acceptedChanges) {
           this.updatePoints(user, newPoints, addedPoints)
         } else {
-          // TODO: reset points to it's original state
+          window.location.reload()
         }
       })
     } else {
