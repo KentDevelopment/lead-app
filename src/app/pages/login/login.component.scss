@@ -3,19 +3,25 @@
 
   img {
     height: auto;
+    margin-bottom: 1rem;
     max-width: 100%;
   }
 
+  button {
+    margin: 0 0 0.5rem;
+  }
+
   section {
-    padding: 3rem 1.5rem;
+    padding: 4rem 1.3rem;
   }
 
   // Campus Style
-  h3 {
+  h1 {
     color: var(--primary);
   }
 
-  small {
+  small,
+  h3 {
     color: var(--dark-gray);
   }
 }

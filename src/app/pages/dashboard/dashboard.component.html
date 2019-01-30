@@ -1,15 +1,24 @@
-<!-- Admin Header -->
-<div class="primary-header pb-1 pt-2" fxLayout="row wrap">
-  <i class="material-icons" routerLink="/profile" fxFlex="initial">
-    keyboard_arrow_left
-  </i>
-  <h2 fxFlex fxFill>Admin Dashboard</h2>
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile
+      *ngFor="let card of (cards | async | slice: 1); let i = index"
+      [colspan]="(isHandset$ | async) ? '2' : '1'"
+      [rowspan]="1"
+    >
+      <a mat-list-item (click)="dashboardService.checkRoute(card)">
+        <mat-card
+          class="dashboard-card"
+          fxLayout="column"
+          fxLayoutAlign="space-around center"
+        >
+          <mat-icon>{{ card.icon }}</mat-icon>
+
+          <mat-card-content>
+            <mat-card-title>{{ card.title }}</mat-card-title>
+            <mat-card-subtitle>{{ card.subTitle }}</mat-card-subtitle>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
-
-<mat-tab-group mat-stretch-tabs>
-  <mat-tab label="Points"><app-points></app-points></mat-tab>
-
-  <!-- <mat-tab label="Bulk"><app-bulk></app-bulk></mat-tab> -->
-
-  <mat-tab label="Logs"><app-logs></app-logs></mat-tab>
-</mat-tab-group>

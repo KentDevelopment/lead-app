@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    autoFocus="true"
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+  >
+    <a mat-list-item (click)="redirectTo('profile')">
+      <mat-toolbar>
+        <mat-icon matListIcon>arrow_back_ios</mat-icon>
+        Back to App
+      </mat-toolbar>
+    </a>
+    <mat-nav-list *ngFor="let item of navItems">
+      <a mat-list-item (click)="redirectTo(item.routePath)">
+        {{ item.title }}
+        <mat-icon matListIcon>{{ item.icon }}</mat-icon>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>{{ routeTitle }}</span>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

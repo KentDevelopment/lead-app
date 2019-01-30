@@ -2,16 +2,21 @@
   *ngIf="(auth.user$ | async) as authUser"
   [ngClass]="{ incognitoMode: authUser.incognitoMode }"
 >
-  <div class="sticky-top primary-header pb-3">
-    <div class="fixed-top">
-      <i class="material-icons float-left" routerLink="/profile">settings</i>
-      <i class="material-icons float-right" (click)="openDialog()">help</i>
+  <div class="header">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <mat-icon routerLink="/profile">settings</mat-icon>
+      <mat-icon (click)="openDialog()">help</mat-icon>
     </div>
 
-    <h2 class="text-center pt-4">LEAD Points</h2>
+    <h1 class="mat-display-1">LEAD Points</h1>
 
-    <div class="d-flex justify-content-around">
-      <div class="d-flex align-items-center" routerLink="/profile">
+    <div class="header-row" fxLayout="row" fxLayoutAlign="space-around center">
+      <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="100px"
+        routerLink="/profile"
+      >
         <img
           class="img-profile"
           [src]="authUser.photoURL"
@@ -19,63 +24,55 @@
         />
       </div>
 
-      <div class="d-flex align-items-center">
-        <h2>{{ authUser.points }} pts</h2>
-      </div>
+      <h1 class="mat-display-1">{{ authUser.points }} pts</h1>
     </div>
-    <div class="text-center mt-2" *ngIf="authUser.incognitoMode">
-      Only you can see your profile picture!
-    </div>
-    <div class="text-center mt-2" *ngIf="authUser.points >= 100">
+
+    <p class="mat-body" *ngIf="authUser.points >= 100">
       Congratulations on achieving 100 points or more!
       <br />
       You’re now eligible to receive a LEAD Certificate
-    </div>
+    </p>
+
+    <p class="mat-small" *ngIf="authUser.incognitoMode">
+      Only you can see your profile picture!
+    </p>
   </div>
 
   <ng-container>
-    <div *ngIf="!fss.users$" class="spinner"><mat-spinner></mat-spinner></div>
+    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!fss.users$">
+      <mat-spinner></mat-spinner>
+    </div>
 
     <cdk-virtual-scroll-viewport itemSize="100">
-      <li
-        *cdkVirtualFor="let user of fss.users$; let i = index"
-        class="animated fadeInUp list-group-item list-group-item-action"
-        [ngClass]="{ 'highlight-user': user.uid === authUser.uid }"
-      >
-        <div class="d-flex">
-          <div class="p-2 d-flex align-items-center">{{ i + 1 }}</div>
-          <div class="p-2 d-flex align-items-center">
-            <img
-              class="img-profile-list"
-              [src]="user.photoURL"
-              alt="User Profile Image"
-            />
-          </div>
-          <div class="flex-column align-self-center">
-            <div class="pl-2 pr-2 d-flex">
-              {{ user.displayName | titlecase }}
-            </div>
-          </div>
-          <div
-            class="ml-auto p-2 d-flex align-items-center"
-            *ngIf="authUser.role === 'admin'"
+      <mat-list>
+        <mat-list-item
+          *cdkVirtualFor="let user of fss.users$; let i = index"
+          class="animated fadeInUp"
+          [ngClass]="{ 'highlight-user': user.uid === authUser.uid }"
+        >
+          <p matListIcon class="mat-h3">{{ i + 1 }}</p>
+          <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />
+          <h4 mat-line>{{ user.displayName | titlecase }}</h4>
+
+          <p
+            class="mat-h3"
+            *ngIf="
+              authUser.role === 'admin' ||
+              (user.points < 100 && authUser.role !== 'admin')
+            "
           >
             {{ user.points }}
-          </div>
-          <div
-            class="ml-auto p-2 d-flex align-items-center"
-            *ngIf="user.points < 100 && authUser.role !== 'admin'"
-          >
-            {{ user.points }}
-          </div>
-          <div
-            class="ml-auto p-2 d-flex align-items-center"
+          </p>
+          <p
+            class="mat-h3"
             *ngIf="user.points >= 100 && authUser.role !== 'admin'"
           >
             100+
-          </div>
-        </div>
-      </li>
+          </p>
+
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
     </cdk-virtual-scroll-viewport>
   </ng-container>
 </div>

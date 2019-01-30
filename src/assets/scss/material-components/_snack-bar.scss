@@ -1,0 +1,24 @@
+@mixin snack-bar($bgColor) {
+  background: var($bgColor);
+  color: var(--light);
+
+  span {
+    color: var(--light);
+  }
+}
+
+.snack-bar-warning {
+  @include snack-bar(--warning);
+}
+
+.snack-bar-success {
+  @include snack-bar(--success);
+}
+
+.snack-bar-error {
+  @include snack-bar(--danger);
+}
+
+.snack-bar-info {
+  @include snack-bar(--dark-gray);
+}

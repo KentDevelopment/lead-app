@@ -1,9 +1,37 @@
-.primary-header {
-  i {
-    padding: 8px 0 8px 2px;
-  }
+@import '~@angular/material/theming';
 
-  h2 {
+mat-card {
+  mat-card-content {
     text-align: center;
   }
+}
+
+mat-card:hover {
+  @include mat-elevation(5);
+
+  cursor: pointer;
+}
+
+.grid-container {
+  height: 88vh;
+  margin: 20px;
+}
+
+.dashboard-card {
+  bottom: 15px;
+  left: 15px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mat-icon {
+  font-size: 5.6rem;
+  height: 5.6rem;
+  width: 5.6rem;
 }

@@ -1,0 +1,25 @@
+// mat-sidenav-content {
+//   min-height: 90vh;
+// }
+
+// .sidenav-container {
+//   height: 100%;
+// }
+
+.mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+a:hover {
+  cursor: pointer;
+}

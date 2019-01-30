@@ -1,9 +1,7 @@
 import { Component } from '@angular/core'
-
-import { MatDialogRef } from '@angular/material'
-import { AuthService } from '@services/auth.service'
-
+import { MatDialogRef } from '@angular/material/dialog'
 import { User } from '@interfaces/user'
+import { AuthService } from '@services/auth.service'
 
 @Component({
   selector: 'app-leave-incognito',
@@ -15,7 +13,7 @@ export class LeaveIncognitoComponent {
   isLoading = false
 
   constructor(
-    public auth: AuthService,
+    private auth: AuthService,
     private dialogRef: MatDialogRef<LeaveIncognitoComponent>
   ) {
     this.auth.user$.subscribe(data => {
@@ -23,7 +21,7 @@ export class LeaveIncognitoComponent {
     })
   }
 
-  onNoClick(): void {
+  closeDialog(): void {
     this.dialogRef.close()
   }
 

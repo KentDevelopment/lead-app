@@ -1,33 +1,17 @@
-.form-control {
-  border-left: 0;
+:host {
+  mat-card {
+    margin: 10px;
 
-  p {
-    margin-bottom: 0;
+    // .mat-form-field {
+    //   width: 100%;
+    // }
   }
-}
 
-.secondary-text {
-  color: var(--light-gray);
-  font-size: 0.9rem;
-}
-
-.input-group-text {
-  background-color: var(--light);
-  border-right: 0;
-}
-
-.fix-line {
-  height: 100%;
-}
-
-cdk-virtual-scroll-viewport {
-  height: 100vh;
-
-  li {
-    height: 250px;
+  cdk-virtual-scroll-viewport {
+    height: 80vh;
   }
-}
 
-form {
-  width: 100vw;
+  .secondary-text {
+    color: var(--light-gray);
+  }
 }

@@ -1,15 +1,6 @@
-<mat-dialog-content class="about-lead">
-  <div class="modal-header">
-    <h4 mat-dialog-title>More about LEAD</h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="closeModal()"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+<h1 mat-dialog-title>More about LEAD</h1>
+
+<div mat-dialog-content class="mat-body">
   <p>
     Employers are looking for candidates who have done something
     <i><u>extra</u></i>
@@ -43,7 +34,7 @@
     </li>
   </ul>
 
-  <h4 mat-dialog-title>Register for Events:</h4>
+  <h1 mat-dialog-title>Register for Events:</h1>
   <p>
     Go to
     <a href="http://kent.edu.au/events" target="_blank" rel="noopener">
@@ -52,7 +43,7 @@
     and look for events that attract LEAD points!
   </p>
 
-  <h4 mat-dialog-title>Contact us:</h4>
+  <h1 mat-dialog-title>Contact us:</h1>
   <p>
     Email:
     <a
@@ -62,4 +53,17 @@
       Lead@kent.edu.au
     </a>
   </p>
-</mat-dialog-content>
+  <p>
+    Or if something is broken
+    <a
+      href="https://github.com/KentDevelopment/lead-app/issues"
+      target="_blank"
+    >
+      report an issue
+    </a>
+  </p>
+</div>
+
+<div mat-dialog-actions dir="rtl">
+  <button mat-button (click)="closeModal()">Ok</button>
+</div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kent": {
+    "lead-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -42,7 +42,10 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/manifest.json", "src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/assets/scss/lead-app-theme.scss",
+              "src/styles.scss"
+            ],
             "scripts": [
               "node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"
             ]
@@ -65,25 +68,40 @@
               "vendorChunk": false,
               "serviceWorker": false,
               "ngswConfigPath": "ngsw-config.json",
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "kent:build"
+            "browserTarget": "lead-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "kent:build:production"
+              "browserTarget": "lead-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kent:build"
+            "browserTarget": "lead-app:build"
           }
         },
         "lint": {
@@ -99,5 +117,5 @@
   "cli": {
     "packageManager": "npm"
   },
-  "defaultProject": "kent"
+  "defaultProject": "lead-app"
 }

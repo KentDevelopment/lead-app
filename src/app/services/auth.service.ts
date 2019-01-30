@@ -8,22 +8,23 @@ import {
 import { Router } from '@angular/router'
 import { Environment } from '@environments/environment'
 import { User } from '@interfaces/user'
+import { ToastService } from '@services/toast.service'
 import { auth } from 'firebase/app'
 import { Observable, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-
-import { ToastService } from '@services/toast.service'
+import { DbService } from './db.service'
 
 @Injectable()
 export class AuthService {
   user$: Observable<User>
 
   constructor(
-    public http: HttpClient,
-    public toast: ToastService,
+    private http: HttpClient,
+    private toast: ToastService,
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private db: DbService
   ) {
     // Get auth data, then get firestore user document || null
     this.user$ = this.afAuth.authState.pipe(
@@ -34,7 +35,7 @@ export class AuthService {
   }
 
   // Google Auth
-  async googleLogin(domain: string) {
+  async googleSignin(domain: string) {
     try {
       const provider = new auth.GoogleAuthProvider()
       provider.setCustomParameters({
@@ -55,7 +56,7 @@ export class AuthService {
       )
       if (credential.additionalUserInfo.isNewUser === true) {
         if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
-          this.setUserDoc(credential.user)
+          this.updateUserData(credential.user)
         } else {
           throw new Error(
             'Please use an email with @student.kent.edu.au or @kent.edu.au'
@@ -75,41 +76,32 @@ export class AuthService {
   }
 
   // Sets user data to firestore after succesful login
-  private async setUserDoc(user: User) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
-      `users/${user.uid}`
-    )
-
-    const data: User = {
-      uid: user.uid,
-      email: user.email,
+  private async updateUserData(user: User) {
+    const userData: User = {
+      campus: null,
       displayName: user.displayName,
-      photoURL: user.photoURL || 'assets/placeholders/placeholder-user.svg',
-      role: 'user',
-      points: 0,
+      email: user.email,
       incognitoMode: true,
-      termsAndConditions: true
+      photoURL: user.photoURL || 'assets/placeholders/placeholder-user.svg',
+      points: 0,
+      role: 'user',
+      termsAndConditions: true,
+      uid: user.uid
     }
 
     try {
-      return await userRef.set(data, { merge: false })
+      return await this.db.updateAt(`users/${user.uid}`, userData)
     } catch (error) {
       return error
     }
   }
 
-  // Update properties on the user document
+  // Update campus on the user document
   updateCampus(user: User, campus: string) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
-      `users/${user.uid}`
-    )
-
-    userRef
-      .set({ campus }, { merge: true })
+    this.db
+      .updateAt(`users/${user.uid}`, { campus })
       .then(() => {
         this.sendEmail(user)
-      })
-      .then(() => {
         this.router.navigate(['/leaderboard'])
       })
       .then(() => {

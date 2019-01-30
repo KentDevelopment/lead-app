@@ -1,13 +1,30 @@
 export interface Log {
-  adminName: string
   date: number
-  log: string
+  message: string
   pointsAdded: number
-  userName: string
+  pointsCurrent: number
+  userId: string
+  userName?: string
+  adminId?: string
+  adminName?: string
 }
 
-export interface LogText {
-  adminName: string
+export interface LogReset {
   date: number
-  log: string
+  adminName: string
+  message: string
+}
+
+export interface DashboardLogItem {
+  id: number
+  date: Date
+  userId: string
+  userPicture: string
+  userName: string
+  userEmail: string
+  userCampus: string
+  pointsAdded: number
+  pointsCurrent: number
+  message: string
+  adminName: string
 }

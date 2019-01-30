@@ -1,98 +1,92 @@
-<!-- User Profile -->
 <div *ngIf="(auth.user$ | async) as user">
-  <!-- User Status -->
-  <div class="sticky-top secondary-header pb-3">
-    <div class="fixed-top">
-      <i class="material-icons float-left" routerLink="/leaderboard">
-        keyboard_arrow_left
-      </i>
-      <i class="material-icons float-right" (click)="auth.signOut()">
-        power_settings_new
-      </i>
+  <div class="header">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <mat-icon routerLink="/leaderboard">keyboard_arrow_left</mat-icon>
+      <mat-icon (click)="auth.signOut()">power_settings_new</mat-icon>
     </div>
 
-    <h3 class="text-center pt-4 text-truncate">
-      Hello
-      <br />
-      {{ user.displayName | titlecase }}
-    </h3>
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+      <h1 class="mat-display-1">Hello</h1>
+      <h1 class="mat-h2">{{ user.displayName | titlecase }}</h1>
 
-    <div class="d-flex justify-content-around">
-      <div class="d-flex align-items-center" routerLink="/profile">
-        <img
-          id="upload"
-          class="img-profile"
-          src="{{ user.photoURL }}"
-          alt="User Profile Image"
-        />
-        <div class="edit-img" *ngIf="!user.incognitoMode">
-          <img
-            class="img-profile"
-            src="assets/profile/edit.svg"
-            alt="Edit"
-            (click)="file.click()"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="text-center mt-2" *ngIf="user.incognitoMode">
-    Only you can see your profile picture!
-  </div>
-
-  <div class="card-body">
-    <div class="form-group fileContainer" hidden>
-      <input
-        id="file"
-        type="file"
-        (change)="uploadFile($event)"
-        accept="image/*"
-        #file
+      <img
+        id="upload"
+        class="img-profile"
+        [src]="user.photoURL"
+        alt="User Profile Image"
       />
+
+      <img
+        *ngIf="!user.incognitoMode"
+        class="edit-img img-profile"
+        src="assets/profile/edit.svg"
+        alt="Edit"
+        (click)="file.click()"
+      />
+
+      <mat-progress-spinner
+        *ngIf="(uploadPercent | async) !== null"
+        class="mat-progress-spinner"
+        color="primary"
+        diameter="128"
+        strokeWidth="4"
+        [mode]="mode"
+        value="{{ uploadPercent | async }}"
+      ></mat-progress-spinner>
+
+      <p class="mat-small" *ngIf="user.incognitoMode">
+        Only you can see your profile picture!
+      </p>
+
+      <p
+        class="mat-body"
+        *ngIf="
+          (uploadPercent | async) !== 100 && (uploadPercent | async) !== null
+        "
+      >
+        Loading {{ uploadPercent | async }}%
+      </p>
+      <p class="mat-body" *ngIf="(uploadPercent | async) === 100">
+        Upload Completed
+      </p>
     </div>
-    <div
-      class="form-group"
-      class="alert alert-light border-primary text-center"
-      role="alert"
-      *ngIf="uploadPercent"
-    >
-      <div class="progress">
-        <div
-          class="progress-bar w-{{ uploadPercent | async }}"
-          role="progressbar"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
-      <div *ngIf="(uploadPercent | async) !== 100">
-        Progress: {{ uploadPercent | async }}%
-      </div>
-      <div *ngIf="(uploadPercent | async) === 100">Upload Completed</div>
-    </div>
-    <form [formGroup]="userForm" novalidate>
-      <div class="form-group mt-3">
-        <input
-          type="text"
-          class="form-control"
-          aria-describedby="displayName"
-          placeholder="{{ user.displayName | titlecase }}"
-          formControlName="displayName"
-        />
-      </div>
-      <div class="form-group mt-3">
-        <input
-          type="email"
-          class="form-control"
-          aria-describedby="email"
-          placeholder="{{ user.email }}"
-          formControlName="email"
-        />
-      </div>
-    </form>
   </div>
 
-  <div class="button-column">
+  <div hidden>
+    <input
+      #file
+      id="file"
+      type="file"
+      accept="image/*"
+      (change)="uploadFile($event)"
+    />
+  </div>
+
+  <form [formGroup]="userForm" fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        type="text"
+        aria-describedby="displayName"
+        placeholder="Enter your name"
+        [value]="user.displayName | titlecase"
+        formControlName="displayName"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        type="email"
+        aria-describedby="email"
+        placeholder="Enter your email"
+        [value]="user.email"
+        formControlName="email"
+      />
+    </mat-form-field>
+  </form>
+
+  <div fxLayout="column" fxLayoutAlign="space-around center">
     <button
       mat-raised-button
       color="primary"
@@ -112,17 +106,8 @@
     >
       Go to Admin Dashboard
     </button>
-
-    <button
-      mat-stroked-button
-      type="button"
-      *ngIf="user.role === 'admin'"
-      (click)="openResetDialog()"
-    >
-      Reset All Points
-    </button>
   </div>
 
-  <small>v.{{ version }}</small>
+  <small class="mat-small">v.{{ version }}</small>
   <app-footer></app-footer>
 </div>

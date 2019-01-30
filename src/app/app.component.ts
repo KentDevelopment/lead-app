@@ -14,14 +14,13 @@ import { Component } from '@angular/core'
   animations: [
     trigger('routerAnimation', [
       // Move Right to Left <-----
-      transition('leaderboard => profile, profile => admin, login => signup', [
+      transition('leaderboard => profile, login => signup', [
         style({ height: '!' }),
         query(':enter', style({ transform: 'translateX(100%)' })),
         query(
           ':enter, :leave',
           style({ position: 'absolute', top: 0, left: 0, right: 0 })
         ),
-        // animate the leave page away
         group([
           query(':leave', [
             animate(
@@ -29,7 +28,6 @@ import { Component } from '@angular/core'
               style({ transform: 'translateX(-100%)' })
             )
           ]),
-          // and now reveal the enter
           query(
             ':enter',
             animate(
@@ -41,14 +39,13 @@ import { Component } from '@angular/core'
       ]),
 
       // Move Left to Right ---->
-      transition('profile => leaderboard , admin => *, signup => login', [
+      transition('profile => leaderboard, signup => login', [
         style({ height: '!' }),
         query(':enter', style({ transform: 'translateX(-100%)' })),
         query(
           ':enter, :leave',
           style({ position: 'absolute', top: 0, left: 0, right: 0 })
         ),
-        // animate the leave page away
         group([
           query(':leave', [
             animate(
@@ -56,7 +53,6 @@ import { Component } from '@angular/core'
               style({ transform: 'translateX(100%)' })
             )
           ]),
-          // and now reveal the enter
           query(
             ':enter',
             animate(
@@ -78,7 +74,6 @@ import { Component } from '@angular/core'
           ':enter, :leave',
           style({ position: 'absolute', top: 0, left: 0, right: 0 })
         ),
-        // animate the leave page away
         group([
           query(':leave', [
             animate(
@@ -86,7 +81,6 @@ import { Component } from '@angular/core'
               style({ opacity: 0, transform: 'translateX(100%) scale(0)' })
             )
           ]),
-          // and now reveal the enter
           query(
             ':enter',
             animate(
@@ -100,8 +94,7 @@ import { Component } from '@angular/core'
   ]
 })
 export class AppComponent {
-  // change the animation state
-  getRouteAnimation(outlet) {
+  getRouteAnimation(outlet: { activatedRouteData: { animation: any } }) {
     return outlet.activatedRouteData.animation
   }
 }

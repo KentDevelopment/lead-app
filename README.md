@@ -72,12 +72,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [Angular](https://angular.io/) - The framework used
 - [Angular Material](https://material.angular.io/) - Material Design components for Angular
 - [Angular Flex Layout](https://github.com/angular/flex-layout#readme) - Material Design components for Angular
-- [Bootstrap](https://getbootstrap.com/) - Framework for building responsive sites
 - [Firebase](https://firebase.google.com/) - Used as host, storage and fireStore as a DB
 
 ## Plugins
 
-- [ng2-img-tools](https://github.com/bergben/ng2-img-tools) - Angular module to resize images, crop images or compress images down to a certain filesize.
+- [ng2-img-max](https://github.com/bergben/ng2-img-max) - Angular 2 module to resize images down to a certain width and height or to reduce the quality to fit a certain maximal filesize - all in the browser.
 
 ## Dev tools
 

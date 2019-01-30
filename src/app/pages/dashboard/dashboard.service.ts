@@ -1,9 +1,12 @@
 import { TitleCasePipe } from '@angular/common'
-import { Injectable } from '@angular/core'
-import { AngularFirestoreDocument } from '@angular/fire/firestore'
+import { Injectable, ViewChild } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { MatSidenav } from '@angular/material/sidenav'
+import { Router } from '@angular/router'
+import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.component'
 import { Log } from '@interfaces/log'
+import { NavItem } from '@interfaces/nav-item'
 import { User } from '@interfaces/user'
-import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
 
@@ -11,11 +14,41 @@ import { ToastService } from '@services/toast.service'
   providedIn: 'root'
 })
 export class DashboardService {
+  @ViewChild('sidenav') sidenav: MatSidenav
+
+  navItems: NavItem[] = [
+    {
+      icon: 'home',
+      title: 'Dashboard',
+      subTitle: 'Dashboard',
+      routePath: 'dashboard'
+    },
+    {
+      icon: 'insert_chart',
+      title: 'Add Points',
+      subTitle: 'Add LEAD points to one user',
+      routePath: 'points'
+    },
+    {
+      icon: 'assignment',
+      title: 'Logs',
+      subTitle: 'Check all the changes that have been made',
+      routePath: 'logs'
+    },
+    {
+      icon: 'delete_forever',
+      title: 'Reset Points',
+      subTitle: 'Reset the LEAD Points Leaderboard',
+      routePath: 'reset'
+    }
+  ]
+
   constructor(
-    private auth: AuthService,
     private toast: ToastService,
     private fss: FirestoreService,
-    private titlecasePipe: TitleCasePipe
+    private titlecasePipe: TitleCasePipe,
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   private checkPlural(pointsAdded: number) {
@@ -34,30 +67,72 @@ export class DashboardService {
   }
 
   async logData(points: number, pointsAdded: number, userRef: User) {
-    const displayName = this.titlecasePipe.transform(userRef.displayName)
-    return this.auth.user$.subscribe(admin => {
-      const dataObj: Log = {
-        log: `${displayName} now has ${points} pts`,
-        adminName: admin.displayName,
-        pointsAdded,
-        userName: displayName,
-        date: new Date().getTime()
-      }
+    const userName = this.titlecasePipe.transform(userRef.displayName)
 
-      this.fss
-        .addLog(dataObj)
-        .then(() => {
-          this.toast.showSuccess(
-            `You've ${this.logText(pointsAdded, displayName)}`
-          )
-        })
-        .catch(error => {
-          this.toast.showError(error)
-        })
-    })
+    const dataObj: Log = {
+      date: Date.now(),
+      message: `${userName} now has ${points} pts`,
+      pointsAdded,
+      pointsCurrent: points,
+      userId: userRef.uid,
+      userName
+    }
+
+    this.fss
+      .addLog(dataObj)
+      .then(() => {
+        this.toast.showSuccess(`You've ${this.logText(pointsAdded, userName)}`)
+      })
+      .catch(error => {
+        this.toast.showError(error)
+      })
   }
 
-  async updateData(userRef: AngularFirestoreDocument<User>, data: User) {
-    return userRef.update(data)
+  //   async logData(points: number, pointsAdded: number, userRef: User) {
+  //   const displayName = this.titlecasePipe.transform(userRef.displayName)
+  //   return this.auth.user$.subscribe(admin => {
+  //     const dataObj: Log = {
+  //       log: `${displayName} now has ${points} pts`,
+  //       adminName: admin.displayName,
+  //       pointsAdded,
+  //       userName: displayName,
+  //       date: new Date().getTime()
+  //     }
+  //
+  //     this.fss
+  //       .addLog(dataObj)
+  //       .then(() => {
+  //         this.toast.showSuccess(
+  //           `You've ${this.logText(pointsAdded, displayName)}`
+  //         )
+  //       })
+  //       .catch(error => {
+  //         this.toast.showError(error)
+  //       })
+  //   })
+  // }
+
+  checkRoute(item: { routePath: string }) {
+    switch (item.routePath) {
+      case 'dashboard':
+      case 'profile': {
+        this.router.navigate([`${item.routePath}`])
+        break
+      }
+      case 'reset': {
+        this.openDialog()
+        break
+      }
+      default: {
+        this.router.navigate([`/dashboard/${item.routePath}`])
+        break
+      }
+    }
+  }
+
+  openDialog(): void {
+    this.dialog.open(ResetPointsComponent, {
+      autoFocus: false
+    })
   }
 }

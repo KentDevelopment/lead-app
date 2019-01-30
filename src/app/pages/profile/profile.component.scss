@@ -1,44 +1,5 @@
-.secondary-header {
-  background-image: radial-gradient(
-    at 50% 70%,
-    #f1592a 12%,
-    var(--primary) 100%
-  );
-  border: 1px solid #979797;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-  color: var(--light);
-  z-index: 999;
-
-  .img-profile {
-    border-radius: 50%;
-    height: 120px;
-    width: 120px;
-  }
-
-  .edit-img {
-    left: 50%;
-    opacity: 0.9;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  div {
-    position: relative;
-
-    i {
-      cursor: pointer;
-      padding: 13px;
-    }
-  }
-}
-
-small {
-  bottom: 3px;
-  // padding: 0.5vh;
-  position: fixed;
-  right: 5px;
-}
+@import 'src/assets/scss/mixins/headers';
+@import 'src/assets/scss/mixins/avatars';
 
 .modal-incognito {
   button {
@@ -50,13 +11,59 @@ small {
   }
 }
 
-.button-column {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+:host {
+  mat-icon {
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  .header {
+    @include header(
+      radial-gradient(at 50% 70%, #f1592a 12%, var(--primary) 100%)
+    );
+
+    min-height: 310px;
+
+    .mat-display-1 {
+      margin: 0 0 4px;
+    }
+
+    .img-profile {
+      @include profile(120px);
+    }
+
+    .edit-img {
+      left: 50%;
+      opacity: 0.9;
+      position: absolute;
+      top: 196px;
+      transform: translate(-50%, -50%);
+    }
+
+    .mat-progress-spinner {
+      position: absolute;
+      top: 132px;
+      transform: rotate(180deg);
+    }
+  }
 
   button {
     margin: 0.6em;
     min-width: 60%;
+  }
+
+  form {
+    margin: 1.5rem 0 0;
+  }
+
+  form > * {
+    min-width: 80%;
+    text-align: center;
+  }
+
+  small {
+    bottom: 3px;
+    position: fixed;
+    right: 5px;
   }
 }

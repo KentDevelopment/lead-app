@@ -1,10 +1,11 @@
 footer {
-  background-color: #dadadaa6;
+  background-color: #dadada80;
   border-radius: 8px 8px 0 0;
   bottom: 0;
   left: 0;
   position: fixed;
   right: 0;
+  text-align: center;
   width: 100%;
 
   div {
@@ -13,10 +14,13 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 0 7% 1%;
-    text-align: center;
 
-    i {
+    mat-icon {
       cursor: pointer;
     }
+  }
+
+  a {
+    color: var(--dark);
   }
 }

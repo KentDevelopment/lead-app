@@ -1,16 +1,19 @@
-<div class="card-header text-center border-primary pt-3">
-  <h5 class="card-title text-primary">Logs</h5>
-  Check all the changes that have been made
-</div>
+<div>
+  <mat-card *ngFor="let log of (fss.logs$ | async); let i = index">
+    <mat-card-content>
+      <span class="mat-body-strong">{{ log.adminName | titlecase }}</span>
+      <h4 class="mat-h4" *ngIf="log.pointsAdded">
+        {{ dashboardService.logText(log.pointsAdded, log.userName) }}
+      </h4>
+      <h4 class="mat-h4">{{ log.message }}</h4>
+    </mat-card-content>
 
-<div *ngFor="let log of (fss.logs$ | async); let i = index" class="log-item">
-  <p *ngIf="log.pointsAdded">
-    <strong>{{ log.adminName | titlecase }}</strong>
-    <br />
-    {{ dashboardService.logText(log.pointsAdded, log.userName) }}
-    <br />
-    {{ log.log }}
-  </p>
-  <p *ngIf="!log.pointsAdded">{{ log.log }}</p>
-  <p class="text-right">{{ log.date | date: 'medium' }}</p>
+    <mat-card-footer dir="rtl" class="mat-body-strong">
+      <p>{{ log.date | date: 'medium' }}</p>
+    </mat-card-footer>
+  </mat-card>
+
+  <div class="no-records-msg" *ngIf="(fss.logs$ | async)?.length === 0">
+    <h1 class="mat-display-1">😢 No logs found</h1>
+  </div>
 </div>

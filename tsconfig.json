@@ -3,23 +3,25 @@
   "compilerOptions": {
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
-    "paths": {
-      "@guards/*": ["app/guards/*"],
-      "@interfaces/*": ["app/interfaces/*"],
-      "@shared/*": ["app/shared/*"],
-      "@services/*": ["app/services/*"],
-      "@environments/*": ["environments/*"],
-      "@pages/*": ["app/pages/*"]
-    },
     "sourceMap": true,
     "declaration": false,
     "module": "es2015",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "target": "es5",
+    "paths": {
+      "@guards/*": ["app/guards/*"],
+      "@dialogs/*": ["app/dialogs/*"],
+      "@interfaces/*": ["app/interfaces/*"],
+      "@shared/*": ["app/shared/*"],
+      "@services/*": ["app/services/*"],
+      "@environments/*": ["environments/*"],
+      "@pages/*": ["app/pages/*"]
+    },
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2018", "dom"]
   }
