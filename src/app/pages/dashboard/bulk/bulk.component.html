@@ -32,7 +32,7 @@
       <mat-selection-list #users>
         <mat-list-option
           checkboxPosition="before"
-          *ngFor="let user of (fss.usersByName$ | async)"
+          *ngFor="let user of fss.usersByName$ | async"
         >
           <mat-list-item>
             <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />

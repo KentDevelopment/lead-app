@@ -1,7 +1,7 @@
 <div class="grid-container">
   <mat-grid-list cols="2" rowHeight="300px">
     <mat-grid-tile
-      *ngFor="let card of (cards | async | slice: 1); let i = index"
+      *ngFor="let card of cards | async | slice: 1; let i = index"
       [colspan]="(isHandset$ | async) ? '2' : '1'"
       [rowspan]="1"
     >

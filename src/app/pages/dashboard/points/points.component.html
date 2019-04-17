@@ -2,7 +2,7 @@
   <cdk-virtual-scroll-viewport itemSize="100">
     <mat-list>
       <mat-list-item
-        *ngFor="let user of (fss.usersByName$ | async); let i = index"
+        *ngFor="let user of fss.usersByName$ | async; let i = index"
       >
         <img matListAvatar [src]="user.photoURL" alt="User Profile Image" />
         <h3 matLine>{{ user.displayName | titlecase }}</h3>

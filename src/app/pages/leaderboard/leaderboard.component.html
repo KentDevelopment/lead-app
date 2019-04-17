@@ -1,5 +1,5 @@
 <div
-  *ngIf="(auth.user$ | async) as authUser"
+  *ngIf="auth.user$ | async as authUser"
   [ngClass]="{ incognitoMode: authUser.incognitoMode }"
 >
   <div class="header">

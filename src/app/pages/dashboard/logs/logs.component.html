@@ -1,5 +1,5 @@
 <div>
-  <mat-card *ngFor="let log of (fss.logs$ | async); let i = index">
+  <mat-card *ngFor="let log of fss.logs$ | async; let i = index">
     <mat-card-content>
       <span class="mat-body-strong">{{ log.adminName | titlecase }}</span>
       <h4 class="mat-h4" *ngIf="log.pointsAdded">
