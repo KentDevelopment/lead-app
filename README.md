@@ -16,17 +16,17 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 ### Developing
 
-1. Create a new feature branch `feature_{{ NameOfTheFeature }}` from the `development`
+1. Create a new feature branch `feature_{{ NameOfTheFeature }}` from the `develop` branch
 
 1. Make changes
 
 1. Update the [CHANGELOG](CHANGELOG.md) file
 
-1. Commit those changes
+1. Commit all changes
 
 1. Run `npm test`
 
-1. Open a [Pull request](https://github.com/KentDevelopment/lead-app/compare) to merge your changes to the `development` branch
+1. Open a [Pull request](https://github.com/KentDevelopment/lead-app/compare) to merge your changes to the `develop` branch
 
 1. Make sure Travis turns green
 
@@ -36,7 +36,7 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 To release a new version do the following steps:
 
-1. `Merge` the `development` branch to the `master` branch
+1. `Merge` the `develop` branch to the `master` branch
 
 1. Checkout to the `master` branch
 
@@ -55,7 +55,7 @@ Which will...
 - Create a tag with the new version
 - Push the code with the tags to the repo
 - Start the CI script
-- Checkout, merge and push the new Bump to the development branch
+- Checkout, merge and push the new Bump to the develop branch
 
 The code it's automatically uploaded to production when committed to the master branch if passed the tests.
 
@@ -92,7 +92,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## License
 
-This project is licensed under the APACHE 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
+- This project is licensed under the APACHE 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 

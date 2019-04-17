@@ -1,3 +1,21 @@
+# 2.0.3 (2019-04-17)
+
+## Improvements
+
+- Dependencies updated
+
+# 2.0.2 (2019-04-08)
+
+## Improvements
+
+- Google Analytics added
+
+# 2.0.1 (2019-01-30)
+
+## Bugs Fixed
+
+- Fixed Travis deploy
+
 # 2.0.0 (2019-01-30)
 
 ## Features
