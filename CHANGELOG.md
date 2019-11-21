@@ -1,3 +1,10 @@
+# 2.1.0 (2019-11-21)
+
+## Improvements
+
+- Update Angular to v8
+- Replace the Image resizer plugin
+
 # 2.0.3 (2019-04-17)
 
 ## Improvements

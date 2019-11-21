@@ -110,11 +110,9 @@ export class FirestoreService {
     const endpointApi = `${baseUrl}characters?offset=${offset}&limit=${limit}&apikey=${publicKey}`
 
     return this.http.get(endpointApi).pipe(
-      map(
-        (res: Marvel): Results[] => {
-          return res.data.results
-        }
-      )
+      map((res: Marvel): Results[] => {
+        return res.data.results
+      })
     )
   }
 

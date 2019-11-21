@@ -9,16 +9,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import {
-  MatCardModule,
-  MatGridListModule,
-  MatMenuModule
-} from '@angular/material'
 import { MatButtonModule } from '@angular/material/button'
+import { MatCardModule } from '@angular/material/card'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatDividerModule } from '@angular/material/divider'
+import { MatGridListModule } from '@angular/material/grid-list'
 import { MatIconModule } from '@angular/material/icon'
 import { MatListModule } from '@angular/material/list'
+import { MatMenuModule } from '@angular/material/menu'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSelectModule } from '@angular/material/select'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
@@ -31,7 +29,6 @@ import { LoginComponent } from '@pages/login/login.component'
 import { AuthService } from '@services/auth.service'
 import { FirestoreService } from '@services/firestore.service'
 import { SharedModule } from '@shared/shared.module'
-import { Ng2ImgMaxModule } from 'ng2-img-max'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { ConfirmPointsComponent } from './dialogs/confirm-points/confirm-points.component'
@@ -58,7 +55,6 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     HttpClientModule,
     MatDialogModule,
     MatSnackBarModule,
-    Ng2ImgMaxModule,
     ReactiveFormsModule,
     MatButtonModule,
     ScrollingModule,

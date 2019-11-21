@@ -13,7 +13,7 @@ import { DashboardService } from '../dashboard.service'
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-  @ViewChild('sidenav') sidenav: MatSidenav
+  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav
 
   routeTitle: string
   isHandset$: Observable<boolean> = this.breakpointObserver

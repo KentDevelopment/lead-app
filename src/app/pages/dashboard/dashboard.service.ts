@@ -14,7 +14,7 @@ import { ToastService } from '@services/toast.service'
   providedIn: 'root'
 })
 export class DashboardService {
-  @ViewChild('sidenav') sidenav: MatSidenav
+  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav
 
   navItems: NavItem[] = [
     {

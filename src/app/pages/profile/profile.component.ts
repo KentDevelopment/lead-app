@@ -10,7 +10,6 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner'
 import { Environment } from '@environments/environment'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
-import { Ng2ImgMaxService } from 'ng2-img-max'
 import { Observable, of } from 'rxjs'
 import { finalize } from 'rxjs/operators'
 import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
@@ -37,7 +36,6 @@ export class ProfileComponent {
     private dialog: MatDialog,
     private afs: AngularFirestore,
     private fb: FormBuilder,
-    private ng2ImgMaxService: Ng2ImgMaxService,
     private storage: AngularFireStorage
   ) {
     this.auth.user$.subscribe(data => {
@@ -53,15 +51,70 @@ export class ProfileComponent {
   uploadFile(event: { target: { files: any[] } }) {
     let imgCompressed: File
 
-    const file = event.target.files[0]
+    const inputFile = event.target.files[0]
     const filePath = `users/${this.user.uid}`
     const storageRef = this.storage.ref(filePath)
 
-    if (file) {
+    if (inputFile) {
       this.uploadPercent = of(0)
     }
 
-    this.ng2ImgMaxService.resize([file], 128, 128).subscribe(imgResized => {
+    function resizeImage(
+      file: File,
+      maxWidth: number,
+      maxHeight: number
+    ): Promise<Blob> {
+      return new Promise((resolve, reject) => {
+        const image = new Image()
+        image.src = URL.createObjectURL(file)
+        image.onload = () => {
+          const width = image.width
+          const height = image.height
+
+          if (width <= maxWidth && height <= maxHeight) {
+            resolve(file)
+          }
+
+          let newWidth
+          let newHeight
+
+          if (width > height) {
+            newHeight = height * (maxWidth / width)
+            newWidth = maxWidth
+          } else {
+            newWidth = width * (maxHeight / height)
+            newHeight = maxHeight
+          }
+
+          const canvas = document.createElement('canvas')
+          canvas.width = newWidth
+          canvas.height = newHeight
+
+          const context = canvas.getContext('2d')
+
+          context.drawImage(image, 0, 0, newWidth, newHeight)
+
+          canvas.toBlob(resolve, file.type)
+        }
+        image.onerror = reject
+      })
+    }
+
+    // document.getElementById('input').addEventListener('change', o => {
+    //   if (o.target.files.length > 0) {
+    //     resizeImage(o.target.files[0], 200, 200).then(
+    //       blob => {
+    //         //You can upload the resized image: doUpload(blob)
+    //         document.getElementById('img').src = URL.createObjectURL(blob)
+    //       },
+    //       err => {
+    //         console.error('Photo error', err)
+    //       }
+    //     )
+    //   }
+    // })
+
+    resizeImage(inputFile, 128, 128).then(imgResized => {
       imgCompressed = new File([imgResized], this.user.uid)
 
       const task = this.storage.upload(filePath, imgCompressed)
