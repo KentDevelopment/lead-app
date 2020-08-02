@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { AdminGuard } from '@guards/admin.guard'
 import { AuthGuard } from '@guards/auth.guard'
-import { AboutComponent } from '@pages/leaderboard/dialogs/about/about.component'
+// import { AboutComponent } from '@pages/leaderboard/dialogs/about/about.component'
 import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
 import { LoginComponent } from '@pages/login/login.component'
 
@@ -22,14 +22,14 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () =>
-      import('@pages/profile/profile.module').then(m => m.ProfileModule),
+      import('./pages/profile/profile.module').then(m => m.ProfileModule),
     canActivate: [AuthGuard],
     data: { animation: 'profile' }
   },
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('@pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+      import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard, AdminGuard]
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -38,7 +38,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  bootstrap: [AboutComponent, LeaderboardComponent]
+  exports: [RouterModule]
+  // bootstrap: [AboutComponent, LeaderboardComponent]
 })
 export class AppRoutingModule {}
