@@ -41,7 +41,7 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     LoginComponent,
     AboutComponent,
     ResetPointsComponent,
-    ConfirmPointsComponent
+    ConfirmPointsComponent,
   ],
   imports: [
     AngularFireAuthModule,
@@ -68,7 +68,7 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     MatIconModule,
     MatListModule,
     MatDividerModule,
-    LayoutModule
+    LayoutModule,
   ],
   entryComponents: [ResetPointsComponent, ConfirmPointsComponent],
   providers: [
@@ -76,8 +76,8 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     FirestoreService,
     TitleCasePipe,
     DatePipe,
-    { provide: FirebaseOptionsToken, useValue: Environment.firebase }
+    { provide: FirebaseOptionsToken, useValue: Environment.firebase },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

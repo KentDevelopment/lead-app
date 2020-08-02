@@ -9,10 +9,10 @@ export const Environment = {
     databaseURL: 'https://kent-ac75b.firebaseio.com',
     projectId: 'kent-ac75b',
     storageBucket: 'kent-ac75b.appspot.com',
-    messagingSenderId: '19289947337'
+    messagingSenderId: '19289947337',
   },
   marvel: {
     publicKey: '5227aa2518375785b9d1179a789368c4',
-    baseUrl: 'https://gateway.marvel.com/v1/public/'
-  }
+    baseUrl: 'https://gateway.marvel.com/v1/public/',
+  },
 }

@@ -3,14 +3,14 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   Router,
-  RouterStateSnapshot
+  RouterStateSnapshot,
 } from '@angular/router'
 import { AuthService } from '@services/auth.service'
 import { Observable } from 'rxjs'
 import { map, take, tap } from 'rxjs/operators'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
@@ -21,8 +21,8 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     return this.auth.user$.pipe(
       take(1),
-      map(user => !!user),
-      tap(loggedIn => {
+      map((user) => !!user),
+      tap((loggedIn) => {
         if (!loggedIn) {
           this.router.navigate(['/login'])
         }

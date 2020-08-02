@@ -7,7 +7,7 @@ import { AboutComponent } from './dialogs/about/about.component'
 @Component({
   selector: 'app-leaderboard',
   templateUrl: './leaderboard.component.html',
-  styleUrls: ['./leaderboard.component.scss']
+  styleUrls: ['./leaderboard.component.scss'],
 })
 export class LeaderboardComponent {
   dialogRef: TemplateRef<AboutComponent>
@@ -21,7 +21,7 @@ export class LeaderboardComponent {
   openDialog(): void {
     this.dialog.open(AboutComponent, {
       maxWidth: '96vw',
-      autoFocus: false
+      autoFocus: false,
     })
   }
 }

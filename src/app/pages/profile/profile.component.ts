@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
 import {
   AngularFirestore,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
 } from '@angular/fire/firestore'
 import { AngularFireStorage } from '@angular/fire/storage'
 import { FormBuilder, FormGroup } from '@angular/forms'
@@ -17,7 +17,7 @@ import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incogni
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
   @Input() mode: ProgressSpinnerMode = 'indeterminate'
@@ -38,13 +38,13 @@ export class ProfileComponent {
     private fb: FormBuilder,
     private storage: AngularFireStorage
   ) {
-    this.auth.user$.subscribe(data => {
+    this.auth.user$.subscribe((data) => {
       this.user = data
     })
 
     this.userForm = this.fb.group({
       displayName: [{ value: null, disabled: true }],
-      email: [{ value: null, disabled: true }]
+      email: [{ value: null, disabled: true }],
     })
   }
 
@@ -114,7 +114,7 @@ export class ProfileComponent {
     //   }
     // })
 
-    resizeImage(inputFile, 128, 128).then(imgResized => {
+    resizeImage(inputFile, 128, 128).then((imgResized) => {
       imgCompressed = new File([imgResized], this.user.uid)
 
       const task = this.storage.upload(filePath, imgCompressed)
@@ -127,14 +127,14 @@ export class ProfileComponent {
         .pipe(
           finalize(() => {
             this.downloadURL = storageRef.getDownloadURL()
-            this.downloadURL.subscribe(ref => {
+            this.downloadURL.subscribe((ref) => {
               this.update(this.user, ref)
                 .finally(() => {
                   setTimeout(() => {
                     this.uploadPercent = of(null)
                   }, 4000)
                 })
-                .catch(error => error)
+                .catch((error) => error)
             })
           })
         )
@@ -148,7 +148,7 @@ export class ProfileComponent {
     )
 
     const data: User = {
-      photoURL: downloadURL
+      photoURL: downloadURL,
     }
 
     try {
@@ -160,7 +160,7 @@ export class ProfileComponent {
 
   openIncognitoDialog(): void {
     this.dialogRef = this.dialog.open(LeaveIncognitoComponent, {
-      autoFocus: false
+      autoFocus: false,
     })
   }
 }

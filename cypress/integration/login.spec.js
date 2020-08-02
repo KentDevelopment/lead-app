@@ -14,18 +14,12 @@ describe('Login Page', () => {
 
   it('has selection field with Kent emails', () => {
     cy.get('mat-select').click()
-    cy.get('mat-option')
-      .contains('@kent.edu.au')
-      .click()
+    cy.get('mat-option').contains('@kent.edu.au').click()
 
     cy.get('mat-select').click()
-    cy.get('mat-option')
-      .contains('@student.kent.edu.au')
-      .click()
+    cy.get('mat-option').contains('@student.kent.edu.au').click()
 
-    cy.get('button[type=submit]')
-      .contains('Sign in')
-      .click()
+    cy.get('button[type=submit]').contains('Sign in').click()
   })
 
   it('has a Terms and Conditions text and link', () => {

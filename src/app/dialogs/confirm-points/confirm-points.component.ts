@@ -10,7 +10,7 @@ export interface DialogData {
 @Component({
   selector: 'app-confirm-points',
   templateUrl: './confirm-points.component.html',
-  styleUrls: ['./confirm-points.component.scss']
+  styleUrls: ['./confirm-points.component.scss'],
 })
 export class ConfirmPointsComponent {
   constructor(

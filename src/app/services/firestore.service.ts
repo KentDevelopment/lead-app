@@ -26,28 +26,28 @@ export class FirestoreService {
     private http: HttpClient,
     private auth: AuthService
   ) {
-    this.auth.user$.subscribe(userRef => {
+    this.auth.user$.subscribe((userRef) => {
       if (
         userRef.email === 'lyndall.benton@kent.edu.au' ||
         userRef.email === 'k170535@student.kent.edu.au'
       ) {
         this.usersByPoints$ = afs
-          .collection<User>('users', ref => ref.orderBy('points', 'desc'))
+          .collection<User>('users', (ref) => ref.orderBy('points', 'desc'))
           .valueChanges()
         this.usersByName$ = afs
-          .collection<User>('users', ref =>
+          .collection<User>('users', (ref) =>
             ref.orderBy('campus', 'desc').orderBy('displayName', 'asc')
           )
           .valueChanges()
         this.getLogs()
       } else {
         this.usersByPoints$ = afs
-          .collection<User>('users', ref =>
+          .collection<User>('users', (ref) =>
             ref.where('campus', '==', userRef.campus).orderBy('points', 'desc')
           )
           .valueChanges()
         this.usersByName$ = afs
-          .collection<User>('users', ref =>
+          .collection<User>('users', (ref) =>
             ref
               .where('campus', '==', userRef.campus)
               .orderBy('displayName', 'asc')
@@ -118,11 +118,11 @@ export class FirestoreService {
 
   // LOG FUNCTION
   async addLog(refObj: LogReset | Log) {
-    this.auth.user$.subscribe(adminData => {
+    this.auth.user$.subscribe((adminData) => {
       const dataObj = {
         ...refObj,
         adminId: adminData.uid,
-        adminName: adminData.displayName
+        adminName: adminData.displayName,
       }
 
       try {
@@ -135,11 +135,11 @@ export class FirestoreService {
 
   getLogs() {
     return (this.logs$ = this.afs
-      .collection<Log>('logs', res => res.orderBy('date', 'desc'))
+      .collection<Log>('logs', (res) => res.orderBy('date', 'desc'))
       .snapshotChanges()
       .pipe(
-        map(actions => {
-          return actions.map(a => {
+        map((actions) => {
+          return actions.map((a) => {
             const data: Log = a.payload.doc.data()
             return data
           })
