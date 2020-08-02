@@ -1,5 +1,5 @@
 import { TitleCasePipe } from '@angular/common'
-import { Injectable, ViewChild } from '@angular/core'
+import { Injectable, ViewChild, Directive } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { MatSidenav } from '@angular/material/sidenav'
 import { Router } from '@angular/router'
@@ -10,6 +10,7 @@ import { User } from '@interfaces/user'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
 
+@Directive()
 @Injectable({
   providedIn: 'root'
 })
