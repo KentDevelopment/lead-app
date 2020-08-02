@@ -7,7 +7,7 @@ import { AngularFireStorage } from '@angular/fire/storage'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner'
-import { Environment } from '@environments/environment'
+import { environment } from '../../../environments/environment'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { Observable, of } from 'rxjs'
@@ -27,7 +27,7 @@ export class ProfileComponent {
   uploadPercent: Observable<number>
   user: User
   userForm: FormGroup
-  version: string = Environment.version
+  version: string = environment.version
   croppedImage: string
   imageChangedEvent: any
 

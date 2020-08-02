@@ -3,7 +3,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling'
 import { DatePipe, TitleCasePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire'
+import { AngularFireModule } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage'
@@ -23,7 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ResetPointsComponent } from '@dialogs/reset-points/reset-points.component'
-import { Environment } from '@environments/environment'
+import { environment } from '../environments/environment'
 import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
 import { LoginComponent } from '@pages/login/login.component'
 import { AuthService } from '@services/auth.service'
@@ -44,6 +44,7 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     ConfirmPointsComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireModule,
     AngularFireStorageModule,
@@ -71,13 +72,7 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     LayoutModule,
   ],
   entryComponents: [ResetPointsComponent, ConfirmPointsComponent],
-  providers: [
-    AuthService,
-    FirestoreService,
-    TitleCasePipe,
-    DatePipe,
-    { provide: FirebaseOptionsToken, useValue: Environment.firebase },
-  ],
+  providers: [AuthService, FirestoreService, TitleCasePipe, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

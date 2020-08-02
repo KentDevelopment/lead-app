@@ -40,7 +40,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
             "assets": ["src/manifest.json", "src/favicon.ico", "src/assets"],
             "styles": [
               "src/assets/scss/lead-app-theme.scss",
@@ -103,7 +103,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json"],
+            "tsConfig": ["tsconfig.app.json"],
             "exclude": ["**/node_modules/**"]
           }
         }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/firestore'
-import { Environment } from '@environments/environment'
+import { environment } from '../../environments/environment'
 import { Log, LogReset } from '@interfaces/log'
 import { Marvel, Results } from '@interfaces/marvel'
 import { User } from '@interfaces/user'
@@ -102,8 +102,8 @@ export class FirestoreService {
 
   // MARVEL API
   apiMarvel() {
-    const publicKey = Environment.marvel.publicKey
-    const baseUrl = Environment.marvel.baseUrl
+    const publicKey = environment.marvel.publicKey
+    const baseUrl = environment.marvel.baseUrl
     const offset = Math.floor(Math.random() * 1400)
     const limit = 20
 

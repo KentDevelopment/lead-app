@@ -6,7 +6,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore'
 import { Router } from '@angular/router'
-import { Environment } from '@environments/environment'
+import { environment } from '../../environments/environment'
 import { User } from '@interfaces/user'
 import { ToastService } from '@services/toast.service'
 import { auth } from 'firebase/app'
@@ -50,7 +50,7 @@ export class AuthService {
   private async oAuthLogin(provider: auth.GoogleAuthProvider) {
     try {
       let credential
-      credential = await this.afAuth.auth.signInWithPopup(provider)
+      credential = await this.afAuth.signInWithPopup(provider)
       const userDomain = credential.user.email.slice(
         credential.user.email.indexOf('@')
       )
@@ -116,7 +116,7 @@ export class AuthService {
 
   sendEmail(user: User) {
     this.http
-      .post(Environment.firebaseEmailAPI, {
+      .post(environment.firebaseEmailAPI, {
         uid: user.uid,
       })
       .subscribe(
@@ -149,7 +149,7 @@ export class AuthService {
   }
 
   async signOut() {
-    await this.afAuth.auth.signOut()
+    await this.afAuth.signOut()
     return this.router.navigate(['/'])
   }
 }
