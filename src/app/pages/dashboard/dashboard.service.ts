@@ -10,7 +10,7 @@ import { User } from '@interfaces/user'
 import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
 
-@Directive()
+// @Directive()
 @Injectable({
   providedIn: 'root',
 })
