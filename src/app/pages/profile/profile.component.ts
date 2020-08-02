@@ -4,14 +4,13 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore'
 import { AngularFireStorage } from '@angular/fire/storage'
-import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner'
-import { environment } from '../../../environments/environment'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { Observable, of } from 'rxjs'
 import { finalize } from 'rxjs/operators'
+import { environment } from '../../../environments/environment'
 import { LeaveIncognitoComponent } from './dialogs/leave-incognito/leave-incognito.component'
 
 @Component({
@@ -26,7 +25,6 @@ export class ProfileComponent {
   downloadURL: Observable<string>
   uploadPercent: Observable<number>
   user: User
-  userForm: FormGroup
   version: string = environment.version
   croppedImage: string
   imageChangedEvent: any
@@ -35,16 +33,10 @@ export class ProfileComponent {
     public auth: AuthService,
     private dialog: MatDialog,
     private afs: AngularFirestore,
-    private fb: FormBuilder,
     private storage: AngularFireStorage
   ) {
     this.auth.user$.subscribe((data) => {
       this.user = data
-    })
-
-    this.userForm = this.fb.group({
-      displayName: [{ value: null, disabled: true }],
-      email: [{ value: null, disabled: true }],
     })
   }
 

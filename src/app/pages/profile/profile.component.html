@@ -62,29 +62,10 @@
     />
   </div>
 
-  <form [formGroup]="userForm" fxLayout="column" fxLayoutAlign="center center">
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        type="text"
-        aria-describedby="displayName"
-        placeholder="Enter your name"
-        [value]="user.displayName | titlecase"
-        formControlName="displayName"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        type="email"
-        aria-describedby="email"
-        placeholder="Enter your email"
-        [value]="user.email"
-        formControlName="email"
-      />
-    </mat-form-field>
-  </form>
+  <div fxLayout="column" fxLayoutAlign="center center" class="profile-details">
+    <p>{{ user.displayName | titlecase }}</p>
+    <p>{{ user.email }}</p>
+  </div>
 
   <div fxLayout="column" fxLayoutAlign="space-around center">
     <button

@@ -7,7 +7,6 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatDividerModule } from '@angular/material/divider'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatIconModule } from '@angular/material/icon'
-import { MatInputModule } from '@angular/material/input'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { RouterModule, Routes } from '@angular/router'
@@ -28,7 +27,6 @@ const routes: Routes = [{ path: '', component: ProfileComponent }]
     MatButtonModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
-    MatInputModule,
     SharedModule,
     MatDividerModule,
     MatProgressBarModule,
