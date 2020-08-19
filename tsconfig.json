@@ -12,7 +12,7 @@
     "importHelpers": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "target": "es5",
+    "target": "es2015",
     "paths": {
       "@guards/*": ["app/guards/*"],
       "@dialogs/*": ["app/dialogs/*"],

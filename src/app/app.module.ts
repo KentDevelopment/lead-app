@@ -3,7 +3,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling'
 import { DatePipe, TitleCasePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire'
+import { AngularFireModule } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage'
@@ -41,11 +41,11 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     LoginComponent,
     AboutComponent,
     ResetPointsComponent,
-    ConfirmPointsComponent
+    ConfirmPointsComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(Environment.firebase),
     AngularFireAuthModule,
-    AngularFireModule,
     AngularFireStorageModule,
     AngularFirestoreModule.enablePersistence(),
     AppRoutingModule,
@@ -68,16 +68,10 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     MatIconModule,
     MatListModule,
     MatDividerModule,
-    LayoutModule
+    LayoutModule,
   ],
   entryComponents: [ResetPointsComponent, ConfirmPointsComponent],
-  providers: [
-    AuthService,
-    FirestoreService,
-    TitleCasePipe,
-    DatePipe,
-    { provide: FirebaseOptionsToken, useValue: Environment.firebase }
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthService, FirestoreService, TitleCasePipe, DatePipe],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

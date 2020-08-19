@@ -11,7 +11,7 @@ import { take } from 'rxjs/operators'
 @Component({
   selector: 'app-reset-points',
   templateUrl: './reset-points.component.html',
-  styleUrls: ['./reset-points.component.scss']
+  styleUrls: ['./reset-points.component.scss'],
 })
 export class ResetPointsComponent {
   constructor(
@@ -35,17 +35,17 @@ export class ResetPointsComponent {
       this.toast.showWarning(`Please come back after ${displayResetDate}`)
       return this.closeDialog()
     } else {
-      this.fss.usersByName$.pipe(take(1)).subscribe(users => {
+      this.fss.usersByName$.pipe(take(1)).subscribe((users) => {
         for (const user of users) {
           this.db
             .updateAt(`users/${user.uid}`, { points: 0 })
             .then(() => {
-              this.auth.user$.subscribe(admin => {
+              this.auth.user$.subscribe((admin) => {
                 const resetDate = this.datePipe.transform(myDate, 'medium')
                 const dataObj: LogReset = {
                   message: `successfully deleted all points on ${resetDate}`,
                   adminName: admin.displayName,
-                  date: new Date().getTime()
+                  date: new Date().getTime(),
                 }
                 // TODO: Adjust the obj format to record the log
                 this.fss.addLog(dataObj)
@@ -54,7 +54,7 @@ export class ResetPointsComponent {
                 )
               })
             })
-            .catch(error => {
+            .catch((error) => {
               this.toast.showError(error)
             })
             .finally(() => {

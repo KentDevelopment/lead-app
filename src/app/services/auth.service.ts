@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/auth'
 import {
   AngularFirestore,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
 } from '@angular/fire/firestore'
 import { Router } from '@angular/router'
 import { Environment } from '@environments/environment'
@@ -28,7 +28,7 @@ export class AuthService {
   ) {
     // Get auth data, then get firestore user document || null
     this.user$ = this.afAuth.authState.pipe(
-      switchMap(user =>
+      switchMap((user) =>
         user ? this.afs.doc<User>(`users/${user.uid}`).valueChanges() : of(null)
       )
     )
@@ -39,23 +39,28 @@ export class AuthService {
     try {
       const provider = new auth.GoogleAuthProvider()
       provider.setCustomParameters({
-        hd: domain
+        hd: domain,
       })
-      return await this.oAuthLogin(provider)
+      await this.oAuthLogin(provider)
     } catch (error) {
+      console.error('AuthService -> googleSignin -> error', error)
       return error
     }
   }
 
   private async oAuthLogin(provider: auth.GoogleAuthProvider) {
     try {
-      let credential
-      credential = await this.afAuth.auth.signInWithPopup(provider)
+      const credential = await this.afAuth.auth.signInWithPopup(provider)
+
       const userDomain = credential.user.email.slice(
         credential.user.email.indexOf('@')
       )
+
       if (credential.additionalUserInfo.isNewUser === true) {
-        if (userDomain === ('@student.kent.edu.au' || '@kent.edu.au')) {
+        if (
+          userDomain === '@student.kent.edu.au' ||
+          userDomain === '@kent.edu.au'
+        ) {
           this.updateUserData(credential.user)
         } else {
           throw new Error(
@@ -77,19 +82,19 @@ export class AuthService {
 
   // Sets user data to firestore after succesful login
   private async updateUserData(user: User) {
-    const userData: User = {
-      campus: null,
-      displayName: user.displayName,
-      email: user.email,
-      incognitoMode: true,
-      photoURL: user.photoURL || 'assets/placeholders/placeholder-user.svg',
-      points: 0,
-      role: 'user',
-      termsAndConditions: true,
-      uid: user.uid
-    }
-
     try {
+      const userData: User = {
+        campus: null,
+        displayName: user.displayName,
+        email: user.email,
+        incognitoMode: true,
+        photoURL: user.photoURL || 'assets/placeholders/placeholder-user.svg',
+        points: 0,
+        role: 'user',
+        termsAndConditions: true,
+        uid: user.uid,
+      }
+
       return await this.db.updateAt(`users/${user.uid}`, userData)
     } catch (error) {
       return error
@@ -109,7 +114,7 @@ export class AuthService {
           'It may take up to 3 business days for your points to be applied'
         )
       })
-      .catch(error => {
+      .catch((error) => {
         this.toast.showError(error.message)
       })
   }
@@ -117,13 +122,13 @@ export class AuthService {
   sendEmail(user: User) {
     this.http
       .post(Environment.firebaseEmailAPI, {
-        uid: user.uid
+        uid: user.uid,
       })
       .subscribe(
-        res => {
+        (res) => {
           return res
         },
-        error => {
+        (error) => {
           return error
         }
       )
@@ -136,7 +141,7 @@ export class AuthService {
     )
 
     const data: User = {
-      incognitoMode: false
+      incognitoMode: false,
     }
 
     try {

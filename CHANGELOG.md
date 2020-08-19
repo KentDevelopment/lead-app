@@ -1,3 +1,13 @@
+# 2.1.1 (2020-08-19)
+
+## Bugs
+
+- Fix a bug where users with domain @kent.edu.au where unable to login
+
+## General Improvements
+
+- Bump dependencies
+
 # 2.1.0 (2019-11-21)
 
 ## Improvements

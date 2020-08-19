@@ -7,6 +7,6 @@ import { FooterComponent } from './footer/footer.component'
 @NgModule({
   declarations: [AwardsBannerComponent, FooterComponent],
   imports: [CommonModule, MatIconModule],
-  exports: [AwardsBannerComponent, FooterComponent]
+  exports: [AwardsBannerComponent, FooterComponent],
 })
 export class SharedModule {}

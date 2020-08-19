@@ -16,7 +16,7 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 ### Developing
 
-1. Create a new feature branch `feature_<NameOfTheFeature>` from the `develop` branch
+1. Create a new feature branch `feat_<NameOfTheFeature>` from the `develop` branch
 
 1. Make changes
 
@@ -59,7 +59,7 @@ Which will...
 
 The code it's automatically uploaded to production when committed to the master branch if passed the tests.
 
-Alternatively, you can run `firebase deploy` to update the host [Firebase CLI](https://firebase.google.com/docs/cli/)
+Alternatively, you can run `firebase deploy:prod` to update the host [Firebase CLI](https://firebase.google.com/docs/cli/)
 
 ## Further help
 

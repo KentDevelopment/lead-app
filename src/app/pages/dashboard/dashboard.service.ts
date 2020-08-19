@@ -11,7 +11,7 @@ import { FirestoreService } from '@services/firestore.service'
 import { ToastService } from '@services/toast.service'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav
@@ -21,26 +21,26 @@ export class DashboardService {
       icon: 'home',
       title: 'Dashboard',
       subTitle: 'Dashboard',
-      routePath: 'dashboard'
+      routePath: 'dashboard',
     },
     {
       icon: 'insert_chart',
       title: 'Add Points',
       subTitle: 'Add LEAD points to one user',
-      routePath: 'points'
+      routePath: 'points',
     },
     {
       icon: 'assignment',
       title: 'Logs',
       subTitle: 'Check all the changes that have been made',
-      routePath: 'logs'
+      routePath: 'logs',
     },
     {
       icon: 'delete_forever',
       title: 'Reset Points',
       subTitle: 'Reset the LEAD Points Leaderboard',
-      routePath: 'reset'
-    }
+      routePath: 'reset',
+    },
   ]
 
   constructor(
@@ -75,7 +75,7 @@ export class DashboardService {
       pointsAdded,
       pointsCurrent: points,
       userId: userRef.uid,
-      userName
+      userName,
     }
 
     this.fss
@@ -83,7 +83,7 @@ export class DashboardService {
       .then(() => {
         this.toast.showSuccess(`You've ${this.logText(pointsAdded, userName)}`)
       })
-      .catch(error => {
+      .catch((error) => {
         this.toast.showError(error)
       })
   }
@@ -132,7 +132,7 @@ export class DashboardService {
 
   openDialog(): void {
     this.dialog.open(ResetPointsComponent, {
-      autoFocus: false
+      autoFocus: false,
     })
   }
 }

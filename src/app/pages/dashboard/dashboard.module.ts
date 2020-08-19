@@ -35,32 +35,32 @@ const routes: Routes = [
         path: '',
         component: DashboardComponent,
         data: {
-          title: 'Dashboard'
-        }
+          title: 'Dashboard',
+        },
       },
       {
         path: 'points',
         component: PointsComponent,
         data: {
-          title: 'LEAD Points'
-        }
+          title: 'LEAD Points',
+        },
       },
       {
         path: 'bulk',
         component: BulkComponent,
         data: {
-          title: 'Bulk editing'
-        }
+          title: 'Bulk editing',
+        },
       },
       {
         path: 'logs',
         component: LogsComponent,
         data: {
-          title: 'Logs'
-        }
-      }
-    ]
-  }
+          title: 'Logs',
+        },
+      },
+    ],
+  },
 ]
 
 @NgModule({
@@ -69,7 +69,7 @@ const routes: Routes = [
     DashboardComponent,
     LogsComponent,
     NavComponent,
-    PointsComponent
+    PointsComponent,
   ],
   imports: [
     CommonModule,
@@ -93,8 +93,8 @@ const routes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
-  providers: [TitleCasePipe, RouterModule]
+  providers: [TitleCasePipe, RouterModule],
 })
 export class DashboardModule {}

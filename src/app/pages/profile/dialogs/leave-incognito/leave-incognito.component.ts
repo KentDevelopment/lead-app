@@ -6,7 +6,7 @@ import { AuthService } from '@services/auth.service'
 @Component({
   selector: 'app-leave-incognito',
   templateUrl: './leave-incognito.component.html',
-  styleUrls: ['./leave-incognito.component.scss']
+  styleUrls: ['./leave-incognito.component.scss'],
 })
 export class LeaveIncognitoComponent {
   user: User
@@ -16,7 +16,7 @@ export class LeaveIncognitoComponent {
     private auth: AuthService,
     private dialogRef: MatDialogRef<LeaveIncognitoComponent>
   ) {
-    this.auth.user$.subscribe(data => {
+    this.auth.user$.subscribe((data) => {
       this.user = data
     })
   }
@@ -33,7 +33,7 @@ export class LeaveIncognitoComponent {
       .then(() => {
         this.dialogRef.close()
       })
-      .catch(error => error)
+      .catch((error) => error)
       .finally(() => {
         this.isLoading = false
       })
