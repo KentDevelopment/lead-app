@@ -11,7 +11,7 @@ import { DashboardService } from '../dashboard.service'
 @Component({
   selector: 'app-points',
   templateUrl: './points.component.html',
-  styleUrls: ['./points.component.scss']
+  styleUrls: ['./points.component.scss'],
 })
 export class PointsComponent implements OnInit {
   dialogRef: MatDialogRef<ConfirmPointsComponent>
@@ -26,7 +26,7 @@ export class PointsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.pointsFormControl.valueChanges.subscribe(val => {
+    this.pointsFormControl.valueChanges.subscribe((val) => {
       if (val > 2000) {
         this.toast.showInfo(`😲 That's a really high score`)
       }
@@ -41,7 +41,7 @@ export class PointsComponent implements OnInit {
 
     if (addedPoints > limitPoints) {
       this.openDialog(user.displayName)
-      this.dialogRef.afterClosed().subscribe(acceptedChanges => {
+      this.dialogRef.afterClosed().subscribe((acceptedChanges) => {
         if (acceptedChanges) {
           this.updatePoints(user, newPoints, addedPoints)
         } else {
@@ -61,7 +61,7 @@ export class PointsComponent implements OnInit {
           this.dashboardService.logData(newPoints, addedPoints, user)
         }
       })
-      .catch(err => {
+      .catch((err) => {
         this.toast.showError(err)
       })
   }
@@ -71,8 +71,8 @@ export class PointsComponent implements OnInit {
       autoFocus: false,
       data: {
         userPoints: this.pointsFormControl.value,
-        userName
-      }
+        userName,
+      },
     })
   }
 }

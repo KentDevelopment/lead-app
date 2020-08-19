@@ -11,20 +11,20 @@ import { Component } from '@angular/core'
         'open',
         style({
           opacity: 1,
-          backgroundColor: '#dadada'
+          backgroundColor: '#dadada',
         })
       ),
       state(
         'closed',
         style({
           height: '24px',
-          opacity: 0.6
+          opacity: 0.6,
         })
       ),
       transition('open => closed', [animate('0.3s')]),
-      transition('closed => open', [animate('0.7s')])
-    ])
-  ]
+      transition('closed => open', [animate('0.7s')]),
+    ]),
+  ],
 })
 export class FooterComponent {
   isOpen = false

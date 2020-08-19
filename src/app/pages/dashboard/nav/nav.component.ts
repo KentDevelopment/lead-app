@@ -10,7 +10,7 @@ import { DashboardService } from '../dashboard.service'
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav
@@ -18,7 +18,7 @@ export class NavComponent {
   routeTitle: string
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
-    .pipe(map(result => result.matches))
+    .pipe(map((result) => result.matches))
 
   navItems: NavItem[]
 
@@ -31,9 +31,9 @@ export class NavComponent {
     this.navItems = this.dashboardService.navItems
 
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.route.children[0].data.subscribe(data => {
+        this.route.children[0].data.subscribe((data) => {
           this.routeTitle = data.title
         })
       })
@@ -42,7 +42,7 @@ export class NavComponent {
   redirectTo(routeParam: string) {
     this.dashboardService.checkRoute({ routePath: routeParam })
 
-    this.isHandset$.subscribe(isMobile => {
+    this.isHandset$.subscribe((isMobile) => {
       if (isMobile) {
         this.sidenav.close()
       }

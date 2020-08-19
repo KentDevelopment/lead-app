@@ -6,7 +6,7 @@ import { AuthService } from '@services/auth.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   loginForm = new FormControl('', Validators.required)
@@ -19,17 +19,11 @@ export class LoginComponent {
 
   async login() {
     const domain: string = this.loginForm.value
-
-    try {
-      return await this.auth.googleSignin(domain)
-    } catch (error) {
-      return error
-    }
+    return await this.auth.googleSignin(domain)
   }
 
   setCampus(user: User) {
     const campus: string = this.campusForm.value
-
     return this.auth.updateCampus(user, campus)
   }
 }

@@ -4,7 +4,7 @@ import {
   query,
   style,
   transition,
-  trigger
+  trigger,
 } from '@angular/animations'
 import { Component } from '@angular/core'
 
@@ -26,7 +26,7 @@ import { Component } from '@angular/core'
             animate(
               '0.3s cubic-bezier(.35,0,.25,1)',
               style({ transform: 'translateX(-100%)' })
-            )
+            ),
           ]),
           query(
             ':enter',
@@ -34,8 +34,8 @@ import { Component } from '@angular/core'
               '0.3s cubic-bezier(.35,0,.25,1)',
               style({ transform: 'translateX(0)' })
             )
-          )
-        ])
+          ),
+        ]),
       ]),
 
       // Move Left to Right ---->
@@ -51,7 +51,7 @@ import { Component } from '@angular/core'
             animate(
               '0.3s cubic-bezier(.35,0,.25,1)',
               style({ transform: 'translateX(100%)' })
-            )
+            ),
           ]),
           query(
             ':enter',
@@ -59,8 +59,8 @@ import { Component } from '@angular/core'
               '0.3s cubic-bezier(.35,0,.25,1)',
               style({ transform: 'translateX(0)' })
             )
-          )
-        ])
+          ),
+        ]),
       ]),
 
       // Fades Out Left to Right --->
@@ -79,7 +79,7 @@ import { Component } from '@angular/core'
             animate(
               '1s ease-out',
               style({ opacity: 0, transform: 'translateX(100%) scale(0)' })
-            )
+            ),
           ]),
           query(
             ':enter',
@@ -87,11 +87,11 @@ import { Component } from '@angular/core'
               '1s ease-in',
               style({ opacity: 1, transform: 'translateX(0) scale(1)' })
             )
-          )
-        ])
-      ])
-    ])
-  ]
+          ),
+        ]),
+      ]),
+    ]),
+  ],
 })
 export class AppComponent {
   getRouteAnimation(outlet: { activatedRouteData: { animation: any } }) {

@@ -1,0 +1,27 @@
+[debug] [2020-08-19T08:21:57.831Z] ----------------------------------------------------------------------
+[debug] [2020-08-19T08:21:57.833Z] Command:       /usr/local/Cellar/node@12/12.18.3/bin/node /usr/local/bin/firebase deploy -P development
+[debug] [2020-08-19T08:21:57.833Z] CLI Version:   8.7.0
+[debug] [2020-08-19T08:21:57.833Z] Platform:      darwin
+[debug] [2020-08-19T08:21:57.833Z] Node Version:  v12.18.3
+[debug] [2020-08-19T08:21:57.834Z] Time:          Wed Aug 19 2020 18:21:57 GMT+1000 (Australian Eastern Standard Time)
+[debug] [2020-08-19T08:21:57.835Z] ----------------------------------------------------------------------
+[debug] [2020-08-19T08:21:57.835Z] 
+[debug] [2020-08-19T08:21:57.846Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-08-19T08:21:57.847Z] > authorizing via signed-in user
+[debug] [2020-08-19T08:21:57.847Z] [iam] checking project kent-ac75b for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-08-19T08:21:57.850Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-08-19T08:21:57.850Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-08-19T08:21:58.138Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 19 Aug 2020 08:21:58 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-19T08:21:58.151Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/kent-ac75b:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-08-19T08:21:59.295Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 19 Aug 2020 08:21:59 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1002","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-19T08:21:59.297Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/kent-ac75b  
+ 
+[debug] [2020-08-19T08:21:59.875Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 19 Aug 2020 08:21:59 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'kent-ac75b'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2020-08-19T08:21:59.878Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/kent-ac75b/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}

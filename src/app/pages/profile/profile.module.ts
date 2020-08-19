@@ -33,8 +33,8 @@ const routes: Routes = [{ path: '', component: ProfileComponent }]
     MatDividerModule,
     MatProgressBarModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
-  bootstrap: [LeaveIncognitoComponent]
+  bootstrap: [LeaveIncognitoComponent],
 })
 export class ProfileModule {}

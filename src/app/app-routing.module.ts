@@ -11,32 +11,32 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    data: { animation: 'login' }
+    data: { animation: 'login' },
   },
   {
     path: 'leaderboard',
     component: LeaderboardComponent,
     canActivate: [AuthGuard],
-    data: { animation: 'leaderboard' }
+    data: { animation: 'leaderboard' },
   },
   {
     path: 'profile',
     loadChildren: '@pages/profile/profile.module#ProfileModule',
     canActivate: [AuthGuard],
-    data: { animation: 'profile' }
+    data: { animation: 'profile' },
   },
   {
     path: 'dashboard',
     loadChildren: '@pages/dashboard/dashboard.module#DashboardModule',
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AuthGuard, AdminGuard],
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', component: LoginComponent }
+  { path: '**', component: LoginComponent },
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  bootstrap: [AboutComponent, LeaderboardComponent]
+  bootstrap: [AboutComponent, LeaderboardComponent],
 })
 export class AppRoutingModule {}

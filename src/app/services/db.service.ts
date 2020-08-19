@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore'
 // import { map } from 'rxjs/operators'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DbService {
   constructor(private afs: AngularFirestore) {}
@@ -41,7 +41,7 @@ export class DbService {
   // }
 
   updateAt(path: string, data: object): Promise<any> {
-    const segments = path.split('/').filter(v => v)
+    const segments = path.split('/').filter((v) => v)
     if (segments.length % 2) {
       // Odd is always a collection
       return this.afs.collection(path).add(data)
