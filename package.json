@@ -51,7 +51,7 @@
     "blueimp-canvas-to-blob": "^3.28.0",
     "core-js": "^2.6.12",
     "firebase": "^7.24.0",
-    "rxjs": "6.6.2",
+    "rxjs": "^6.6.3",
     "tslib": "^1.14.1",
     "web-animations-js": "^2.3.2",
     "zone.js": "^0.10.3"
