@@ -1,3 +1,9 @@
+# 2.2.0 (2021-02-11)
+
+## General Improvements
+
+- Bump dependencies
+
 # 2.1.1 (2020-08-19)
 
 ## Bugs
