@@ -23,6 +23,9 @@
       "@pages/*": ["app/pages/*"]
     },
     "typeRoots": ["node_modules/@types"],
+    "allowJs": true,
+    "types": ["cypress"],
     "lib": ["es2018", "dom"]
-  }
+  },
+  "include": ["**/*.*"]
 }

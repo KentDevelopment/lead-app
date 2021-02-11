@@ -64,7 +64,7 @@
     "@types/node": "^12.19.16",
     "chance": "^1.1.7",
     "codelyzer": "^6.0.1",
-    "cypress": "^4.12.1",
+    "cypress": "^6.4.0",
     "husky": "^4.3.8",
     "prettier": "^2.2.1",
     "stylelint": "^13.9.0",
