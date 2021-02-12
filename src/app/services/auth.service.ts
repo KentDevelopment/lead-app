@@ -34,7 +34,11 @@ export class AuthService {
     )
   }
 
-  // Google Auth
+  /**
+   * Create a new Google Auth with a custom domain
+   *
+   * @param domain
+   */
   async googleSignin(domain: string) {
     try {
       const provider = new auth.GoogleAuthProvider()
@@ -48,6 +52,11 @@ export class AuthService {
     }
   }
 
+  /**
+   * Verify the user credentials and authenticate the signIn
+   *
+   * @param provider
+   */
   private async oAuthLogin(provider: auth.GoogleAuthProvider) {
     try {
       const credential = await this.afAuth.auth.signInWithPopup(provider)
@@ -80,7 +89,11 @@ export class AuthService {
     }
   }
 
-  // Sets user data to firestore after succesful login
+  /**
+   * Sets user data to firestore after succesful login
+   *
+   * @param user
+   */
   private async updateUserData(user: User) {
     try {
       const userData: User = {
@@ -101,7 +114,12 @@ export class AuthService {
     }
   }
 
-  // Update campus on the user document
+  /**
+   * Update campus on the user document
+   *
+   * @param user
+   * @param campus
+   */
   updateCampus(user: User, campus: string) {
     this.db
       .updateAt(`users/${user.uid}`, { campus })
@@ -119,6 +137,11 @@ export class AuthService {
       })
   }
 
+  /**
+   * Triggers an email after successful Signup
+   *
+   * @param user
+   */
   sendEmail(user: User) {
     this.http
       .post(Environment.firebaseEmailAPI, {
@@ -134,6 +157,11 @@ export class AuthService {
       )
   }
 
+  /**
+   * Disable incognito mode for that user
+   *
+   * @param user
+   */
   async leaveIncognito(user: User) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
@@ -153,6 +181,9 @@ export class AuthService {
     }
   }
 
+  /**
+   * Sign out the current user and redirect to the root
+   */
   async signOut() {
     await this.afAuth.auth.signOut()
     return this.router.navigate(['/'])
