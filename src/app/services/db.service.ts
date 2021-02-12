@@ -10,8 +10,8 @@ export class DbService {
   /**
    * Update a path in the database
    *
-   * @param path
-   * @param data
+   * @param path A valid path to Cloud Firestore
+   * @param data The values to be updated
    */
   updateAt(path: string, data: object): Promise<any> {
     const segments = path.split('/').filter((v) => v)
@@ -27,7 +27,7 @@ export class DbService {
   /**
    * Delete a path in the database
    *
-   * @param path
+   * @param path A valid path to Cloud Firestore
    */
   delete(path: string) {
     return this.afs.doc(path).delete()

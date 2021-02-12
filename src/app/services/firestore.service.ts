@@ -121,11 +121,7 @@ export class FirestoreService {
     )
   }
 
-  /**
-   * Add a new log to the database
-   *
-   * @param refObj
-   */
+  /** Add a new log to the database */
   async addLog(refObj: LogReset | Log) {
     this.auth.user$.subscribe((adminData) => {
       const dataObj = {

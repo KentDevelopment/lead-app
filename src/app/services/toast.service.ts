@@ -37,38 +37,22 @@ export class ToastService {
 
   constructor(private snackBar: MatSnackBar) {}
 
-  /**
-   * Show a success message
-   *
-   * @param message
-   */
+  /** Show a success message */
   showSuccess(message: string) {
     this.snackBar.open(message, '', this.snackBarSuccess)
   }
 
-  /**
-   * Show an info message
-   *
-   * @param message
-   */
+  /** Show an info message */
   showInfo(message: string) {
     this.snackBar.open(message, '', this.snackBarInfo)
   }
 
-  /**
-   * Show a warning message
-   *
-   * @param message
-   */
+  /** Show a warning message */
   showWarning(message: string) {
     this.snackBar.open(message, 'Dismiss', this.snackBarWarning)
   }
 
-  /**
-   * Show an error message
-   *
-   * @param message
-   */
+  /** Show an error message */
   showError(message: string) {
     this.snackBar.open(message, 'Ok', this.snackBarError)
   }

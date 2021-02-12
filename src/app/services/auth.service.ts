@@ -37,7 +37,7 @@ export class AuthService {
   /**
    * Create a new Google Auth with a custom domain
    *
-   * @param domain
+   * @param domain Use either @student.kent.edu.au or @kent.edu.au
    */
   async googleSignin(domain: string) {
     try {
@@ -52,11 +52,7 @@ export class AuthService {
     }
   }
 
-  /**
-   * Verify the user credentials and authenticate the signIn
-   *
-   * @param provider
-   */
+  /** Verify the user credentials and authenticate the signIn */
   private async oAuthLogin(provider: auth.GoogleAuthProvider) {
     try {
       const credential = await this.afAuth.auth.signInWithPopup(provider)
@@ -89,11 +85,7 @@ export class AuthService {
     }
   }
 
-  /**
-   * Sets user data to firestore after succesful login
-   *
-   * @param user
-   */
+  /** Set the user data to Cloud Firestore after succesful login */
   private async updateUserData(user: User) {
     try {
       const userData: User = {
@@ -117,8 +109,8 @@ export class AuthService {
   /**
    * Update campus on the user document
    *
-   * @param user
-   * @param campus
+   * @param user Current logged user
+   * @param campus User campus can be Sydney or Melbourne
    */
   updateCampus(user: User, campus: string) {
     this.db
@@ -140,7 +132,7 @@ export class AuthService {
   /**
    * Triggers an email after successful Signup
    *
-   * @param user
+   * @param user Current logged user information
    */
   sendEmail(user: User) {
     this.http
@@ -160,7 +152,7 @@ export class AuthService {
   /**
    * Disable incognito mode for that user
    *
-   * @param user
+   * @param user Current logged user
    */
   async leaveIncognito(user: User) {
     // Sets user data to firestore on login
@@ -181,9 +173,7 @@ export class AuthService {
     }
   }
 
-  /**
-   * Sign out the current user and redirect to the root
-   */
+  /** Sign out the current user and redirect to the root */
   async signOut() {
     await this.afAuth.auth.signOut()
     return this.router.navigate(['/'])
