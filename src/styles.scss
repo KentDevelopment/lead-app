@@ -1,17 +1,5 @@
 /* Global styles */
-// Angular Material Reset
-html,
-body {
-  height: 100%;
-}
-
-body {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  margin: 0;
-}
-
 :root {
-  // CSS Variables
   --primary: #662d91;
   --secondary: #0072bb;
   --tertiary: #f04f23;
@@ -23,12 +11,37 @@ body {
   --light-gray: #868e96;
   --dark: #000;
   --light: #fff;
+}
 
-  // Custom Styles for Angular Material Components
-  // @import 'assets/scss/material-components/form-field';
-  @import 'assets/scss/material-components/snack-bar';
-  @import 'assets/scss/material-components/spinner';
+html,
+body {
+  height: 100%;
+}
 
-  // Custom General Styles
-  @import 'assets/scss/custom-elements/elements';
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  margin: 0;
+}
+
+a {
+  color: var(--primary);
+}
+
+// Material Components
+.spinner {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.dev-chip-list {
+  bottom: 32px;
+  left: 16px;
+  position: fixed;
+  z-index: 1;
+
+  mat-chip {
+    justify-content: center;
+    min-width: 96px;
+  }
 }

@@ -2,6 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { Component, ViewChild } from '@angular/core'
 import { MatSidenav } from '@angular/material/sidenav'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
+import { Environment } from '@environments/environment'
 import { NavItem } from '@interfaces/nav-item'
 import { Observable } from 'rxjs'
 import { filter, map } from 'rxjs/operators'
@@ -15,6 +16,7 @@ import { DashboardService } from '../dashboard.service'
 export class NavComponent {
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav
 
+  isDev = !Environment.production
   routeTitle: string
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)

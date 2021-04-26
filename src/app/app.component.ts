@@ -7,6 +7,7 @@ import {
   trigger,
 } from '@angular/animations'
 import { Component } from '@angular/core'
+import { Environment } from '@environments/environment'
 
 @Component({
   selector: 'app-root',
@@ -94,6 +95,9 @@ import { Component } from '@angular/core'
   ],
 })
 export class AppComponent {
+  isDev = !Environment.production
+  version: string = Environment.version
+
   getRouteAnimation(outlet: { activatedRouteData: { animation: any } }) {
     return outlet.activatedRouteData.animation
   }

@@ -91,6 +91,7 @@ export class FirestoreService {
     })
   }
 
+  /** Generate a random number */
   generateNumber() {
     const randomNumber = Math.floor(Math.random() * 100)
     if (randomNumber < this.validPicture.length) {
@@ -100,7 +101,11 @@ export class FirestoreService {
     }
   }
 
-  // MARVEL API
+  /**
+   * Marvel API
+   *
+   * Retrieves 20 random images from the {@link https://developer.marvel.com/docs| Marvel API}
+   */
   apiMarvel() {
     const publicKey = Environment.marvel.publicKey
     const baseUrl = Environment.marvel.baseUrl
@@ -116,7 +121,7 @@ export class FirestoreService {
     )
   }
 
-  // LOG FUNCTION
+  /** Add a new log to the database */
   async addLog(refObj: LogReset | Log) {
     this.auth.user$.subscribe((adminData) => {
       const dataObj = {
@@ -133,6 +138,7 @@ export class FirestoreService {
     })
   }
 
+  /** Retrieve all the logs from the database by date in descending order */
   getLogs() {
     return (this.logs$ = this.afs
       .collection<Log>('logs', (res) => res.orderBy('date', 'desc'))

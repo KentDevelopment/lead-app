@@ -1,5 +1,6 @@
 {
   "compileOnSave": false,
+  "include": ["src/**/*"],
   "compilerOptions": {
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
@@ -23,6 +24,8 @@
       "@pages/*": ["app/pages/*"]
     },
     "typeRoots": ["node_modules/@types"],
+    "allowJs": true,
+    "types": ["cypress"],
     "lib": ["es2018", "dom"]
   }
 }

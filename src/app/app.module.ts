@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
+import { MatChipsModule } from '@angular/material/chips'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatDividerModule } from '@angular/material/divider'
 import { MatGridListModule } from '@angular/material/grid-list'
@@ -60,6 +61,7 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     ScrollingModule,
     FlexLayoutModule,
     SharedModule,
+    MatChipsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
     MatGridListModule,

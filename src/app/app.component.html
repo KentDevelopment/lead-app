@@ -1,3 +1,7 @@
 <div [@routerAnimation]="getRouteAnimation(route)">
   <div><router-outlet #route="outlet"></router-outlet></div>
 </div>
+
+<mat-chip-list aria-label="Dev Label" class="dev-chip-list" *ngIf="isDev">
+  <mat-chip color="primary" selected>DEV v.{{ version }}</mat-chip>
+</mat-chip-list>

@@ -53,6 +53,7 @@ export class PointsComponent implements OnInit {
     }
   }
 
+  // Update the points for that user
   private updatePoints(user: User, newPoints: number, addedPoints: number) {
     this.db
       .updateAt(`users/${user.uid}`, { points: Number(newPoints) })

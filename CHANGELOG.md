@@ -1,3 +1,22 @@
+# 2.2.2 (2021-04-26)
+
+## General Improvements
+
+- Add Badge to identify Dev version
+
+# 2.2.1 (2021-04-08)
+
+## General Improvements
+
+- Bump dependencies
+- Fix Terms and Conditions url
+
+# 2.2.0 (2021-02-11)
+
+## General Improvements
+
+- Bump dependencies
+
 # 2.1.1 (2020-08-19)
 
 ## Bugs

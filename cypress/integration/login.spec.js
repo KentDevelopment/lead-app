@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 describe('Login Page', () => {
   beforeEach(() => {
     cy.visit('/')
@@ -32,7 +30,7 @@ describe('Login Page', () => {
       .should(
         'have.attr',
         'href',
-        'http://kent.edu.au/kent3/wp-content/uploads/2017/08/POLICY-Website-Terms-of-Use.pdf'
+        'https://kent.edu.au/kent3/wp-content/uploads/2017/08/POLICY-Website-Terms-of-Use.pdf'
       )
     cy.visit('http://localhost:4200')
   })

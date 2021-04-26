@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/firestore'
-// import { Observable } from 'rxjs'
-// import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root',
@@ -9,37 +7,12 @@ import { AngularFirestore } from '@angular/fire/firestore'
 export class DbService {
   constructor(private afs: AngularFirestore) {}
 
-  // collection$(path, query?): Observable<any> {
-  //   return this.afs
-  //     .collection(path, query)
-  //     .snapshotChanges()
-  //     .pipe(
-  //       map(actions => {
-  //         return actions.map(a => {
-  //           const data: object = a.payload.doc.data()
-  //           const id = a.payload.doc.id
-  //           return { id, ...data }
-  //         })
-  //       })
-  //     )
-  // }
-  //
-  // doc$(path) {
-  //   return this.afs
-  //     .doc(path)
-  //     .snapshotChanges()
-  //     .pipe(
-  //       map(doc => {
-  //         const data: object = doc.payload.data()
-  //         const id = doc.payload.id
-  //         const ref = doc.payload.ref
-  //
-  //         return data
-  //         // return { id, ref, ...data }
-  //       })
-  //     )
-  // }
-
+  /**
+   * Update a path in the database
+   *
+   * @param path A valid path to Cloud Firestore
+   * @param data The values to be updated
+   */
   updateAt(path: string, data: object): Promise<any> {
     const segments = path.split('/').filter((v) => v)
     if (segments.length % 2) {
@@ -51,6 +24,11 @@ export class DbService {
     }
   }
 
+  /**
+   * Delete a path in the database
+   *
+   * @param path A valid path to Cloud Firestore
+   */
   delete(path: string) {
     return this.afs.doc(path).delete()
   }
