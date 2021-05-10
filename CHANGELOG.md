@@ -1,3 +1,9 @@
+# 2.2.3 (2021-05-10)
+
+## General Improvements
+
+- Update footer description
+
 # 2.2.2 (2021-04-26)
 
 ## General Improvements
