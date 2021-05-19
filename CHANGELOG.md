@@ -1,3 +1,9 @@
+# 2.2.4 (2021-05-19)
+
+## General Improvements
+
+- Update testing rules
+
 # 2.2.3 (2021-05-10)
 
 ## General Improvements

@@ -21,7 +21,7 @@ describe('Login Page', () => {
   })
 
   it('has a Terms and Conditions text and link', () => {
-    cy.get('small')
+    cy.get('[data-cy=termsAndConditions]')
     cy.contains(
       `By clicking Sign in, it means that you've read and agreed with our`
     )
