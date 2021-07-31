@@ -72,7 +72,6 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     MatDividerModule,
     LayoutModule,
   ],
-  entryComponents: [ResetPointsComponent, ConfirmPointsComponent],
   providers: [AuthService, FirestoreService, TitleCasePipe, DatePipe],
   bootstrap: [AppComponent],
 })
