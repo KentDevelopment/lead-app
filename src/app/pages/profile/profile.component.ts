@@ -108,7 +108,7 @@ export class ProfileComponent {
     //         document.getElementById('img').src = URL.createObjectURL(blob)
     //       },
     //       err => {
-    //         console.error('Photo error', err)
+    //         console.info('Photo error', err)
     //       }
     //     )
     //   }

@@ -16,7 +16,7 @@
             placeholder="Add Points"
             [value]="user.points"
             [formControl]="pointsFormControl"
-            (change)="checkPoints(user)"
+            (input)="checkPoints(user)"
           />
         </mat-form-field>
         <mat-divider></mat-divider>

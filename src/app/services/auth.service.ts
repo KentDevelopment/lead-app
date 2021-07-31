@@ -47,7 +47,7 @@ export class AuthService {
       })
       await this.oAuthLogin(provider)
     } catch (error) {
-      console.error('AuthService -> googleSignin -> error', error)
+      console.log('AuthService -> googleSignin -> error', error)
       return error
     }
   }
