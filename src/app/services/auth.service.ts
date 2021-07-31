@@ -55,7 +55,7 @@ export class AuthService {
   /** Verify the user credentials and authenticate the signIn */
   private async oAuthLogin(provider: auth.GoogleAuthProvider) {
     try {
-      const credential = await this.afAuth.auth.signInWithPopup(provider)
+      const credential = await this.afAuth.signInWithPopup(provider)
 
       const userDomain = credential.user.email.slice(
         credential.user.email.indexOf('@')
@@ -175,7 +175,7 @@ export class AuthService {
 
   /** Sign out the current user and redirect to the root */
   async signOut() {
-    await this.afAuth.auth.signOut()
+    await this.afAuth.signOut()
     return this.router.navigate(['/'])
   }
 }
