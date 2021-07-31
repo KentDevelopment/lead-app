@@ -9,7 +9,7 @@ import { Router } from '@angular/router'
 import { Environment } from '@environments/environment'
 import { User } from '@interfaces/user'
 import { ToastService } from '@services/toast.service'
-import { auth } from 'firebase/app'
+import firebase from 'firebase/app'
 import { Observable, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 import { DbService } from './db.service'
@@ -41,7 +41,7 @@ export class AuthService {
    */
   async googleSignin(domain: string) {
     try {
-      const provider = new auth.GoogleAuthProvider()
+      const provider = new firebase.auth.GoogleAuthProvider()
       provider.setCustomParameters({
         hd: domain,
       })
@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   /** Verify the user credentials and authenticate the signIn */
-  private async oAuthLogin(provider: auth.GoogleAuthProvider) {
+  private async oAuthLogin(provider: firebase.auth.GoogleAuthProvider) {
     try {
       const credential = await this.afAuth.signInWithPopup(provider)
 

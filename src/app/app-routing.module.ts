@@ -7,7 +7,6 @@ import { LeaderboardComponent } from '@pages/leaderboard/leaderboard.component'
 import { LoginComponent } from '@pages/login/login.component'
 
 const routes: Routes = [
-  // { path: '', component: LoginComponent },
   {
     path: 'login',
     component: LoginComponent,
@@ -39,7 +38,9 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'corrected' }),
+  ],
   exports: [RouterModule],
   bootstrap: [AboutComponent, LeaderboardComponent],
 })
