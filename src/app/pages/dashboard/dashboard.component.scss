@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 mat-card {
   mat-card-content {
@@ -7,7 +7,7 @@ mat-card {
 }
 
 mat-card:hover {
-  @include mat-elevation(5);
+  @include mat.elevation(5);
 
   cursor: pointer;
 }

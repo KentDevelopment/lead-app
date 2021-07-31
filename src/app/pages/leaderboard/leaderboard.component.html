@@ -47,7 +47,6 @@
       <mat-list>
         <mat-list-item
           *cdkVirtualFor="let user of fss.users$; let i = index"
-          class="animated fadeInUp"
           [ngClass]="{ 'highlight-user': user.uid === authUser.uid }"
         >
           <p matListIcon class="mat-h3">{{ i + 1 }}</p>

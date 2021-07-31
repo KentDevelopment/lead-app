@@ -1,19 +1,19 @@
+@use '~@angular/material' as mat;
 // Custom Theme for Angular Material
-@import '~@angular/material/theming';
 
-@include mat-core();
+@include mat.core();
 
-$lead-app-primary: mat-palette($mat-purple, 800);
-$lead-app-accent: mat-palette($mat-light-blue, 800);
-$lead-app-warn: mat-palette($mat-deep-orange, 700);
+$lead-app-primary: mat.define-palette(mat.$purple-palette, 800);
+$lead-app-accent: mat.define-palette(mat.$light-blue-palette, 800);
+$lead-app-warn: mat.define-palette(mat.$deep-orange-palette, 700);
 
-$lead-app-theme: mat-light-theme(
+$lead-app-theme: mat.define-light-theme(
   $lead-app-primary,
   $lead-app-accent,
   $lead-app-warn
 );
 
-@include angular-material-theme($lead-app-theme);
+@include mat.all-component-themes($lead-app-theme);
 
 // LEAD Colour Palette
 $success: #43a047;
