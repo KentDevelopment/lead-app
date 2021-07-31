@@ -4,9 +4,14 @@
 /dist
 /tmp
 /out-tsc
+# Only exists if Bazel was run
+/bazel-out
 
 # dependencies
 /node_modules
+
+# profiling files
+chrome-profiler-events*.json
 
 # IDEs and editors
 /.idea
@@ -18,11 +23,12 @@
 *.sublime-workspace
 
 # IDE - VSCode
-.vscode
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.history/*
 
 # misc
 /.sass-cache
@@ -38,8 +44,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Firebase Functions
-functions
+# Firebase
 .firebase
 
 # Cypress

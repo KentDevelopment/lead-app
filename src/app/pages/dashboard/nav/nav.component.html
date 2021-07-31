@@ -3,10 +3,10 @@
     #sidenav
     autoFocus="true"
     class="sidenav"
-    fixedInViewport="true"
+    fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async)"
+    [opened]="(isHandset$ | async) === false"
   >
     <a mat-list-item (click)="redirectTo('profile')">
       <mat-toolbar>

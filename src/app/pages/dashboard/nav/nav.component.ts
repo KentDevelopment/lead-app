@@ -5,7 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { Environment } from '@environments/environment'
 import { NavItem } from '@interfaces/nav-item'
 import { Observable } from 'rxjs'
-import { filter, map } from 'rxjs/operators'
+import { filter, map, shareReplay } from 'rxjs/operators'
 import { DashboardService } from '../dashboard.service'
 
 @Component({
@@ -20,7 +20,10 @@ export class NavComponent {
   routeTitle: string
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
-    .pipe(map((result) => result.matches))
+    .pipe(
+      map((result) => result.matches),
+      shareReplay()
+    )
 
   navItems: NavItem[]
 
