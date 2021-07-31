@@ -21,13 +21,13 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: '@pages/profile/profile.module#ProfileModule',
+    loadChildren: () => import('@pages/profile/profile.module').then(m => m.ProfileModule),
     canActivate: [AuthGuard],
     data: { animation: 'profile' },
   },
   {
     path: 'dashboard',
-    loadChildren: '@pages/dashboard/dashboard.module#DashboardModule',
+    loadChildren: () => import('@pages/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard, AdminGuard],
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
