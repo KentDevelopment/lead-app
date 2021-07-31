@@ -12,7 +12,8 @@
           "/*.js",
           "/*.bundle.css",
           "/*.bundle.js",
-          "/*.chunk.js"
+          "/*.chunk.js",
+          "/manifest.webmanifest"
         ],
         "urls": [
           "https://fonts.googleapis.com/css?family=Roboto",
