@@ -15,19 +15,11 @@ mat-card:hover {
 .grid-container {
   height: 88vh;
   margin: 20px;
-}
 
-.dashboard-card {
-  bottom: 15px;
-  left: 15px;
-  position: absolute;
-  right: 15px;
-  top: 15px;
-}
-
-.dashboard-content {
-  display: flex;
-  flex-wrap: wrap;
+  a {
+    height: auto;
+    min-width: 80%;
+  }
 }
 
 .mat-icon {
