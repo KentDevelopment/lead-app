@@ -3,6 +3,7 @@
 ## General Improvements
 
 - Update reference to the Google Analytics projects
+- Update testing rules
 
 # 2.2.3 (2021-05-10)
 
