@@ -4,6 +4,11 @@ import { DatePipe, TitleCasePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { AngularFireModule } from '@angular/fire'
+import {
+  AngularFireAnalyticsModule,
+  ScreenTrackingService,
+  UserTrackingService,
+} from '@angular/fire/analytics'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage'
@@ -47,6 +52,7 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
   imports: [
     AngularFireModule.initializeApp(Environment.firebase),
     AngularFireAuthModule,
+    AngularFireAnalyticsModule,
     AngularFireStorageModule,
     AngularFirestoreModule.enablePersistence(),
     AppRoutingModule,
@@ -73,7 +79,14 @@ import { AboutComponent } from './pages/leaderboard/dialogs/about/about.componen
     LayoutModule,
   ],
   entryComponents: [ResetPointsComponent, ConfirmPointsComponent],
-  providers: [AuthService, FirestoreService, TitleCasePipe, DatePipe],
+  providers: [
+    AuthService,
+    FirestoreService,
+    UserTrackingService,
+    ScreenTrackingService,
+    TitleCasePipe,
+    DatePipe,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
