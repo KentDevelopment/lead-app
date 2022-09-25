@@ -10,6 +10,8 @@ export const Environment = {
     projectId: 'lead-app-514e3',
     storageBucket: 'lead-app-514e3.appspot.com',
     messagingSenderId: '500998961888',
+    appId: '1:500998961888:web:872a1c5d4322ac25276e85',
+    measurementId: 'G-M312ZTR3BB',
   },
   marvel: {
     publicKey: '5227aa2518375785b9d1179a789368c4',

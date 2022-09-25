@@ -10,6 +10,8 @@ export const Environment = {
     projectId: 'kent-ac75b',
     storageBucket: 'kent-ac75b.appspot.com',
     messagingSenderId: '19289947337',
+    appId: '1:19289947337:web:c9c3862d0ec5436bd3e118',
+    measurementId: 'G-8W7NJGYFEP',
   },
   marvel: {
     publicKey: '5227aa2518375785b9d1179a789368c4',

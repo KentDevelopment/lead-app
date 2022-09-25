@@ -16,7 +16,7 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 ### Developing
 
-1. Create a new feature branch `feat_<NameOfTheFeature>` from the `develop` branch
+1. Create a new feature branch `feature/<NameOfTheFeature>` from the `develop` branch
 
 1. Make changes
 
