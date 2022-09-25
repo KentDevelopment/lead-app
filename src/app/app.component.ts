@@ -98,7 +98,7 @@ export class AppComponent {
   isDev = !Environment.production
   version: string = Environment.version
 
-  getRouteAnimation(outlet: { activatedRouteData: { animation: any } }) {
+  getRouteAnimation(outlet: { activatedRouteData: { animation: any[] } }) {
     return outlet.activatedRouteData.animation
   }
 }

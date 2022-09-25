@@ -11,7 +11,7 @@ export interface Log {
 
 export interface LogReset {
   date: number
-  adminName: string
+  adminName: string | undefined
   message: string
 }
 

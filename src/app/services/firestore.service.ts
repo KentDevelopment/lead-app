@@ -3,25 +3,23 @@ import { Injectable } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { Environment } from '@environments/environment'
 import { Log, LogReset } from '@interfaces/log'
-import { Marvel, Results } from '@interfaces/marvel'
+// import { Marvel, Results } from '@interfaces/marvel'
 import { User } from '@interfaces/user'
 import { AuthService } from '@services/auth.service'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-// import { DbService } from './db.service';
 
 @Injectable()
 export class FirestoreService {
-  users$: Observable<User[]>
-  usersByPoints$: Observable<User[]>
-  usersByName$: Observable<User[]>
-  logs$: Observable<Log[]>
+  users$: Observable<User[]> = new Observable()
+  usersByPoints$: Observable<User[]> = new Observable()
+  usersByName$: Observable<User[]> = new Observable()
+  logs$: Observable<Log[]> = new Observable()
 
-  position: number
+  position: number = 0
   validPicture = []
 
   constructor(
-    // private db: DbService,
     private afs: AngularFirestore,
     private http: HttpClient,
     private auth: AuthService
@@ -56,17 +54,21 @@ export class FirestoreService {
         this.getLogs()
       }
 
-      this.apiMarvel().subscribe((res: Results[]) => {
-        for (const thumb of res) {
-          if (
-            thumb.thumbnail.path !==
-              'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' &&
-            thumb.thumbnail.extension !== 'gif'
-          ) {
-            thumb.thumbnail.path += '/standard_medium'
-            this.validPicture.push(thumb)
-          }
-        }
+      this.apiMarvel().subscribe((res: any) => {
+        console.log(
+          '🚀 ~ FirestoreService ~ this.apiMarvel ~ thumbnails',
+          res.data.results
+        )
+        // for (const thumb of thumbnails) {
+        //   if (
+        //     thumb.thumbnail.path !==
+        //       'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' &&
+        //     thumb.thumbnail.extension !== 'gif'
+        //   ) {
+        //     thumb.thumbnail.path += '/standard_medium'
+        //     this.validPicture.push(thumb)
+        //   }
+        // }
 
         this.usersByPoints$.subscribe((users: any) => {
           this.users$ = users
@@ -112,13 +114,14 @@ export class FirestoreService {
     const offset = Math.floor(Math.random() * 1400)
     const limit = 20
 
-    const endpointApi = `${baseUrl}characters?offset=${offset}&limit=${limit}&apikey=${publicKey}`
+    const endpointApi = `${baseUrl}/characters?offset=${offset}&limit=${limit}&apikey=${publicKey}`
 
-    return this.http.get(endpointApi).pipe(
-      map((res: Marvel): Results[] => {
-        return res.data.results
-      })
-    )
+    return this.http.get(endpointApi)
+    // .pipe(
+    //   map((res: Marvel): Results[] => {
+    //     return res.data.results
+    //   })
+    // )
   }
 
   /** Add a new log to the database */

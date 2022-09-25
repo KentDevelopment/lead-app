@@ -25,13 +25,13 @@ export class ToastService {
 
   snackBarWarning: MatSnackBarConfig = {
     ...this.snackBarConfig,
-    duration: null,
+    duration: 0,
     panelClass: 'snack-bar-warning',
   }
 
   snackBarError: MatSnackBarConfig = {
     ...this.snackBarConfig,
-    duration: null,
+    duration: 0,
     panelClass: 'snack-bar-error',
   }
 

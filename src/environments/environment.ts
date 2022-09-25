@@ -13,6 +13,6 @@ export const Environment = {
   },
   marvel: {
     publicKey: '5227aa2518375785b9d1179a789368c4',
-    baseUrl: 'https://gateway.marvel.com/v1/public/',
+    baseUrl: 'https://gateway.marvel.com/v1/public',
   },
 }

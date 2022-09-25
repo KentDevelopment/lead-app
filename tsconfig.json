@@ -1,18 +1,23 @@
 {
   "compileOnSave": false,
-  "include": ["src/**/*"],
   "compilerOptions": {
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
-    "module": "es2020",
-    "moduleResolution": "node",
+    "downlevelIteration": true,
     "experimentalDecorators": true,
+    "moduleResolution": "node",
     "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": ["es2018", "dom"],
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "target": "es2015",
     "paths": {
       "@guards/*": ["app/guards/*"],
       "@dialogs/*": ["app/dialogs/*"],
@@ -24,7 +29,6 @@
     },
     "typeRoots": ["node_modules/@types"],
     "allowJs": true,
-    "types": ["cypress"],
-    "lib": ["es2018", "dom"]
+    "types": ["cypress"]
   }
 }
