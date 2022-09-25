@@ -1,3 +1,9 @@
+# 2.2.4 (2022-09-25)
+
+## General Improvements
+
+- Update reference to the Google Analytics projects
+
 # 2.2.3 (2021-05-10)
 
 ## General Improvements
